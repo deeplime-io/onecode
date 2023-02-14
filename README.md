@@ -22,14 +22,4 @@ Whether we are in the industry, academia, or simply in our everyday-life, we fin
 
 - actually we have a 4th category, people who don’t care at all about it (a.k.a. the vast majority, e.g. my spouse). Developers can’t stop themselves for trying and trying to convince they should be in the **experts** or **tech-savvy/data scientists** category (believe me, I keep trying every time, and 10 years later, it still doesn’t work). Do yourself a favor, just accept it and move on. So, if you’re in that bucket, I guess you can close this page and skip the reading unless you want to know why developers suffer from not being understood.
 
-
-## Getting started
-Well, well, which profile are you?
-
-* [expert](#onecode-for-experts)
-* [tech-savvy/data scientist](#onecode-for-tech-savviesdata-scientists)
-* [developer](#onecode-for-developers)
-
-
-## OneCode Overview
-![`OneCode` overview](https://github.com/deeplime-io/onecode/raw/main/docs/assets/onecode_chart.png)
+## [Getting started](https://deeplime-io.github.io/onecode)

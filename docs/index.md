@@ -1,5 +1,15 @@
 --8<-- "README.md"
 
+Well, well, which profile are you?
+
+* [expert][onecode-for-experts]
+* [tech-savvy/data scientist][onecode-for-tech-savviesdata-scientists]
+* [developer][onecode-for-developers]
+
+
+## OneCode Overview
+![`OneCode` overview](https://github.com/deeplime-io/onecode/raw/main/docs/assets/onecode_chart.png)
+
 ---
 ## OneCode for Experts
 ### Installation
