@@ -685,13 +685,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#onecode.cli.utils.register_ext_module" class="md-nav__link">
-    register_ext_module()
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1061,13 +1054,6 @@
         <li class="md-nav__item">
   <a href="#onecode.cli.utils.process_call_graph" class="md-nav__link">
     process_call_graph()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#onecode.cli.utils.register_ext_module" class="md-nav__link">
-    register_ext_module()
   </a>
   
 </li>
@@ -1451,74 +1437,6 @@ variable <code>Env.ONECODE_CONFIG_FILE</code>).</p>
                 <code><span title="collections.OrderedDict">OrderedDict</span></code>
           </td>
           <td><p>The list of OneCode-like elements code statements ready to be evaluated.</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h2 id="onecode.cli.utils.register_ext_module" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">register_ext_module</span><span class="p">(</span><span class="n">project_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span></code>
-
-<a href="#onecode.cli.utils.register_ext_module" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Register the OneCode Extension module named <code>onecode_ext</code>. <code>onecode_ext</code> module is shipped by
-default with any OneCode project. As soon as the developer creates new elements as part of this
-module, the <code>onecode_ext</code> will be registered. See <a class="autorefs autorefs-internal" href="../../../extending_onecode/#extending-onecode">Extending OneCode</a> for
-more information.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>It is not required to call this function explicitely. It is already done automatically as
-part of the OneCode project under <code>main.py</code>.</p>
-</div>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>project_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>Path to the root of the OneCode project.</p></td>
-          <td>
-                <code>os.getcwd()</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="types.ModuleType">ModuleType</span>]</code>
-          </td>
-          <td><p>The module if it contains Python code, otherwise None.</p></td>
         </tr>
     </tbody>
   </table>
