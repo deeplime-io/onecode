@@ -24,16 +24,18 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.7, <3.11"
-astunparse = "^1.6.3"
 'flufl.lock' = "^7.1.1"
-inquirerpy = "^0.3.3"
 pandas = "^1.4.0"
 pyarrow = "^6.0.0"
 pydantic = "^1.10.4"
-pycg = { git = "https://github.com/deeplime-io/PyCG.git@onecode" }
 pydash = "^5.1.0"
 python-slugify = "^6.1.2"
 typeguard = "^2.13.3"
+
+# cli
+astunparse = "^1.6.3"
+inquirerpy = "^0.3.3"
+pycg = { git = "https://github.com/deeplime-io/PyCG.git@onecode" }
 yaspin = "^2.1.0"
 
 # streamlit
@@ -60,9 +62,46 @@ pytest-xdist = { version = "^3.1.0", optional = true }
 toml = { version = "^0.10.2", optional = true }
 
 [tool.poetry.extras]
-tech-expert = ["streamlit", "streamlit-image-select", "streamlit-option-menu", "streamlit_tree_select"]
-developer = ["streamlit", "streamlit-image-select", "streamlit-option-menu", "streamlit_tree_select", "datatest", "pytest", "pytest-cov", "pytest-xdist", "toml"]
-docs = ["griffe", "markdown-katex", "mike", "mkdocs", "mkdocs-jupyter", "mkdocs-material", "mkdocstrings", "mkdocstrings-python"]
+# cli + streamlit
+tech-expert = [
+    "astunparse",
+    "inquirerpy",
+    "pycg",
+    "yaspin",
+    "streamlit",
+    "streamlit-image-select",
+    "streamlit-option-menu",
+    "streamlit_tree_select"
+]
+
+# cli + streamlit + tests
+developer = [
+    "astunparse",
+    "inquirerpy",
+    "pycg",
+    "yaspin",
+    "streamlit",
+    "streamlit-image-select",
+    "streamlit-option-menu",
+    "streamlit_tree_select",
+    "datatest",
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "toml"
+]
+
+# docs only
+docs = [
+    "griffe",
+    "markdown-katex",
+    "mike",
+    "mkdocs",
+    "mkdocs-jupyter",
+    "mkdocs-material",
+    "mkdocstrings",
+    "mkdocstrings-python"
+]
 
 [tool.poetry.scripts]
 onecode-start = 'onecode.cli.start:main'

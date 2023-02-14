@@ -3,7 +3,8 @@ import os
 import pytest
 from datatest import working_directory
 
-from onecode import Project, process_call_graph, register_ext_module
+from onecode import Project, register_ext_module
+from onecode.cli import process_call_graph
 
 
 def test_invalid_call_graph():

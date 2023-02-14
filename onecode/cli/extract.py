@@ -15,7 +15,8 @@ from ..base.decorator import check_type
 from ..base.enums import *  # noqa
 from ..base.enums import ElementType, Mode
 from ..base.project import Project
-from .utils import process_call_graph, register_ext_module
+from ..utils.module import register_ext_module
+from .utils import process_call_graph
 
 
 @check_type

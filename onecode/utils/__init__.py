@@ -4,4 +4,5 @@
 from .format import *
 from .import_input import *
 from .import_output import *
+from .module import *
 from .typing import *

@@ -2,15 +2,11 @@
 # SPDX-License-Identifier: MIT
 
 import ast
-import importlib
 import json
 import os
-import sys
 from collections import OrderedDict
 from glob import iglob
-from pathlib import Path
-from types import ModuleType
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 import pydash
 from astunparse import unparse
@@ -242,37 +238,3 @@ def process_call_graph(project_path: str = None) -> OrderedDict:
         }
 
     return statements
-
-
-@check_type
-def register_ext_module(project_path: str = os.getcwd()) -> Optional[ModuleType]:
-    """
-    Register the OneCode Extension module named `onecode_ext`. `onecode_ext` module is shipped by
-    default with any OneCode project. As soon as the developer creates new elements as part of this
-    module, the `onecode_ext` will be registered. See [Extending OneCode][extending-onecode] for
-    more information.
-
-    !!! info
-        It is not required to call this function explicitely. It is already done automatically as
-        part of the OneCode project under `main.py`.
-
-    Args:
-        project_path: Path to the root of the OneCode project.
-
-    Returns:
-        The module if it contains Python code, otherwise None.
-
-    """
-    code_ext_path = os.path.join(project_path, 'flows', 'onecode_ext')
-    py_files = [f for f in Path(code_ext_path).rglob("*.[pP][yY]") if f.name != '__init__.py']
-
-    if len(py_files) > 0:
-        spec = importlib.util.spec_from_file_location(
-            "onecode_ext",
-            os.path.join(code_ext_path, "__init__.py")
-        )
-        module = importlib.util.module_from_spec(spec)
-        sys.modules[spec.name] = module
-        spec.loader.exec_module(module)
-
-        return module
