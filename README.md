@@ -1,11 +1,13 @@
 ![onecode_logo](https://github.com/deeplime-io/onecode/raw/main/docs/assets/onecode.jpg)
 
-![GitHub release](https://img.shields.io/github/v/release/deeplime-io/onecode?sort=semver&style=plastic)
+![GitHub release](https://img.shields.io/github/v/release/deeplime-io/onecode?sort=semver)
 ![PyPI - License](https://img.shields.io/pypi/l/onecode)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/onecode)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/deeplime-io/onecode/validation.yml?event=push&label=test%20status&style=plastic)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/deeplime-io/onecode/validation.yml?event=push&label=test%20status)
 ![Windows supported](https://img.shields.io/badge/platform-linux-%23f2c300?logo=linux)
 ![Linux supported](https://img.shields.io/badge/platform-windows-%230072c9?logo=windows)
+[![Maintainability](https://api.codeclimate.com/v1/badges/df236aa4b4ab765ba7db/maintainability)](https://codeclimate.com/github/deeplime-io/onecode/maintainability)
+[![Coverage](https://codecov.io/gh/deeplime-io/onecode/branch/main/graph/badge.svg?token=BF54VNGWM5)](https://codecov.io/gh/deeplime-io/onecode)
 
 
 ---

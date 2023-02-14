@@ -8,9 +8,9 @@ license = "MIT"
 keywords = ["onecode", "procedures"]
 homepage = "https://github.com/deeplime-io/onecode"
 repository = "https://github.com/deeplime-io/onecode"
-documentation = "https://github.com/deeplime-io/onecode"
+documentation = "https://deeplime-io.github.io/onecode"
 classifiers = [
-  "Development Status :: 3 - Beta",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "Intended Audience :: End Users/Desktop",
   "License :: OSI Approved :: MIT License",
