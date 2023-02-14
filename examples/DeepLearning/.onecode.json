@@ -1,0 +1,12 @@
+[
+	{
+		"file": "train",
+		"label": "Train",
+		"attributes": {}
+	},
+	{
+		"file": "predict",
+		"label": "Predict",
+		"attributes": {}
+	}
+]

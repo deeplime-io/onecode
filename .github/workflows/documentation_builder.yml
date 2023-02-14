@@ -1,0 +1,48 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - 'main'
+    path:
+        - docs/**
+        - mkdocs.yml
+        - onecode/**
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    name: Deploy Documentation on GH Pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Install Python libraries
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[docs]
+
+      - name: Setup doc deploy
+        run: |
+          git config --global user.name "DeepLime Dev"
+          git config --global user.email dev@deeplime.io
+
+      - name: Deploy Documentation
+        run: |
+          if [[ ${{github.event_name}} == "release" ]]
+          then
+            echo "Deploy doc for release: ${{ github.event.release.tag_name }}"
+            mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest || mike deploy --push ${{ github.event.release.tag_name }}
+            mike set-default --push latest
+          else
+            echo "Deploy doc for main"
+            mike deploy --push dev
+          fi

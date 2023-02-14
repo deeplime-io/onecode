@@ -1,0 +1,68 @@
+name: Validation
+
+on:
+  push:
+    branches:
+      - main
+    path:
+      - onecode/**
+      - tests/**
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  formatting:
+    name: Check Formatting
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Install Formatting
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+          pip install isort
+
+      - name: Check Formatting
+        run: |
+          flake8 onecode tests/unit/ --exclude=__init__.py,tests/data --max-line-length=100
+          isort . -m3 --thirdparty . --check-only
+
+  testing:
+    name: Check Testing
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.8", "3.9", "3.10"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install Python libraries
+        run: |
+          python -m pip install --upgrade pip
+          pip install .[developer]
+
+      - name: Check Testing With Emulations
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          ONECODE_DO_TYPECHECK=1 python -m pytest tests -n auto --with-emulations
+
+      - name: Check Testing No Emulations
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          set ONECODE_DO_TYPECHECK=1
+          python -m pytest tests -n auto

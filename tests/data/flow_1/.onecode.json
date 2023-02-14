@@ -1,0 +1,17 @@
+[
+	{
+		"file": "step1",
+		"label": "Step1",
+		"attributes": {}
+	},
+	{
+		"file": "step2",
+		"label": "Step2",
+		"attributes": {}
+	},
+	{
+		"file": "step3",
+		"label": "Step3",
+		"attributes": {}
+	}
+]

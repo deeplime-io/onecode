@@ -1,0 +1,14 @@
+{
+    "csv": "input_test.csv",
+    "column_x": "x",
+    "my_slider_1": 0.5,
+    "my_slider_2": 0.2,
+    "my_l_slid_10": 2.0,
+    "my_input": "README.md",
+    "my_input_2": [
+        [
+            "x.py",
+            "y.py"
+        ]
+    ]
+}
