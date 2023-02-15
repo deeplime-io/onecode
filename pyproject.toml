@@ -35,7 +35,7 @@ typeguard = "^2.13.3"
 # cli
 astunparse = "^1.6.3"
 inquirerpy = "^0.3.3"
-pycg = { git = "https://github.com/deeplime-io/PyCG.git@onecode" }
+onecode-pycg = "^0.0.7"
 yaspin = "^2.1.0"
 
 # streamlit
@@ -62,24 +62,14 @@ pytest-xdist = { version = "^3.1.0", optional = true }
 toml = { version = "^0.10.2", optional = true }
 
 [tool.poetry.extras]
-# cli + streamlit
 tech-expert = [
-    "astunparse",
-    "inquirerpy",
-    "pycg",
-    "yaspin",
     "streamlit",
     "streamlit-image-select",
     "streamlit-option-menu",
     "streamlit_tree_select"
 ]
 
-# cli + streamlit + tests
 developer = [
-    "astunparse",
-    "inquirerpy",
-    "pycg",
-    "yaspin",
     "streamlit",
     "streamlit-image-select",
     "streamlit-option-menu",
@@ -91,7 +81,6 @@ developer = [
     "toml"
 ]
 
-# docs only
 docs = [
     "griffe",
     "markdown-katex",
