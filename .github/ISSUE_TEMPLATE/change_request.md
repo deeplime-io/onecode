@@ -6,8 +6,16 @@ labels: 'change request, new'
 ---
 ## Change request type
 * New feature or Improvement?
+  - [ ] New feature
+  - [ ] Improvement
 * Is it OS-specific?
-* Who is it for (expert/tech-savvy/developer)?
+  - [ ] Not particularly
+  - [ ] Linux
+  - [ ] Windows
+* Who is it for?
+  - [ ] Expert
+  - [ ] Tech-Savvy
+  - [ ] Developer
 
 
 ## Details

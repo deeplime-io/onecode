@@ -5,10 +5,14 @@ title: ''
 labels: 'bug, new'
 ---
 ## Your Environment
-* Version (tag/commit sha):
-* OS (Linux/Windows):
-* Profile (expert/tech-savvy/developer):
-
+* Version (tag/commit sha): ``
+* Your OS
+  - [ ] Linux
+  - [ ] Windows
+* Your Profile
+  - [ ] Expert
+  - [ ] Tech-Savvy
+  - [ ] Developer
 
 ## Problem description
 
