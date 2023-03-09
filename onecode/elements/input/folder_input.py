@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Union
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -125,7 +125,6 @@ class FolderInput(InputElement):
         if not os.path.exists(value):
             raise FileNotFoundError(f"[{self.key}] Folder not found: {value}")
 
-
     @check_type
     def _validate(
         self,
@@ -134,7 +133,7 @@ class FolderInput(InputElement):
         """
         Validate the selected value (see _validate_option_value()).
 
-        """    
+        """
         self._validate_folder_value(value)
 
     @check_type
