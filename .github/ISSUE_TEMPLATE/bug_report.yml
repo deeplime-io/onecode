@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report a problem
-title: "[Bug]: "
+title: ""
 labels: ["bug", "new"]
 
 body:
@@ -44,15 +44,13 @@ body:
     attributes:
       label: Problem description
       placeholder: Tell us what you see!
-      value:
     validations:
       required: true
   - type: textarea
     id: what-happened
     attributes:
       label: What happened ?
-      placeholder: Tell us what you see!
-      value: |
+      placeholder: |
         * Code snippet
         ```python
         # sample code here
@@ -65,8 +63,7 @@ body:
     id: expected-behaviour
     attributes:
       label: What should have happened
-      placeholder: Tell us what you see!
-      value:
+      placeholder: ex. one elemenent did not render as I expected.
     validations:
       required: true
 

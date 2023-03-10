@@ -20,11 +20,12 @@ body:
         - Improvement
     validations:
       required: true
-  - type: checkbox
+  - type: dropdown
     id: os
     attributes:
       label: OS
       description: Is it OS-specific ?
+      multiple: false
       options:
         - Not particularly
         - Linux
@@ -46,8 +47,7 @@ body:
     id: details
     attributes:
       label: Details
-      placeholder: Explain what you would like.
-      value: |
+      placeholder: |
         * Description
 
         * Sample Code
