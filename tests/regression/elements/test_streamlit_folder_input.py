@@ -1,4 +1,4 @@
-from onecode import FileFilter, FolderInput
+from onecode import FolderInput
 
 
 def test_streamlit_folder_input_single_selection_no_count():
@@ -26,6 +26,7 @@ with left:
     folderinput = left.text_input('''My FolderInput''', _file_folderinput, disabled=False, key='fi')
 """  # noqa
 
+
 def test_streamlit_folder_input_single_selection_with_count():
     widget = FolderInput(
         key="FolderInput",
@@ -34,7 +35,7 @@ def test_streamlit_folder_input_single_selection_with_count():
         count=1
     )
 
-    assert widget.streamlit("'fi'") == f"""
+    assert widget.streamlit("'fi'") == """
 # FolderInput folderinput
 left, right = st.columns([3, 1])
 with right:

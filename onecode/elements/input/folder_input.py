@@ -15,7 +15,7 @@ class FolderInput(InputElement):
     def __init__(
         self,
         key: str,
-        value: Optional[Union[str, List[str], List[List[str]]]],
+        value: Optional[Union[str, List[str]]],
         label: Optional[str] = None,
         count: Optional[Union[int, str]] = None,
         optional: Union[bool, str] = False,
@@ -31,9 +31,9 @@ class FolderInput(InputElement):
                 Streamlit modes. The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
-            value: Path to folder. Provided fodler doesn't necessarily have to exist for the
-                Streamlit mode, however their existence will be checked at execution time. If paths
-                are not absolute, then they are considered relative to the data root folder. See
+            value: Path to folder. Provided folder doesn't necessarily have to exist for the
+                Streamlit mode, however its existence will be checked at execution time. If path
+                is not absolute, then it is considered relative to the data root folder. See
                 [Best Practices With Data][best-practices-with-data] for more information.
             label: Label to display left of the folder selector.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
@@ -61,14 +61,14 @@ class FolderInput(InputElement):
             Project().mode = Mode.EXECUTE
             widget = folder_input(
                 key="FolderInput",
-                value=["/path/to/", "/path/"],
+                value="/path/to/",
                 tags=['MyTags']
             )
             print(widget)
             ```
 
             ```py title="Output"
-            ["/path/to/", "/path/"]
+            "/path/to/"
             ```
 
         """
@@ -91,7 +91,7 @@ class FolderInput(InputElement):
         return str
 
     @property
-    def value(self) -> Optional[Union[List[str], str]]:
+    def value(self) -> Optional[str]:
         """
         Returns:
             The path or list of paths for the selected folder: if paths are not absolute, then
@@ -119,7 +119,7 @@ class FolderInput(InputElement):
     ) -> None:
         """
         Raises:
-            FileNotFoundError: if the path does not exist or is not a file.
+            FileNotFoundError: if the path does not exist or is not a folder.
 
         """
         if not os.path.exists(value):
