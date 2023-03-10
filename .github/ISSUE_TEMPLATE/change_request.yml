@@ -1,0 +1,60 @@
+name: New Feature/Enhancement request
+description: Request a new feature or an improvement to an existing one
+title: ""
+labels: ["change request", "new"]
+
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Change request type
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: New feature or Improvement ?
+      multiple: false
+      options:
+        - New feature
+        - Improvement
+    validations:
+      required: true
+  - type: checkbox
+    id: os
+    attributes:
+      label: OS
+      description: Is it OS-specific ?
+      options:
+        - Not particularly
+        - Linux
+        - Windows
+    validations:
+      required: true
+  - type: checkbox
+    id: profile
+    attributes:
+      label: Profile
+      description: Who is it for ?
+      options:
+        - Expert
+        - Tech-Savvy
+        - Developer
+    validations:
+      required: false
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      placeholder: Explain what you would like.
+      value: |
+        * Description
+
+        * Sample Code
+        ```python
+        # example of code that would illustrate this request
+        ```
+
+        * Desired screenshot/output
+    validations:
+      required: true
