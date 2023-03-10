@@ -8,6 +8,7 @@ from tests.utils.flow_cli import (
     _generate_flow_name,
     _generate_folder
 )
+from tests.utils.format import strip
 
 
 def test_console_single_folder_input():
@@ -157,8 +158,9 @@ def test_execute_invalid_multiple_file_input_single_selection():
         test_folder_1 = test_folder_1.replace('\\', '\\\\')
         test_folder_2 = test_folder_2.replace('\\', '\\\\')
 
-    assert f"Invalid value type for ['{test_folder_1}', '{test_folder_2}'], expected: <class 'str'>" == \
-        str(excinfo.value)
+    assert strip(
+        f"Invalid value type for ['{test_folder_1}', '{test_folder_2}'], expected: <class 'str'>"
+     ) == str(excinfo.value)
 
     try:
         shutil.rmtree(folder_path)
