@@ -28,7 +28,7 @@ body:
         - Windows
     validations:
       required: true
-  - type: checkbox
+  - type: checkboxes
     id: profile
     attributes:
       label: Profile
@@ -66,5 +66,3 @@ body:
       placeholder: ex. one elemenent did not render as I expected.
     validations:
       required: true
-
-

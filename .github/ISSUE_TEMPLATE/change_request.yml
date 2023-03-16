@@ -32,7 +32,7 @@ body:
         - Windows
     validations:
       required: true
-  - type: checkbox
+  - type: checkboxes
     id: profile
     attributes:
       label: Profile
