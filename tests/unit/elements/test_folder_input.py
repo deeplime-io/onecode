@@ -136,6 +136,11 @@ def test_execute_invalid_type_folder_input_single_selection():
     assert f"[folderinput] Path is not a folder: {csv_file_1}" == \
         str(excinfo.value)
 
+    try:
+        shutil.rmtree(folder_path)
+    except Exception:
+        pass
+
 
 def test_execute_invalid_single_folder_input_single_selection():
     _, folder, _ = _generate_flow_name()
