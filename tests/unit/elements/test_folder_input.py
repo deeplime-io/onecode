@@ -2,6 +2,7 @@ import os
 import shutil
 
 import pytest
+
 from onecode import FolderInput, Mode, Project
 from tests.utils.flow_cli import (
     _clean_flow,
