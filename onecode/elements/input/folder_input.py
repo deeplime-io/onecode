@@ -19,8 +19,7 @@ class FolderInput(InputElement):
         label: Optional[str] = None,
         count: Optional[Union[int, str]] = None,
         optional: Union[bool, str] = False,
-        hide_when_disabled: bool = False,
-        tags: Optional[List[str]] = None
+        hide_when_disabled: bool = False
     ):
         """
         A single folder selector.
@@ -47,8 +46,6 @@ class FolderInput(InputElement):
                 information).
             hide_when_disabled: If element is optional, set it to True to hide it from the
                 interface, otherwise it will be shown disabled.
-            tags: Optional meta-data information about the expected file. This information is only
-                used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -61,8 +58,7 @@ class FolderInput(InputElement):
             Project().mode = Mode.EXECUTE
             widget = folder_input(
                 key="FolderInput",
-                value="/path/to/",
-                tags=['MyTags']
+                value="/path/to/"
             )
             print(widget)
             ```
@@ -78,8 +74,7 @@ class FolderInput(InputElement):
             label,
             count,
             optional,
-            hide_when_disabled,
-            tags=tags
+            hide_when_disabled
         )
 
     @property
@@ -113,7 +108,7 @@ class FolderInput(InputElement):
         return None
 
     @check_type
-    def _validate_folder_value(
+    def _validate(
         self,
         value: str
     ) -> None:
@@ -124,17 +119,9 @@ class FolderInput(InputElement):
         """
         if not os.path.exists(value):
             raise FileNotFoundError(f"[{self.key}] Folder not found: {value}")
+        if not os.path.isdir(value):
+            raise NotADirectoryError(f"[{self.key}] Path is not a folder: {value}")
 
-    @check_type
-    def _validate(
-        self,
-        value: Union[List[str], str]
-    ) -> None:
-        """
-        Validate the selected value (see _validate_option_value()).
-
-        """
-        self._validate_folder_value(value)
 
     @check_type
     def streamlit(

@@ -40,10 +40,3 @@ def _generate_csv_file(
             f.write("3,4,5\n")
 
     return out_file
-
-
-def _generate_folder(
-    flow: str,
-) -> None:
-    os.makedirs(flow, exist_ok=True)
-    return flow
