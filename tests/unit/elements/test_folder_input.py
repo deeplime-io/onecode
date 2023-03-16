@@ -2,12 +2,11 @@ import os
 import shutil
 
 import pytest
-
 from onecode import FolderInput, Mode, Project
 from tests.utils.flow_cli import (
     _clean_flow,
-    _generate_flow_name,
-    _generate_csv_file
+    _generate_csv_file,
+    _generate_flow_name
 )
 from tests.utils.format import strip
 
