@@ -122,7 +122,6 @@ class FolderInput(InputElement):
         if not os.path.isdir(value):
             raise NotADirectoryError(f"[{self.key}] Path is not a folder: {value}")
 
-
     @check_type
     def streamlit(
         self,

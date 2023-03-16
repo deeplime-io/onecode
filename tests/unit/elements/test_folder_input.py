@@ -180,8 +180,8 @@ def test_execute_invalid_multiple_folder_input_single_selection():
 
     # welcome to Windows world...
     if os.name == 'nt':
-        test_folder_1 = test_folder_1.replace('\\', '\\\\')
-        test_folder_2 = test_folder_2.replace('\\', '\\\\')
+        folder_path_1 = folder_path_1.replace('\\', '\\\\')
+        folder_path_2 = folder_path_2.replace('\\', '\\\\')
 
     assert strip(
         f"Invalid value type for ['{folder_path_1}', '{folder_path_2}'], expected: <class 'str'>"
