@@ -1,6 +1,6 @@
 name: New Feature/Enhancement request
 description: Request a new feature or an improvement to an existing one
-title: ""
+title: "[Request]: "
 labels: ["change request", "new"]
 
 body:
@@ -38,9 +38,9 @@ body:
       label: Profile
       description: Who is it for ?
       options:
-        - Expert
-        - Tech-Savvy
-        - Developer
+        - label: Expert
+        - label: Tech-Savvy
+        - label: Developer
     validations:
       required: false
   - type: textarea

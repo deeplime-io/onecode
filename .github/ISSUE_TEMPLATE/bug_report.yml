@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report a problem
-title: ""
+title: "[Bug]: "
 labels: ["bug", "new"]
 
 body:
@@ -34,9 +34,9 @@ body:
       label: Profile
       description: What is your OneCode profile ?
       options:
-        - Expert
-        - Tech-Savvy
-        - Developer
+        - label: Expert
+        - label: Tech-Savvy
+        - label: Developer
     validations:
       required: false
   - type: textarea

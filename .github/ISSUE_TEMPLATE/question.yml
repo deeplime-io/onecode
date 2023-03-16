@@ -1,6 +1,6 @@
 name: Question
 description: Ask a question
-title: ""
+title: "[Question]: "
 labels: ["question", "new"]
 
 body:
@@ -10,8 +10,8 @@ body:
       label: Answer
       description: To the best of my knowledge, I didn't find a complete answer in
       options:
-        - the [documentation](https://deeplime-io.github.io/onecode)
-        - the GitHub Issues
+        - label: the [documentation](https://deeplime-io.github.io/onecode)
+        - label: the GitHub Issues
     validations:
       required: false
   - type: markdown
@@ -43,9 +43,9 @@ body:
       label: Profile
       description: What is your OneCode profile ?
       options:
-        - Expert
-        - Tech-Savvy
-        - Developer
+        - label: Expert
+        - label: Tech-Savvy
+        - label: Developer
     validations:
       required: false
   - type: textarea
