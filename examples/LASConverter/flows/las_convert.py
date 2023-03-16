@@ -10,8 +10,9 @@
 
 import os
 
-from onecode import folder_input, csv_output, Logger
 import lasio
+
+from onecode import Logger, csv_output, folder_input
 
 
 def run():
