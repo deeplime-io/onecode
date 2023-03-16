@@ -56,11 +56,11 @@ class NeuralNetInput(InputElement):
     ) -> str:
         key = self.key
         value = self.value
-        if self.count is not None and isinstance(value, list) and len(value) > 0:
-            value = value[0]
 
         options_key = f'options_{key}'
         default_key = f'default_{key}'
+        option_id = f'option_{key}'
+        option_val = f'val_{key}'
 
         options = [
             'relu',
@@ -71,14 +71,16 @@ class NeuralNetInput(InputElement):
         return f"""
 {options_key} = {options}
 
-{default_key} = pydash.find_index({options_key}, lambda x: x == '{pydash.get(value, 'activation', 'tanh')}')
+{option_id} = int({id}.split('_')[-1])
+{option_val} = pydash.get({value}, [{option_id}, 'activation'], 'tanh')
+{default_key} = pydash.find_index({options_key}, lambda x: x == {option_val})
 {default_key} = {default_key} if {default_key} >= 0 else 0
 
 # NeuralNetInput {key}
 left_{key}, mid_{key}, right_{key} = st.columns(3)
 neurons_{key} = left_{key}.slider(
     'Neurons',
-    value={pydash.get(value, 'neurons', 16)},
+    value=pydash.get({value}, [{option_id}, 'neurons'], 16),
     min_value=8,
     max_value=64,
     step=1,
@@ -95,7 +97,7 @@ activation_{key} = mid_{key}.selectbox(
 
 dropout_{key} = right_{key}.slider(
     'Dropout',
-    value={pydash.get(value, 'dropout', 0.)},
+    value=pydash.get({value}, [{option_id}, 'dropout'], 0.),
     min_value=0.,
     max_value=0.9,
     key='dropout' + {id}
