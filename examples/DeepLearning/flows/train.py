@@ -63,7 +63,7 @@ def run():
     categorical = checkbox('Is output categorical?', False)
     train_split = slider('train/test split', 0.7)
 
-    number_input('n layers', 4, min=1, max=7, step=1)
+    number_input('n layers', 2, min=1, max=7, step=1)
     nn = neural_net_input(
         'Neural Net',
         4 * [{"neurons": 42, "activation": "tanh", "dropout": 0.1}],
