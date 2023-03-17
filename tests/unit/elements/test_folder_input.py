@@ -130,9 +130,6 @@ def test_execute_invalid_type_folder_input_single_selection():
     with pytest.raises(NotADirectoryError) as excinfo:
         widget()
 
-    if os.name == 'nt':
-        csv_file_1 = csv_file_1.replace('\\', '\\\\')
-
     assert f"[folderinput] Path is not a folder: {csv_file_1}" == \
         str(excinfo.value)
 
