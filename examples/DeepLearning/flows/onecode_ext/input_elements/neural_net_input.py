@@ -56,6 +56,7 @@ class NeuralNetInput(InputElement):
     ) -> str:
         key = self.key
         value = self.value
+        count = self.count
 
         options_key = f'options_{key}'
         default_key = f'default_{key}'
@@ -70,8 +71,10 @@ class NeuralNetInput(InputElement):
 
         return f"""
 {options_key} = {options}
-
-{option_id} = int({id}.split('_')[-1])
+if {count} is not None:
+    {option_id} = int({id}.split('_')[-1])
+else:
+    {option_id} = 0
 {option_val} = pydash.get({value}, [{option_id}, 'activation'], 'tanh')
 {default_key} = pydash.find_index({options_key}, lambda x: x == {option_val})
 {default_key} = {default_key} if {default_key} >= 0 else 0
