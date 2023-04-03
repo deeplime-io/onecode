@@ -55,7 +55,7 @@ class NeuralNetInput(InputElement):
         id: str
     ) -> str:
         key = self.key
-        value = self.value
+        value = self.value if type(self.value) == list else [self.value]
         count = self.count
 
         options_key = f'options_{key}'
