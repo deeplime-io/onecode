@@ -66,7 +66,12 @@ def run():
     number_input('n layers', 2, min=1, max=7, step=1)
     nn = neural_net_input(
         'Neural Net',
-        4 * [{"neurons": 42, "activation": "tanh", "dropout": 0.1}],
+        [
+            {"neurons": 32, "activation": "relu", "dropout": 0.2},
+            {"neurons": 16, "activation": "tanh", "dropout": 0.1},
+            {"neurons": 32, "activation": "relu", "dropout": 0.2},
+            {"neurons": 16, "activation": "tanh", "dropout": 0.1},
+        ],
         count='$n_layers$'
     )
 
