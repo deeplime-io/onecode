@@ -47,16 +47,21 @@ nav:
       - NumberInput: reference/elements/input/number_input.md
       - Slider: reference/elements/input/slider.md
       - FileInput: reference/elements/input/file_input.md
+      - FolderInput: reference/elements/input/folder_input.md
       - TextInput: reference/elements/input/text_input.md
       - CsvReader: reference/elements/input/csv_reader.md
     - OutputElement:
       - Abstract OutputElement: reference/elements/output_element.md
       - FileOutput: reference/elements/output/file_output.md
       - ImageOutput: reference/elements/output/image_output.md
+      - PlotlyOutput: reference/elements/output/plotly_output.md
       - TextOutput: reference/elements/output/text_output.md
       - CsvOutput: reference/elements/output/csv_output.md
     - Utilities: reference/utils/utils.md
     - Extending OneCode: extending_onecode.md
+  - Changelogs:
+    - 0.2.0: changelogs/0.2.0.md
+    - 0.1.0: changelogs/0.1.0.md
 
 markdown_extensions:
   - admonition

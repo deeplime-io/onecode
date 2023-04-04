@@ -6,6 +6,7 @@ Available input elements for OneCode projects:
 * [csv_reader][csv_reader]
 * [dropdown][dropdown]
 * [file_input][file_input]
+* [folder_input][folder_input]
 * [number_input][number_input]
 * [radio_button][radio_button]
 * [slider][slider]
@@ -72,6 +73,20 @@ def file_input(
 )
 ```
 ::: onecode.elements.input.file_input.FileInput.__init__
+
+
+## folder_input
+```python
+def folder_input(
+    key: str,
+    value: Optional[Union[str, List[str]]],
+    label: Optional[str] = None,
+    count: Optional[Union[int, str]] = None,
+    optional: Union[bool, str] = False,
+    hide_when_disabled: bool = False
+)
+```
+::: onecode.elements.input.folder_input.FolderInput.__init__
 
 
 ## number_input

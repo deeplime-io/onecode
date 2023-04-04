@@ -1,0 +1,56 @@
+name: Changelog Check
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  check:
+    name: Check Changelog
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+
+    - name: Install Python libraries
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -e .
+
+    - name: Check changelog update
+      run: |
+        function get_versions()
+        {
+            local __ROOT=$1
+            local VERSION=`python -c "import onecode; print(onecode.__version__)" | tail -1`
+            echo "Current version $VERSION"
+
+            local SPLIT_CURV_V=(${VERSION//.dev/ })
+            local ROOT_VERSION=${SPLIT_CURV_V[0]}
+
+            eval $__ROOT="'$ROOT_VERSION'"
+        }
+
+        get_versions BRANCH_ROOT_VERSION
+        BRANCH_SHA1=`sha1sum ./docs/changelogs/${BRANCH_ROOT_VERSION}.md || echo 'NULL'`
+
+        git checkout ${{ github.event.pull_request.base.sha }}
+        get_versions MAIN_ROOT_VERSION
+        MAIN_SHA1=`sha1sum ./docs/changelogs/${MAIN_ROOT_VERSION}.md || echo 'NULL'`
+
+        if [ "$BRANCH_SHA1" == "$MAIN_SHA1" ]
+        then
+          echo "Missing changelog information"
+          exit 1
+        else
+          echo "Changelog OK"
+        fi
