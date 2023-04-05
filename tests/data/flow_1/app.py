@@ -13,6 +13,7 @@ from tkinter import filedialog
 from typing import Dict, List
 
 import numpy as np
+import plotly
 import pydash
 import streamlit as st
 from main import main

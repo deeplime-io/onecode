@@ -16,13 +16,16 @@ import geolime as geo
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import plotly
 from pyproj import CRS
 
 from onecode import (
     Logger,
+    Project,
     csv_reader,
     dropdown,
     image_output,
+    plotly_output,
     slider,
     text_input,
     text_output
@@ -64,7 +67,7 @@ def fit_varios(dh, vario_params, grade, orebody_name):
         atol=45,
         dip=dip,
         pitch=90,
-        save_file=image_output(f"variomap_{dip}", f"variomap_{dip}.jpg")
+        save_file=image_output(f"variomap_{dip}", f"images/variomap_{dip}.jpg")
     )
 
     min_dip = dip - 20 if dip > 20 else 0
@@ -85,7 +88,8 @@ def fit_varios(dh, vario_params, grade, orebody_name):
         model_angles=vario_params,
         display_npairs=False
     )
-    fig.write_image(image_output(f"vario_dip_{dip}", f"vario_dip_{dip}.jpg"))
+    fig.write_image(image_output(f"vario_dip_{dip}", f"images/vario_dip_{dip}.jpg"))
+    plotly.io.write_json(fig, plotly_output(f"vario_dip_{dip}_plot", f"plots/vario_dip_{dip}.json"))
 
     return cov
 
@@ -93,6 +97,8 @@ def fit_varios(dh, vario_params, grade, orebody_name):
 def run():
     Logger.info('Setting project configuration...')
     geo.Project().set_crs(CRS(text_input('epsg', 'EPSG:32108')))
+    os.makedirs(os.path.join(Project().data_root, 'outputs', 'images'), exist_ok=True)
+    os.makedirs(os.path.join(Project().data_root, 'outputs', 'plots'), exist_ok=True)
 
     Logger.info('Loading collars...')
     collars = csv_reader('collars', 'collars.csv')
@@ -208,7 +214,7 @@ def run():
     plt.hist(dh.data(f'cut_{grade}', 'OUT'), bins=40)
     plt.legend(loc='upper right', labels=['ORE', 'OUT'])
     plt.title(f'Histogram {grade}')
-    plt.savefig(image_output(f'histrogram_{grade}', f'histrogram_{grade}.jpg'), bbox_inches='tight')
+    plt.savefig(image_output(f'histrogram_{grade}', f'images/histrogram_{grade}.jpg'), bbox_inches='tight')
 
     Logger.info(f"Calculating Experimental Variography on {grade}")
 
@@ -245,4 +251,4 @@ def run():
         pitch=0
     )
 
-    fig.write_image(image_output('variomap', "vertical_variomap.jpg"))
+    fig.write_image(image_output('variomap', "images/vertical_variomap.jpg"))
