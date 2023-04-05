@@ -415,6 +415,6 @@ def main() -> None:   # pragma: no cover
     Project().mode = Mode.EXECUTE
     os.environ['STREAMLIT_RUN_TARGET'] = 'app.py'
     os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '4000'
-    os.environ['STREAMLIT_GATHER_USAGE_STATS'] = '0'
+    os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = '0'
 
     main_run()
