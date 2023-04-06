@@ -5,6 +5,7 @@ Available output elements for OneCode projects:
 * [csv_output][csv_output]
 * [file_output][file_output]
 * [image_output][image_output]
+* [plotly_output][plotly_output]
 * [text_output][text_output]
 
 
@@ -42,6 +43,18 @@ def image_output(
 )
 ```
 ::: onecode.elements.output.image_output.ImageOutput.__init__
+
+
+## plotly_output
+```python
+def plotly_output(
+    key: str,
+    value: str,
+    label: Optional[str] = None,
+    tags: Optional[List[str]] = None
+)
+```
+::: onecode.elements.output.plotly_output.PlotlyOutput.__init__
 
 
 ## text_output
