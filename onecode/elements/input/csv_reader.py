@@ -127,6 +127,15 @@ class CsvReader(InputElement):
         if value.empty:
             raise ValueError(f"[{self.key}] Empty dataframe")
 
+    @staticmethod
+    def imports() -> List[str]:
+        """
+        Returns:
+            Python import statements required by the Streamlit code.
+
+        """
+        return ["from pyarrow import csv as pacsv"]
+
     @check_type
     def streamlit(
         self,

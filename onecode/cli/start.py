@@ -95,6 +95,53 @@ def process(calls: List[Dict[str, str]]) -> Tuple[List[str], List[str]]:
 
 
 @check_type
+def get_import_statements(calls: List[Dict[str, str]]):
+    """
+    Get the import and init statements from the elements called.
+
+    Args:
+        calls: List of `{"func": <function_name>, "loc": <code_to_eval>}` where `func` is the name
+            of the function corresponding to the `InputElement` (i-e its snake case form - see the
+            element developer section for more info), and `loc` is the "line of code" to evaluate
+            through the Python interpreter.
+
+    Returns:
+        The pair of two sets containing respectively imports statements and init statements.
+
+    !!! example
+        ```py
+        # getting statements from a single call of FileInput element
+        get_import_statements(
+            [{"func": "onecode.file_input", "loc": "onecode.file_input('file', 'a.txt')"}]
+        )
+        ```
+
+        ```py title="Output"
+        {"import tkinter as tk", "from tkinter import filedialog"}, {'_root = tk.Tk()\n
+        _root.withdraw()\n
+        _root.wm_attributes('-topmost', 1)'}
+        ```
+
+    """
+    imports = set()
+    init = set()
+
+    for code in calls:
+        try:
+            i1 = eval(f"{code['func']}_imports")
+            i2 = eval(f"{code['func']}_init")
+            imports.update(i1)
+            init.add(i2)
+
+        except Exception as e:
+            print(f"=> {code['func']}_imports")
+            print(f"=> {code['func']}_init")
+            print('Error ', e)
+
+    return imports, init
+
+
+@check_type
 def prepare_streamlit_file(
     project_path: str,
     to_file: str
@@ -114,6 +161,16 @@ def prepare_streamlit_file(
     menu_entries = statements.keys()
 
     all_st_outputs = set()
+    all_import_libs = set()
+    all_init_libs = set()
+
+    for k, v in statements.items():
+        imports, init = get_import_statements(v["calls"])
+        all_import_libs.update(imports)
+        all_init_libs.update(init)
+
+    import_statements = '\n'.join(sorted(all_import_libs))
+    init_statements = '\n'.join(sorted(all_init_libs))
 
     with open(to_file, 'w') as f:
         f.write(f"""###########################################
@@ -124,27 +181,26 @@ import ast
 import json
 import logging
 import os
-import tkinter as tk
 import traceback
 import uuid
-from tkinter import filedialog
 from typing import Dict, List
 
-import numpy as np
 import pydash
 import streamlit as st
 from main import main
-from pyarrow import csv as pacsv
 from streamlit_image_select import image_select
 from streamlit_option_menu import option_menu
 from streamlit_tree_select import tree_select
 
 from onecode import ColoredFormatter
 
-_root = tk.Tk()
-_root.withdraw()
-_root.wm_attributes('-topmost', 1)
+# Imports from Elements
+{import_statements}
 
+# Init from Elements
+{init_statements}
+
+# OneCode init
 {Keyword.DATA} = {{}}
 _placeholders = {{}}
 

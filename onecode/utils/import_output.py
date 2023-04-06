@@ -50,11 +50,22 @@ def import_output(
             x = onecode.FileOutput('test', 'file.txt')()
             ```
 
-    5. export a new variable specifying the type of element being `OUTPUT`.
+    5. export:
+        1. a new variable specifying the type of element being `OUTPUT`.
+        2. a new function returning the element import statements.
+        3. a new function returning the element init statements.
 
         !!! example
             ```py
             file_output_type = ElementType.OUTPUT
+
+            def _file_output_importdef():
+                return FileInput.imports()
+            file_output_imports = _file_output_importdef
+
+            def _file_output_initdef():
+                return FileInput.init()
+            file_output_init = _file_output_initdef
             ```
         This is used internally by OneCode interpreter
 
@@ -86,8 +97,16 @@ def import_output(
             def _typedef():
                 return ElementType.OUTPUT
 
+            def _importdef(cls):
+                return cls.imports()
+
+            def _initdef(cls):
+                return cls.init()
+
             setattr(sys.modules[module_name], _filename, _xdef(_cls))
             setattr(sys.modules[module_name], f'{_filename}_type', _typedef())
+            setattr(sys.modules[module_name], f'{_filename}_imports', _importdef(_cls))
+            setattr(sys.modules[module_name], f'{_filename}_init', _initdef(_cls))
             setattr(sys.modules[module_name], _ent, _cls)
 
         except AttributeError:   # pragma: no cover

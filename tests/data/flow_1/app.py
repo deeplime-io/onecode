@@ -6,27 +6,32 @@ import ast
 import json
 import logging
 import os
-import tkinter as tk
 import traceback
 import uuid
-from tkinter import filedialog
 from typing import Dict, List
 
-import numpy as np
 import pydash
 import streamlit as st
 from main import main
-from pyarrow import csv as pacsv
 from streamlit_image_select import image_select
 from streamlit_option_menu import option_menu
 from streamlit_tree_select import tree_select
 
 from onecode import ColoredFormatter
 
+# Imports from Elements
+from pyarrow import csv as pacsv
+from tkinter import filedialog
+import tkinter as tk
+
+# Init from Elements
+
 _root = tk.Tk()
 _root.withdraw()
 _root.wm_attributes('-topmost', 1)
 
+
+# OneCode init
 _DATA_ = {}
 _placeholders = {}
 
