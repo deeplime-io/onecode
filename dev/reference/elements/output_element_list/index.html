@@ -252,6 +252,22 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../changelogs/0.2.0/" class="md-tabs__link">
+        Changelogs
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -530,6 +546,13 @@
         <li class="md-nav__item">
   <a href="#image_output" class="md-nav__link">
     image_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotly_output" class="md-nav__link">
+    plotly_output
   </a>
   
 </li>
@@ -824,6 +847,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../input/folder_input/" class="md-nav__link">
+        FolderInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../input/text_input/" class="md-nav__link">
         TextInput
       </a>
@@ -927,6 +964,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../output/plotly_output/" class="md-nav__link">
+        PlotlyOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../output/text_output/" class="md-nav__link">
         TextOutput
       </a>
@@ -990,6 +1041,68 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Changelogs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Changelogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Changelogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.2.0/" class="md-nav__link">
+        0.2.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.1.0/" class="md-nav__link">
+        0.1.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1038,6 +1151,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#plotly_output" class="md-nav__link">
+    plotly_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#text_output" class="md-nav__link">
     text_output
   </a>
@@ -1065,6 +1185,7 @@
 <li><a class="autorefs autorefs-internal" href="#csv_output">csv_output</a></li>
 <li><a class="autorefs autorefs-internal" href="#file_output">file_output</a></li>
 <li><a class="autorefs autorefs-internal" href="#image_output">image_output</a></li>
+<li><a class="autorefs autorefs-internal" href="#plotly_output">plotly_output</a></li>
 <li><a class="autorefs autorefs-internal" href="#text_output">text_output</a></li>
 </ul>
 <h2 id="csv_output">csv_output<a class="headerlink" href="#csv_output" title="Permanent link">&para;</a></h2>
@@ -1432,6 +1553,129 @@ used when the JSON output attributes are written to the output manifest.</p></td
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.jpg&quot;</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div><h2 id="plotly_output">plotly_output<a class="headerlink" href="#plotly_output" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">plotly_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>A Plotly chart with a label on top.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to story data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see
+<a href="https://github.com/deeplime-io/onecode/tree/main/examples">examples projects</a>).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Path to the output Plotly JSON file which must have a <code>.json</code> extension. Unless
+absolute, a path is relative to the <code>outputs</code> folder of the flow currently running.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>Typically to be used by Streamlit for display purpose only. If not defined, it
+will default to the <code>key</code>.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>tags</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td><p>Optional meta-data information about the expected file. This information is only
+used when the JSON output attributes are written to the output manifest.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">csv_output</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">CONSOLE</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">plotly_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;PlotlyOutput&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/file.json&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My PlotlyOutput&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Graph&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.json&quot;</span>
 </code></pre></div>
 </div>
 

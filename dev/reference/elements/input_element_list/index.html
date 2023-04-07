@@ -252,6 +252,22 @@
   
 
       
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../changelogs/0.2.0/" class="md-tabs__link">
+        Changelogs
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -523,6 +539,13 @@
         <li class="md-nav__item">
   <a href="#file_input" class="md-nav__link">
     file_input
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#folder_input" class="md-nav__link">
+    folder_input
   </a>
   
 </li>
@@ -852,6 +875,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../input/folder_input/" class="md-nav__link">
+        FolderInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../input/text_input/" class="md-nav__link">
         TextInput
       </a>
@@ -955,6 +992,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../output/plotly_output/" class="md-nav__link">
+        PlotlyOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../output/text_output/" class="md-nav__link">
         TextOutput
       </a>
@@ -1006,6 +1057,68 @@
     <li class="md-nav__item">
       <a href="../../../extending_onecode/" class="md-nav__link">
         Extending OneCode
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Changelogs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Changelogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Changelogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.2.0/" class="md-nav__link">
+        0.2.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.1.0/" class="md-nav__link">
+        0.1.0
       </a>
     </li>
   
@@ -1073,6 +1186,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#folder_input" class="md-nav__link">
+    folder_input
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#number_input" class="md-nav__link">
     number_input
   </a>
@@ -1122,6 +1242,7 @@
 <li><a class="autorefs autorefs-internal" href="#csv_reader">csv_reader</a></li>
 <li><a class="autorefs autorefs-internal" href="../input/dropdown/#dropdown">dropdown</a></li>
 <li><a class="autorefs autorefs-internal" href="#file_input">file_input</a></li>
+<li><a class="autorefs autorefs-internal" href="#folder_input">folder_input</a></li>
 <li><a class="autorefs autorefs-internal" href="#number_input">number_input</a></li>
 <li><a class="autorefs autorefs-internal" href="#radio_button">radio_button</a></li>
 <li><a class="autorefs autorefs-internal" href="../input/slider/#slider">slider</a></li>
@@ -1813,6 +1934,156 @@ used by the <code>Mode.EXTRACT_ALL</code> when dumping attributes to JSON.</p></
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="p">[</span><span class="s2">&quot;/path/to/file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/file2.csv&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div><h2 id="folder_input">folder_input<a class="headerlink" href="#folder_input" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">folder_input</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]],</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">count</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">optional</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">hide_when_disabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>A single folder selector.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to story data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see examples projects).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[str, <span title="typing.List">List</span>[str]]]</code>
+          </td>
+          <td><p>Path to folder. Provided folder doesn't necessarily have to exist for the
+Streamlit mode, however its existence will be checked at execution time. If path
+is not absolute, then it is considered relative to the data root folder. See
+<a class="autorefs autorefs-internal" href="../../../tips_and_tricks/#best-practices-with-data">Best Practices With Data</a> for more information.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>Label to display left of the folder selector.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>count</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, str]]</code>
+          </td>
+          <td><p>Specify the number of occurence of the widget. OneCode typically uses it for the
+streamlit case. Note that if <code>count</code> is defined, the expected <code>value</code> should always
+be a list, even if the <code>count</code> is <code>1</code>. <code>count</code> can either be a fixed number
+(e.g. <code>3</code>) or an expression dependent of other elements (see
+<a class="autorefs autorefs-internal" href="../../../tips_and_tricks/#using-runtime-expressions-in-elements">Using Expressions</a> for more information).</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>optional</code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[bool, str]</code>
+          </td>
+          <td><p>Specify whether the value may be None. <code>optional</code> can either be a fixed
+boolean (<code>False</code> or <code>True</code>) or a conditional expression dependent of other elements
+(see <a class="autorefs autorefs-internal" href="../../../tips_and_tricks/#using-runtime-expressions-in-elements">Using Expressions</a> for more
+information).</p></td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>hide_when_disabled</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If element is optional, set it to True to hide it from the
+interface, otherwise it will be shown disabled.</p></td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">folder_input</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">folder_input</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;FolderInput&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/&quot;</span>
 </code></pre></div>
 </div>
 
