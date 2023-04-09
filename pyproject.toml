@@ -25,8 +25,8 @@ classifiers = [
 [tool.poetry.dependencies]
 python = ">=3.7, <3.11"
 'flufl.lock' = "^7.1.1"
-pandas = "^1.4.0"
-pyarrow = "^6.0.0"
+pandas = ">=1.4.0"
+pyarrow = ">=6.0.0"
 pydantic = "^1.10.4"
 pydash = "^5.1.0"
 python-slugify = "^6.1.2"
