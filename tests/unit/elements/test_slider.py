@@ -9,10 +9,12 @@ def test_console_single_slider():
     widget = Slider(
         key="Slider",
         value=0.6,
-        step=0.1
+        step=0.1,
+        metadata="data"
     )
 
     assert type(widget()) == Slider
+    assert widget.metadata == "data"
 
 
 def test_execute_single_slider():

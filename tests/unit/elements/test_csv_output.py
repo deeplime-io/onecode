@@ -14,10 +14,12 @@ def test_console_csv_output():
     widget = CsvOutput(
         key="CsvOutput",
         value="my_file.csv",
-        tags=["CSV"]
+        tags=["CSV"],
+        metadata="data"
     )
 
     assert type(widget()) == CsvOutput
+    assert widget.metadata == "data"
 
 
 def test_execute_csv_output():

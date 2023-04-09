@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -16,7 +16,8 @@ class TextOutput(OutputElement):
         value: str,
         label: Optional[str] = None,
         tags: Optional[List[str]] = None,
-        truncate_at: int = 50000
+        truncate_at: int = 50000,
+        **kwargs: Any
     ):
         """
         A text file preview.
@@ -35,6 +36,8 @@ class TextOutput(OutputElement):
             tags: Optional meta-data information about the expected file. This information is only
                 used when the JSON output attributes are written to the output manifest.
             truncate_at: Truncate the preview at the specified number of characters.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -65,7 +68,8 @@ class TextOutput(OutputElement):
             value,
             label,
             tags=tags,
-            truncate_at=truncate_at
+            truncate_at=truncate_at,
+            **kwargs
         )
 
     @property

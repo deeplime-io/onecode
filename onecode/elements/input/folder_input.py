@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -19,7 +19,8 @@ class FolderInput(InputElement):
         label: Optional[str] = None,
         count: Optional[Union[int, str]] = None,
         optional: Union[bool, str] = False,
-        hide_when_disabled: bool = False
+        hide_when_disabled: bool = False,
+        **kwargs: Any
     ):
         """
         A single folder selector.
@@ -46,6 +47,8 @@ class FolderInput(InputElement):
                 information).
             hide_when_disabled: If element is optional, set it to True to hide it from the
                 interface, otherwise it will be shown disabled.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -74,7 +77,8 @@ class FolderInput(InputElement):
             label,
             count,
             optional,
-            hide_when_disabled
+            hide_when_disabled,
+            **kwargs
         )
 
     @property

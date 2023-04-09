@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -22,7 +22,8 @@ class FileInput(InputElement):
         hide_when_disabled: bool = False,
         types: List[Tuple[str, str]] = None,
         multiple: bool = False,
-        tags: Optional[List[str]] = None
+        tags: Optional[List[str]] = None,
+        **kwargs: Any
     ):
         """
         A single or multiple file selector.
@@ -56,6 +57,8 @@ class FileInput(InputElement):
                 be selected.
             tags: Optional meta-data information about the expected file. This information is only
                 used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -89,7 +92,8 @@ class FileInput(InputElement):
             hide_when_disabled,
             types=types,
             multiple=multiple,
-            tags=tags
+            tags=tags,
+            **kwargs
         )
 
     @property

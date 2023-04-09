@@ -18,10 +18,12 @@ def test_console_single_file_input():
     widget = FileInput(
         key="FileInput",
         value=None,
-        optional=True
+        optional=True,
+        metadata="data"
     )
 
     assert type(widget()) == FileInput
+    assert widget.metadata == "data"
 
 
 def test_execute_single_file_input_single_selection():

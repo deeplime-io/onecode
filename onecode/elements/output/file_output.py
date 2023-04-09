@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -15,7 +15,8 @@ class FileOutput(OutputElement):
         key: str,
         value: str,
         label: Optional[str] = None,
-        tags: Optional[List[str]] = None
+        tags: Optional[List[str]] = None,
+        **kwargs: Any
     ):
         """
         Basic information about the file, such as size and file path.
@@ -33,6 +34,8 @@ class FileOutput(OutputElement):
                 will default to the `key`.
             tags: Optional meta-data information about the expected file. This information is only
                 used when the JSON output attributes are written to the output manifest.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -61,7 +64,8 @@ class FileOutput(OutputElement):
             key,
             value,
             label,
-            tags=tags
+            tags=tags,
+            **kwargs
         )
 
     @property

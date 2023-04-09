@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ...utils.format import convert_expr
@@ -23,7 +23,8 @@ class Dropdown(InputElement):
         optional: Union[bool, str] = False,
         hide_when_disabled: bool = False,
         options: Union[List, str] = [],
-        multiple: bool = False
+        multiple: bool = False,
+        **kwargs: Any
     ):
         """
         A single or multipe choice dropdown menu.
@@ -53,6 +54,9 @@ class Dropdown(InputElement):
                 and `count`. See example below.
             multiple: Set to True if multiple choice is allowed, otherwise only a single element can
                 be selected.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
+
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -107,7 +111,8 @@ class Dropdown(InputElement):
             optional,
             hide_when_disabled,
             options=options,
-            multiple=multiple
+            multiple=multiple,
+            **kwargs
         )
 
     @property

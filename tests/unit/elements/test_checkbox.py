@@ -8,10 +8,12 @@ def test_console_checkbox():
 
     widget = Checkbox(
         key="Checkbox",
-        value=True
+        value=True,
+        metadata="data"
     )
 
     assert type(widget()) == Checkbox
+    assert widget.metadata == "data"
 
 
 def test_execute_single_checkbox():
