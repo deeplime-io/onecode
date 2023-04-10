@@ -299,12 +299,17 @@ class OutputElement(ABC):
 
         """
         # Get the _extra_args names to allow them in the function definition to be returned
+        # Remove **kwargs from the signature
+        extra_args = [*inspect.signature(cls).parameters]
+        if extra_args[-1] == "kwargs":
+            del extra_args[-1]
+
         params = pydash.uniq(
-            ['key', 'label', 'value', 'kind'] + [*inspect.signature(cls).parameters]
+            ['key', 'label', 'value', 'kind'] + extra_args
         )
 
         code_gen = f"""
-def _{cls.__name__}({'=None, '.join(params)}=None):
+def _{cls.__name__}({'=None, '.join(params)}=None, **kwargs):
 """
         code_gen += indent_block(cls.streamlit())
         code_gen += "\n"
