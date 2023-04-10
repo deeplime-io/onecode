@@ -15,6 +15,7 @@ def test_console_single_dropdown():
 
     assert type(widget()) == Dropdown
     assert widget.metadata == "data"
+    assert widget.kind == "Dropdown"
 
 
 def test_execute_single_dropdown_single_choice():

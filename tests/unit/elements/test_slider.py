@@ -15,6 +15,7 @@ def test_console_single_slider():
 
     assert type(widget()) == Slider
     assert widget.metadata == "data"
+    assert widget.kind == "Slider"
 
 
 def test_execute_single_slider():

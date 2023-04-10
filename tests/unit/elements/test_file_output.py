@@ -18,6 +18,7 @@ def test_console_file_output():
 
     assert type(widget()) == FileOutput
     assert widget.metadata == "data"
+    assert widget.kind == "FileOutput"
 
 
 def test_execute_file_output():

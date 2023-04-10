@@ -19,6 +19,7 @@ def test_console_text_output():
 
     assert type(widget()) == TextOutput
     assert widget.metadata == "data"
+    assert widget.kind == "TextOutput"
 
 
 def test_execute_text_output():

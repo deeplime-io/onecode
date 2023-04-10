@@ -114,7 +114,8 @@ def test_extend_output_element_invalid_extra_args():
                 label,
                 __eq__='equal',
                 _value='new_value',
-                streamlit='streamlit'
+                streamlit='streamlit',
+                kind="Kind"
             )
 
         @staticmethod
@@ -130,7 +131,7 @@ def test_extend_output_element_invalid_extra_args():
     with pytest.raises(AttributeError) as excinfo:
         _MyOutputElement('test', 'test_value', None, 5)
 
-    assert "The following parameters are reserved: ['__eq__', '_value', 'streamlit']" \
+    assert "The following parameters are reserved: ['__eq__', '_value', 'streamlit', 'kind']" \
         == str(excinfo.value)
 
 

@@ -15,6 +15,7 @@ def test_console_single_text_input():
 
     assert type(widget()) == TextInput
     assert widget.metadata == "data"
+    assert widget.kind == "TextInput"
 
 
 def test_execute_single_text_input():

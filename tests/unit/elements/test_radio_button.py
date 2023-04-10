@@ -15,6 +15,7 @@ def test_console_single_radio_button():
 
     assert type(widget()) == RadioButton
     assert widget.metadata == "data"
+    assert widget.kind == "RadioButton"
 
 
 def test_execute_single_radio_button():

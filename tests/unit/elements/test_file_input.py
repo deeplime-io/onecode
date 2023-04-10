@@ -24,6 +24,7 @@ def test_console_single_file_input():
 
     assert type(widget()) == FileInput
     assert widget.metadata == "data"
+    assert widget.kind == "FileInput"
 
 
 def test_execute_single_file_input_single_selection():

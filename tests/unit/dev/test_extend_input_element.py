@@ -4,6 +4,7 @@ from typing import Any
 import pytest
 
 from onecode import InputElement, Project
+from tests.utils.format import strip
 
 
 @pytest.fixture
@@ -129,7 +130,8 @@ def test_extend_input_element_invalid_extra_args():
                 disabled=extra,
                 __eq__='equal',
                 _value='new_value',
-                streamlit='streamlit'
+                streamlit='streamlit',
+                kind="Kind"
             )
 
         @property
@@ -151,8 +153,8 @@ def test_extend_input_element_invalid_extra_args():
     with pytest.raises(AttributeError) as excinfo:
         _MyInputElement('test', 'test_value', None, 5)
 
-    assert "The following parameters are reserved: ['disabled', '__eq__', '_value', 'streamlit']" \
-        == str(excinfo.value)
+    assert strip("""The following parameters are reserved:
+        ['disabled', '__eq__', '_value', 'streamlit', 'kind']""") == str(excinfo.value)
 
 
 def test_extend_invalid_key_input_element(my_input_element):

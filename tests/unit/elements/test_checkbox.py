@@ -14,6 +14,7 @@ def test_console_checkbox():
 
     assert type(widget()) == Checkbox
     assert widget.metadata == "data"
+    assert widget.kind == "Checkbox"
 
 
 def test_execute_single_checkbox():

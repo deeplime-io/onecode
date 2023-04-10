@@ -24,6 +24,7 @@ def test_console_single_folder_input():
 
     assert type(widget()) == FolderInput
     assert widget.metadata == "data"
+    assert widget.kind == "FolderInput"
 
 
 def test_execute_folder_input():

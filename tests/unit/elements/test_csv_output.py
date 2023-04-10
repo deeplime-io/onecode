@@ -20,6 +20,7 @@ def test_console_csv_output():
 
     assert type(widget()) == CsvOutput
     assert widget.metadata == "data"
+    assert widget.kind == "CsvOutput"
 
 
 def test_execute_csv_output():

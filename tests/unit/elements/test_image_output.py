@@ -20,6 +20,7 @@ def test_console_image_output():
 
     assert type(widget()) == ImageOutput
     assert widget.metadata == "data"
+    assert widget.kind == "ImageOutput"
 
 
 def test_execute_image_output():

@@ -16,6 +16,7 @@ def test_console_single_number_input():
 
     assert type(widget()) == NumberInput
     assert widget.metadata == "data"
+    assert widget.kind == "NumberInput"
 
 
 def test_execute_single_number_input():
