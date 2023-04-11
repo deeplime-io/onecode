@@ -33,7 +33,7 @@ jobs:
       - name: Check Formatting
         run: |
           flake8 onecode tests/unit/ --exclude=__init__.py,tests/data --max-line-length=100
-          isort . -m3 --thirdparty . --check-only
+          isort . -m3 --thirdparty . --check-only --skip tests/data --skip examples/
 
   testing:
     name: Check Testing

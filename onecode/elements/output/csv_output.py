@@ -97,6 +97,15 @@ class CsvOutput(OutputElement):
             )
 
     @staticmethod
+    def imports() -> List[str]:
+        """
+        Returns:
+            Python import statements required by the Streamlit code.
+
+        """
+        return ["from pyarrow import csv as pacsv"]
+
+    @staticmethod
     def streamlit() -> str:
         """
         Returns:
