@@ -1339,10 +1339,23 @@ extending OneCode and demonstrating:</p>
 </div>
 </li>
 <li>
-<p>export a new variable specifying the type of element being <code>INPUT</code>.</p>
+<p>export:</p>
+<ol>
+<li>a new variable specifying the type of element being <code>INPUT</code>.</li>
+<li>a new function returning the element import statements.</li>
+<li>a new function returning the element init statements.</li>
+</ol>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="n">file_input_type</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">INPUT</span>
+
+<span class="k">def</span> <span class="nf">_file_input_importdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">imports</span><span class="p">()</span>
+<span class="n">file_input_imports</span> <span class="o">=</span> <span class="n">_file_input_importdef</span>
+
+<span class="k">def</span> <span class="nf">_file_input_initdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">file_input_init</span> <span class="o">=</span> <span class="n">_file_input_initdef</span>
 </code></pre></div>
 </div>
 <p>This is used internally by OneCode interpreter.</p>
@@ -1433,10 +1446,23 @@ available for importing using regular Python import statements.</p></td>
 </div>
 </li>
 <li>
-<p>export a new variable specifying the type of element being <code>OUTPUT</code>.</p>
+<p>export:</p>
+<ol>
+<li>a new variable specifying the type of element being <code>OUTPUT</code>.</li>
+<li>a new function returning the element import statements.</li>
+<li>a new function returning the element init statements.</li>
+</ol>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="n">file_output_type</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">OUTPUT</span>
+
+<span class="k">def</span> <span class="nf">_file_output_importdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">imports</span><span class="p">()</span>
+<span class="n">file_output_imports</span> <span class="o">=</span> <span class="n">_file_output_importdef</span>
+
+<span class="k">def</span> <span class="nf">_file_output_initdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">file_output_init</span> <span class="o">=</span> <span class="n">_file_output_initdef</span>
 </code></pre></div>
 </div>
 <p>This is used internally by OneCode interpreter</p>

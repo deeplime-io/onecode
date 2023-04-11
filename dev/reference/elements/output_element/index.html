@@ -964,6 +964,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#onecode.elements.output_element.OutputElement.imports" class="md-nav__link">
+    imports()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.output_element.OutputElement.init" class="md-nav__link">
+    init()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#onecode.elements.output_element.OutputElement.static_call" class="md-nav__link">
     static_call()
   </a>
@@ -1258,6 +1272,20 @@
         <li class="md-nav__item">
   <a href="#onecode.elements.output_element.OutputElement._validate" class="md-nav__link">
     _validate()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.output_element.OutputElement.imports" class="md-nav__link">
+    imports()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.output_element.OutputElement.init" class="md-nav__link">
+    init()
   </a>
   
 </li>
@@ -1842,6 +1870,74 @@ not a valid/known extension such as jpeg, png, etc.
 <span class="s1">            </span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s1"> (accepted: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">valid_ext</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;&#39;&#39;</span>
         <span class="p">)</span>
 </code></pre></div></p>
+</div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.output_element.OutputElement.imports" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">imports</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.output_element.OutputElement.imports" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Re-implement this function in case your Streamlit code requires specific Python package
+import. This function should return a list of import statement as string.</p>
+<p>Note that the following packages are already imported (not needed to return them in that
+list): <code>os</code>, <code>json</code>, <code>uuid</code>, <code>pydash</code>, <code>streamlit as st</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">imports</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s2">&quot;import numpy as np&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;import plotly&quot;</span>
+    <span class="p">]</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.output_element.OutputElement.init" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">init</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.output_element.OutputElement.init" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Re-implement this function in case your Streamlit code requires specific initialization
+statements. Note that all variables starting with a <code>_</code> are reserved.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">init</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        def x(angle):</span>
+<span class="s1">            return np.deg2rad(angle%360)</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+</code></pre></div>
 </div>
 
   </div>

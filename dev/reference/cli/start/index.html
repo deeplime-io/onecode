@@ -639,6 +639,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#onecode.cli.start.get_import_statements" class="md-nav__link">
+    get_import_statements()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#onecode.cli.start.main" class="md-nav__link">
     main()
   </a>
@@ -1116,6 +1123,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#onecode.cli.start.get_import_statements" class="md-nav__link">
+    get_import_statements()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#onecode.cli.start.main" class="md-nav__link">
     main()
   </a>
@@ -1171,6 +1185,82 @@
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.cli.start.get_import_statements" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_import_statements</span><span class="p">(</span><span class="n">calls</span><span class="p">)</span></code>
+
+<a href="#onecode.cli.start.get_import_statements" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the import and init statements from the elements called.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>calls</code></td>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>
+          </td>
+          <td><p>List of <code>{"func": &lt;function_name&gt;, "loc": &lt;code_to_eval&gt;}</code> where <code>func</code> is the name
+of the function corresponding to the <code>InputElement</code> (i-e its snake case form - see the
+element developer section for more info), and <code>loc</code> is the "line of code" to evaluate
+through the Python interpreter.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+          </td>
+          <td><p>The pair of two sets containing respectively imports statements and init statements.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># getting statements from a single call of FileInput element</span>
+<span class="n">get_import_statements</span><span class="p">(</span>
+    <span class="p">[{</span><span class="s2">&quot;func&quot;</span><span class="p">:</span> <span class="s2">&quot;onecode.file_input&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="s2">&quot;onecode.file_input(&#39;file&#39;, &#39;a.txt&#39;)&quot;</span><span class="p">}]</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="p">{</span><span class="s2">&quot;import tkinter as tk&quot;</span><span class="p">,</span> <span class="s2">&quot;from tkinter import filedialog&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;_root = tk.Tk()</span>
+
+<span class="n">_root</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
+
+<span class="n">_root</span><span class="o">.</span><span class="n">wm_attributes</span><span class="p">(</span><span class="s1">&#39;-topmost&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="s1">&#39;}</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div>
 
 <div class="doc doc-object doc-function">
 
