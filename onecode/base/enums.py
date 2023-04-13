@@ -25,10 +25,15 @@ class ConfigOption(str, Enum):
     """
     Available options to control the configuration of the project.
 
-    - `FLUSH_STDOUT`: to force flushing the logger :octicons-arrow-both-24: `"FLUSH_STDOUT"`
+    - `FLUSH_STDOUT`: to force flushing the logger :octicons-arrow-both-24: `"FLUSH_STDOUT": False`
+    - `LOGGER_COLOR`: to color the logs by default when resetting the logger
+        :octicons-arrow-both-24: `"LOGGER_COLOR": True`
+    - `LOGGER_TIMESTAMP`: to timestamp the logs :octicons-arrow-both-24: `"LOGGER_TIMESTAMP": True`
 
     """
-    FLUSH_STDOUT        = "FLUSH_STDOUT"        # noqa: E-221
+    FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
+    LOGGER_COLOR        = "LOGGER_COLOR"            # noqa: E-221
+    LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
 
 
 class Mode(str, Enum):

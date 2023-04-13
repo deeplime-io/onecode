@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
+import ast
 import json
 import os
 import sys
@@ -72,8 +73,17 @@ class Project(metaclass=Singleton):
         self._mode = Mode.CONSOLE
         self._flow = None
         self._data = None
+
+        # get string config from env variables starting with ONECODE_CONFIG_
+        # get flag config from env variables starting with ONECODE_FLAG_
         self._config = {
-            ConfigOption.FLUSH_STDOUT: False
+            ConfigOption.FLUSH_STDOUT: False,
+            ConfigOption.LOGGER_COLOR: True,
+            ConfigOption.LOGGER_TIMESTAMP: True,
+            **{k[len("ONECODE_CONFIG_"):]: os.environ[k]
+                for k in os.environ if k.startswith("ONECODE_CONFIG_")},
+            **{k[len("ONECODE_FLAG_"):]: bool(ast.literal_eval(os.environ[k]))
+                for k in os.environ if k.startswith("ONECODE_FLAG_")},
         }
 
     @property

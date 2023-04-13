@@ -62,7 +62,9 @@ class ColoredFormatter(logging.Formatter):
 
         """
         flow = Project().current_flow if Project().current_flow is not None else ''
-        format = f"%(asctime)s [%(levelname)s] {flow} - %(name)s:%(lineno)d - %(message)s"
+        format = f"[%(levelname)s] {flow} - %(name)s:%(lineno)d - %(message)s"
+        if Project().get_config(ConfigOption.LOGGER_TIMESTAMP):
+            format = f"%(asctime)s {format}"
 
         formats = {
             logging.DEBUG: f"{self.GREY}{format}{self.RESET}",
@@ -121,7 +123,7 @@ class Logger(metaclass=Singleton):
             logger.removeHandler(logger.handlers[0])
 
         handler = logging.StreamHandler(sys.stdout)
-        handler.setFormatter(ColoredFormatter())
+        handler.setFormatter(ColoredFormatter(Project().get_config(ConfigOption.LOGGER_COLOR)))
         logging.getLogger().addHandler(handler)
 
     @check_type
