@@ -161,6 +161,30 @@ class FileInput(InputElement):
         else:
             self._validate_file_value(value)
 
+    @staticmethod
+    def imports() -> List[str]:
+        """
+        Returns:
+            Python import statements required by the Streamlit code.
+
+        """
+        return [
+            "import tkinter as tk",
+            "from tkinter import filedialog"
+        ]
+
+    @staticmethod
+    def init() -> str:
+        """
+        Returns:
+            The Python statements that must be initialized before being used by the Streamlit code.
+
+        """
+        return """_root = tk.Tk()
+_root.withdraw()
+_root.wm_attributes('-topmost', 1)
+"""
+
     @check_type
     def streamlit(
         self,

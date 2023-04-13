@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 from abc import ABC, abstractmethod
-from typing import Any, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 import pydash
 from slugify import slugify
@@ -204,6 +204,47 @@ class InputElement(ABC):
 
         """
         pass
+
+    @staticmethod
+    def imports() -> List[str]:
+        """
+        Re-implement this function in case your Streamlit code requires specific Python package
+        import. This function should return a list of import statement as string.
+
+        Note that the following packages are already imported (not needed to return them in that
+        list): `os`, `json`, `uuid`, `pydash`, `streamlit as st`.
+
+        !!! example
+            ```py
+            @staticmethod
+            def imports() -> List[str]:
+                return [
+                    "import numpy as np",
+                    "import plotly"
+                ]
+            ```
+
+        """
+        return []
+
+    @staticmethod
+    def init() -> str:
+        """
+        Re-implement this function in case your Streamlit code requires specific initialization
+        statements. Note that all variables starting with a `_` are reserved.
+
+        !!! example
+            ```py
+            @staticmethod
+            def init() -> str:
+                return '''
+                    def x(angle):
+                        return np.deg2rad(angle%360)
+                '''
+            ```
+
+        """
+        return ''
 
     @abstractmethod
     def streamlit(
