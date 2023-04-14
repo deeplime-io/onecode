@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -19,7 +19,8 @@ class NumberInput(InputElement):
         hide_when_disabled: bool = False,
         min: float = None,
         max: float = None,
-        step: float = None
+        step: float = None,
+        **kwargs: Any
     ):
         """
         A field for numerical values.
@@ -46,6 +47,8 @@ class NumberInput(InputElement):
             min: Optionally limit the possible values with a lower bound.
             max: Optionally limit the possible values with an upper bound.
             step: Optionally set a step used when increment/decrement button are used.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -80,6 +83,7 @@ class NumberInput(InputElement):
             min=min,
             max=max,
             step=step,
+            **kwargs
         )
 
     @property

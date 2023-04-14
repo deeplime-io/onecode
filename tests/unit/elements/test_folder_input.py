@@ -18,10 +18,13 @@ def test_console_single_folder_input():
     widget = FolderInput(
         key="FolderInput",
         value=None,
-        optional=True
+        optional=True,
+        metadata="data"
     )
 
     assert type(widget()) == FolderInput
+    assert widget.metadata == "data"
+    assert widget.kind == "FolderInput"
 
 
 def test_execute_folder_input():

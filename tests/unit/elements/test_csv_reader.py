@@ -18,10 +18,13 @@ def test_console_csv_reader():
     widget = CsvReader(
         key="CsvReader",
         value=None,
-        optional=True
+        optional=True,
+        metadata="data"
     )
 
     assert type(widget()) == CsvReader
+    assert widget.metadata == "data"
+    assert widget.kind == "CsvReader"
 
 
 def test_execute_single_csv_reader():

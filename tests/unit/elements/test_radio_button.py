@@ -9,10 +9,13 @@ def test_console_single_radio_button():
     widget = RadioButton(
         key="RadioButton",
         value="A",
-        options=["A", "B"]
+        options=["A", "B"],
+        metadata="data"
     )
 
     assert type(widget()) == RadioButton
+    assert widget.metadata == "data"
+    assert widget.kind == "RadioButton"
 
 
 def test_execute_single_radio_button():

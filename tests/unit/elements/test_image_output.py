@@ -14,10 +14,13 @@ def test_console_image_output():
     widget = ImageOutput(
         key="ImageOutput",
         value="my_file.jpg",
-        tags=["Image"]
+        tags=["Image"],
+        metadata="data"
     )
 
     assert type(widget()) == ImageOutput
+    assert widget.metadata == "data"
+    assert widget.kind == "ImageOutput"
 
 
 def test_execute_image_output():

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 import pydash
 
@@ -20,7 +20,8 @@ class RadioButton(InputElement):
         optional: Union[bool, str] = False,
         hide_when_disabled: bool = False,
         options: List[str] = [],
-        horizontal: bool = False
+        horizontal: bool = False,
+        **kwargs: Any
     ):
         """
         A single choice represented as a group of exclusive radio buttons.
@@ -49,6 +50,8 @@ class RadioButton(InputElement):
                 `optional` and `count`. See example below.
             horizontal: Set to True to have radio buttons displayed horizontally, otherwise radio
                 buttons will be displayed vertically.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -99,7 +102,8 @@ class RadioButton(InputElement):
             optional,
             hide_when_disabled,
             options=options,
-            horizontal=horizontal
+            horizontal=horizontal,
+            **kwargs
         )
 
     @property

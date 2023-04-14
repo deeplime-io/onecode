@@ -126,6 +126,15 @@ class InputElement(ABC):
         self.__dict__.update(self._extra_args)
 
     @property
+    def kind(self) -> str:
+        """
+        Returns:
+            The element class name.
+
+        """
+        return type(self).__name__
+
+    @property
     def label(self) -> str:
         """
         Get the label with triple-quotes and escaped to handle human-readable string.
@@ -467,7 +476,7 @@ class InputElement(ABC):
 
         params = {
             "key": self.key,
-            "kind": type(self).__name__,
+            "kind": self.kind,
             "label": self._label,
             "value": v,
             "count": self.count,

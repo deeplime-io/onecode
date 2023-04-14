@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 import pandas as pd
 from pyarrow import csv as pacsv
@@ -22,7 +22,8 @@ class CsvReader(InputElement):
         count: Optional[Union[int, str]] = None,
         optional: Union[bool, str] = False,
         hide_when_disabled: bool = False,
-        tags: Optional[List[str]] = None
+        tags: Optional[List[str]] = None,
+        **kwargs: Any
     ):
         """
         A CSV-file reader returning a Pandas DataFrame and displayed as a table in Streamlit.
@@ -48,6 +49,8 @@ class CsvReader(InputElement):
                 interface, otherwise it will be shown disabled.
             tags: Optional meta-data information about the expected file. This information is only
                 used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -77,7 +80,8 @@ class CsvReader(InputElement):
             count,
             optional,
             hide_when_disabled,
-            tags=tags
+            tags=tags,
+            **kwargs
         )
 
     @property

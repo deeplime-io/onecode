@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -16,7 +16,8 @@ class ImageOutput(OutputElement):
         key: str,
         value: str,
         label: Optional[str] = None,
-        tags: Optional[List[str]] = None
+        tags: Optional[List[str]] = None,
+        **kwargs: Any
     ):
         """
         An image as part of the image carousel.
@@ -35,6 +36,8 @@ class ImageOutput(OutputElement):
                 will default to the `key`.
             tags: Optional meta-data information about the expected file. This information is only
                 used when the JSON output attributes are written to the output manifest.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -63,7 +66,8 @@ class ImageOutput(OutputElement):
             key,
             value,
             label,
-            tags=tags
+            tags=tags,
+            **kwargs
         )
 
     @property

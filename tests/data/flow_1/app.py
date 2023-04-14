@@ -157,7 +157,7 @@ with st.sidebar:
 
 
 
-def _CsvOutput(key=None, label=None, value=None, kind=None, tags=None):
+def _CsvOutput(key=None, label=None, value=None, kind=None, tags=None, **kwargs):
     
     value = os.path.relpath(value)  # allows compat with Windows
     if not os.path.exists(value) and not os.path.isfile(value):

@@ -43,7 +43,7 @@ def test_streamlit_output_element(my_output_element):
     )
 
     assert widget() == """
-def __MyOutputElement(key=None, label=None, value=None, kind=None, extra=None):
+def __MyOutputElement(key=None, label=None, value=None, kind=None, extra=None, **kwargs):
     # Just Write BEGIN
     st.write(f'{key} - {label}: {value}')
     # Just Write END

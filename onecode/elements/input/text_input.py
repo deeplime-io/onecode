@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -19,7 +19,8 @@ class TextInput(InputElement):
         hide_when_disabled: bool = False,
         max_chars: int = None,
         placeholder: str = None,
-        multiline: Union[bool, int] = False
+        multiline: Union[bool, int] = False,
+        **kwargs: Any
     ):
         """
         A simple text field.
@@ -46,6 +47,8 @@ class TextInput(InputElement):
             max_chars: Maximum number of characters allowed for this text field.
             placeholder: Placeholder text shown whenever there is no value.
             multiline: Set to True or a height in pixels to make it multiline text area.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -78,7 +81,8 @@ class TextInput(InputElement):
             hide_when_disabled,
             max_chars=max_chars,
             placeholder=placeholder,
-            multiline=multiline
+            multiline=multiline,
+            **kwargs
         )
 
     @property

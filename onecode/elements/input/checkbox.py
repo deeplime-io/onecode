@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -16,7 +16,8 @@ class Checkbox(InputElement):
         label: Optional[str] = None,
         count: Optional[Union[int, str]] = None,
         optional: Union[bool, str] = False,
-        hide_when_disabled: bool = False
+        hide_when_disabled: bool = False,
+        **kwargs: Any
     ):
         """
         A simple checkbox with a label. Value is either True, False or None.
@@ -40,6 +41,8 @@ class Checkbox(InputElement):
                 information).
             hide_when_disabled: If element is optional, set it to True to hide it from the
                 interface, otherwise it will be shown disabled.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -69,7 +72,8 @@ class Checkbox(InputElement):
             label,
             count,
             optional,
-            hide_when_disabled
+            hide_when_disabled,
+            **kwargs
         )
 
     @property

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -19,7 +19,8 @@ class Slider(InputElement):
         hide_when_disabled: bool = False,
         min: float = 0.,
         max: float = 1.,
-        step: float = 0.1
+        step: float = 0.1,
+        **kwargs: Any
     ):
         """
         A slider for numerical values.
@@ -46,6 +47,8 @@ class Slider(InputElement):
             min: Mandatory lower bound, defaults to 0.
             max: Mandatory upper bound, defaults to 1.
             step: Mandatory step used when incrementing/decrementing the slider, defaults to 0.1.
+            **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
+                existing attributes or methods name such as `streamlit`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -85,6 +88,7 @@ class Slider(InputElement):
             min=float(min),
             max=float(max),
             step=float(step),
+            **kwargs
         )
 
     @property
