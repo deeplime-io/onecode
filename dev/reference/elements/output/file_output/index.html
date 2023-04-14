@@ -1246,7 +1246,7 @@
 
 
 <h2 id="onecode.elements.output.file_output.FileOutput.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></code>
 
 <a href="#onecode.elements.output.file_output.FileOutput.__init__" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -1312,6 +1312,17 @@ will default to the <code>key</code>.</p></td>
 used when the JSON output attributes are written to the output manifest.</p></td>
           <td>
                 <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Extra user meta-data to attach to the element. Argument names cannot overwrite
+existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p></td>
+          <td>
+                <code>{}</code>
           </td>
         </tr>
     </tbody>

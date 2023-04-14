@@ -1174,6 +1174,11 @@
 <td>Correct <code>gatherUsageStats</code> env variable</td>
 <td><code>onecode-start</code> used wrong variable name to prevent sending stats.</td>
 </tr>
+<tr>
+<td>[No ref]</td>
+<td><code>kind</code> is now a property of the <code>InputElement</code> and <code>OutputElement</code></td>
+<td><code>kind</code> would have potentially been overwritten while extracting element through <code>onecode-extract</code>.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="enhancements">Enhancements<a class="headerlink" href="#enhancements" title="Permanent link">&para;</a></h2>
@@ -1189,12 +1194,17 @@
 <tr>
 <td><a href="https://github.com/deeplime-io/onecode/issues/5">5</a></td>
 <td>Improving DeepLearning example</td>
-<td>Allow initialization of NeuralNetInput custom element with different layer specs.</td>
+<td>Allow initialization of <code>NeuralNetInput</code> custom element with different layer specs.</td>
 </tr>
 <tr>
 <td><a href="https://github.com/deeplime-io/onecode/issues/10">10</a></td>
 <td>Allow for custom import and init statements in InputElement and OutputElement</td>
 <td>Streamlit <code>app.py</code> generated through <code>onecode-start</code> now has placeholders for import and init statements. See <code>imports()</code> and <code>init()</code> static methods in <code>InputElement</code> and <code>OutputElement</code>.</td>
+</tr>
+<tr>
+<td>[No ref]</td>
+<td>Allow meta-data for elements</td>
+<td>Meta-data can now be attached to any Input/Output element through <code>**kwargs</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1210,25 +1220,36 @@
 <tbody>
 <tr>
 <td><a href="https://github.com/deeplime-io/onecode/issues/1">1</a></td>
-<td>New input element FolderInput</td>
-<td>FolderInput allows folder selection. LASConverter example showcases it.</td>
+<td>New input element <code>FolderInput</code></td>
+<td><code>FolderInput</code> allows folder selection. <code>LASConverter</code> example showcases it.</td>
 </tr>
 <tr>
 <td><a href="https://github.com/deeplime-io/onecode/issues/2">2</a></td>
-<td>New output element PlotlyOutput</td>
-<td>PlotlyOutput allows to visualize Plotly charts. ExperimentalVariography example showcases it.</td>
+<td>New output element <code>PlotlyOutput</code></td>
+<td><code>PlotlyOutput</code> allows to visualize Plotly charts. <code>ExperimentalVariography</code> example showcases it.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="breaking-changes"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" title=":warning:" /> Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/deeplime-io/onecode/issues/10">10</a> introduces a potential breaking change if you have custom <code>InputElement</code> or <code>OutputElement</code> where the <code>streamlit()</code> method relies on one of these statements being present in <code>app.py</code>:
-* <code>import tkinter as tk</code>
-* <code>from tkinter import filedialog</code>
-* <code>import numpy as np</code>
-* <code>from pyarrow import csv as pacsv</code>
-* <code>_root = tk.Tk()</code></p>
+<ul>
+<li>
+<p><a href="https://github.com/deeplime-io/onecode/issues/10">10</a> introduces a potential breaking change if you have custom <code>InputElement</code> or <code>OutputElement</code> where the <code>streamlit()</code> method relies on one of these statements being present in <code>app.py</code>:</p>
+</li>
+<li>
+<p><code>import tkinter as tk</code></p>
+</li>
+<li><code>from tkinter import filedialog</code></li>
+<li><code>import numpy as np</code></li>
+<li><code>from pyarrow import csv as pacsv</code></li>
+<li><code>_root = tk.Tk()</code></li>
+</ul>
 <p>If this is the case, simply inherit <code>import()</code> and/or <code>init()</code> static methods so that they return the relevant statements.
 See <code>FileInput.imports()</code> and <code>FileInput.init()</code> as examples.</p>
+<ul>
+<li>Custom <code>InputElement</code> or <code>OutputElement</code> can no longer initialized with an argument named <code>kind</code>:
+it now is a reserved attribute. This change was triggered by a bug fix as <code>kind</code> was potentially overwritten
+when extracting element through <code>onecode-extract</code>. Upgrade your custom element by changing your argument name.</li>
+</ul>
 
 
 
