@@ -1233,22 +1233,21 @@
 <h2 id="breaking-changes"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/26a0.svg" title=":warning:" /> Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><a href="https://github.com/deeplime-io/onecode/issues/10">10</a> introduces a potential breaking change if you have custom <code>InputElement</code> or <code>OutputElement</code> where the <code>streamlit()</code> method relies on one of these statements being present in <code>app.py</code>:</p>
+<p><a href="https://github.com/deeplime-io/onecode/issues/10">10</a> introduces a potential breaking change if you have custom <code>InputElement</code> or <code>OutputElement</code> where the <code>streamlit()</code> method relies on one of these statements being present in <code>app.py</code>:
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">csv</span> <span class="k">as</span> <span class="n">pacsv</span>
+<span class="n">_root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+</code></pre></div>
+If this is the case, simply inherit <code>import()</code> and/or <code>init()</code> static methods so that they return the relevant statements.
+See <code>FileInput.imports()</code> and <code>FileInput.init()</code> as examples.</p>
 </li>
 <li>
-<p><code>import tkinter as tk</code></p>
-</li>
-<li><code>from tkinter import filedialog</code></li>
-<li><code>import numpy as np</code></li>
-<li><code>from pyarrow import csv as pacsv</code></li>
-<li><code>_root = tk.Tk()</code></li>
-</ul>
-<p>If this is the case, simply inherit <code>import()</code> and/or <code>init()</code> static methods so that they return the relevant statements.
-See <code>FileInput.imports()</code> and <code>FileInput.init()</code> as examples.</p>
-<ul>
-<li>Custom <code>InputElement</code> or <code>OutputElement</code> can no longer initialized with an argument named <code>kind</code>:
+<p>Custom <code>InputElement</code> or <code>OutputElement</code> can no longer initialized with an argument named <code>kind</code>:
 it now is a reserved attribute. This change was triggered by a bug fix as <code>kind</code> was potentially overwritten
-when extracting element through <code>onecode-extract</code>. Upgrade your custom element by changing your argument name.</li>
+when extracting element through <code>onecode-extract</code>. Upgrade your custom element by changing your argument name.</p>
+</li>
 </ul>
 
 
