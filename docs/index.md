@@ -40,6 +40,7 @@ of the OneCode Project (e.g. `cd /path/to/onecode/project`), then run it:
             is located under another folder.
     * Run a specific flow instead of the whole project: `python main.py --flow <flow_id>`
     * Get the full instructions set: `python main.py --help`
+    * Set a OneCode configuration option or flag at runtime by prepending `ONECODE_CONFIG_` or `ONECODE_FLAG_`: `ONECODE_FLAG_LOGGER_COLOR=1 python main.py` will set automatically `Project().set_config(ConfigOption.LOGGER_COLOR, True)`
 
 
 ---
