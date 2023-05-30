@@ -60,6 +60,7 @@ nav:
     - Utilities: reference/utils/utils.md
     - Extending OneCode: extending_onecode.md
   - Changelogs:
+    - 0.3.0: changelogs/0.3.0.md
     - 0.2.0: changelogs/0.2.0.md
     - 0.1.0: changelogs/0.1.0.md
 
