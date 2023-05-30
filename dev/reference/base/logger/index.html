@@ -1526,7 +1526,7 @@ corresponding logging level.</p>
 
 
 <h3 id="onecode.base.logger.Logger.add_handler" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add_handler</span><span class="p">(</span><span class="n">handler</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">add_handler</span><span class="p">(</span><span class="n">handler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_logger</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#onecode.base.logger.Logger.add_handler" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -1555,6 +1555,17 @@ Nothing is done if handler is None.</p>
           <td><p>New handler to add.</p></td>
           <td>
                 <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>root_logger</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If True, add the handler at the root logging, otherwise
+as a child of the <code>|OneCode|</code> logger.</p></td>
+          <td>
+                <code>True</code>
           </td>
         </tr>
     </tbody>
@@ -1836,9 +1847,9 @@ By default, it is the last function calling this logger() method.</p></td>
 
   <div class="doc doc-contents ">
   
-      <p>Remove all added handlers attached to the logger (see <code>logging.removeHandler()</code> for more
-info) and reset to the default console stream handler with the
-<a class="autorefs autorefs-internal" href="#onecode.base.logger.ColoredFormatter">ColoredFormatter</a>.</p>
+      <p>Remove all added handlers attached to the OneCode logger (see <code>logging.removeHandler()</code>
+for more info) and reset to the default console stream handler with the
+<a class="autorefs autorefs-internal" href="#onecode.base.logger.ColoredFormatter">ColoredFormatter</a> with <code>INFO</code> level.</p>
 
   </div>
 
@@ -1856,7 +1867,7 @@ info) and reset to the default console stream handler with the
 
   <div class="doc doc-contents ">
   
-      <p>Set the logger level. Default logging is INFO.</p>
+      <p>Set the OneCode logger level. Default logging is INFO.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>

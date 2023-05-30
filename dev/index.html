@@ -1441,6 +1441,7 @@ is located under another folder.</li>
 </li>
 <li>Run a specific flow instead of the whole project: <code>python main.py --flow &lt;flow_id&gt;</code></li>
 <li>Get the full instructions set: <code>python main.py --help</code></li>
+<li>Set a OneCode configuration option or flag at runtime by prepending <code>ONECODE_CONFIG_</code> or <code>ONECODE_FLAG_</code>: <code>ONECODE_FLAG_LOGGER_COLOR=1 python main.py</code> will set automatically <code>Project().set_config(ConfigOption.LOGGER_COLOR, True)</code></li>
 </ul>
 </div>
 <hr />
