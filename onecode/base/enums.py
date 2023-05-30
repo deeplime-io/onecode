@@ -14,21 +14,29 @@ class Env(str, Enum):
     :octicons-arrow-both-24: `".onecode.json"`
     - `ONECODE_DO_TYPECHECK`: set to 1 to force runtime type-checking with Pydantic
     :octicons-arrow-both-24: `"ONECODE_DO_TYPECHECK"`
+    - `ONECODE_LOGGER_NAME`: base logger name to avoid logging conflict with other loggers
+    :octicons-arrow-both-24: `|OneCode|`
 
     """
     ONECODE_PROJECT_DATA    = "ONECODE_PROJECT_DATA"    # noqa: E-221
     ONECODE_CONFIG_FILE     = ".onecode.json"           # noqa: E-221
     ONECODE_DO_TYPECHECK    = "ONECODE_DO_TYPECHECK"    # noqa: E-221
+    ONECODE_LOGGER_NAME     = "|OneCode|"               # noqa: E-221
 
 
 class ConfigOption(str, Enum):
     """
     Available options to control the configuration of the project.
 
-    - `FLUSH_STDOUT`: to force flushing the logger :octicons-arrow-both-24: `"FLUSH_STDOUT"`
+    - `FLUSH_STDOUT`: to force flushing the logger :octicons-arrow-both-24: `"FLUSH_STDOUT": False`
+    - `LOGGER_COLOR`: to color the logs by default when resetting the logger
+        :octicons-arrow-both-24: `"LOGGER_COLOR": True`
+    - `LOGGER_TIMESTAMP`: to timestamp the logs :octicons-arrow-both-24: `"LOGGER_TIMESTAMP": True`
 
     """
-    FLUSH_STDOUT        = "FLUSH_STDOUT"        # noqa: E-221
+    FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
+    LOGGER_COLOR        = "LOGGER_COLOR"            # noqa: E-221
+    LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
 
 
 class Mode(str, Enum):

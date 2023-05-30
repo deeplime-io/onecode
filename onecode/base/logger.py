@@ -8,7 +8,7 @@ import sys
 from typing import Optional
 
 from .decorator import check_type
-from .enums import ConfigOption
+from .enums import ConfigOption, Env
 from .project import Project
 from .singleton import Singleton
 
@@ -62,7 +62,9 @@ class ColoredFormatter(logging.Formatter):
 
         """
         flow = Project().current_flow if Project().current_flow is not None else ''
-        format = f"%(asctime)s [%(levelname)s] {flow} - %(name)s:%(lineno)d - %(message)s"
+        format = f"[%(levelname)s] {flow} - %(name)s:%(lineno)d - %(message)s"
+        if Project().get_config(ConfigOption.LOGGER_TIMESTAMP):
+            format = f"%(asctime)s {format}"
 
         formats = {
             logging.DEBUG: f"{self.GREY}{format}{self.RESET}",
@@ -106,28 +108,29 @@ class Logger(metaclass=Singleton):
     """
 
     def __init__(self):
-        self.set_level(logging.INFO)
         self.reset()
 
     def reset(self) -> None:
         """
-        Remove all added handlers attached to the logger (see `logging.removeHandler()` for more
-        info) and reset to the default console stream handler with the
-        [ColoredFormatter][onecode.ColoredFormatter].
+        Remove all added handlers attached to the OneCode logger (see `logging.removeHandler()`
+        for more info) and reset to the default console stream handler with the
+        [ColoredFormatter][onecode.ColoredFormatter] with `INFO` level.
 
         """
-        logger = logging.getLogger()
-        while logger.hasHandlers():
+        logger = logging.getLogger(Env.ONECODE_LOGGER_NAME)
+        while len(logger.handlers) > 0:
             logger.removeHandler(logger.handlers[0])
 
         handler = logging.StreamHandler(sys.stdout)
-        handler.setFormatter(ColoredFormatter())
-        logging.getLogger().addHandler(handler)
+        handler.setFormatter(ColoredFormatter(Project().get_config(ConfigOption.LOGGER_COLOR)))
+        logging.getLogger(Env.ONECODE_LOGGER_NAME).addHandler(handler)
+        self.set_level(logging.INFO)
 
     @check_type
     def add_handler(
         self,
-        handler: Optional[logging.Handler] = None
+        handler: Optional[logging.Handler] = None,
+        root_logger: bool = True
     ) -> None:
         """
         Add an extra handler in addition to the default console stream one.
@@ -135,7 +138,8 @@ class Logger(metaclass=Singleton):
 
         Args:
             handler: New handler to add.
-
+            root_logger: If True, add the handler at the root logging, otherwise
+                as a child of the `|OneCode|` logger.
 
         !!! example
             ```py
@@ -151,7 +155,8 @@ class Logger(metaclass=Singleton):
 
         """
         if handler is not None:
-            logging.getLogger().addHandler(handler)
+            namespace = Env.ONECODE_LOGGER_NAME if not root_logger else None
+            logging.getLogger(namespace).addHandler(handler)
 
     @check_type
     def set_level(
@@ -159,7 +164,7 @@ class Logger(metaclass=Singleton):
         level: int
     ) -> None:
         """
-        Set the logger level. Default logging is INFO.
+        Set the OneCode logger level. Default logging is INFO.
 
         Args:
             level: Numerical value to set the logging level to. See
@@ -167,7 +172,7 @@ class Logger(metaclass=Singleton):
                 more information.
 
         """
-        logging.getLogger().setLevel(level)
+        logging.getLogger(Env.ONECODE_LOGGER_NAME).setLevel(level)
 
     @check_type
     def logger(
@@ -190,7 +195,7 @@ class Logger(metaclass=Singleton):
         """
         stack = inspect.stack()
         file = os.path.basename(stack[stacklevel].filename) if len(stack) > stacklevel else None
-        return logging.getLogger(file)
+        return logging.getLogger(f'{Env.ONECODE_LOGGER_NAME}.{file}')
 
     @staticmethod
     def _flush() -> None:

@@ -32,7 +32,9 @@ def test_empty_project():
     assert p.current_flow is None
     assert p.data is None
     assert p.config == {
-        ConfigOption.FLUSH_STDOUT: False
+        ConfigOption.FLUSH_STDOUT: False,
+        ConfigOption.LOGGER_COLOR: True,
+        ConfigOption.LOGGER_TIMESTAMP: True,
     }
     assert p.data_root == os.getcwd()
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
@@ -74,7 +76,9 @@ def test_project_reset():
     assert p.current_flow == 'testflow'
     assert p.data == {"x": 4}
     assert p.config == {
-        ConfigOption.FLUSH_STDOUT: True
+        ConfigOption.FLUSH_STDOUT: True,
+        ConfigOption.LOGGER_COLOR: True,
+        ConfigOption.LOGGER_TIMESTAMP: True,
     }
     assert p.data_root == data_path
     assert p.get_input_path('test.txt') == os.path.join(data_path, 'test.txt')
@@ -104,7 +108,9 @@ def test_project_reset():
     assert p.current_flow is None
     assert p.data is None
     assert p.config == {
-        ConfigOption.FLUSH_STDOUT: False
+        ConfigOption.FLUSH_STDOUT: False,
+        ConfigOption.LOGGER_COLOR: True,
+        ConfigOption.LOGGER_TIMESTAMP: True
     }
     assert p.data_root == os.getcwd()
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
@@ -214,6 +220,8 @@ def test_config_option():
     assert p.get_config('XX') == 56.4
     assert p.config == {
         ConfigOption.FLUSH_STDOUT: False,
+        ConfigOption.LOGGER_COLOR: True,
+        ConfigOption.LOGGER_TIMESTAMP: True,
         'XX': 56.4
     }
 
