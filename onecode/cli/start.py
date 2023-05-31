@@ -5,7 +5,7 @@ import argparse
 import importlib
 import os
 import sys
-from typing import Dict, List, Tuple
+from typing import Dict, List, Set, Tuple
 
 from streamlit.web.cli import main_run
 
@@ -95,7 +95,7 @@ def process(calls: List[Dict[str, str]]) -> Tuple[List[str], List[str]]:
 
 
 @check_type
-def get_import_statements(calls: List[Dict[str, str]]):
+def get_import_statements(calls: List[Dict[str, str]]) -> Tuple[Set[str], Set[str]]:
     """
     Get the import and init statements from the elements called.
 
