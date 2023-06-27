@@ -2,11 +2,11 @@
 
 Available output elements for OneCode projects:
 
-* [csv_output][csv_output]
-* [file_output][file_output]
-* [image_output][image_output]
-* [plotly_output][plotly_output]
-* [text_output][text_output]
+* [csv_output](#csv_output)
+* [file_output](#file_output)
+* [image_output](#image_output)
+* [plotly_output](#plotly_output)
+* [text_output](#text_output)
 
 
 ## csv_output
