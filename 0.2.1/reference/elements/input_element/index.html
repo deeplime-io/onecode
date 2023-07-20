@@ -1,0 +1,2519 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Abstract InputElement - OneCode Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inputelement" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://deeplime.io/" title="OneCode Library" class="md-header__button md-logo" aria-label="OneCode Library" data-md-component="logo">
+      
+  <img src="../../../assets/oc_light.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OneCode Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Abstract InputElement
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Getting Started
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../tips_and_tricks/" class="md-tabs__link">
+      Tips and Tricks
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cli/cli/" class="md-tabs__link">
+        API Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cli/create/" class="md-tabs__link md-tabs__link--active">
+        Developer's corner
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../changelogs/0.2.1/" class="md-tabs__link">
+        Changelogs
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://deeplime.io/" title="OneCode Library" class="md-nav__button md-logo" aria-label="OneCode Library" data-md-component="logo">
+      
+  <img src="../../../assets/oc_light.png" alt="logo">
+
+    </a>
+    OneCode Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tips_and_tricks/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Base" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../base/logger/" class="md-nav__link">
+        Logger
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../base/enums/" class="md-nav__link">
+        Enumerator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../base/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Elements
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Elements" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Elements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input_element_list/" class="md-nav__link">
+        Input Elements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output_element_list/" class="md-nav__link">
+        Output Elements
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Developer's corner
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer's corner" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Developer's corner
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CLI" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/create/" class="md-nav__link">
+        Create a project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/add/" class="md-nav__link">
+        Add a flow to a project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/start/" class="md-nav__link">
+        Run a project with Streamlit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/extract/" class="md-nav__link">
+        Extract project parameters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/utils/" class="md-nav__link">
+        Utilities
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          InputElements
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="InputElements" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          InputElements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Abstract InputElement
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Abstract InputElement
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._value_type" class="md-nav__link">
+    _value_type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.disabled" class="md-nav__link">
+    disabled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.kind" class="md-nav__link">
+    kind
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.label" class="md-nav__link">
+    label
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.value" class="md-nav__link">
+    value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.__call__" class="md-nav__link">
+    __call__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._build_streamlit" class="md-nav__link">
+    _build_streamlit()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._console" class="md-nav__link">
+    _console()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._execute" class="md-nav__link">
+    _execute()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._extract" class="md-nav__link">
+    _extract()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._extract_all" class="md-nav__link">
+    _extract_all()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._load_then_execute" class="md-nav__link">
+    _load_then_execute()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._prepare_and_validate" class="md-nav__link">
+    _prepare_and_validate()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._validate" class="md-nav__link">
+    _validate()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.imports" class="md-nav__link">
+    imports()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.init" class="md-nav__link">
+    init()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.streamlit" class="md-nav__link">
+    streamlit()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/checkbox/" class="md-nav__link">
+        Checkbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/radio_button/" class="md-nav__link">
+        RadioButton
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/dropdown/" class="md-nav__link">
+        Dropdown
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/number_input/" class="md-nav__link">
+        NumberInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/slider/" class="md-nav__link">
+        Slider
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/file_input/" class="md-nav__link">
+        FileInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/folder_input/" class="md-nav__link">
+        FolderInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/text_input/" class="md-nav__link">
+        TextInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/csv_reader/" class="md-nav__link">
+        CsvReader
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          OutputElement
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OutputElement" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          OutputElement
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output_element/" class="md-nav__link">
+        Abstract OutputElement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/file_output/" class="md-nav__link">
+        FileOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/image_output/" class="md-nav__link">
+        ImageOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/plotly_output/" class="md-nav__link">
+        PlotlyOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/text_output/" class="md-nav__link">
+        TextOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output/csv_output/" class="md-nav__link">
+        CsvOutput
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/utils/" class="md-nav__link">
+        Utilities
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending_onecode/" class="md-nav__link">
+        Extending OneCode
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Changelogs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Changelogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Changelogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.2.1/" class="md-nav__link">
+        0.2.1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.2.0/" class="md-nav__link">
+        0.2.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelogs/0.1.0/" class="md-nav__link">
+        0.1.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._value_type" class="md-nav__link">
+    _value_type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.disabled" class="md-nav__link">
+    disabled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.kind" class="md-nav__link">
+    kind
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.label" class="md-nav__link">
+    label
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.value" class="md-nav__link">
+    value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.__call__" class="md-nav__link">
+    __call__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._build_streamlit" class="md-nav__link">
+    _build_streamlit()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._console" class="md-nav__link">
+    _console()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._execute" class="md-nav__link">
+    _execute()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._extract" class="md-nav__link">
+    _extract()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._extract_all" class="md-nav__link">
+    _extract_all()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._load_then_execute" class="md-nav__link">
+    _load_then_execute()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._prepare_and_validate" class="md-nav__link">
+    _prepare_and_validate()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement._validate" class="md-nav__link">
+    _validate()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.imports" class="md-nav__link">
+    imports()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.init" class="md-nav__link">
+    init()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onecode.elements.input_element.InputElement.streamlit" class="md-nav__link">
+    streamlit()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="inputelement">InputElement<a class="headerlink" href="#inputelement" title="Permanent link">&para;</a></h1>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+  <div class="doc doc-contents first">
+      <p class="doc doc-class-bases">
+        Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+  
+      <p>An element is an object that will be interpreted based on the Project's mode (script
+execution, extraction, streamlit code generation, etc.). OneCode projects should not
+directly call the <code>InputElement</code> but its corresponding static function defined as the snake
+case of the element class name. For instance:</p>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># wrong</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">MyInputElement</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># correct</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">my_input_element</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p><code>InputElement</code> is the base class for input type parameter. By inheriting it, it is mandatory
+to define:</p>
+<ul>
+<li><a class="autorefs autorefs-internal" href="#onecode.elements.input_element.InputElement._value_type"><code>_value_type</code></a>: internal attribute to ensure the type of
+    the value is correct at runtime.</li>
+<li><a class="autorefs autorefs-internal" href="#onecode.elements.input_element.InputElement._validate"><code>_validate()</code></a>: internal method to ensure the value checks
+    out at runtime.</li>
+<li><a class="autorefs autorefs-internal" href="#onecode.elements.input_element.InputElement.streamlit"><code>streamlit()</code></a>: method returning the Streamlit code to be
+    generated.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on your case, you may need to subclass <code>value</code> too (e.g. like CsvReader
+and FileInput).</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Don't forget that the Python filename of an element should correspond to the snake case
+form of the element class name (e.g. <code>FileInput</code> -&gt; <code>file_input.py</code>). You may use
+<code>pydash</code> functions <code>snake_case()</code> and <code>pascal_case()</code> to find the right conversion
+between the two forms.</p>
+</div>
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Human readable name typically used by <code>streamlit()</code> for display.</p></td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>Actual value of the element.</p></td>
+        </tr>
+        <tr>
+          <td><code>disabled</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The string condition typically used by <code>streamlit</code> for disabling the widget.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._value_type" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_value_type</span><span class="p">:</span> <span class="nb">type</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement._value_type" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>You must re-implement this function to return the expected <code>type</code> for the value.
+This <code>_value_type</code> is used to check to the proper type at runtime.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>type</code>
+          </td>
+          <td><p>The type of the value (built-in type or typing).</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@property</span>
+<span class="k">def</span> <span class="nf">_value_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
+</code></pre></div>
+</div>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.disabled" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">disabled</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.disabled" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the whether the element is disabled as a string. It is primarly meant to be
+directly used in the Streamlit generated code for the <code>disabled</code> parameter.
+See <a class="autorefs autorefs-internal" href="#onecode.elements.input_element.InputElement.streamlit"><code>streamlit()</code></a> for more information.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The conditional string to be used in <code>streamlit()</code> for the <code>disabled</code> parameter.</p></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.kind" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">kind</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.kind" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The element class name.</p></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.label" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">label</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.label" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the label with triple-quotes and escaped to handle human-readable string.
+It is primarly meant to be directly used in the Streamlit generated code for the
+<code>label</code> parameter.
+See <a class="autorefs autorefs-internal" href="#onecode.elements.input_element.InputElement.streamlit"><code>streamlit()</code></a> for more information.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The string to be used in <code>streamlit()</code> for the <code>label</code> parameter.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">slider</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">CONSOLE</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span><span class="s2">&quot;Hello l&#39;aspirateur!&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">x</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="s2">&quot;&#39;&#39;&#39;Hello l</span><span class="se">\&#39;</span><span class="s2">aspirateur!&#39;&#39;&#39;&quot;</span>
+</code></pre></div>
+</div>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.value" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.value" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the value of the element. By default this value is the one provided during at the
+initialization. Feel free to overwrite this property as required. For instance,
+FileInput and CsvReader re-implement it for their own purpose.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>By default, the same as the initial value.</p></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.__call__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__call__</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement.__call__" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Internal cornerstone for OneCode to distribute the action to perform according to the
+Project mode.</p>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the Project mode is unknown, e.g. if there is no method matching the
+mode name.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hide_when_disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></code>
+
+<a href="#onecode.elements.input_element.InputElement.__init__" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to story data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see examples projects).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>Initial value for the parameter. This value may be transformed depending on the
+element.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>Typically to be used by Streamlit for display purpose only. If not defined, it
+will default to the <code>key</code>.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>count</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, str]]</code>
+          </td>
+          <td><p>Specify the number of occurence of the widget. OneCode typically uses it for the
+streamlit case. Note that if <code>count</code> is defined, the expected <code>value</code> should always
+be a list, even if the <code>count</code> is <code>1</code>. <code>count</code> can either be a fixed number
+(e.g. <code>3</code>) or an expression dependent of other elements (see
+<a class="autorefs autorefs-internal" href="../../../tips_and_tricks/#using-runtime-expressions-in-elements">Using Expressions</a> for more information).</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>optional</code></td>
+          <td>
+                <code><span title="typing.Union">Union</span>[bool, str]</code>
+          </td>
+          <td><p>Specify whether the value may be None. <code>optional</code> can either be a fixed
+boolean (<code>False</code> or <code>True</code>) or a conditional expression dependent of other elements
+(see <a class="autorefs autorefs-internal" href="../../../tips_and_tricks/#using-runtime-expressions-in-elements">Using Expressions</a> for more
+information).</p></td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>hide_when_disabled</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Only used by Streamlit: if element is optional, set it to True to
+hide it from the interface, otherwise it will be shown disabled.</p></td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Extra arguments to populate the element with. Argument names cannot overwrite
+existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._build_streamlit" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_build_streamlit</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._build_streamlit" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Function called when Project mode is <code>Mode.STREAMLIT</code>. The Streamlit block code will be
+prepared using the element parameters (such as <code>count</code>, <code>optional</code>, <code>hide_when_disabled</code>,
+etc.) as well as the block code returned by the
+<a class="autorefs autorefs-internal" href="#onecode.elements.input_element.InputElement.streamlit"><code>streamlit()</code></a> function. This function makes it easy to
+extend the <code>InputElement</code> without worrying about the <code>count</code>, <code>optional</code> and
+<code>hide_when_disabled</code> attributes.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The full block code generated by this <code>InputElement</code> to be written out to the generated</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Streamlit app code.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._console" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_console</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._console" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Function called when Project mode is <code>Mode.CONSOLE</code>.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="onecode.elements.input_element.InputElement">InputElement</span></code>
+          </td>
+          <td><p>This <code>InputElement</code> object.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._execute" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_execute</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._execute" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Function called when Project mode is <code>Mode.EXECUTE</code>. The value will first be collected,
+prepared, validated then added to the <code>Project().data</code> before being returned.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>The value of this element after resolution (collection, preparation and validation).</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._extract" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_extract</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._extract" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Function called when Project mode is <code>Mode.EXTRACT</code>. The value will be collected and added
+to the <code>Project().data</code> before returning it as key-value object.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Tuple">Tuple</span>[str, <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>The pair <code>{ key: value }</code> of this element.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._extract_all" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_extract_all</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._extract_all" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Function called when Project mode is <code>Mode.EXTRACT_ALL</code>. The value will be collected and
+added to the <code>Project().data</code> before returning it as key-value object along with all
+other element parameters, such as <code>key</code>, <code>kind</code>, <code>label</code>, etc.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Tuple">Tuple</span>[str, <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>The full parameter set constituting this element as a dictionnary.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._load_then_execute" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_load_then_execute</span><span class="p">()</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._load_then_execute" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Function called when Project mode is <code>Mode.LOAD_THEN_EXECUTE</code>. The value will first be
+collected, prepared, validated then added to the <code>Project().data</code> before being returned.</p>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>The value of this element after resolution (collection, preparation and validation).</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._prepare_and_validate" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_prepare_and_validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#onecode.elements.input_element.InputElement._prepare_and_validate" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Internal function used in <code>Mode.EXECUTE</code> and <code>Mode.LOAD_THEN_EXECUTE</code> to prepare the value,
+check is type, then validate it before returning it.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>Value to be prepared and validated.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the value is None but is not optional or the value is of incorrect type.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement._validate" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement._validate" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>You must re-implement this function to validate at runtime the value before being returned
+during the OneCode project execution. This function must raise an error in case the value
+is incorrect/inconsistent wrt the element parameters.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Prepared value to be checked (do not use <code>self.value</code>).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>For instance, a slider value will fail to validate if it is outside its range:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;&#39;&#39;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">] Minimum cannot be greater than maximum:</span>
+<span class="s1">            </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="si">}</span><span class="s1"> &gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="si">}</span><span class="s1">&#39;&#39;&#39;</span>
+        <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;&#39;&#39;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">] Value lower than minimum:</span>
+<span class="s1">            </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1"> &lt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="si">}</span><span class="s1">&#39;&#39;&#39;</span>
+        <span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">] Value greater than maximum: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1"> &gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
+</code></pre></div></p>
+</div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.imports" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">imports</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.imports" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Re-implement this function in case your Streamlit code requires specific Python package
+import. This function should return a list of import statement as string.</p>
+<p>Note that the following packages are already imported (not needed to return them in that
+list): <code>os</code>, <code>json</code>, <code>uuid</code>, <code>pydash</code>, <code>streamlit as st</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">imports</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s2">&quot;import numpy as np&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;import plotly&quot;</span>
+    <span class="p">]</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.init" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">init</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.init" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Re-implement this function in case your Streamlit code requires specific initialization
+statements. Note that all variables starting with a <code>_</code> are reserved.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">init</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        def x(angle):</span>
+<span class="s1">            return np.deg2rad(angle%360)</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="onecode.elements.input_element.InputElement.streamlit" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">streamlit</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+<a href="#onecode.elements.input_element.InputElement.streamlit" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>You must re-implement this function to return the expected Streamlit block code for
+this element. This block code will be written out to the generated Streamlit App code.</p>
+<p>Typical attributes that will be useful:
+- <code>label</code>: can be directly piped to the Streamlit widget <code>label</code> parameter. This attribute
+    has been automatically setup for you to use and will properly escape the potential
+    troublesome characters.</p>
+<ul>
+<li>
+<p><code>disabled</code>: can be directly piped to the Streamlit <code>disabled</code> widget parameters. This
+    attribute has been automatically setup for you to use and will properly take the
+    <code>optional</code> argument into account regardless of <code>optional</code> being an expression, a
+    boolean or None. Therefore, do not use <code>optional</code> or <code>hide_when_disabled</code>, use
+    <code>disabled</code> directly.</p>
+</li>
+<li>
+<p><code>key</code>: it must be used as the variable name for the Streamlit widget.</p>
+</li>
+<li>
+<p>all other attributes that are specific to your widget, e.g. <code>min</code>, <code>max</code>, <code>step</code> for
+    a Slider, etc.</p>
+</li>
+</ul>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Must be used as the <code>id</code> parameter of the Streamlit widget. This variable is
+automatically setup to take uniqueness wrt <code>count</code>.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The Streamlit block code to be output in the generated Streamlit App code.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">streamlit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1"># Slider</span>
+<span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1"> = st.slider(</span>
+<span class="s1">    </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">    min_value=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">    max_value=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">    value=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">    step=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">    disabled=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">disabled</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">    key=</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span>
+<span class="s1">)</span>
+
+<span class="s1">&#39;&#39;&#39;</span>
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Remember: no need to use <code>optional</code>, <code>hide_when_disabled</code> and <code>count</code>, they are
+already automatically taken into account to make your life easier. Use <code>disabled</code>,
+<code>label</code>, <code>key</code> and <code>id</code></p>
+</div>
+
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../cli/utils/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Utilities" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Utilities
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../input/checkbox/" class="md-footer__link md-footer__link--next" aria-label="Next: Checkbox" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Checkbox
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2023, DeepLime
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+    
+  </body>
+</html>
