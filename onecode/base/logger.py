@@ -108,18 +108,31 @@ class Logger(metaclass=Singleton):
     """
 
     def __init__(self):
-        self.reset()
+        self.reset(False)
 
-    def reset(self) -> None:
+    def reset(
+        self,
+        root_logger: bool = True
+    ) -> None:
         """
-        Remove all added handlers attached to the OneCode logger (see `logging.removeHandler()`
-        for more info) and reset to the default console stream handler with the
+        Remove all added handlers attached to the OneCode logger and optionally
+        the root logger if specified (see `logging.removeHandler()` for more info).
+        OneCode logger is then reset to the default console stream handler with the
         [ColoredFormatter][onecode.ColoredFormatter] with `INFO` level.
 
+        Args:
+            root_logger: If True, remove the handlers from the root logger too,
+                in addition to removing the handlers from OneCode logger.
+
         """
-        logger = logging.getLogger(Env.ONECODE_LOGGER_NAME)
-        while len(logger.handlers) > 0:
-            logger.removeHandler(logger.handlers[0])
+        namespaces = [Env.ONECODE_LOGGER_NAME]
+        if root_logger:
+            namespaces.append(None)
+
+        for n in namespaces:
+            logger = logging.getLogger(n)
+            while len(logger.handlers) > 0:
+                logger.removeHandler(logger.handlers[0])
 
         handler = logging.StreamHandler(sys.stdout)
         handler.setFormatter(ColoredFormatter(Project().get_config(ConfigOption.LOGGER_COLOR)))
