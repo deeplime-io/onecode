@@ -323,5 +323,6 @@ Proof of Concept (POC) stage. [Contact us](mailto: contact@deeplime.io) if you w
 ---
 ## Credits
 Credits to all open-source libraries that helped build this project. Special thanks to:
+
 - Streamlit and its contributors for making such a great tool on which we can rely.
 - PyCG and its contributors for making the Call Graph algos essential to the OneCode mechanism.

@@ -2,15 +2,15 @@
 
 Available input elements for OneCode projects:
 
-* [checkbox][checkbox]
-* [csv_reader][csv_reader]
-* [dropdown][dropdown]
-* [file_input][file_input]
-* [folder_input][folder_input]
-* [number_input][number_input]
-* [radio_button][radio_button]
-* [slider][slider]
-* [text_input][text_input]
+* [checkbox](#checkbox)
+* [csv_reader](#csv_reader)
+* [dropdown](#dropdown)
+* [file_input](#file_input)
+* [folder_input](#folder_input)
+* [number_input](#number_input)
+* [radio_button](#radio_button)
+* [slider](#slider)
+* [text_input](#text_input)
 
 
 ## checkbox

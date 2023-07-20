@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onecode"
-version = "0.2.1"
+version = "0.3.0.dev"
 description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
@@ -35,7 +35,7 @@ typeguard = "^2.13.3"
 # cli
 astunparse = "^1.6.3"
 inquirerpy = "^0.3.3"
-onecode-pycg = "^0.0.7"
+onecode-pycg = ">=0.0.7"
 yaspin = "^2.1.0"
 
 # streamlit

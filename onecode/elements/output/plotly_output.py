@@ -101,6 +101,15 @@ class PlotlyOutput(OutputElement):
             )
 
     @staticmethod
+    def imports() -> List[str]:
+        """
+        Returns:
+            Python import statements required by the Streamlit code.
+
+        """
+        return ["import plotly"]
+
+    @staticmethod
     def streamlit() -> str:
         """
         Returns:
