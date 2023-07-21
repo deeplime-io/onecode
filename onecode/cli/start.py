@@ -437,6 +437,7 @@ def main() -> None:   # pragma: no cover
       -h, --help            show this help message and exit
       --modules [MODULES [MODULES ...]]
                             Optional list of modules to import first
+      --dump                Only generate the app.py file
     ```
 
     """
@@ -447,6 +448,7 @@ def main() -> None:   # pragma: no cover
         default=[],
         help='Optional list of modules to import first'
     )
+    parser.add_argument('--dump', action="store_true", help='Only generate the app.py file')
     args = parser.parse_args()
 
     # if data root not set, set it to data folder in current working directory
@@ -467,9 +469,12 @@ def main() -> None:   # pragma: no cover
 
     prepare_streamlit_file(os.getcwd(), 'app.py')
 
-    Project().mode = Mode.EXECUTE
-    os.environ['STREAMLIT_RUN_TARGET'] = 'app.py'
-    os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '4000'
-    os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = '0'
+    if args.dump:
+        print('Streamlit app file generated')
+    else:
+        Project().mode = Mode.EXECUTE
+        os.environ['STREAMLIT_RUN_TARGET'] = 'app.py'
+        os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '4000'
+        os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = '0'
 
-    main_run()
+        main_run()
