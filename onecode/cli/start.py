@@ -144,7 +144,8 @@ def get_import_statements(calls: List[Dict[str, str]]) -> Tuple[Set[str], Set[st
 @check_type
 def prepare_streamlit_file(
     project_path: str,
-    to_file: str
+    to_file: str,
+    verbose: bool = False
 ) -> None:
     """
     Prepare the Streamlit App Python file from the given OneCode project and dump it to the
@@ -157,7 +158,7 @@ def prepare_streamlit_file(
     """
     Project().mode = Mode.STREAMLIT
 
-    statements = process_call_graph(project_path)
+    statements = process_call_graph(project_path, verbose)
     menu_entries = statements.keys()
 
     all_st_outputs = set()
@@ -448,7 +449,16 @@ def main() -> None:   # pragma: no cover
         default=[],
         help='Optional list of modules to import first'
     )
-    parser.add_argument('--dump', action="store_true", help='Only generate the app.py file')
+    parser.add_argument(
+        '--dump',
+        action="store_true",
+        help='Only generate the app.py file'
+    )
+    parser.add_argument(
+        '--verbose',
+        help='Print verbose information when processing files',
+        action='store_true'
+    )
     args = parser.parse_args()
 
     # if data root not set, set it to data folder in current working directory
@@ -467,7 +477,7 @@ def main() -> None:   # pragma: no cover
     # args must be cleaned, otherwise conflict with streamlit.main_run()
     sys.argv = [sys.argv[0]]
 
-    prepare_streamlit_file(os.getcwd(), 'app.py')
+    prepare_streamlit_file(os.getcwd(), 'app.py', args.verbose)
 
     if args.dump:
         print('Streamlit app file generated')

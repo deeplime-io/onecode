@@ -87,7 +87,8 @@ def process(calls: List[Dict[str, str]]) -> Dict:
 def extract_json(
     project_path: str,
     to_file: str,
-    all: Optional[bool] = False
+    all: Optional[bool] = False,
+    verbose: bool = False
 ) -> None:
     """
     Extract the input parameter out of the given OneCode project and dump it to the specified file.
@@ -100,7 +101,7 @@ def extract_json(
 
     """
     Project().mode = Mode.EXTRACT_ALL if all else Mode.EXTRACT
-    statements = process_call_graph(project_path)
+    statements = process_call_graph(project_path, verbose)
 
     parameters = {}
     for v in statements.values():
@@ -152,6 +153,11 @@ def main(cli: bool = True) -> None:    # pragma: no cover
         required=False,
         help='Path to the project root directory if not the current working directory'
     )
+    parser.add_argument(
+        '--verbose',
+        help='Print verbose information when processing files',
+        action='store_true'
+    )
     args = parser.parse_args()
 
     with yaspin(text="Extracting parameters") as spinner:
@@ -170,7 +176,7 @@ def main(cli: bool = True) -> None:    # pragma: no cover
                 else f'{args.output_file}.json'
 
             print('\n')
-            extract_json(project_path, out_filename, args.all)
+            extract_json(project_path, out_filename, args.all, args.verbose)
 
             spinner.text = f"Parameters extracted to {out_filename}"
             spinner.ok("✅")
