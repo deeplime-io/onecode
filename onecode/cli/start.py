@@ -430,7 +430,7 @@ if _selected == {k}:
 def main() -> None:   # pragma: no cover
     """
     ```bash
-    usage: onecode-start [-h] [--modules [MODULES [MODULES ...]]]
+    usage: onecode-start [-h] [--modules [MODULES [MODULES ...]]] [--dump] [--verbose]
 
     Start the OneCode Project in Streamlit mode.
 
@@ -439,6 +439,7 @@ def main() -> None:   # pragma: no cover
       --modules [MODULES [MODULES ...]]
                             Optional list of modules to import first
       --dump                Only generate the app.py file
+      --verbose             Print verbose information when processing files
     ```
 
     """

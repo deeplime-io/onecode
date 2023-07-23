@@ -117,9 +117,9 @@ def main(cli: bool = True) -> None:    # pragma: no cover
     """
     ```bash
     usage: onecode-extract [-h] [--all] [--modules [MODULES [MODULES ...]]] [--path PATH]
-        output_file
+        [--verbose] output_file
 
-    Extract OneCode project parameters to JSON file.
+    Extract OneCode project parameters to JSON file
 
     positional arguments:
       output_file           Path to the output JSON file
@@ -130,6 +130,7 @@ def main(cli: bool = True) -> None:    # pragma: no cover
       --modules [MODULES [MODULES ...]]
                             Optional list of modules to import first
       --path PATH           Path to the project root directory if not the current working directory
+      --verbose             Print verbose information when processing files
     ```
 
     """
