@@ -1157,6 +1157,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../changelogs/0.2.1/" class="md-nav__link">
+        0.2.1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../changelogs/0.2.0/" class="md-nav__link">
         0.2.0
       </a>
@@ -1854,16 +1868,42 @@ By default, it is the last function calling this logger() method.</p></td>
 
 
 <h3 id="onecode.base.logger.Logger.reset" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">reset</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">reset</span><span class="p">(</span><span class="n">root_logger</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#onecode.base.logger.Logger.reset" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Remove all added handlers attached to the OneCode logger (see <code>logging.removeHandler()</code>
-for more info) and reset to the default console stream handler with the
+      <p>Remove all added handlers attached to the OneCode logger and optionally
+the root logger if specified (see <code>logging.removeHandler()</code> for more info).
+OneCode logger is then reset to the default console stream handler with the
 <a class="autorefs autorefs-internal" href="#onecode.base.logger.ColoredFormatter">ColoredFormatter</a> with <code>INFO</code> level.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>root_logger</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If True, remove the handlers from the root logger too,
+in addition to removing the handlers from OneCode logger.</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
   </div>
 
