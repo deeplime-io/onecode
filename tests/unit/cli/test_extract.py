@@ -33,57 +33,57 @@ def test_valid_element_verbose(capsys):
         assert """Processing "Step1"...
  >> (flows\\step1.run) function onecode.csv_reader ✅
  >> (flows\\step1.run) function onecode.dropdown ✅
- >> (flows\\step1.run) function onecode.Logger.info 🚫
- >> (flows\\step1.run) function onecode.Logger.info 🚫
- >> (flows\\step1.run) function <builtin>.range 🚫
- >> (flows\\step1.run) function time.sleep 🚫
- >> (flows\\step1.run) function onecode.Logger.info 🚫
+ >> (flows\\step1.run) function onecode.Logger.info ⏩
+ >> (flows\\step1.run) function onecode.Logger.info ⏩
+ >> (flows\\step1.run) function <builtin>.range ⏩
+ >> (flows\\step1.run) function time.sleep ⏩
+ >> (flows\\step1.run) function onecode.Logger.info ⏩
  >> (flows\\step1.run) function onecode.csv_output ✅
- >> (flows\\step1.run) function onecode.Logger.info 🚫
+ >> (flows\\step1.run) function onecode.Logger.info ⏩
 Processing "Step2"...
- >> (flows\\step2.run) function onecode.Project 🚫
- >> (flows\\step2.run) function onecode.Logger.info 🚫
- >> (flows\\step2.run) function onecode.Logger.info 🚫
- >> (flows\\step2.run) function onecode.Logger.info 🚫
- >> (flows\\step2.run) function onecode.Logger.warning 🚫
- >> (flows\\step2.run) function onecode.Logger.error 🚫
- >> (flows\\step2.run) function onecode.Logger.critical 🚫
- >> (flows\\step2.run) function utils.xx 🚫
+ >> (flows\\step2.run) function onecode.Project ⏩
+ >> (flows\\step2.run) function onecode.Logger.info ⏩
+ >> (flows\\step2.run) function onecode.Logger.info ⏩
+ >> (flows\\step2.run) function onecode.Logger.info ⏩
+ >> (flows\\step2.run) function onecode.Logger.warning ⏩
+ >> (flows\\step2.run) function onecode.Logger.error ⏩
+ >> (flows\\step2.run) function onecode.Logger.critical ⏩
+ >> (flows\\step2.run) function utils.xx ⏩
 Processing "Step3"...
  >> (flows\\step3.run) function onecode.slider ✅
- >> (flows\\step3.run) function onecode.Logger.info 🚫
+ >> (flows\\step3.run) function onecode.Logger.info ⏩
  >> (flows\\step3.run) function onecode.file_input ✅
- >> (flows\\step3.run) function onecode.Logger.info 🚫
+ >> (flows\\step3.run) function onecode.Logger.info ⏩
  >> (flows\\step3.run) function onecode.file_input ✅
- >> (flows\\step3.run) function onecode.Logger.info 🚫
+ >> (flows\\step3.run) function onecode.Logger.info ⏩
 """ == captured.out
     else:
         assert """Processing "Step1"...
  >> (flows.step1.run) function onecode.csv_reader ✅
  >> (flows.step1.run) function onecode.dropdown ✅
- >> (flows.step1.run) function onecode.Logger.info 🚫
- >> (flows.step1.run) function onecode.Logger.info 🚫
- >> (flows.step1.run) function <builtin>.range 🚫
- >> (flows.step1.run) function time.sleep 🚫
- >> (flows.step1.run) function onecode.Logger.info 🚫
+ >> (flows.step1.run) function onecode.Logger.info ⏩
+ >> (flows.step1.run) function onecode.Logger.info ⏩
+ >> (flows.step1.run) function <builtin>.range ⏩
+ >> (flows.step1.run) function time.sleep ⏩
+ >> (flows.step1.run) function onecode.Logger.info ⏩
  >> (flows.step1.run) function onecode.csv_output ✅
- >> (flows.step1.run) function onecode.Logger.info 🚫
+ >> (flows.step1.run) function onecode.Logger.info ⏩
 Processing "Step2"...
- >> (flows.step2.run) function onecode.Project 🚫
- >> (flows.step2.run) function onecode.Logger.info 🚫
- >> (flows.step2.run) function onecode.Logger.info 🚫
- >> (flows.step2.run) function onecode.Logger.info 🚫
- >> (flows.step2.run) function onecode.Logger.warning 🚫
- >> (flows.step2.run) function onecode.Logger.error 🚫
- >> (flows.step2.run) function onecode.Logger.critical 🚫
- >> (flows.step2.run) function flows.utils.xx 🚫
+ >> (flows.step2.run) function onecode.Project ⏩
+ >> (flows.step2.run) function onecode.Logger.info ⏩
+ >> (flows.step2.run) function onecode.Logger.info ⏩
+ >> (flows.step2.run) function onecode.Logger.info ⏩
+ >> (flows.step2.run) function onecode.Logger.warning ⏩
+ >> (flows.step2.run) function onecode.Logger.error ⏩
+ >> (flows.step2.run) function onecode.Logger.critical ⏩
+ >> (flows.step2.run) function flows.utils.xx ⏩
 Processing "Step3"...
  >> (flows.step3.run) function onecode.slider ✅
- >> (flows.step3.run) function onecode.Logger.info 🚫
+ >> (flows.step3.run) function onecode.Logger.info ⏩
  >> (flows.step3.run) function onecode.file_input ✅
- >> (flows.step3.run) function onecode.Logger.info 🚫
+ >> (flows.step3.run) function onecode.Logger.info ⏩
  >> (flows.step3.run) function onecode.file_input ✅
- >> (flows.step3.run) function onecode.Logger.info 🚫
+ >> (flows.step3.run) function onecode.Logger.info ⏩
 """ == captured.out
 
     os.remove(json_file)

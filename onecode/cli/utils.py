@@ -183,7 +183,7 @@ def extract_calls(
                 })
             else:
                 if verbose:
-                    print(f" >> ({entry_point}) function {fn['normed']} 🚫")
+                    print(f" >> ({entry_point}) function {fn['normed']} ⏩")
 
                 extract_calls(fn['normed'], graph, calls)
 
