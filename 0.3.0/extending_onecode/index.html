@@ -1,0 +1,1627 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Extending OneCode - OneCode Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extending-onecode" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://deeplime.io/" title="OneCode Library" class="md-header__button md-logo" aria-label="OneCode Library" data-md-component="logo">
+      
+  <img src="../assets/oc_light.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OneCode Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extending OneCode
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Getting Started
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../tips_and_tricks/" class="md-tabs__link">
+      Tips and Tricks
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference/cli/cli/" class="md-tabs__link">
+        API Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference/cli/create/" class="md-tabs__link md-tabs__link--active">
+        Developer's corner
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../changelogs/0.3.0/" class="md-tabs__link">
+        Changelogs
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://deeplime.io/" title="OneCode Library" class="md-nav__button md-logo" aria-label="OneCode Library" data-md-component="logo">
+      
+  <img src="../assets/oc_light.png" alt="logo">
+
+    </a>
+    OneCode Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tips_and_tricks/" class="md-nav__link">
+        Tips and Tricks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          API Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Base" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/base/logger/" class="md-nav__link">
+        Logger
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/base/enums/" class="md-nav__link">
+        Enumerator
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/base/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Elements
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Elements" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Elements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input_element_list/" class="md-nav__link">
+        Input Elements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output_element_list/" class="md-nav__link">
+        Output Elements
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Developer's corner
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developer's corner" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Developer's corner
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          CLI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CLI" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          CLI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/create/" class="md-nav__link">
+        Create a project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/add/" class="md-nav__link">
+        Add a flow to a project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/start/" class="md-nav__link">
+        Run a project with Streamlit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/extract/" class="md-nav__link">
+        Extract project parameters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/utils/" class="md-nav__link">
+        Utilities
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          InputElements
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="InputElements" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          InputElements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input_element/" class="md-nav__link">
+        Abstract InputElement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/checkbox/" class="md-nav__link">
+        Checkbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/radio_button/" class="md-nav__link">
+        RadioButton
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/dropdown/" class="md-nav__link">
+        Dropdown
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/number_input/" class="md-nav__link">
+        NumberInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/slider/" class="md-nav__link">
+        Slider
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/file_input/" class="md-nav__link">
+        FileInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/folder_input/" class="md-nav__link">
+        FolderInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/text_input/" class="md-nav__link">
+        TextInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/input/csv_reader/" class="md-nav__link">
+        CsvReader
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          OutputElement
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="OutputElement" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          OutputElement
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output_element/" class="md-nav__link">
+        Abstract OutputElement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output/file_output/" class="md-nav__link">
+        FileOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output/image_output/" class="md-nav__link">
+        ImageOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output/plotly_output/" class="md-nav__link">
+        PlotlyOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output/text_output/" class="md-nav__link">
+        TextOutput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/elements/output/csv_output/" class="md-nav__link">
+        CsvOutput
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/utils/utils/" class="md-nav__link">
+        Utilities
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Extending OneCode
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Extending OneCode
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onecode-principle-overview" class="md-nav__link">
+    OneCode principle overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extend-with-new-elements-inside-a-onecode-project" class="md-nav__link">
+    Extend with new elements inside a OneCode Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extend-as-a-library" class="md-nav__link">
+    Extend as a library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-input-elements" class="md-nav__link">
+    Registering input elements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-output-elements" class="md-nav__link">
+    Registering output elements
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Changelogs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Changelogs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Changelogs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelogs/0.3.0/" class="md-nav__link">
+        0.3.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelogs/0.2.1/" class="md-nav__link">
+        0.2.1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelogs/0.2.0/" class="md-nav__link">
+        0.2.0
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelogs/0.1.0/" class="md-nav__link">
+        0.1.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onecode-principle-overview" class="md-nav__link">
+    OneCode principle overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extend-with-new-elements-inside-a-onecode-project" class="md-nav__link">
+    Extend with new elements inside a OneCode Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extend-as-a-library" class="md-nav__link">
+    Extend as a library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-input-elements" class="md-nav__link">
+    Registering input elements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-output-elements" class="md-nav__link">
+    Registering output elements
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="extending-onecode">Extending OneCode<a class="headerlink" href="#extending-onecode" title="Permanent link">&para;</a></h1>
+<h2 id="onecode-principle-overview">OneCode principle overview<a class="headerlink" href="#onecode-principle-overview" title="Permanent link">&para;</a></h2>
+<p><img alt="OneCode overview" src="https://github.com/deeplime-io/onecode/raw/main/docs/assets/onecode_chart.png" /></p>
+<h2 id="extend-with-new-elements-inside-a-onecode-project">Extend with new elements inside a OneCode Project<a class="headerlink" href="#extend-with-new-elements-inside-a-onecode-project" title="Permanent link">&para;</a></h2>
+<p>Each OneCode Project contains by default a folder <code>onecode_ext</code> inside its <code>flows</code> folder. The
+mechanism is already in place so that you can simply add your new elements and they will be
+automatically registered as OneCode elements. Input and output elements respectively go to
+<code>flows/onecode_ext/input_elements/</code> and <code>flows/onecode_ext/output_elements</code>folders. You only need
+to follow these 2 instructions:</p>
+<ol>
+<li>
+<p>The Python filename must be snake case and the corresponding element class name must be Pascal
+    case. For instance, <code>my_new_element.py</code> =&gt; <code>class MyNewElement</code>.</p>
+</li>
+<li>
+<p>Re-implement the <code>abstractmethod</code> defined in the <code>InputElement</code> or <code>OutputElement</code> base class
+    according its documentation.</p>
+</li>
+</ol>
+<p>Here is a simple example:
+<div class="highlight"><pre><span></span><code><span class="c1"># flows/onecode_ext/input_elements/my_header_element.py</span>
+<span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">InputElement</span>
+
+
+<span class="k">class</span> <span class="nc">MyHeaderElement</span><span class="p">(</span><span class="n">InputElement</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_value_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span>
+
+    <span class="k">def</span> <span class="nf">streamlit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s2"> = st.header(&#39;&#39;&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;&#39;&#39;)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+</code></pre></div></p>
+<p>Then call it in your flow code:
+<div class="highlight"><pre><span></span><code><span class="c1"># flows/my_flow.py</span>
+<span class="kn">from</span> <span class="nn">onecode_ext</span> <span class="kn">import</span> <span class="n">my_header_element</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">my_header_element</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;My Header!&#39;</span><span class="p">))</span>
+    <span class="c1"># ...</span>
+</code></pre></div></p>
+<p>As easy as that. If you're interested on how it works under the hood, check out the
+<a class="autorefs autorefs-internal" href="#registering-input-elements">section below</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For a real use-case example, look at the
+<a href="https://github.com/deeplime-io/onecode/tree/main/examples/DeepLearning"><code>DeepLearning</code> project</a></p>
+</div>
+<h2 id="extend-as-a-library">Extend as a library<a class="headerlink" href="#extend-as-a-library" title="Permanent link">&para;</a></h2>
+<p>For use-cases going beyond the scope of a single OneCode Project, you may consider writing your own
+library. For example, you could have specific elements used across many projects and/or dedicated
+mode to be compatible with your internal tools such as a cloud platform.</p>
+<p>To add new elements, you will manually code what <code>onecode_ext</code> does automatically for you:</p>
+<ul>
+<li>
+<p>Set a separate folder for your input and output elements, then add the following code to its <code>__init__</code> files:
+<div class="highlight"><pre><span></span><code><span class="c1"># input elements</span>
+<span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">import_input</span>
+
+<span class="n">import_input</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># output elements</span>
+<span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">import_output</span>
+
+<span class="n">import_output</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+</code></pre></div>
+Refer to <a class="autorefs autorefs-internal" href="#registering-input-elements">Registering input elements</a> and <a class="autorefs autorefs-internal" href="#registering-output-elements">Registering output elements</a>
+for more information.</p>
+</li>
+<li>
+<p>For any new element:</p>
+<ol>
+<li>
+<p>The Python filename must be snake case and the corresponding element class name must be Pascal
+case. For instance, <code>my_new_element.py</code> =&gt; <code>class MyNewElement</code>.</p>
+</li>
+<li>
+<p>Re-implement the <code>abstractmethod</code> defined in the <code>InputElement</code> or <code>OutputElement</code> base class
+    according its documentation.</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>From there, to ensure your module is taken into account by CLI commands, add <code>--module yourcode</code> to them:
+<div class="highlight"><pre><span></span><code><span class="c1"># Start with streamlit</span>
+onecode-start<span class="w"> </span>--module<span class="w"> </span>&lt;library_name&gt;
+
+<span class="c1"># JSON parameter extraction</span>
+onecode-extract<span class="w"> </span>params.json<span class="w"> </span>--module<span class="w"> </span>&lt;library_name&gt;
+</code></pre></div></p>
+<p>You may also:</p>
+<ul>
+<li>add new <a class="autorefs autorefs-internal" href="../reference/base/enums/#onecode.base.enums.Mode"><code>Mode</code></a>: define a mixin class and inherit all elements with the mixin</li>
+<li>add new CLI: you may use the <a class="autorefs autorefs-internal" href="../reference/cli/cli/#cli">CLI Utilities</a> or even start from the OneCode
+    CLI original code as it is open source with MIT License.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Here is an <a href="https://github.com/deeplime-io/onecode/tree/main/examples/yourcode">example of library called <code>yourcode</code></a>
+extending OneCode and demonstrating:</p>
+<ul>
+<li>a new CLI extracting parameters as TOML</li>
+<li>a radio button widget accepting runtime [Expressionstips_and_tricks#using-runtime-expressions-in-elements)</li>
+</ul>
+</div>
+<h2 id="registering-input-elements">Registering input elements<a class="headerlink" href="#registering-input-elements" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">import_input</span><span class="p">(</span>
+    <span class="n">init_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Use this function to register your <code>InputElement</code>. Here is what it does for you in details.</p>
+<p>For each file located in the same folder as the <code>init_file</code> path:</p>
+<ol>
+<li>import the corresponding class: the class name must be the Pascal-case of the filename
+    (e.g. <code>file_input.py</code> =&gt; <code>class FileInput</code>)</li>
+<li>register the class as an element, i-e it will be recognized by the OneCode interpreter</li>
+<li>export the class as-is (allow for subclassing by a third-party)</li>
+<li>
+<p>export a new function matching the filename: it wrapps around the class for convenience
+    by simply initializing it, then calling it.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">file_input</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)()</span>
+
+<span class="c1"># This makes a convenient usage in the client code:</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_input</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rather than writing:</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">FileInput</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)()</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>export:</p>
+<ol>
+<li>a new variable specifying the type of element being <code>INPUT</code>.</li>
+<li>a new function returning the element import statements.</li>
+<li>a new function returning the element init statements.</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="n">file_input_type</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">INPUT</span>
+
+<span class="k">def</span> <span class="nf">_file_input_importdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">imports</span><span class="p">()</span>
+<span class="n">file_input_imports</span> <span class="o">=</span> <span class="n">_file_input_importdef</span>
+
+<span class="k">def</span> <span class="nf">_file_input_initdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">file_input_init</span> <span class="o">=</span> <span class="n">_file_input_initdef</span>
+</code></pre></div>
+</div>
+<p>This is used internally by OneCode interpreter.</p>
+</li>
+</ol>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>init_file</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>path to the <strong>init</strong>.py file located in the same directory as the input elements.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>module_name</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Python name of the module to import the elements under. The module will then be
+available for importing using regular Python import statements.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div><h2 id="registering-output-elements">Registering output elements<a class="headerlink" href="#registering-output-elements" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">import_output</span><span class="p">(</span>
+    <span class="n">init_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Use this function to register your <code>OutputElement</code>. Here is what it does for you in details.</p>
+<p>For each file located in the same folder as the <code>init_file</code> path:</p>
+<ol>
+<li>import the corresponding class: the class name must be the Pascal-case of the filename
+    (e.g. <code>file_output.py</code> =&gt; <code>class FileOutput</code>)</li>
+<li>register the class as an element, i-e it will be recognized by the OneCode interpreter</li>
+<li>export the class as-is (allow for subclassing by a third-party)</li>
+<li>
+<p>export a new function matching the filename: it wrapps around the class for convenience
+    by simply initializing it, then calling it. There is one important difference
+    with <code>InputElement</code>: a mechanism is in place to allow calling the
+    <a class="autorefs autorefs-internal" href="../reference/elements/output_element/#onecode.elements.output_element.OutputElement.static_call"><code>OutputElement.static_call()</code></a> method when no
+    argument are provided to the function. It is typically used internally by the OneCode
+    interpreter to properly handle cases of dynamically defined parameters.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">file_output</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">empty_ctor</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">args</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">kwargs</span>
+    <span class="k">return</span> <span class="n">FileOutput</span><span class="o">.</span><span class="n">static_call</span><span class="p">(</span><span class="n">FileOutput</span><span class="p">)</span> <span class="k">if</span> <span class="n">empty_ctor</span>                     <span class="k">else</span> <span class="n">FileOutput</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)()</span>
+
+<span class="c1"># This makes a convenient usage in the client code:</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_output</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Or for dynamically defined parameters:</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_output</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">&#39;file_</span><span class="si">{</span><span class="n">my_var</span><span class="si">}</span><span class="s1">,txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rather than writing:</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">FileOutput</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)()</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>export:</p>
+<ol>
+<li>a new variable specifying the type of element being <code>OUTPUT</code>.</li>
+<li>a new function returning the element import statements.</li>
+<li>a new function returning the element init statements.</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="n">file_output_type</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">OUTPUT</span>
+
+<span class="k">def</span> <span class="nf">_file_output_importdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">imports</span><span class="p">()</span>
+<span class="n">file_output_imports</span> <span class="o">=</span> <span class="n">_file_output_importdef</span>
+
+<span class="k">def</span> <span class="nf">_file_output_initdef</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">FileInput</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">file_output_init</span> <span class="o">=</span> <span class="n">_file_output_initdef</span>
+</code></pre></div>
+</div>
+<p>This is used internally by OneCode interpreter</p>
+</li>
+</ol>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>init_file</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>path to the <strong>init</strong>.py file located in the same directory as the input elements.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>module_name</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Python name of the module to import the elements under. The module will then be
+available for importing using regular Python import statements.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../reference/utils/utils/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Utilities" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Utilities
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../changelogs/0.3.0/" class="md-footer__link md-footer__link--next" aria-label="Next: 0.3.0" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              0.3.0
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2023, DeepLime
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+    
+  </body>
+</html>
