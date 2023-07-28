@@ -457,8 +457,8 @@ def main() -> None:   # pragma: no cover
     )
     parser.add_argument(
         '--verbose',
-        help='Print verbose information when processing files',
-        action='store_true'
+        action='store_true',
+        help='Print verbose information when processing files'
     )
     args = parser.parse_args()
 
