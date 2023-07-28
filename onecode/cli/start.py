@@ -144,7 +144,8 @@ def get_import_statements(calls: List[Dict[str, str]]) -> Tuple[Set[str], Set[st
 @check_type
 def prepare_streamlit_file(
     project_path: str,
-    to_file: str
+    to_file: str,
+    verbose: bool = False
 ) -> None:
     """
     Prepare the Streamlit App Python file from the given OneCode project and dump it to the
@@ -157,7 +158,7 @@ def prepare_streamlit_file(
     """
     Project().mode = Mode.STREAMLIT
 
-    statements = process_call_graph(project_path)
+    statements = process_call_graph(project_path, verbose)
     menu_entries = statements.keys()
 
     all_st_outputs = set()
@@ -429,7 +430,7 @@ if _selected == {k}:
 def main() -> None:   # pragma: no cover
     """
     ```bash
-    usage: onecode-start [-h] [--modules [MODULES [MODULES ...]]]
+    usage: onecode-start [-h] [--modules [MODULES [MODULES ...]]] [--dump] [--verbose]
 
     Start the OneCode Project in Streamlit mode.
 
@@ -437,6 +438,8 @@ def main() -> None:   # pragma: no cover
       -h, --help            show this help message and exit
       --modules [MODULES [MODULES ...]]
                             Optional list of modules to import first
+      --dump                Only generate the app.py file
+      --verbose             Print verbose information when processing files
     ```
 
     """
@@ -446,6 +449,16 @@ def main() -> None:   # pragma: no cover
         nargs='*',
         default=[],
         help='Optional list of modules to import first'
+    )
+    parser.add_argument(
+        '--dump',
+        action="store_true",
+        help='Only generate the app.py file'
+    )
+    parser.add_argument(
+        '--verbose',
+        action='store_true',
+        help='Print verbose information when processing files'
     )
     args = parser.parse_args()
 
@@ -465,11 +478,14 @@ def main() -> None:   # pragma: no cover
     # args must be cleaned, otherwise conflict with streamlit.main_run()
     sys.argv = [sys.argv[0]]
 
-    prepare_streamlit_file(os.getcwd(), 'app.py')
+    prepare_streamlit_file(os.getcwd(), 'app.py', args.verbose)
 
-    Project().mode = Mode.EXECUTE
-    os.environ['STREAMLIT_RUN_TARGET'] = 'app.py'
-    os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '4000'
-    os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = '0'
+    if args.dump:
+        print('Streamlit app file generated')
+    else:
+        Project().mode = Mode.EXECUTE
+        os.environ['STREAMLIT_RUN_TARGET'] = 'app.py'
+        os.environ['STREAMLIT_SERVER_MAX_UPLOAD_SIZE'] = '4000'
+        os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = '0'
 
-    main_run()
+        main_run()

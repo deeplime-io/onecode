@@ -41,7 +41,7 @@ def import_output(
                     else FileOutput(*args, **kwargs)()
 
             # This makes a convenient usage in the client code:
-            x = onecode.file_output('test', 'file,txt')
+            x = onecode.file_output('test', 'file.txt')
 
             # Or for dynamically defined parameters:
             x = onecode.file_output('test', os.path.join(os.getcwd(), f'file_{my_var},txt')

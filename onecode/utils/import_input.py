@@ -35,7 +35,7 @@ def import_input(
                 return FileInput(*args, **kwargs)()
 
             # This makes a convenient usage in the client code:
-            x = onecode.file_input('test', 'file,txt')
+            x = onecode.file_input('test', 'file.txt')
 
             # Rather than writing:
             x = onecode.FileInput('test', 'file.txt')()

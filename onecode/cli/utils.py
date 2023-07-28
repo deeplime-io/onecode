@@ -135,7 +135,8 @@ def run():
 def extract_calls(
     entry_point: str,
     graph: Dict,
-    calls: List[Dict[str, str]]
+    calls: List[Dict[str, str]],
+    verbose: bool = False
 ) -> None:
     """
     Given a code Call Graph, extract only the code calls related to OneCode-like elements. This
@@ -152,6 +153,7 @@ def extract_calls(
         calls: List of calls as `{"func": <function_name>, "loc": <code_to_eval>}` where results
             are aggregated. These `calls` are typically piped to the `process` functions for JSON
             extraction or Streamlit code generation.
+        verbose: If True, print out debug information such as elements being processed.
 
     """
     # Elements are registered using class name, e.g.: onecode.TextInput
@@ -169,6 +171,9 @@ def extract_calls(
     if entry_point in graph:
         for fn in graph[entry_point]:
             if fn['normed'] in registered_elements:
+                if verbose:
+                    print(f" >> ({entry_point}) function {fn['normed']} ✅")
+
                 # replace original function name with normed name
                 code = ast.parse(fn['code'])
                 code.body[0].value.func = ast.parse(fn['normed'])
@@ -177,16 +182,23 @@ def extract_calls(
                     "loc": unparse(code).strip()
                 })
             else:
+                if verbose:
+                    print(f" >> ({entry_point}) function {fn['normed']} ⏩")
+
                 extract_calls(fn['normed'], graph, calls)
 
 
 @check_type
-def process_call_graph(project_path: str = None) -> OrderedDict:
+def process_call_graph(
+    project_path: str = None,
+    verbose: bool = False
+) -> OrderedDict:
     """
     Process a OneCode project to extract the code calls related to OneCode-like elements.
 
     Args:
         project_path: Path to the root of the OneCode project.
+        verbose: If True, print out debug information such as elements being processed.
 
     Raises:
         FileNotFoundError: if the OneCode project configuration file is not found.
@@ -229,9 +241,9 @@ def process_call_graph(project_path: str = None) -> OrderedDict:
 
         calls = []
         if os.name == 'nt':
-            extract_calls(f"{file}.run", flow_graph, calls)
+            extract_calls(f"{file}.run", flow_graph, calls, verbose)
         else:
-            extract_calls(f"flows.{file}.run", flow_graph, calls)
+            extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
         statements[label] = {
             "entry_point": file,
             "calls": calls
