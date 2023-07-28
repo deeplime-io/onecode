@@ -1375,7 +1375,7 @@ Choice for InquirerPy.</p>
 
 
 <h2 id="onecode.cli.utils.extract_calls" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">extract_calls</span><span class="p">(</span><span class="n">entry_point</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">calls</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">extract_calls</span><span class="p">(</span><span class="n">entry_point</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">calls</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils.extract_calls" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -1431,6 +1431,16 @@ are aggregated. These <code>calls</code> are typically piped to the <code>proces
 extraction or Streamlit code generation.</p></td>
           <td>
               <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>verbose</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If True, print out debug information such as elements being processed.</p></td>
+          <td>
+                <code>False</code>
           </td>
         </tr>
     </tbody>
@@ -1506,7 +1516,7 @@ variable <code>Env.ONECODE_CONFIG_FILE</code>).</p>
 
 
 <h2 id="onecode.cli.utils.process_call_graph" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">process_call_graph</span><span class="p">(</span><span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">process_call_graph</span><span class="p">(</span><span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils.process_call_graph" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -1534,6 +1544,16 @@ variable <code>Env.ONECODE_CONFIG_FILE</code>).</p>
           <td><p>Path to the root of the OneCode project.</p></td>
           <td>
                 <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>verbose</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If True, print out debug information such as elements being processed.</p></td>
+          <td>
+                <code>False</code>
           </td>
         </tr>
     </tbody>

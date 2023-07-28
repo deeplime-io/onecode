@@ -1267,7 +1267,7 @@ Initialized<span class="w"> </span>empty<span class="w"> </span>Git<span class="
 
   <div class="doc doc-contents first">
   
-      <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-start<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span>
+      <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-start<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span><span class="w"> </span><span class="o">[</span>--dump<span class="o">]</span><span class="w"> </span><span class="o">[</span>--verbose<span class="o">]</span>
 
 Start<span class="w"> </span>the<span class="w"> </span>OneCode<span class="w"> </span>Project<span class="w"> </span><span class="k">in</span><span class="w"> </span>Streamlit<span class="w"> </span>mode.
 
@@ -1275,6 +1275,8 @@ optional<span class="w"> </span>arguments:
 <span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">            </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
 <span class="w">  </span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]</span>
 <span class="w">                        </span>Optional<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span>to<span class="w"> </span>import<span class="w"> </span>first
+<span class="w">  </span>--dump<span class="w">                </span>Only<span class="w"> </span>generate<span class="w"> </span>the<span class="w"> </span>app.py<span class="w"> </span>file
+<span class="w">  </span>--verbose<span class="w">             </span>Print<span class="w"> </span>verbose<span class="w"> </span>information<span class="w"> </span>when<span class="w"> </span>processing<span class="w"> </span>files
 </code></pre></div>
 
   </div>
@@ -1298,9 +1300,9 @@ onecode-start<span class="w"> </span>--module<span class="w"> </span>&lt;library
   <div class="doc doc-contents first">
   
       <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-extract<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--all<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span><span class="w"> </span><span class="o">[</span>--path<span class="w"> </span>PATH<span class="o">]</span>
-<span class="w">    </span>output_file
+<span class="w">    </span><span class="o">[</span>--verbose<span class="o">]</span><span class="w"> </span>output_file
 
-Extract<span class="w"> </span>OneCode<span class="w"> </span>project<span class="w"> </span>parameters<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file.
+Extract<span class="w"> </span>OneCode<span class="w"> </span>project<span class="w"> </span>parameters<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file
 
 positional<span class="w"> </span>arguments:
 <span class="w">  </span>output_file<span class="w">           </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>JSON<span class="w"> </span>file
@@ -1311,6 +1313,7 @@ optional<span class="w"> </span>arguments:
 <span class="w">  </span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]</span>
 <span class="w">                        </span>Optional<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span>to<span class="w"> </span>import<span class="w"> </span>first
 <span class="w">  </span>--path<span class="w"> </span>PATH<span class="w">           </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span>root<span class="w"> </span>directory<span class="w"> </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>working<span class="w"> </span>directory
+<span class="w">  </span>--verbose<span class="w">             </span>Print<span class="w"> </span>verbose<span class="w"> </span>information<span class="w"> </span>when<span class="w"> </span>processing<span class="w"> </span>files
 </code></pre></div>
 
   </div>

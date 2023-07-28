@@ -1359,7 +1359,7 @@ extending OneCode and demonstrating:</p>
     <span class="k">return</span> <span class="n">FileInput</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)()</span>
 
 <span class="c1"># This makes a convenient usage in the client code:</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_input</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file,txt&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_input</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)</span>
 
 <span class="c1"># Rather than writing:</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">FileInput</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)()</span>
@@ -1463,7 +1463,7 @@ available for importing using regular Python import statements.</p></td>
     <span class="k">return</span> <span class="n">FileOutput</span><span class="o">.</span><span class="n">static_call</span><span class="p">(</span><span class="n">FileOutput</span><span class="p">)</span> <span class="k">if</span> <span class="n">empty_ctor</span>                     <span class="k">else</span> <span class="n">FileOutput</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)()</span>
 
 <span class="c1"># This makes a convenient usage in the client code:</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_output</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file,txt&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_output</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;file.txt&#39;</span><span class="p">)</span>
 
 <span class="c1"># Or for dynamically defined parameters:</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">onecode</span><span class="o">.</span><span class="n">file_output</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">&#39;file_</span><span class="si">{</span><span class="n">my_var</span><span class="si">}</span><span class="s1">,txt&#39;</span><span class="p">)</span>

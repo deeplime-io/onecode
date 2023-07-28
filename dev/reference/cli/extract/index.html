@@ -1205,7 +1205,7 @@
 
 
 <h2 id="onecode.cli.extract.extract_json" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">extract_json</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">to_file</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">extract_json</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">to_file</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.extract.extract_json" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -1276,9 +1276,9 @@ associated data such as <code>label</code>, <code>kind</code>, etc.</p></td>
   <div class="doc doc-contents ">
   
       <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-extract<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--all<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span><span class="w"> </span><span class="o">[</span>--path<span class="w"> </span>PATH<span class="o">]</span>
-<span class="w">    </span>output_file
+<span class="w">    </span><span class="o">[</span>--verbose<span class="o">]</span><span class="w"> </span>output_file
 
-Extract<span class="w"> </span>OneCode<span class="w"> </span>project<span class="w"> </span>parameters<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file.
+Extract<span class="w"> </span>OneCode<span class="w"> </span>project<span class="w"> </span>parameters<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file
 
 positional<span class="w"> </span>arguments:
 <span class="w">  </span>output_file<span class="w">           </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>JSON<span class="w"> </span>file
@@ -1289,6 +1289,7 @@ optional<span class="w"> </span>arguments:
 <span class="w">  </span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]</span>
 <span class="w">                        </span>Optional<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span>to<span class="w"> </span>import<span class="w"> </span>first
 <span class="w">  </span>--path<span class="w"> </span>PATH<span class="w">           </span>Path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span>root<span class="w"> </span>directory<span class="w"> </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>working<span class="w"> </span>directory
+<span class="w">  </span>--verbose<span class="w">             </span>Print<span class="w"> </span>verbose<span class="w"> </span>information<span class="w"> </span>when<span class="w"> </span>processing<span class="w"> </span>files
 </code></pre></div>
 
   </div>

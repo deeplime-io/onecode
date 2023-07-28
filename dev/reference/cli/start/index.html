@@ -1303,7 +1303,7 @@ through the Python interpreter.</p></td>
 
   <div class="doc doc-contents ">
   
-      <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-start<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span>
+      <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-start<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span><span class="w"> </span><span class="o">[</span>--dump<span class="o">]</span><span class="w"> </span><span class="o">[</span>--verbose<span class="o">]</span>
 
 Start<span class="w"> </span>the<span class="w"> </span>OneCode<span class="w"> </span>Project<span class="w"> </span><span class="k">in</span><span class="w"> </span>Streamlit<span class="w"> </span>mode.
 
@@ -1311,6 +1311,8 @@ optional<span class="w"> </span>arguments:
 <span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">            </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
 <span class="w">  </span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]</span>
 <span class="w">                        </span>Optional<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span>to<span class="w"> </span>import<span class="w"> </span>first
+<span class="w">  </span>--dump<span class="w">                </span>Only<span class="w"> </span>generate<span class="w"> </span>the<span class="w"> </span>app.py<span class="w"> </span>file
+<span class="w">  </span>--verbose<span class="w">             </span>Print<span class="w"> </span>verbose<span class="w"> </span>information<span class="w"> </span>when<span class="w"> </span>processing<span class="w"> </span>files
 </code></pre></div>
 
   </div>
@@ -1322,7 +1324,7 @@ optional<span class="w"> </span>arguments:
 
 
 <h2 id="onecode.cli.start.prepare_streamlit_file" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">prepare_streamlit_file</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">to_file</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">prepare_streamlit_file</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">to_file</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.start.prepare_streamlit_file" class="headerlink" title="Permanent link">&para;</a></h2>
 
