@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onecode"
-version = "0.4.0.dev"
+version = "1.0.0.dev"
 description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
@@ -10,7 +10,7 @@ homepage = "https://github.com/deeplime-io/onecode"
 repository = "https://github.com/deeplime-io/onecode"
 documentation = "https://deeplime-io.github.io/onecode"
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Intended Audience :: End Users/Desktop",
   "License :: OSI Approved :: MIT License",
@@ -38,13 +38,6 @@ inquirerpy = "^0.3.3"
 onecode-pycg = ">=0.0.7"
 yaspin = "^2.1.0"
 
-# streamlit
-streamlit = { version = ">=1.12.0,<1.18", optional = true }
-streamlit-image-select = { version = "^0.5.1", optional = true }
-streamlit-option-menu = { version = "^0.3.2", optional = true }
-streamlit_tree_select = { version = "^0.0.5", optional = true }
-altair = { version = "<5", optional = true }
-
 # docs
 griffe = { version = "==0.25.0", optional = true }
 markdown-katex = { version = "==202112.1034", optional = true }
@@ -64,19 +57,10 @@ toml = { version = "^0.10.2", optional = true }
 
 [tool.poetry.extras]
 tech-expert = [
-    "altair",
-    "streamlit",
-    "streamlit-image-select",
-    "streamlit-option-menu",
-    "streamlit_tree_select"
+
 ]
 
 developer = [
-    "altair",
-    "streamlit",
-    "streamlit-image-select",
-    "streamlit-option-menu",
-    "streamlit_tree_select",
     "datatest",
     "pytest",
     "pytest-cov",

@@ -42,7 +42,7 @@ def test_execute_multiple_count():
 
     flow_dir = os.path.join(tmp, flow_folder)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.number_input('my_number_input', [0.5, 0.5], count=3)
@@ -95,7 +95,7 @@ def test_load_then_execute_multiple_count():
 
     flow_dir = os.path.join(tmp, flow_folder)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.number_input('my_number_input', 0.5, count=4)
@@ -292,7 +292,7 @@ def test_execute_invalid_with_count():
 
     flow_dir = os.path.join(tmp, flow_folder)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     try:
@@ -319,7 +319,7 @@ def test_load_then_execute_invalid_with_count():
 
     flow_dir = os.path.join(tmp, flow_folder)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     try:

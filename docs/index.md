@@ -153,7 +153,7 @@ def run():
 Great, how do you test that now? According to the [Running a OneCode project section][running-a-onecode-project],
 you have several options:
 
-1. Run it interactively with Streamlit: `onecode-start`
+1. Run it interactively: `onecode-start`
 
 ![`HelloWorld` example in action](https://github.com/deeplime-io/onecode/raw/main/docs/assets/hello_world.gif)
 
@@ -286,18 +286,14 @@ contributions.
 
 ---
 ## FAQ
-> Why did you choose Streamlit for interfacing OneCode? Are there any alternatives?
+> Why did you take Streamlit out of OneCode?
 
-There are some really good tools out there such as Panel and Dash. Technically, if you're up for it,
-you can extend OneCode add a `Panel` mode or a `Dash` mode. As long as you know the logic of these
-libraries and are able to determine the code to be generated, OneCode allows you to plug it in.
-
-We chose Streamlit for several of reasons:
-
-- its functioning is the closest one to the envisionned OneCode logic
-- it is simple enough to do everything without involving any explicit callback mechanism
-- it is easier for tech-savvies/data scientists to get started with, especially when it comes to
-create and customize new elements
+As Streamlit evolves rapidly, it is difficult to maintain and always run behind API changes.
+Especially for community packages that we relied on and are barely or no longer maintained.
+Streamlit is a great tool, period. However for our use case, it started to become difficult to
+make OneCode evolve and keep Streamlit along, especially as our cloud platform has its own way
+of working. You can actually still use Streamlit in Onecode: checkout the `onecode-streamlit`
+project.
 
 > Why do I need OneCode at all, I could just build my application with Streamlit?
 
@@ -317,12 +313,13 @@ If you would like to add new elements or customize some elements' behavior, chec
 > Are there any collaborative platform that run OneCode projects?
 
 There is one in the works called `GeoLand`, centralizing data and OneCode projects. It's at the
-Proof of Concept (POC) stage. [Contact us](mailto: contact@deeplime.io) if you would like be part of the beta-testers cohort.
+Proof of Concept (POC) stage. [Contact us](mailto: contact@deeplime.io) if you would like be part of
+the beta-testers cohort.
 
 
 ---
 ## Credits
 Credits to all open-source libraries that helped build this project. Special thanks to:
 
-- Streamlit and its contributors for making such a great tool on which we can rely.
 - PyCG and its contributors for making the Call Graph algos essential to the OneCode mechanism.
+- Geode Solutions and Spotlight Earth for their early testing.

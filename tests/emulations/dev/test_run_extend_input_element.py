@@ -43,12 +43,6 @@ class MyInputElement(InputElement):
     def _value_type(self) -> type:
         return Union[float, int]
 
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        pass
-
     def _validate(
         self,
         value: Any

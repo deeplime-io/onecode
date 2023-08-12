@@ -29,7 +29,7 @@ def test_execute_single_dropdown_single_choice():
 
     assert widget() == "A"
     assert widget.key == "dropdown"
-    assert widget.label == "'''Dropdown'''"
+    assert widget.label == "Dropdown"
     assert widget._label == "Dropdown"
 
 
@@ -169,9 +169,9 @@ def test_extract_all_dropdown():
         "kind": "Dropdown",
         "value": [["A", "B"], ["C"]],
         "label": "My Dropdown",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "multiple": True,
         "options": ["A", "B", "C"]
     })
@@ -198,9 +198,9 @@ def test_extract_all_dropdown_with_data():
         "kind": "Dropdown",
         "value": ["A", "B"],
         "label": "My Dropdown",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "multiple": True,
         "options": ["A", "B", "C"]
     })
@@ -222,7 +222,7 @@ def test_load_then_execute_dropdown():
 
     assert widget() == ["A", "B"]
     assert widget.key == "dropdown"
-    assert widget.label == "'''Dropdown'''"
+    assert widget.label == "Dropdown"
     assert widget._label == "Dropdown"
 
 
@@ -242,5 +242,5 @@ def test_load_then_execute_dropdown_no_key():
 
     assert widget() is None
     assert widget.key == "dropdown"
-    assert widget.label == "'''Dropdown'''"
+    assert widget.label == "Dropdown"
     assert widget._label == "Dropdown"

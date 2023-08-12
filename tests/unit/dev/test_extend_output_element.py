@@ -18,10 +18,6 @@ def my_output_element():
         ):
             super().__init__(key, value, label, extra=extra)
 
-        @staticmethod
-        def streamlit() -> str:
-            pass
-
         def _validate(
             self,
             value: Any
@@ -35,7 +31,7 @@ def test_extend_output_element(my_output_element):
     x = my_output_element('test', 'test_value', None, 5)
 
     assert x.key == "test"
-    assert x.label == "'''test'''"
+    assert x.label == "test"
     assert x._label == "test"
     assert x.value == 'test_value'
     assert x.extra == 5
@@ -43,36 +39,10 @@ def test_extend_output_element(my_output_element):
     x = my_output_element('Test again', 'test_value', "my label", 5)
 
     assert x.key == "test_again"
-    assert x.label == "'''my label'''"
+    assert x.label == "my label"
     assert x._label == "my label"
     assert x.value == 'test_value'
     assert x.extra == 5
-
-
-def test_extend_output_element_missing_streamlit():
-    class _MyOutputElement(OutputElement):
-        def __init__(
-            self,
-            key: str,
-            value: str,
-            label: str,
-            extra: int
-        ):
-            super().__init__(key, value, label, extra=extra)
-
-        def _validate(
-            self,
-            value: Any
-        ) -> None:
-            pass
-
-    with pytest.raises(TypeError) as excinfo:
-        _MyOutputElement('test', 'test_value', None, 5)
-
-    method = 'method' if sys.version_info.minor > 8 else 'methods'
-    assert \
-        f"Can't instantiate abstract class _MyOutputElement with abstract {method} streamlit" == \
-        str(excinfo.value)
 
 
 def test_extend_output_element_missing_validate():
@@ -85,10 +55,6 @@ def test_extend_output_element_missing_validate():
             extra: int
         ):
             super().__init__(key, value, label, extra=extra)
-
-        @staticmethod
-        def streamlit() -> str:
-            pass
 
     with pytest.raises(TypeError) as excinfo:
         _MyOutputElement('test', 'test_value', None, 5)
@@ -114,13 +80,8 @@ def test_extend_output_element_invalid_extra_args():
                 label,
                 __eq__='equal',
                 _value='new_value',
-                streamlit='streamlit',
                 kind="Kind"
             )
-
-        @staticmethod
-        def streamlit() -> str:
-            pass
 
         def _validate(
             self,
@@ -131,7 +92,7 @@ def test_extend_output_element_invalid_extra_args():
     with pytest.raises(AttributeError) as excinfo:
         _MyOutputElement('test', 'test_value', None, 5)
 
-    assert "The following parameters are reserved: ['__eq__', '_value', 'streamlit', 'kind']" \
+    assert "The following parameters are reserved: ['__eq__', '_value', 'kind']" \
         == str(excinfo.value)
 
 

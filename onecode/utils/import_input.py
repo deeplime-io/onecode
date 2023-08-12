@@ -86,16 +86,8 @@ def import_input(
             def _typedef():
                 return ElementType.INPUT
 
-            def _importdef(cls):
-                return cls.imports()
-
-            def _initdef(cls):
-                return cls.init()
-
             setattr(sys.modules[module_name], _filename, _xdef(_cls))
             setattr(sys.modules[module_name], f'{_filename}_type', _typedef())
-            setattr(sys.modules[module_name], f'{_filename}_imports', _importdef(_cls))
-            setattr(sys.modules[module_name], f'{_filename}_init', _initdef(_cls))
             setattr(sys.modules[module_name], _ent, _cls)
 
         except AttributeError:   # pragma: no cover

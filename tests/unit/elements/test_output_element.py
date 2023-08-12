@@ -12,7 +12,7 @@ def test_instantiation_error():
         )
 
     assert strip("""
-        Can't instantiate abstract class OutputElement with abstract methods
-        _validate, streamlit
+        Can't instantiate abstract class OutputElement with abstract method
+        _validate
     """) == \
         str(excinfo.value)

@@ -3,8 +3,6 @@
 
 from typing import Any, List, Optional, Union
 
-import pydash
-
 from ...base.decorator import check_type
 from ..input_element import InputElement
 
@@ -28,14 +26,14 @@ class RadioButton(InputElement):
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
             value: Radio button initially selected.
             label: Label to display on top of the field.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                streamlit case. Note that if `count` is defined, the expected `value` should always
+                UI case. Note that if `count` is defined, the expected `value` should always
                 be a list, even if the `count` is `1`. `count` can either be a fixed number
                 (e.g. `3`) or an expression dependent of other elements (see
                 [Using Expressions][using-runtime-expressions-in-elements] for more information).
@@ -51,7 +49,7 @@ class RadioButton(InputElement):
             horizontal: Set to True to have radio buttons displayed horizontally, otherwise radio
                 buttons will be displayed vertically.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -126,26 +124,3 @@ class RadioButton(InputElement):
         """
         if value not in self.options:
             raise ValueError(f"[{self.key}] Not a valid choice: {value}")
-
-    @check_type
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        """
-        Returns:
-            The Streamlit code for a group of radio buttons (`st.radio`).
-
-        """
-        return f"""
-# RadioButton {self.key}
-{self.key} = st.radio(
-    {self.label},
-    options={self.options},
-    index={pydash.find_index(self.options, lambda x: x == self.value)},
-    disabled={self.disabled},
-    horizontal={self.horizontal},
-    key={id}
-)
-
-"""

@@ -42,7 +42,7 @@ def test_execute_multiple_count():
 
     flow_dir = os.path.join(tmp, flow_folder)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.text_input('my_text', ["OneCode rocks!", "OneCode rocks!"], count=3)
@@ -95,7 +95,7 @@ def test_load_then_execute_multiple_count():
 
     flow_dir = os.path.join(tmp, flow_folder)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.text_input('my_text', "Nope", count=4)

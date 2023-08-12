@@ -159,7 +159,7 @@ class Project(metaclass=Singleton):
     def current_flow(self) -> Optional[str]:
         """
         Get the currently running flow. If no flow is running, None is returned. It is automatically
-        set when OneCode project is run through the main entry point of from streamlit (i-e
+        set when OneCode project is run through the main entry point (i-e
         `python main.py` or `onecode-start`)
 
         """
@@ -172,7 +172,7 @@ class Project(metaclass=Singleton):
     ) -> None:
         """
         Set the currently running flow. This is automatically set when OneCode project is run
-        through the main entry point of from streamlit (i-e `python main.py` or `onecode-start`)
+        through the main entry point (i-e `python main.py` or `onecode-start`)
 
         """
         self._flow = flow

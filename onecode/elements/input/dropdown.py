@@ -4,7 +4,6 @@
 from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
-from ...utils.format import convert_expr
 from ..input_element import InputElement
 
 
@@ -31,14 +30,14 @@ class Dropdown(InputElement):
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
             value: Pre-selected value(s) among the options.
             label: Label to display left of the dropdown menu.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                streamlit case. Note that if `count` is defined, the expected `value` should always
+                UI case. Note that if `count` is defined, the expected `value` should always
                 be a list, even if the `count` is `1`. `count` can either be a fixed number
                 (e.g. `3`) or an expression dependent of other elements (see
                 [Using Expressions][using-runtime-expressions-in-elements] for more information).
@@ -55,7 +54,7 @@ class Dropdown(InputElement):
             multiple: Set to True if multiple choice is allowed, otherwise only a single element can
                 be selected.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
 
         Raises:
@@ -157,55 +156,3 @@ class Dropdown(InputElement):
                 self._validate_option_value(v)
         else:
             self._validate_option_value(value)
-
-    @check_type
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        """
-        Returns:
-            The Streamlit code for a dropdown menu (`st.multiselect` | `selectbox`).
-
-        """
-        label = self.label
-        key = self.key
-        options_key = f'_options_{key}'
-        default_key = f'_default_{key}'
-
-        if isinstance(self.options, str):
-            options = convert_expr(self.options)
-        else:
-            options = self.options
-
-        if self.multiple:
-            widget = 'st.multiselect'
-            default_param = 'default'
-            val = f"['''{self.value}''']" if isinstance(self.value, str) else self.value
-        else:
-            widget = 'st.selectbox'
-            default_param = 'index'
-            val = f"'''{self.value}'''" if isinstance(self.value, str) else self.value
-
-        return f"""
-try:
-    {options_key} = {options}
-except:
-    {options_key} = []
-
-if {self.multiple}: # is dropdown multiple?
-    {default_key} = [v for v in {val} if v in {options_key}]
-else:
-    {default_key} = pydash.find_index({options_key}, lambda x: x == {val})
-    {default_key} = {default_key} if {default_key} >= 0 else 0
-
-# Dropdown {key}
-{key} = {widget}(
-    {label},
-    {default_param}={default_key},
-    options={options_key},
-    disabled={self.disabled},
-    key={id}
-)
-
-"""

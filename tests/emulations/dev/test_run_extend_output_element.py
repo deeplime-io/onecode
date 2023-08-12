@@ -42,10 +42,6 @@ class MyOutputElement(OutputElement):
     def value(self) -> Union[float, int]:
         return 3 * self._value + 5.5
 
-    @staticmethod
-    def streamlit() -> str:
-        pass
-
     def _validate(
         self,
         value: Any

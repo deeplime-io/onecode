@@ -36,14 +36,6 @@ class MyHeaderElement(InputElement):
     def _value_type(self) -> type:
         return str
 
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        return f"""
-{self.key} = st.header('''{self.value}''')
-"""
-
     def _validate(
         self,
         value: str
@@ -103,7 +95,7 @@ for more information.
 
 From there, to ensure your module is taken into account by CLI commands, add `--module yourcode` to them:
 ```bash
-# Start with streamlit
+# Start in UI mode
 onecode-start --module <library_name>
 
 # JSON parameter extraction

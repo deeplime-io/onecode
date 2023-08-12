@@ -43,7 +43,7 @@ def test_execute_single_csv_reader():
 
     pd.testing.assert_frame_equal(widget(), pd.read_csv(csv_file))
     assert widget.key == "csvreader"
-    assert widget.label == "'''CsvReader'''"
+    assert widget.label == "CsvReader"
     assert widget._label == "CsvReader"
 
     try:
@@ -196,9 +196,9 @@ def test_extract_all_csv_reader():
         "kind": "CsvReader",
         "value": ["/path/to/file.csv"],
         "label": "My CsvReader",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "tags": ["CSV"]
     })
 
@@ -223,9 +223,9 @@ def test_extract_all_csv_reader_with_data():
         "kind": "CsvReader",
         "value": "/other_file.csv",
         "label": "My CsvReader",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "tags": ["CSV"]
     })
 
@@ -250,7 +250,7 @@ def test_load_then_execute_csv_reader():
 
     pd.testing.assert_frame_equal(widget(), pd.read_csv(csv_file))
     assert widget.key == "csvreader"
-    assert widget.label == "'''CsvReader'''"
+    assert widget.label == "CsvReader"
     assert widget._label == "CsvReader"
 
     try:
@@ -279,7 +279,7 @@ def test_load_then_execute_csv_reader_no_key():
 
     assert widget() is None
     assert widget.key == "csvreader"
-    assert widget.label == "'''CsvReader'''"
+    assert widget.label == "CsvReader"
     assert widget._label == "CsvReader"
 
     try:

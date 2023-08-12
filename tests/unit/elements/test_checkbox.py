@@ -27,7 +27,7 @@ def test_execute_single_checkbox():
 
     assert widget() is True
     assert widget.key == "checkbox"
-    assert widget.label == "'''Checkbox'''"
+    assert widget.label == "Checkbox"
     assert widget._label == "Checkbox"
 
 
@@ -117,9 +117,9 @@ def test_extract_all_checkbox():
         "kind": "Checkbox",
         "value": [True, True],
         "label": "My Checkbox",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -142,9 +142,9 @@ def test_extract_all_checkbox_with_data():
         "kind": "Checkbox",
         "value": False,
         "label": "My Checkbox",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -162,7 +162,7 @@ def test_load_then_execute_checkbox():
 
     assert widget() is False
     assert widget.key == "checkbox"
-    assert widget.label == "'''Checkbox'''"
+    assert widget.label == "Checkbox"
     assert widget._label == "Checkbox"
 
 
@@ -180,5 +180,5 @@ def test_load_then_execute_checkbox_no_key():
 
     assert widget() is None
     assert widget.key == "checkbox"
-    assert widget.label == "'''Checkbox'''"
+    assert widget.label == "Checkbox"
     assert widget._label == "Checkbox"

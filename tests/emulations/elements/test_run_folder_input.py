@@ -52,7 +52,7 @@ def test_execute_single_value_multiple_count():
     flow_data = os.path.join(flow_dir, 'data')
     os.makedirs(os.path.join(flow_data, 'input'), exist_ok=True)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.folder_input('my_folder_input', ['input', 'input'], count=3)
@@ -112,7 +112,7 @@ def test_load_then_execute_single_value_multiple_count():
     flow_data = os.path.join(flow_dir, 'data')
     os.makedirs(os.path.join(flow_data, 'input'), exist_ok=True)
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.folder_input('my_folder_input', 'input', count=4)

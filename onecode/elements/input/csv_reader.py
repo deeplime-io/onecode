@@ -26,18 +26,18 @@ class CsvReader(InputElement):
         **kwargs: Any
     ):
         """
-        A CSV-file reader returning a Pandas DataFrame and displayed as a table in Streamlit.
+        A CSV-file reader returning a Pandas DataFrame.
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
-            value: Path to the CSV file. CSV file must exists, even for the Streamlit mode.
+            value: Path to the CSV file. CSV file must exists.
             label: Label to display on top of the table.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                streamlit case. Note that if `count` is defined, the expected `value` should always
+                UI case. Note that if `count` is defined, the expected `value` should always
                 be a list, even if the `count` is `1`. `count` can either be a fixed number
                 (e.g. `3`) or an expression dependent of other elements (see
                 [Using Expressions][using-runtime-expressions-in-elements] for more information).
@@ -50,7 +50,7 @@ class CsvReader(InputElement):
             tags: Optional meta-data information about the expected file. This information is only
                 used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -101,12 +101,12 @@ class CsvReader(InputElement):
 
         """
         if self._value is not None:
-            if type(self._value) == str:
+            if type(self._value) is str:
                 filepath = Project().get_input_path(self._value)
                 return pacsv.read_csv(filepath).to_pandas() if os.path.exists(filepath) else None
 
-            elif type(self._value) == list and all(
-                type(v) == str for v in self._value
+            elif type(self._value) is list and all(
+                type(v) is str for v in self._value
             ):
                 return [
                     pacsv.read_csv(
@@ -130,52 +130,3 @@ class CsvReader(InputElement):
         """
         if value.empty:
             raise ValueError(f"[{self.key}] Empty dataframe")
-
-    @staticmethod
-    def imports() -> List[str]:
-        """
-        Returns:
-            Python import statements required by the Streamlit code.
-
-        """
-        return ["from pyarrow import csv as pacsv"]
-
-    @check_type
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        """
-        Returns:
-            The Streamlit code for a Pandas DataFrame (`st.dataframe`).
-
-        !!! note
-            A file selector (`st.file_uploader`) is provided on top of the table.
-
-        """
-        label = self.label
-        key = self.key
-
-        file_key = f'_file_{key}'
-
-        return f"""
-# CsvReader {key}
-{file_key} = st.file_uploader(
-    f{label} + ': select CSV file',
-    type=['csv'],
-    disabled={self.disabled},
-    key={id}
-)
-if {file_key} is not None:
-    {key} = pacsv.read_csv({file_key}).to_pandas()
-    if {file_key}.size // 1e6 > 200:
-        st.write(
-            f'File too big ({{{file_key}.size // 1e6}} Mo)'
-            ', data has been truncated to the first 10k rows'
-        )
-        {key} = {key}[:10000]
-    st.dataframe({key})
-else:
-    {key} = None
-
-"""

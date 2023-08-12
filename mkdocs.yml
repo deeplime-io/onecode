@@ -36,7 +36,7 @@ nav:
     - CLI:
       - Create a project: reference/cli/create.md
       - Add a flow to a project: reference/cli/add.md
-      - Run a project with Streamlit: reference/cli/start.md
+      - Run a project in UI mode: reference/cli/start.md
       - Extract project parameters: reference/cli/extract.md
       - Utilities: reference/cli/utils.md
     - InputElements:
@@ -60,6 +60,7 @@ nav:
     - Utilities: reference/utils/utils.md
     - Extending OneCode: extending_onecode.md
   - Changelogs:
+    - 1.0.0: changelogs/1.0.0.md
     - 0.4.0: changelogs/0.4.0.md
     - 0.3.0: changelogs/0.3.0.md
     - 0.2.1: changelogs/0.2.1.md

@@ -55,8 +55,6 @@ class Mode(str, Enum):
     - `EXTRACT_ALL`: extract parameters, their default value and all their attributes
         (kind, name, etc.) to JSON. It may be used either through regular Python scripts or the CLI.
         :octicons-arrow-both-24: `"_extract_all"`
-    - `STREAMLIT`: generate the Streamlit app code and run it. Typically used through the
-        `onecode-start` CLI. :octicons-arrow-both-24: `"_build_streamlit"`
 
     These modes correspond to the function names of the Input/Output Element objects (e.g.
     `InputElement._execute()`). Therefore you can easily extend Input/Output Element with new modes
@@ -89,23 +87,12 @@ class Mode(str, Enum):
     LOAD_THEN_EXECUTE   = "_load_then_execute"       # noqa: E-221
     EXTRACT             = "_extract"                 # noqa: E-221
     EXTRACT_ALL         = "_extract_all"             # noqa: E-221
-    STREAMLIT           = "_build_streamlit"         # noqa: E-221
-
-
-class Keyword(str, Enum):
-    """
-    Reserved keywords for the Streamlit app.
-
-    - `DATA`: Streamlit variable holding the data :octicons-arrow-both-24: `"_DATA_"`
-
-    """
-    DATA             = "_DATA_"                 # noqa: E-221
 
 
 class ElementType(str, Enum):
     """
     Available element type variables. These element types are typically used by specific modes
-    (e.g. `EXTRACT`, `EXTRACT_ALL` and `STREAMLIT` modes).
+    (e.g. `EXTRACT` and `EXTRACT_ALL` modes).
 
     - `INPUT`: `InputElement` type :octicons-arrow-both-24: `"INPUT"`
     - `OUTPUT`: `OutputElement` Type :octicons-arrow-both-24: `"OUTPUT"`
@@ -117,7 +104,7 @@ class ElementType(str, Enum):
 
 class FileFilter(tuple):
     """
-    Available file filters, typically used by FileInput Element in STREAMLIT mode. It allows to
+    Available file filters, typically used by FileInput Element. It allows to
     filter file selection within the Open File Dialog. File filters are a Tuple made of 2 parts:
     `(name of the filter, file extensions separated by whitespaces)`.
 

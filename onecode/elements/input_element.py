@@ -2,22 +2,20 @@
 # SPDX-License-Identifier: MIT
 
 from abc import ABC, abstractmethod
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, Optional, Tuple, Union
 
 import pydash
 from slugify import slugify
 
 from ..base.decorator import check_type
-from ..base.enums import Keyword
 from ..base.project import Project
-from ..utils.format import convert_expr, indent_block
 from ..utils.typing import is_type
 
 
 class InputElement(ABC):
     """
     An element is an object that will be interpreted based on the Project's mode (script
-    execution, extraction, streamlit code generation, etc.). OneCode projects should not
+    execution, extraction, etc.). OneCode projects should not
     directly call the `InputElement` but its corresponding static function defined as the snake
     case of the element class name. For instance:
 
@@ -40,8 +38,6 @@ class InputElement(ABC):
         the value is correct at runtime.
     - [`_validate()`][onecode.InputElement._validate]: internal method to ensure the value checks
         out at runtime.
-    - [`streamlit()`][onecode.InputElement.streamlit]: method returning the Streamlit code to be
-        generated.
 
     !!! note
         Depending on your case, you may need to subclass `value` too (e.g. like CsvReader
@@ -54,9 +50,14 @@ class InputElement(ABC):
         between the two forms.
 
     Attributes:
-        label: Human readable name typically used by `streamlit()` for display.
+        key: Slugified key identifying the element.
+        kind: Element class name.
+        label: Human readable name typically used for display.
         value: Actual value of the element.
-        disabled: The string condition typically used by `streamlit` for disabling the widget.
+        count: Number of occurence of the element, as a static integer or a dynamic expression.
+        optional: Whether the element must return a value or not.
+        disabled: The disabled status, as a static boolean or a dynamic expressions.
+        hide_when_disabled: Whether the element should be hidden when disabled.
 
     """
 
@@ -74,27 +75,27 @@ class InputElement(ABC):
         """
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
             value: Initial value for the parameter. This value may be transformed depending on the
                 element.
-            label: Typically to be used by Streamlit for display purpose only. If not defined, it
+            label: Typically to be used for display purpose only. If not defined, it
                 will default to the `key`.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                streamlit case. Note that if `count` is defined, the expected `value` should always
-                be a list, even if the `count` is `1`. `count` can either be a fixed number
+                UI case. Note that if `count` is defined, the expected `value` should always be
+                a list, even if the `count` is `1`. `count` can either be a fixed number
                 (e.g. `3`) or an expression dependent of other elements (see
                 [Using Expressions][using-runtime-expressions-in-elements] for more information).
             optional: Specify whether the value may be None. `optional` can either be a fixed
                 boolean (`False` or `True`) or a conditional expression dependent of other elements
                 (see [Using Expressions][using-runtime-expressions-in-elements] for more
                 information).
-            hide_when_disabled: Only used by Streamlit: if element is optional, set it to True to
+            hide_when_disabled: Only used for UI case: if element is optional, set it to True to
                 hide it from the interface, otherwise it will be shown disabled.
             **kwargs: Extra arguments to populate the element with. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -108,14 +109,11 @@ class InputElement(ABC):
             raise ValueError(f'Key starting with "_" are reserved: {key}')
 
         self._label = label if label is not None else key
-        self.key = slugify(key, separator='_')
+        self._key = slugify(key, separator='_')
         self._value = value
-        self.count = str(count) if isinstance(count, int) else convert_expr(count)
-        self.optional = isinstance(optional, str) or optional is True
-        self._disabled = 'False' if optional is False \
-            else f'_optional_{self.key}' if optional is True \
-            else convert_expr(optional)
-        self.hide_when_disabled = hide_when_disabled
+        self._count = count
+        self._disabled = optional
+        self._hide_when_disabled = hide_when_disabled
 
         reserved_args = dir(self)
         invalid_args = pydash.intersection([*kwargs], [*reserved_args])
@@ -135,29 +133,22 @@ class InputElement(ABC):
         return type(self).__name__
 
     @property
+    def key(self) -> str:
+        """
+        Returns:
+            The element key.
+
+        """
+        return self._key
+
+    @property
     def label(self) -> str:
         """
-        Get the label with triple-quotes and escaped to handle human-readable string.
-        It is primarly meant to be directly used in the Streamlit generated code for the
-        `label` parameter.
-        See [`streamlit()`][onecode.InputElement.streamlit] for more information.
-
         Returns:
-            The string to be used in `streamlit()` for the `label` parameter.
-
-        !!! example
-            ```py
-            from onecode import Mode, Project, slider
-
-            Project().mode = Mode.CONSOLE
-            x = slider("Hello l'aspirateur!", None, optional=True)
-
-            assert x.label == "'''Hello l\\'aspirateur!'''"
-            ```
+            The element label.
 
         """
-        name = self._label.replace("'", "\\'")
-        return f"'''{name}'''"
+        return self._label
 
     @property
     def value(self) -> Optional[Any]:
@@ -173,17 +164,40 @@ class InputElement(ABC):
         return self._value
 
     @property
-    def disabled(self) -> str:
+    def count(self) -> Union[int, str]:
         """
-        Get the whether the element is disabled as a string. It is primarly meant to be
-        directly used in the Streamlit generated code for the `disabled` parameter.
-        See [`streamlit()`][onecode.InputElement.streamlit] for more information.
-
         Returns:
-            The conditional string to be used in `streamlit()` for the `disabled` parameter.
+            The number of occurence of the element (static or dynamic).
+
+        """
+        return self._count
+
+    @property
+    def optional(self) -> bool:
+        """
+        Returns:
+            The whether the element must return a value or not.
+
+        """
+        return isinstance(self._disabled, str) or self._disabled is True
+
+    @property
+    def disabled(self) -> Union[bool, str]:
+        """
+        Returns:
+            The element disabling condition.
 
         """
         return self._disabled
+
+    @property
+    def hide_when_disabled(self) -> bool:
+        """
+        Returns:
+            The whether the element should be hidden when disabled.
+
+        """
+        return self._hide_when_disabled
 
     @property
     @abstractmethod
@@ -201,109 +215,6 @@ class InputElement(ABC):
             def _value_type(self) -> type:
                 return Union[str, bool]
             ```
-
-        """
-        pass
-
-    @staticmethod
-    def imports() -> List[str]:
-        """
-        Re-implement this function in case your Streamlit code requires specific Python package
-        import. This function should return a list of import statement as string.
-
-        Note that the following packages are already imported (not needed to return them in that
-        list): `os`, `json`, `uuid`, `pydash`, `streamlit as st`.
-
-        !!! example
-            ```py
-            @staticmethod
-            def imports() -> List[str]:
-                return [
-                    "import numpy as np",
-                    "import plotly"
-                ]
-            ```
-
-        """
-        return []
-
-    @staticmethod
-    def init() -> str:
-        """
-        Re-implement this function in case your Streamlit code requires specific initialization
-        statements. Note that all variables starting with a `_` are reserved.
-
-        !!! example
-            ```py
-            @staticmethod
-            def init() -> str:
-                return '''
-                    def x(angle):
-                        return np.deg2rad(angle%360)
-                '''
-            ```
-
-        """
-        return ''
-
-    @abstractmethod
-    def streamlit(
-        self,
-        id: str
-    ) -> str:   # pragma: no cover
-        """
-        You must re-implement this function to return the expected Streamlit block code for
-        this element. This block code will be written out to the generated Streamlit App code.
-
-        Typical attributes that will be useful:
-        - `label`: can be directly piped to the Streamlit widget `label` parameter. This attribute
-            has been automatically setup for you to use and will properly escape the potential
-            troublesome characters.
-
-        - `disabled`: can be directly piped to the Streamlit `disabled` widget parameters. This
-            attribute has been automatically setup for you to use and will properly take the
-            `optional` argument into account regardless of `optional` being an expression, a
-            boolean or None. Therefore, do not use `optional` or `hide_when_disabled`, use
-            `disabled` directly.
-
-        - `key`: it must be used as the variable name for the Streamlit widget.
-
-        - all other attributes that are specific to your widget, e.g. `min`, `max`, `step` for
-            a Slider, etc.
-
-        Args:
-            id: Must be used as the `id` parameter of the Streamlit widget. This variable is
-                automatically setup to take uniqueness wrt `count`.
-
-        Returns:
-            The Streamlit block code to be output in the generated Streamlit App code.
-
-        !!! example
-            ```py
-                def streamlit(
-                    self,
-                    id: str
-                ) -> str:
-
-                    return f'''
-            # Slider
-            {self.key} = st.slider(
-                {self.label},
-                min_value={self.min},
-                max_value={self.max},
-                value={self.value},
-                step={self.step},
-                disabled={self.disabled},
-                key={id}
-            )
-
-            '''
-            ```
-
-        !!! tip
-            Remember: no need to use `optional`, `hide_when_disabled` and `count`, they are
-            already automatically taken into account to make your life easier. Use `disabled`,
-            `label`, `key` and `id`
 
         """
         pass
@@ -366,7 +277,7 @@ class InputElement(ABC):
 
         """
         if value is None:
-            if self.disabled == 'False':
+            if not self.optional:
                 raise ValueError(f"[{self.key}] Value is required: None provided")
 
         elif self.count is None:
@@ -376,7 +287,7 @@ class InputElement(ABC):
                 raise TypeError(f"Invalid value type for {value}, expected: {self._value_type}")
 
         else:
-            if type(value) != list:
+            if type(value) is not list:
                 raise TypeError(f"Invalid value {value}, expected: list({self._value_type})")
 
             elif all(is_type(v, self._value_type) for v in value):
@@ -486,58 +397,6 @@ class InputElement(ABC):
         pydash.merge(params, self._extra_args)
 
         return k, params
-
-    def _build_streamlit(self) -> str:
-        """
-        Function called when Project mode is `Mode.STREAMLIT`. The Streamlit block code will be
-        prepared using the element parameters (such as `count`, `optional`, `hide_when_disabled`,
-        etc.) as well as the block code returned by the
-        [`streamlit()`][onecode.InputElement.streamlit] function. This function makes it easy to
-        extend the `InputElement` without worrying about the `count`, `optional` and
-        `hide_when_disabled` attributes.
-
-        Returns:
-            The full block code generated by this `InputElement` to be written out to the generated
-            Streamlit app code.
-
-        """
-        code_gen = ''
-
-        if self.optional and self.disabled == f'_optional_{self.key}':
-            code_gen += f"""
-_optional_{self.key} = not st.checkbox(
-    'Enable ' + {self.label},
-    value=True,
-    key='_optional_{self.key}'
-)
-"""
-
-        if self.count is None:
-            if self.optional and self.hide_when_disabled:
-                code_gen += f"if not ({self.disabled}):"
-                code_gen += indent_block(self.streamlit(f"'{self.key}'"))
-            else:
-                code_gen += self.streamlit(f"'{self.key}'")
-
-            code_gen += f"""
-{Keyword.DATA}['{self.key}'] = {self.key} if not ({self.disabled}) else None
-
-"""
-
-        else:
-            if self.optional and self.hide_when_disabled:
-                inner_code = f"if not ({self.disabled}):"
-                inner_code += indent_block(self.streamlit(f"{'f'}'{self.key}_{{_c}}'"), indent=8)
-            else:
-                inner_code = indent_block(self.streamlit(f"{'f'}'{self.key}_{{_c}}'"))
-
-            code_gen += f"""
-{Keyword.DATA}['{self.key}'] = []
-for _c in range(int({self.count})):
-    {inner_code}
-    {Keyword.DATA}['{self.key}'].append({self.key} if not ({self.disabled}) else None)
-"""
-        return code_gen
 
     def __call__(self) -> Any:
         """

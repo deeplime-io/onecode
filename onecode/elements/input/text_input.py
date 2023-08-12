@@ -27,14 +27,14 @@ class TextInput(InputElement):
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
             value: Initial text value.
             label: Label to display next to the checkbox.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                streamlit case. Note that if `count` is defined, the expected `value` should always
+                UI case. Note that if `count` is defined, the expected `value` should always
                 be a list, even if the `count` is `1`. `count` can either be a fixed number
                 (e.g. `3`) or an expression dependent of other elements (see
                 [Using Expressions][using-runtime-expressions-in-elements] for more information).
@@ -48,7 +48,7 @@ class TextInput(InputElement):
             placeholder: Placeholder text shown whenever there is no value.
             multiline: Set to True or a height in pixels to make it multiline text area.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -103,38 +103,3 @@ class TextInput(InputElement):
 
         """
         pass
-
-    @check_type
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        """
-        Returns:
-            The Streamlit code for a text input field (`st.text`).
-
-        """
-        val = f'"{self.value}"' if self.value is not None else "''"
-        default = f'"{self.placeholder}"'
-        multiline = self.multiline
-
-        if multiline is False:
-            widget = 'st.text_input'
-            extra = f'key={id}'
-        else:
-            widget = 'st.text_area'
-            extra = f'''height={"None" if multiline is True else multiline},
-    key={id}'''
-
-        return f"""
-# Text {self.key}
-{self.key} = {widget}(
-    {self.label},
-    {val},
-    disabled={self.disabled},
-    max_chars={self.max_chars},
-    placeholder={default},
-    {extra}
-)
-
-"""

@@ -42,7 +42,7 @@ def test_execute_text_output():
 
     assert widget() == os.path.join(data_path, 'outputs', 'my_file.txt')
     assert widget.key == "textoutput"
-    assert widget.label == "'''TextOutput'''"
+    assert widget.label == "TextOutput"
     assert widget._label == "TextOutput"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:
@@ -81,7 +81,7 @@ def test_load_then_execute_text_output():
 
     assert widget() == os.path.join(data_path, 'outputs', 'my_file.txt')
     assert widget.key == "textoutput"
-    assert widget.label == "'''TextOutput'''"
+    assert widget.label == "TextOutput"
     assert widget._label == "TextOutput"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:

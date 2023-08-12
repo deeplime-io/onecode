@@ -28,7 +28,7 @@
     ```
 
 
-## Start a project with Streamlit
+## Start a project in UI mode
 ::: onecode.cli.start.main
 !!! example
     ```bash

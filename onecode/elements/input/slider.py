@@ -27,14 +27,14 @@ class Slider(InputElement):
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
             value: Initial numerical value.
             label: Label to display on top of the field.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                streamlit case. Note that if `count` is defined, the expected `value` should always
+                UI case. Note that if `count` is defined, the expected `value` should always
                 be a list, even if the `count` is `1`. `count` can either be a fixed number
                 (e.g. `3`) or an expression dependent of other elements (see
                 [Using Expressions][using-runtime-expressions-in-elements] for more information).
@@ -48,7 +48,7 @@ class Slider(InputElement):
             max: Mandatory upper bound, defaults to 1.
             step: Mandatory step used when incrementing/decrementing the slider, defaults to 0.1.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -76,7 +76,7 @@ class Slider(InputElement):
         # cast to float in case int is provided
         converted = None
         if value is not None:
-            converted = [float(v) for v in value] if type(value) == list else float(value)
+            converted = [float(v) for v in value] if type(value) is list else float(value)
 
         super().__init__(
             key,
@@ -120,27 +120,3 @@ class Slider(InputElement):
 
         elif value > self.max:
             raise ValueError(f"[{self.key}] Value greater than maximum: {value} > {self.max}")
-
-    @check_type
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        """
-        Returns:
-            The Streamlit code for a slider (`st.slider`).
-
-        """
-        return f"""
-# Slider {self.key}
-{self.key} = st.slider(
-    {self.label},
-    min_value={self.min},
-    max_value={self.max},
-    value={self.value},
-    step={self.step},
-    disabled={self.disabled},
-    key={id}
-)
-
-"""

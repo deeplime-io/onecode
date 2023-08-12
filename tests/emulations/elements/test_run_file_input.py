@@ -82,7 +82,7 @@ def test_execute_single_value_multiple_count():
     flow_data = os.path.join(flow_dir, 'data')
     _generate_csv_file(flow_dir, 'input/test_file.txt')
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.file_input('my_file_input', ['input/test_file.txt', 'input/test_file.txt'], count=3)
@@ -111,7 +111,7 @@ def test_execute_multiple_values_multiple_count():
     _generate_csv_file(flow_dir, 'input/test_file_1.txt')
     _generate_csv_file(flow_dir, 'input/test_file_2.txt')
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.file_input(
@@ -210,7 +210,7 @@ def test_load_then_execute_single_value_multiple_count():
     flow_data = os.path.join(flow_dir, 'data')
     _generate_csv_file(flow_dir, 'input/test_file.txt')
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.file_input('my_file_input', 'input/test_file.txt', count=4)
@@ -246,7 +246,7 @@ def test_load_then_execute_multiple_values_multiple_count():
     _generate_csv_file(flow_dir, 'input/test_file_1.txt')
     _generate_csv_file(flow_dir, 'input/test_file_2.txt')
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     x = onecode.file_input(
@@ -552,7 +552,7 @@ def test_load_execute_not_a_file_multiple_value_with_count():
     _generate_csv_file(flow_dir, 'input/test_file_1.txt')
     os.makedirs(os.path.join(flow_data, 'input', 'test_file.txt'))
 
-    # count is ignored at loading & execution as it is only used by streamlit
+    # count is ignored at loading & execution as it is only used in UI mode
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     try:

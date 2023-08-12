@@ -50,7 +50,7 @@ def test_project_reset():
     p.reset()
 
     p.register_element('NewLib.NewElement')
-    p.mode = Mode.STREAMLIT
+    p.mode = Mode.EXTRACT
     p.data = {"x": 4}
     p.current_flow = 'testflow'
     p.set_config(ConfigOption.FLUSH_STDOUT, True)
@@ -72,7 +72,7 @@ def test_project_reset():
         'onecode.TextOutput',
         'NewLib.NewElement'
     }
-    assert p.mode == Mode.STREAMLIT
+    assert p.mode == Mode.EXTRACT
     assert p.current_flow == 'testflow'
     assert p.data == {"x": 4}
     assert p.config == {

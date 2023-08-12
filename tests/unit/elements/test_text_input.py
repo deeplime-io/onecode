@@ -28,7 +28,7 @@ def test_execute_single_text_input():
 
     assert widget() == "My Text"
     assert widget.key == "textinput"
-    assert widget.label == "'''TextInput'''"
+    assert widget.label == "TextInput"
     assert widget._label == "TextInput"
 
 
@@ -122,9 +122,9 @@ def test_extract_all_text_input():
         "kind": "TextInput",
         "value": ["OneCode", "rocks!"],
         "label": "My TextInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "max_chars": 500,
         "placeholder": "My Placeholder",
         "multiline": False
@@ -153,9 +153,9 @@ def test_extract_all_text_input_with_data():
         "kind": "TextInput",
         "value": "OneCode rocks!",
         "label": "My TextInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "max_chars": 500,
         "placeholder": "My Placeholder",
         "multiline": True
@@ -176,7 +176,7 @@ def test_load_then_execute_text_input():
 
     assert widget() == "OneCode rocks!"
     assert widget.key == "textinput"
-    assert widget.label == "'''TextInput'''"
+    assert widget.label == "TextInput"
     assert widget._label == "TextInput"
 
 
@@ -194,5 +194,5 @@ def test_load_then_execute_text_input_no_key():
 
     assert widget() is None
     assert widget.key == "textinput"
-    assert widget.label == "'''TextInput'''"
+    assert widget.label == "TextInput"
     assert widget._label == "TextInput"

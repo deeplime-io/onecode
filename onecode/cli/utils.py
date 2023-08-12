@@ -152,7 +152,7 @@ def extract_calls(
             https://github.com/deeplime-io/PyCG/tree/onecode
         calls: List of calls as `{"func": <function_name>, "loc": <code_to_eval>}` where results
             are aggregated. These `calls` are typically piped to the `process` functions for JSON
-            extraction or Streamlit code generation.
+            extraction.
         verbose: If True, print out debug information such as elements being processed.
 
     """

@@ -42,7 +42,7 @@ def test_execute_csv_output():
 
     assert widget() == os.path.join(data_path, 'outputs', 'my_file.csv')
     assert widget.key == "csvoutput"
-    assert widget.label == "'''CsvOutput'''"
+    assert widget.label == "CsvOutput"
     assert widget._label == "CsvOutput"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:
@@ -79,7 +79,7 @@ def test_load_then_execute_csv_output():
 
     assert widget() == os.path.join(data_path, 'outputs', 'my_file.csv')
     assert widget.key == "csvoutput"
-    assert widget.label == "'''CsvOutput'''"
+    assert widget.label == "CsvOutput"
     assert widget._label == "CsvOutput"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:

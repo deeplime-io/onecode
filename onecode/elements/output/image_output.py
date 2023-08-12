@@ -24,20 +24,20 @@ class ImageOutput(OutputElement):
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see
                 [examples projects](https://github.com/deeplime-io/onecode/tree/main/examples)).
             value: Path to the output image file which must have a `.jpg`, `.jpeg`, `.png` or `.svg`
                 extension. Unless absolute, a path is relative to the `outputs` folder of the flow
                 currently running.
-            label: Typically to be used by Streamlit for display purpose only. If not defined, it
+            label: Typically to be used for display purpose only. If not defined, it
                 will default to the `key`.
             tags: Optional meta-data information about the expected file. This information is only
                 used when the JSON output attributes are written to the output manifest.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -104,17 +104,3 @@ class ImageOutput(OutputElement):
             raise ValueError(
                 f"[{self.key}] Invalid image extension: {ext} (accepted: {', '.join(valid_ext)})"
             )
-
-    @staticmethod
-    def streamlit() -> str:
-        """
-        Returns:
-            The Streamlit code to show an image as part of the image carousel.
-
-        !!! tip
-            A static function `_show_img(filepath: str)` is available for any Streamlit code to use.
-            It will automatically add the given image to the carousel without you needing to deal
-            with the carousel.
-
-        """
-        return "_show_img(value)"

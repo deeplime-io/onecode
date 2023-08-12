@@ -23,19 +23,19 @@ class FileOutput(OutputElement):
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
-                Project(), otherwise it will lead to conflicts at runtime in both execution and
-                Streamlit modes. The key will be transformed into snake case and slugified to avoid
+                Project(), otherwise it will lead to conflicts at runtime in execution mode.
+                The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see
                 [examples projects](https://github.com/deeplime-io/onecode/tree/main/examples)).
             value: Path to the output file. Unless absolute, a path is relative to the `outputs`
                 folder of the flow currently running.
-            label: Typically to be used by Streamlit for display purpose only. If not defined, it
+            label: Typically to be used for display purpose only. If not defined, it
                 will default to the `key`.
             tags: Optional meta-data information about the expected file. This information is only
                 used when the JSON output attributes are written to the output manifest.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
-                existing attributes or methods name such as `streamlit`, `_value`, etc.
+                existing attributes or methods name such as `_validate`, `_value`, etc.
 
         Raises:
             ValueError: if the `key` is empty or starts with `_`.
@@ -89,24 +89,3 @@ class FileOutput(OutputElement):
 
         """
         pass
-
-    @staticmethod
-    def streamlit() -> str:
-        """
-        Returns:
-            The Streamlit code to show the basic output file information as text.
-
-        """
-        return """
-value = os.path.relpath(value)  # allows compat with Windows
-if not os.path.exists(value) and not os.path.isfile(value):
-    st.warning(f'Invalid file path: {{value}}')
-
-else:
-    st.subheader(f'{label} - {os.path.basename(value)}')
-    st.info(f'''
-File Info\n
-- Path: {value}\n
-- Size: {round(os.path.getsize(value) / 1e6, 4)} Mo
-    ''')
-"""

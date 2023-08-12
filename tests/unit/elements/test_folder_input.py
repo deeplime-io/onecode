@@ -43,7 +43,7 @@ def test_execute_folder_input():
 
     assert widget() == folder_path
     assert widget.key == "folderinput"
-    assert widget.label == "'''FolderInput'''"
+    assert widget.label == "FolderInput"
     assert widget._label == "FolderInput"
 
     widget = FolderInput(
@@ -234,9 +234,9 @@ def test_extract_all_folder_input():
         "kind": "FolderInput",
         "value": ["/path/to"],
         "label": "My FolderInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -259,9 +259,9 @@ def test_extract_all_folder_input_with_data():
         "kind": "FolderInput",
         "value": "/",
         "label": "My FolderInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -285,7 +285,7 @@ def test_load_then_execute_folder_input():
 
     assert widget() == folder_path
     assert widget.key == "folderinput"
-    assert widget.label == "'''FolderInput'''"
+    assert widget.label == "FolderInput"
     assert widget._label == "FolderInput"
 
     try:
@@ -314,7 +314,7 @@ def test_load_then_execute_folder_input_no_key():
 
     assert widget() is None
     assert widget.key == "folderinput"
-    assert widget.label == "'''FolderInput'''"
+    assert widget.label == "FolderInput"
     assert widget._label == "FolderInput"
 
     try:

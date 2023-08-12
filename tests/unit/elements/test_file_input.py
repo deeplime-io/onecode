@@ -43,7 +43,7 @@ def test_execute_single_file_input_single_selection():
 
     assert widget() == csv_file
     assert widget.key == "fileinput"
-    assert widget.label == "'''FileInput'''"
+    assert widget.label == "FileInput"
     assert widget._label == "FileInput"
 
     widget = FileInput(
@@ -76,7 +76,7 @@ def test_execute_single_file_input_multiple_selection():
 
     assert widget() == [csv_file]
     assert widget.key == "fileinput"
-    assert widget.label == "'''FileInput'''"
+    assert widget.label == "FileInput"
     assert widget._label == "FileInput"
 
     widget = FileInput(
@@ -390,9 +390,9 @@ def test_extract_all_file_input():
         "kind": "FileInput",
         "value": ["/path/to/file.jpg"],
         "label": "My FileInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "tags": ["Core"],
         "types": [("Image", ".jpg .png .jpeg")],
         "multiple": True
@@ -421,9 +421,9 @@ def test_extract_all_file_input_with_data():
         "kind": "FileInput",
         "value": "/file.png",
         "label": "My FileInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "tags": ["Core"],
         "types": [("Image", ".jpg .png .jpeg")],
         "multiple": True
@@ -450,7 +450,7 @@ def test_load_then_execute_file_input():
 
     assert widget() == csv_file
     assert widget.key == "fileinput"
-    assert widget.label == "'''FileInput'''"
+    assert widget.label == "FileInput"
     assert widget._label == "FileInput"
 
     try:
@@ -479,7 +479,7 @@ def test_load_then_execute_file_input_no_key():
 
     assert widget() is None
     assert widget.key == "fileinput"
-    assert widget.label == "'''FileInput'''"
+    assert widget.label == "FileInput"
     assert widget._label == "FileInput"
 
     try:

@@ -29,7 +29,7 @@ def test_execute_single_radio_button():
 
     assert widget() == "A"
     assert widget.key == "radiobutton"
-    assert widget.label == "'''RadioButton'''"
+    assert widget.label == "RadioButton"
     assert widget._label == "RadioButton"
 
 
@@ -124,9 +124,9 @@ def test_extract_all_radio_button():
         "kind": "RadioButton",
         "value": ["A", "C"],
         "label": "My RadioButton",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "options": ["A", "B", "C"],
         "horizontal": True
     })
@@ -153,9 +153,9 @@ def test_extract_all_radio_button_with_data():
         "kind": "RadioButton",
         "value": "B",
         "label": "My RadioButton",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2",
+        "count": 2,
         "options": ["A", "B", "C"],
         "horizontal": True
     })
@@ -176,7 +176,7 @@ def test_load_then_execute_radio_button():
 
     assert widget() == "B"
     assert widget.key == "radiobutton"
-    assert widget.label == "'''RadioButton'''"
+    assert widget.label == "RadioButton"
     assert widget._label == "RadioButton"
 
 
@@ -195,5 +195,5 @@ def test_load_then_execute_radio_button_no_key():
 
     assert widget() is None
     assert widget.key == "radiobutton"
-    assert widget.label == "'''RadioButton'''"
+    assert widget.label == "RadioButton"
     assert widget._label == "RadioButton"

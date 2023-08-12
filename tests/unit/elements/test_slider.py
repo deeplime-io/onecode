@@ -29,7 +29,7 @@ def test_execute_single_slider():
 
     assert widget() == 0.6
     assert widget.key == "slider"
-    assert widget.label == "'''Slider'''"
+    assert widget.label == "Slider"
     assert widget._label == "Slider"
 
 
@@ -225,9 +225,9 @@ def test_extract_all_slider():
         "max": 15.6,
         "step": 0.1,
         "label": "My Slider",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -256,9 +256,9 @@ def test_extract_all_slider_with_data():
         "max": 15.6,
         "step": 0.1,
         "label": "My Slider",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -277,7 +277,7 @@ def test_load_then_execute_slider():
 
     assert widget() == [0.1, 0.6]
     assert widget.key == "slider"
-    assert widget.label == "'''Slider'''"
+    assert widget.label == "Slider"
     assert widget._label == "Slider"
 
 
@@ -296,5 +296,5 @@ def test_load_then_execute_slider_no_key():
 
     assert widget() is None
     assert widget.key == "slider"
-    assert widget.label == "'''Slider'''"
+    assert widget.label == "Slider"
     assert widget._label == "Slider"

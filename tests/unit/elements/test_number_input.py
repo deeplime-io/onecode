@@ -31,7 +31,7 @@ def test_execute_single_number_input():
 
     assert widget() == 5.1
     assert widget.key == "numberinput"
-    assert widget.label == "'''NumberInput'''"
+    assert widget.label == "NumberInput"
     assert widget._label == "NumberInput"
 
 
@@ -214,9 +214,9 @@ def test_extract_all_number_input():
         "max": 15.6,
         "step": 0.1,
         "label": "My NumberInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -245,9 +245,9 @@ def test_extract_all_number_input_with_data():
         "max": 15.6,
         "step": 0.1,
         "label": "My NumberInput",
-        "disabled": '_DATA_["x"]',
+        "disabled": '$x$',
         "optional": True,
-        "count": "2"
+        "count": 2
     })
 
 
@@ -266,7 +266,7 @@ def test_load_then_execute_number_input():
 
     assert widget() == [0.12, 16.5]
     assert widget.key == "numberinput"
-    assert widget.label == "'''NumberInput'''"
+    assert widget.label == "NumberInput"
     assert widget._label == "NumberInput"
 
 
@@ -285,5 +285,5 @@ def test_load_then_execute_number_input_no_key():
 
     assert widget() is None
     assert widget.key == "numberinput"
-    assert widget.label == "'''NumberInput'''"
+    assert widget.label == "NumberInput"
     assert widget._label == "NumberInput"

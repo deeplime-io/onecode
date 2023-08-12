@@ -36,7 +36,7 @@ dynamic_radio_button(
 
 To ensure your module is taken into account, add `--module yourcode` to all CLI.
 ```bash
-# Start with streamlit
+# Start with UI
 onecode-start --module yourcode
 
 # Regular JSON parameter extraction
