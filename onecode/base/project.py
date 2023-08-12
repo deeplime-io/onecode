@@ -37,7 +37,10 @@ class Project(metaclass=Singleton):
         self._registered_elements = set()
         self.reset()
 
-    def reset(self):
+    def reset(
+        self,
+        keep_registered_elements: bool = False
+    ):
         """
         Reset the project to its default values:
         - the data path is initialized in priority to `ONECODE_PROJECT_DATA` if provided in the
@@ -46,7 +49,10 @@ class Project(metaclass=Singleton):
         to the current working directory.
         - mode is `Mode.CONSOLE`.
         - currently running flow and data are None.
-        - registered elements default to the OneCode ones.
+        - registered elements default to the OneCode ones unless `keep_registered_elements` is True.
+
+        Args:
+            keep_registered_elements: keep previously registered elements.
 
         """
         # data folder located at the same level as the starting script,
@@ -66,10 +72,12 @@ class Project(metaclass=Singleton):
         else:
             self._set_data_root(os.getcwd())
 
-        this_module = sys.modules[__name__].__name__.split('.')[0]
-        self._registered_elements = {
-            ent for ent in self._registered_elements if ent.startswith(f'{this_module}.')
-        }
+        if not keep_registered_elements:
+            this_module = sys.modules[__name__].__name__.split('.')[0]
+            self._registered_elements = {
+                ent for ent in self._registered_elements if ent.startswith(f'{this_module}.')
+            }
+
         self._mode = Mode.CONSOLE
         self._flow = None
         self._data = None
