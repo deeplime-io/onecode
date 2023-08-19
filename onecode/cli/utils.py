@@ -234,7 +234,7 @@ def process_call_graph(
     flow_graph = cg.output_enriched()
 
     for flow in get_flows(project_path):
-        label = f'"{flow["label"]}"'
+        label = flow["label"]
         file = flow['file']
 
         print(f"Processing {label}...")
@@ -244,6 +244,7 @@ def process_call_graph(
             extract_calls(f"{file}.run", flow_graph, calls, verbose)
         else:
             extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
+
         statements[label] = {
             "entry_point": file,
             "calls": calls

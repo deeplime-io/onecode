@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 from abc import ABC, abstractmethod
-from typing import Any, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union
 
 import pydash
 from slugify import slugify
@@ -388,13 +388,32 @@ class InputElement(ABC):
         params = {
             "key": self.key,
             "kind": self.kind,
-            "label": self._label,
+            "label": self.label,
             "value": v,
             "count": self.count,
             "optional": self.optional,
             "disabled": self.disabled,
         }
         pydash.merge(params, self._extra_args)
+
+        return k, params
+
+    @abstractmethod
+    def _json_form(self) -> Dict:
+        pass
+
+    def _build_gui(self) -> Dict:
+        k, v = self._extract()
+
+        # if count is None => else return array
+        params = {
+            "value": v,
+            "optional": self.optional,
+            "properties": {
+                **self._json_form(),
+                "title": self.label
+            }
+        }
 
         return k, params
 

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import Any, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -120,3 +120,11 @@ class Slider(InputElement):
 
         elif value > self.max:
             raise ValueError(f"[{self.key}] Value greater than maximum: {value} > {self.max}")
+
+    def _json_form(self) -> Dict:
+        return {
+            "type": "number",
+            "minimum": self.min,
+            "maximum": self.max,
+            "multipleOf": self.step
+        }

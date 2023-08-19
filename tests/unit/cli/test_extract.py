@@ -13,7 +13,7 @@ def test_invalid_element(capsys):
     extract_json(os.path.join('..', '..', 'data', 'invalid_flow'), json_file)
 
     captured = capsys.readouterr()
-    assert """Processing "Step1"...
+    assert """Processing Step1...
 => onecode.slider('slider', x, optional=True)
 Error  name 'x' is not defined
 """ == captured.out
@@ -30,7 +30,7 @@ def test_valid_element_verbose(capsys):
     captured = capsys.readouterr()
 
     if os.name == 'nt':
-        assert """Processing "Step1"...
+        assert """Processing Step1...
  >> (flows\\step1.run) function onecode.csv_reader ✅
  >> (flows\\step1.run) function onecode.dropdown ✅
  >> (flows\\step1.run) function onecode.Logger.info ⏩
@@ -40,7 +40,7 @@ def test_valid_element_verbose(capsys):
  >> (flows\\step1.run) function onecode.Logger.info ⏩
  >> (flows\\step1.run) function onecode.csv_output ✅
  >> (flows\\step1.run) function onecode.Logger.info ⏩
-Processing "Step2"...
+Processing Step2...
  >> (flows\\step2.run) function onecode.Project ⏩
  >> (flows\\step2.run) function onecode.Logger.info ⏩
  >> (flows\\step2.run) function onecode.Logger.info ⏩
@@ -49,7 +49,7 @@ Processing "Step2"...
  >> (flows\\step2.run) function onecode.Logger.error ⏩
  >> (flows\\step2.run) function onecode.Logger.critical ⏩
  >> (flows\\step2.run) function utils.xx ⏩
-Processing "Step3"...
+Processing Step3...
  >> (flows\\step3.run) function onecode.slider ✅
  >> (flows\\step3.run) function onecode.Logger.info ⏩
  >> (flows\\step3.run) function onecode.file_input ✅
@@ -58,7 +58,7 @@ Processing "Step3"...
  >> (flows\\step3.run) function onecode.Logger.info ⏩
 """ == captured.out
     else:
-        assert """Processing "Step1"...
+        assert """Processing Step1...
  >> (flows.step1.run) function onecode.csv_reader ✅
  >> (flows.step1.run) function onecode.dropdown ✅
  >> (flows.step1.run) function onecode.Logger.info ⏩
@@ -68,7 +68,7 @@ Processing "Step3"...
  >> (flows.step1.run) function onecode.Logger.info ⏩
  >> (flows.step1.run) function onecode.csv_output ✅
  >> (flows.step1.run) function onecode.Logger.info ⏩
-Processing "Step2"...
+Processing Step2...
  >> (flows.step2.run) function onecode.Project ⏩
  >> (flows.step2.run) function onecode.Logger.info ⏩
  >> (flows.step2.run) function onecode.Logger.info ⏩
@@ -77,7 +77,7 @@ Processing "Step2"...
  >> (flows.step2.run) function onecode.Logger.error ⏩
  >> (flows.step2.run) function onecode.Logger.critical ⏩
  >> (flows.step2.run) function flows.utils.xx ⏩
-Processing "Step3"...
+Processing Step3...
  >> (flows.step3.run) function onecode.slider ✅
  >> (flows.step3.run) function onecode.Logger.info ⏩
  >> (flows.step3.run) function onecode.file_input ✅

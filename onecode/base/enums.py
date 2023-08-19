@@ -87,6 +87,7 @@ class Mode(str, Enum):
     LOAD_THEN_EXECUTE   = "_load_then_execute"       # noqa: E-221
     EXTRACT             = "_extract"                 # noqa: E-221
     EXTRACT_ALL         = "_extract_all"             # noqa: E-221
+    BUILD_GUI           = "_build_gui"               # noqa: E-221
 
 
 class ElementType(str, Enum):

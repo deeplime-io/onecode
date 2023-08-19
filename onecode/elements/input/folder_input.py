@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import Any, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -124,3 +124,9 @@ class FolderInput(InputElement):
             raise FileNotFoundError(f"[{self.key}] Folder not found: {value}")
         if not os.path.isdir(value):
             raise NotADirectoryError(f"[{self.key}] Path is not a folder: {value}")
+
+    def _json_form(self) -> Dict:
+        return {
+            "type": "string",
+            "format": "data-url"
+        }
