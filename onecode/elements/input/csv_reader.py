@@ -101,12 +101,12 @@ class CsvReader(InputElement):
 
         """
         if self._value is not None:
-            if type(self._value) == str:
+            if type(self._value) is str:
                 filepath = Project().get_input_path(self._value)
                 return pacsv.read_csv(filepath).to_pandas() if os.path.exists(filepath) else None
 
-            elif type(self._value) == list and all(
-                type(v) == str for v in self._value
+            elif type(self._value) is list and all(
+                type(v) is str for v in self._value
             ):
                 return [
                     pacsv.read_csv(

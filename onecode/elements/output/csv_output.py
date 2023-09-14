@@ -44,16 +44,22 @@ class CsvOutput(OutputElement):
 
         !!! example
             ```py
+            import pandas as pd
             from onecode import csv_output, Mode, Project
 
-            Project().mode = Mode.CONSOLE
-            widget = csv_output(
+            Project().mode = Mode.EXECUTE
+            Project().current_flow = 'test'
+
+            csv_file = csv_output(
                 key="CsvOutput",
                 value="/path/to/file.csv",
                 label="My CsvOutput",
                 tags=['CSV']
             )
-            print(widget)
+
+            df = pd.DataFrame([[0, 1, 2], [3, 4, 5]], columns=['A', 'B', 'C'])
+            df.to_csv(csv_file, index=False)
+            print(csv_file)
             ```
 
             ```py title="Output"
@@ -73,9 +79,9 @@ class CsvOutput(OutputElement):
     def value(self) -> str:
         """
         Returns:
-            The path or list of paths for the output file(s): if paths are not absolute, then
-            they are considered relative to the data output folder. See
-            [Best Practices With Data][best-practices-with-data] for more information.
+            The path to the output file: if path are not absolute, then it is considered relative
+            to the data output folder. See [Best Practices With Data][best-practices-with-data]
+            for more information.
 
         """
         return Project().get_output_path(self._value)

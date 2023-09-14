@@ -376,7 +376,7 @@ class InputElement(ABC):
                 raise TypeError(f"Invalid value type for {value}, expected: {self._value_type}")
 
         else:
-            if type(value) != list:
+            if type(value) is not list:
                 raise TypeError(f"Invalid value {value}, expected: list({self._value_type})")
 
             elif all(is_type(v, self._value_type) for v in value):

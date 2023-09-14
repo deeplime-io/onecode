@@ -102,7 +102,7 @@ class FolderInput(InputElement):
             if is_type(self._value, self._value_type):
                 return Project().get_input_path(self._value)
 
-            elif type(self._value) == list and all(
+            elif type(self._value) is list and all(
                 is_type(v, self._value_type) for v in self._value
             ):
                 return [
