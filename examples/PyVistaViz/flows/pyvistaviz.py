@@ -12,15 +12,18 @@ import onecode
 import pyvista as pv
 import numpy as np
 
-from onecode import pyvista_vrml_output
+from onecode import pyvista_vrml_output, slider, Logger
 
 
 def run():
+    step = slider('resolution step', 0.25, min=0.05, max=2.)
+
     ## Create coordinate data
-    x = np.arange(-10, 10, 0.25)
-    y = np.arange(-10, 10, 0.25)
+    x = np.arange(-10, 10, step)
+    y = np.arange(-10, 10, step)
     x, y = np.meshgrid(x, y)
     z = np.sin(np.sqrt(x**2 + y**2))
+    Logger.info(f'Meshgrid {len(x)} x {len(y)}')
 
     ## Set up plotter
     plotter = pv.Plotter(window_size=[400, 400])

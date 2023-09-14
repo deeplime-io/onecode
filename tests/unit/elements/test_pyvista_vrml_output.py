@@ -4,7 +4,7 @@ import shutil
 
 import pytest
 
-from onecode import Env, Mode, PyvistaVrmlOutput, Project
+from onecode import Env, Mode, Project, PyvistaVrmlOutput
 from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
 
@@ -117,7 +117,8 @@ def test_execute_invalid_extension_pyvista_vrml_output():
     with pytest.raises(ValueError) as excinfo:
         widget()
 
-    assert "[pyvistavrmloutput] Invalid VRML extension: .txt (accepted: .vrml)" == str(excinfo.value)
+    assert "[pyvistavrmloutput] Invalid VRML extension: .txt (accepted: .vrml)" == \
+        str(excinfo.value)
 
     try:
         shutil.rmtree(folder_path)
