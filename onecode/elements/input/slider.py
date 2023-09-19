@@ -76,7 +76,7 @@ class Slider(InputElement):
         # cast to float in case int is provided
         converted = None
         if value is not None:
-            converted = [float(v) for v in value] if type(value) == list else float(value)
+            converted = [float(v) for v in value] if type(value) is list else float(value)
 
         super().__init__(
             key,

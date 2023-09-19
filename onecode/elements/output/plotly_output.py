@@ -22,6 +22,9 @@ class PlotlyOutput(OutputElement):
         """
         A Plotly chart with a label on top.
 
+        !!! warning
+            Required package: `plotly`.
+
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
                 Project(), otherwise it will lead to conflicts at runtime in both execution and
@@ -44,16 +47,28 @@ class PlotlyOutput(OutputElement):
 
         !!! example
             ```py
-            from onecode import csv_output, Mode, Project
+            import plotly
+            import plotly.graph_objects as go
+            from onecode import plotly_output, Mode, Project
 
-            Project().mode = Mode.CONSOLE
-            widget = plotly_output(
+            Project().mode = Mode.EXECUTE
+            Project().current_flow = 'test'
+
+            plot_file = plotly_output(
                 key="PlotlyOutput",
                 value="/path/to/file.json",
                 label="My PlotlyOutput",
                 tags=['Graph']
             )
-            print(widget)
+
+            fig = go.Figure(
+                data=[go.Bar(x=[1, 2, 3], y=[1, 3, 2])],
+                layout=go.Layout(
+                    title=go.layout.Title(text="A Figure Specified By A Graph Object")
+                )
+            )
+            plotly.io.write_json(fig, plot_file)
+            print(plot_file)
             ```
 
             ```py title="Output"
@@ -73,9 +88,9 @@ class PlotlyOutput(OutputElement):
     def value(self) -> str:
         """
         Returns:
-            The path or list of paths for the output file(s): if paths are not absolute, then
-            they are considered relative to the data output folder. See
-            [Best Practices With Data][best-practices-with-data] for more information.
+            The path to the output file: if path are not absolute, then it is considered relative
+            to the data output folder. See [Best Practices With Data][best-practices-with-data]
+            for more information.
 
         """
         return Project().get_output_path(self._value)
@@ -90,7 +105,7 @@ class PlotlyOutput(OutputElement):
             ValueError: if the file does not have a JSON extension `.json`.
 
         """
-        _, ext = os.path.splitext(self.value)
+        _, ext = os.path.splitext(value)
         valid_ext = [
             '.json',
         ]

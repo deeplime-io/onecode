@@ -45,16 +45,29 @@ class ImageOutput(OutputElement):
 
         !!! example
             ```py
+            import matplotlib.pyplot as plt
+            import numpy as np
             from onecode import image_output, Mode, Project
 
-            Project().mode = Mode.CONSOLE
-            widget = image_output(
+            Project().mode = Mode.EXECUTE
+            Project().current_flow = 'test'
+
+            image_file = image_output(
                 key="ImageOutput",
                 value="/path/to/file.jpg",
                 label="My ImageOutput",
                 tags=['Image']
             )
-            print(widget)
+
+            t = np.arange(0.0, 2.0, 0.01)
+            s = 1 + np.sin(2 * np.pi * t)
+            fig, ax = plt.subplots()
+            ax.plot(t, s)
+            ax.set(xlabel='time (s)', ylabel='voltage (mV)')
+            ax.grid()
+
+            fig.savefig(image_file)
+            print(image_file)
             ```
 
             ```py title="Output"
@@ -74,9 +87,9 @@ class ImageOutput(OutputElement):
     def value(self) -> str:
         """
         Returns:
-            The path or list of paths for the output file(s): if paths are not absolute, then
-            they are considered relative to the data output folder. See
-            [Best Practices With Data][best-practices-with-data] for more information.
+            The path to the output file: if path are not absolute, then it is considered relative
+            to the data output folder. See [Best Practices With Data][best-practices-with-data]
+            for more information.
 
         """
         return Project().get_output_path(self._value)
