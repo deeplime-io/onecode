@@ -1275,19 +1275,19 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>The path or list of paths for the output file(s): if paths are not absolute, then</p></td>
+          <td><p>The path to the output file: if path are not absolute, then it is considered relative</p></td>
         </tr>
         <tr>
           <td>
                 <code>str</code>
           </td>
-          <td><p>they are considered relative to the data output folder. See</p></td>
+          <td><p>to the data output folder. See <a class="autorefs autorefs-internal" href="../../../../tips_and_tricks/#best-practices-with-data">Best Practices With Data</a></p></td>
         </tr>
         <tr>
           <td>
                 <code>str</code>
           </td>
-          <td><p><a class="autorefs autorefs-internal" href="../../../../tips_and_tricks/#best-practices-with-data">Best Practices With Data</a> for more information.</p></td>
+          <td><p>for more information.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1409,16 +1409,22 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
   </table>
       <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">csv_output</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">csv_output</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
 
-<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">CONSOLE</span>
-<span class="n">widget</span> <span class="o">=</span> <span class="n">csv_output</span><span class="p">(</span>
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">current_flow</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+
+<span class="n">csv_file</span> <span class="o">=</span> <span class="n">csv_output</span><span class="p">(</span>
     <span class="n">key</span><span class="o">=</span><span class="s2">&quot;CsvOutput&quot;</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/file.csv&quot;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My CsvOutput&quot;</span><span class="p">,</span>
     <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CSV&#39;</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.csv&quot;</span>
 </code></pre></div>
