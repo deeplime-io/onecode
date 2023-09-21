@@ -26,6 +26,7 @@ def test_empty_project():
         'onecode.CsvOutput',
         'onecode.ImageOutput',
         'onecode.PlotlyOutput',
+        'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput'
     }
     assert p.mode == Mode.EXECUTE
@@ -69,6 +70,7 @@ def test_project_reset():
         'onecode.CsvOutput',
         'onecode.ImageOutput',
         'onecode.PlotlyOutput',
+        'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
         'NewLib.NewElement'
     }
@@ -102,6 +104,7 @@ def test_project_reset():
         'onecode.CsvOutput',
         'onecode.ImageOutput',
         'onecode.PlotlyOutput',
+        'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
     }
     assert p.mode == Mode.CONSOLE
