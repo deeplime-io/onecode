@@ -1,2 +1,2 @@
 lasio==0.30
-onecode[tech-expert]==0.4.0
+onecode[tech-expert]>=0.3.0
