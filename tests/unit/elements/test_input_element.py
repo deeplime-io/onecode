@@ -13,6 +13,6 @@ def test_instantiation_error():
 
     assert strip("""
         Can't instantiate abstract class InputElement with abstract methods
-        _validate, _value_type
+        _json_form, _validate, _value_type
     """) == \
         str(excinfo.value)
