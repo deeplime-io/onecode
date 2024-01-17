@@ -23,7 +23,7 @@ def is_type(
 
     """
     try:
-        check_type(value=obj, expected_type=t, argname='value')
+        check_type(value=obj, expected_type=t)
         return True
 
     except Exception:

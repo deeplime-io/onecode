@@ -5,7 +5,6 @@ import os
 from typing import Any, Dict, List, Optional, Union
 
 import pandas as pd
-from pyarrow import csv as pacsv
 
 from ...base.decorator import check_type
 from ...base.project import Project

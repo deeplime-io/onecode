@@ -1,10 +1,11 @@
 # SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from enum import Enum
+# strenum to allow for code backward-compat between Python 3.10 and Python 3.11+
+from strenum import StrEnum
 
 
-class Env(str, Enum):
+class Env(StrEnum):
     """
     Available environment variables for OneCode projects:
 
@@ -24,7 +25,7 @@ class Env(str, Enum):
     ONECODE_LOGGER_NAME     = "|OneCode|"               # noqa: E-221
 
 
-class ConfigOption(str, Enum):
+class ConfigOption(StrEnum):
     """
     Available options to control the configuration of the project.
 
@@ -39,7 +40,7 @@ class ConfigOption(str, Enum):
     LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
 
 
-class Mode(str, Enum):
+class Mode(StrEnum):
     """
     Available modes to run OneCode projects:
 
@@ -90,7 +91,7 @@ class Mode(str, Enum):
     BUILD_GUI           = "_build_gui"               # noqa: E-221
 
 
-class ElementType(str, Enum):
+class ElementType(StrEnum):
     """
     Available element type variables. These element types are typically used by specific modes
     (e.g. `EXTRACT` and `EXTRACT_ALL` modes).

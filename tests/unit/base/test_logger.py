@@ -90,9 +90,12 @@ def test_invalid_handler():
     Logger().add_handler(handler)
     Logger.info("Hello from OneCode!")
 
-    assert handler.log.split(' - ')[1] == \
-        str(f"{Env.ONECODE_LOGGER_NAME}.test_logger.py:91")
-    assert handler.log.split(' - ')[2] == str("Hello from OneCode!")
+    log_str = handler.log.split(' - ')
+    assert log_str[1] in [
+        str(f"{Env.ONECODE_LOGGER_NAME}.test_logger.py:91"),
+        str(f"{Env.ONECODE_LOGGER_NAME}.logger.py:113")         # when run through pycov
+    ]
+    assert log_str[2] == str("Hello from OneCode!")
 
 
 def test_flush_config_option(caplog):

@@ -6,7 +6,7 @@ import json
 import os
 from collections import OrderedDict
 from glob import iglob
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import pydash
 from astunparse import unparse
@@ -64,8 +64,8 @@ def _get_flow_choices(project_path: str) -> List[Choice]:     # pragma: no cover
 @check_type
 def _add_flow(
     project_path: str,
-    name: str,
-    before: str = None
+    name: Optional[str],
+    before: Optional[str] = None
 ) -> None:
     """
     Internal function to add a flow to an existing OneCode project.

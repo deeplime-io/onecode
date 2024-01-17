@@ -78,9 +78,17 @@ def test_extend_input_element_missing_validate():
     with pytest.raises(TypeError) as excinfo:
         _MyInputElement('test', 'test_value', None, 5)
 
-    method = 'method' if sys.version_info.minor > 8 else 'methods'
-    assert f"Can't instantiate abstract class _MyInputElement with abstract {method} _validate" == \
-        str(excinfo.value)
+    py_version = sys.version_info
+    err_str = "Can't instantiate abstract class _MyInputElement with abstract methods _validate"
+    if sys.version_info >= (3, 12):
+        err_str = strip("""
+            Can't instantiate abstract class _MyInputElement without an implementation
+            for abstract method '_validate'
+        """)
+    elif py_version >= (3, 9):
+        err_str = "Can't instantiate abstract class _MyInputElement with abstract method _validate"
+
+    assert err_str == str(excinfo.value)
 
 
 def test_extend_input_element_missing_json_form():
@@ -107,9 +115,17 @@ def test_extend_input_element_missing_json_form():
     with pytest.raises(TypeError) as excinfo:
         _MyInputElement('test', 'test_value', None, 5)
 
-    method = 'method' if sys.version_info.minor > 8 else 'methods'
-    assert f"Can't instantiate abstract class _MyInputElement with abstract {method} _json_form" \
-        == str(excinfo.value)
+    py_version = sys.version_info
+    err_str = "Can't instantiate abstract class _MyInputElement with abstract methods _json_form"
+    if sys.version_info >= (3, 12):
+        err_str = strip("""
+            Can't instantiate abstract class _MyInputElement without an implementation
+            for abstract method '_json_form'
+        """)
+    elif py_version >= (3, 9):
+        err_str = "Can't instantiate abstract class _MyInputElement with abstract method _json_form"
+
+    assert err_str == str(excinfo.value)
 
 
 def test_extend_input_element_invalid_extra_args():

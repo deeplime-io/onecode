@@ -5,7 +5,7 @@ import ast
 import os
 from typing import Callable
 
-from pydantic import validate_arguments
+from pydantic import validate_call
 
 from .enums import Env
 
@@ -23,6 +23,6 @@ def check_type(func: Callable):  # pragma: no cover
         Env.ONECODE_DO_TYPECHECK in os.environ and
         bool(ast.literal_eval(os.environ[Env.ONECODE_DO_TYPECHECK]))
     ):
-        return validate_arguments(func, config=dict(arbitrary_types_allowed=True))
+        return validate_call(func, config=dict(arbitrary_types_allowed=True))
 
     return func

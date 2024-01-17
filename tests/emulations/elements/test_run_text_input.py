@@ -235,7 +235,7 @@ def test_invalid_name_key():
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
         f.write("""
     try:
-        x = onecode.text_input('_my_text', True)
+        x = onecode.text_input('_my_text', None, optional=True)
     except ValueError as err:
         with open("stdout.txt", 'w') as f:
             f.write(str(err))

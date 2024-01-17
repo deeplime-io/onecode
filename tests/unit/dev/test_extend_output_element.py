@@ -4,6 +4,7 @@ from typing import Any
 import pytest
 
 from onecode import OutputElement, Project
+from tests.utils.format import strip
 
 
 @pytest.fixture
@@ -59,10 +60,17 @@ def test_extend_output_element_missing_validate():
     with pytest.raises(TypeError) as excinfo:
         _MyOutputElement('test', 'test_value', None, 5)
 
-    method = 'method' if sys.version_info.minor > 8 else 'methods'
-    assert \
-        f"Can't instantiate abstract class _MyOutputElement with abstract {method} _validate" == \
-        str(excinfo.value)
+    py_version = sys.version_info
+    err_str = "Can't instantiate abstract class _MyOutputElement with abstract methods _validate"
+    if sys.version_info >= (3, 12):
+        err_str = strip("""
+            Can't instantiate abstract class _MyOutputElement without an implementation
+            for abstract method '_validate'
+        """)
+    elif py_version >= (3, 9):
+        err_str = "Can't instantiate abstract class _MyOutputElement with abstract method _validate"
+
+    assert err_str == str(excinfo.value)
 
 
 def test_extend_output_element_invalid_extra_args():

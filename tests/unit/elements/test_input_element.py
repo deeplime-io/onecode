@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from onecode import InputElement
@@ -11,8 +13,15 @@ def test_instantiation_error():
             value='test_value',
         )
 
-    assert strip("""
+    err_str = strip("""
         Can't instantiate abstract class InputElement with abstract methods
         _json_form, _validate, _value_type
-    """) == \
-        str(excinfo.value)
+    """)
+
+    if sys.version_info >= (3, 12):
+        err_str = strip("""
+            Can't instantiate abstract class InputElement without an implementation
+            for abstract methods '_json_form', '_validate', '_value_type'
+        """)
+
+    assert err_str == str(excinfo.value)
