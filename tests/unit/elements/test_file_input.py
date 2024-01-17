@@ -19,11 +19,11 @@ def test_console_single_file_input():
         key="FileInput",
         value=None,
         optional=True,
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == FileInput
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "FileInput"
 
 

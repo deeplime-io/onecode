@@ -19,11 +19,11 @@ def test_console_csv_reader():
         key="CsvReader",
         value=None,
         optional=True,
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == CsvReader
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "CsvReader"
 
 

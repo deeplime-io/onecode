@@ -10,11 +10,11 @@ def test_console_single_dropdown():
         key="Dropdown",
         value="A",
         options=["A", "B"],
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == Dropdown
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "Dropdown"
 
 

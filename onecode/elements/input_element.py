@@ -123,6 +123,18 @@ class InputElement(ABC):
         self._extra_args = pydash.omit(kwargs, reserved_args)
         self.__dict__.update(self._extra_args)
 
+    @staticmethod
+    def metadata() -> Dict:
+        """
+        Re-implement this function to process the `value` and extract metadata from it.
+        By default, it returns an empty dictionnary, meaning no metadata.
+
+        Returns:
+            A dictionnary of metadata.
+
+        """
+        return {}
+
     @property
     def kind(self) -> str:
         """

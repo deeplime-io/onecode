@@ -83,6 +83,41 @@ class CsvReader(InputElement):
             **kwargs
         )
 
+    @staticmethod
+    def metadata(value: Optional[Union[str, List[str]]]) -> Union[List[Dict], Dict]:
+        """
+        Returns the metadata associated to the given CSV(s).
+
+        Returns:
+            A dictionnary metadata for each CSV path provided:
+            ```py
+            {
+                "columns": df.columns.to_list(),
+                "stats": df.describe().to_json()
+            }
+            ```
+
+        """
+        meta = None
+
+        if type(value) is list:
+            meta = []
+            for v in value:
+                df = pd.read_csv(v, engine='pyarrow')
+                meta.push({
+                    "columns": df.columns.to_list(),
+                    "stats": df.describe().to_json()
+                })
+
+        else:
+            df = pd.read_csv(value, engine='pyarrow')
+            meta = {
+                "columns": df.columns.to_list(),
+                "stats": df.describe().to_json()
+            }
+
+        return meta
+
     @property
     def _value_type(self) -> type:
         """
@@ -102,17 +137,18 @@ class CsvReader(InputElement):
         if self._value is not None:
             if type(self._value) is str:
                 filepath = Project().get_input_path(self._value)
-                return pacsv.read_csv(filepath).to_pandas() if os.path.exists(filepath) else None
+                return pd.read_csv(filepath, engine='pyarrow') if os.path.exists(filepath) or filepath.startswith('https://') else None
 
             elif type(self._value) is list and all(
                 type(v) is str for v in self._value
             ):
                 return [
-                    pacsv.read_csv(
+                    pd.read_csv(
+                        Project().get_input_path(val),
+                        engine='pyarrow'
+                    ) if os.path.exists(
                         Project().get_input_path(val)
-                    ).to_pandas() if os.path.exists(
-                        Project().get_input_path(val)
-                    ) else None for val in self._value
+                    ) or filepath.startswith('https://') else None for val in self._value
                 ]
 
         return None

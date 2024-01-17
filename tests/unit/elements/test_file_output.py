@@ -13,11 +13,11 @@ def test_console_file_output():
         key="FileOutput",
         value="my_file.txt",
         tags=["Core"],
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == FileOutput
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "FileOutput"
 
 

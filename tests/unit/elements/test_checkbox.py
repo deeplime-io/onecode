@@ -9,11 +9,11 @@ def test_console_checkbox():
     widget = Checkbox(
         key="Checkbox",
         value=True,
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == Checkbox
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "Checkbox"
 
 

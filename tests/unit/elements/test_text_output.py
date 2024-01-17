@@ -14,11 +14,11 @@ def test_console_text_output():
         value="my_file.txt",
         tags=["Core"],
         truncate_at=25000,
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == TextOutput
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "TextOutput"
 
 

@@ -15,11 +15,11 @@ def test_console_plotly_output():
         key="PlotlyOutput",
         value="my_file.json",
         tags=["JSON"],
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == PlotlyOutput
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "PlotlyOutput"
 
 

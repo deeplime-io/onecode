@@ -11,11 +11,11 @@ def test_console_single_number_input():
         value=5.1,
         min=5,
         max=6,
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == NumberInput
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "NumberInput"
 
 

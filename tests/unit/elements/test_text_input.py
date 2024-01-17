@@ -10,11 +10,11 @@ def test_console_single_text_input():
     widget = TextInput(
         key="TextInput",
         value="My Text",
-        metadata="data"
+        testdata="data"
     )
 
     assert type(widget()) == TextInput
-    assert widget.metadata == "data"
+    assert widget.testdata == "data"
     assert widget.kind == "TextInput"
 
 
