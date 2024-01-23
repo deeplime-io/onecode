@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
+# SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
 # strenum to allow for code backward-compat between Python 3.10 and Python 3.11+
