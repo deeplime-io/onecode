@@ -1,8 +1,9 @@
-# SPDX-FileCopyrightText: 2023 DeepLime <contact@deeplime.io>
+# SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
+import re
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import pydash
 from slugify import slugify
@@ -124,7 +125,7 @@ class InputElement(ABC):
         self.__dict__.update(self._extra_args)
 
     @staticmethod
-    def metadata() -> Dict:
+    def metadata(value: Any) -> Dict:
         """
         Re-implement this function to process the `value` and extract metadata from it.
         By default, it returns an empty dictionnary, meaning no metadata.
@@ -410,6 +411,33 @@ class InputElement(ABC):
 
         return k, params
 
+    def dependencies(self) -> List[str]:
+        """
+        Return the dependent elements used in dynamic expressions if any
+        (typicall from `optional`, `count`, etc.).
+
+        """
+        deps = set()
+        pattern = re.compile(r'\$(.*?)\$')
+
+        for expr in self._dynamic_attributes():
+            vars = pattern.findall(str(expr))
+            for v in vars:
+                deps.add(v)
+
+        return list(deps)
+
+    def _dynamic_attributes(self) -> List[str]:
+        """
+        Re-implement to expose attributes with potential dynamic expressions.
+        By default, `optional` and `count` may hold dynamic expressions.
+
+        """
+        return [
+            self.optional,
+            self.count
+        ]
+
     @abstractmethod
     def _json_form(self) -> Dict:
         pass
@@ -423,8 +451,10 @@ class InputElement(ABC):
             "optional": self.optional,
             "properties": {
                 **self._json_form(),
-                "title": self.label
-            }
+                "title": self.label,
+                "metadata": "metadata" in self.__class__.__dict__,
+                "dependencies": self.dependencies()
+            },
         }
 
         return k, params

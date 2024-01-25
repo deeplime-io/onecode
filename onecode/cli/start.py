@@ -62,9 +62,9 @@ def extract_gui(verbose: bool = False) -> None:
     data = {}
 
     for k, v in statements.items():
-        p, d, r = process(v["calls"])
+        _params, _data, _required = process(v["calls"])
 
-        if k in p.keys():
+        if k in _params.keys():
             raise ValueError(
                 f"Step cannot carry the same name as a parameter {k}"
             )
@@ -72,11 +72,23 @@ def extract_gui(verbose: bool = False) -> None:
         schema["properties"][k] = {
             "type": "object",
             "title": k,
-            "required": r,
-            "properties": p
+            "required": _required,
+            "properties": _params
         }
 
-        data = {**data, **d}
+        data = {**data, **_data}
+
+        # refactor dependencies for easier triggering from the UI
+        deps = {}
+        for key, props in _params.items():
+            for elt in props["dependencies"]:
+                if elt not in deps:
+                    deps[elt] = set()
+                deps[elt].add(key)
+            props["dependencies"] = []
+
+        for elt_from, elt_to in deps.items():
+            schema["properties"][k]["properties"][elt_from]["dependencies"] = list(elt_to)
 
     with open('app_schema.json', 'w') as out_schema:
         json.dump(schema, out_schema, indent=4)

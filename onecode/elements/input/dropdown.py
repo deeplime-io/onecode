@@ -157,6 +157,18 @@ class Dropdown(InputElement):
         else:
             self._validate_option_value(value)
 
+    def _dynamic_attributes(self) -> List[str]:
+        """
+        Expose `options` in addition to `optional` and `count` as potential holder of dynamic
+        expressions.
+
+        """
+        return [
+            self.optional,
+            self.count,
+            self.options
+        ]
+
     def _json_form(self) -> Dict:
         if self.multiple:
             return {

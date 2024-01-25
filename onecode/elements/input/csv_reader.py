@@ -84,7 +84,7 @@ class CsvReader(InputElement):
         )
 
     @staticmethod
-    def metadata(value: Optional[Union[str, List[str]]]) -> Union[List[Dict], Dict]:
+    def metadata(value: str) -> Dict:
         """
         Returns the metadata associated to the given CSV(s).
 
@@ -93,28 +93,17 @@ class CsvReader(InputElement):
             ```py
             {
                 "columns": df.columns.to_list(),
-                "stats": df.describe().to_json()
+                "stats": df.describe().to_dict()
             }
             ```
 
         """
-        meta = None
+        df = pd.read_csv(value, engine='pyarrow')
 
-        if type(value) is list:
-            meta = []
-            for v in value:
-                df = pd.read_csv(v, engine='pyarrow')
-                meta.push({
-                    "columns": df.columns.to_list(),
-                    "stats": df.describe().to_json()
-                })
-
-        else:
-            df = pd.read_csv(value, engine='pyarrow')
-            meta = {
-                "columns": df.columns.to_list(),
-                "stats": df.describe().to_json()
-            }
+        meta = {
+            "columns": df.columns.to_list(),
+            "stats": df.describe().to_dict()
+        }
 
         return meta
 
@@ -137,7 +126,8 @@ class CsvReader(InputElement):
         if self._value is not None:
             if type(self._value) is str:
                 filepath = Project().get_input_path(self._value)
-                return pd.read_csv(filepath, engine='pyarrow') if os.path.exists(filepath) or filepath.startswith('https://') else None
+                return pd.read_csv(filepath, engine='pyarrow') \
+                    if os.path.exists(filepath) or filepath.startswith('https://') else None
 
             elif type(self._value) is list and all(
                 type(v) is str for v in self._value
