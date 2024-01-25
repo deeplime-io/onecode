@@ -20,7 +20,7 @@ class VideoOutput(OutputElement):
         **kwargs: Any
     ):
         """
-        An embedded video player
+        An embedded video player.
 
         Args:
             key: ID of the element. It must be unique as it is the key used to story data in
