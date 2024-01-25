@@ -558,8 +558,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pyvista_vrml_output" class="md-nav__link">
+    pyvista_vrml_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#text_output" class="md-nav__link">
     text_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video_output" class="md-nav__link">
+    video_output
   </a>
   
 </li>
@@ -1200,8 +1214,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pyvista_vrml_output" class="md-nav__link">
+    pyvista_vrml_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#text_output" class="md-nav__link">
     text_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video_output" class="md-nav__link">
+    video_output
   </a>
   
 </li>
@@ -1228,7 +1256,9 @@
 <li><a href="#file_output">file_output</a></li>
 <li><a href="#image_output">image_output</a></li>
 <li><a href="#plotly_output">plotly_output</a></li>
+<li><a href="#pyvista_vrml_output">pyvista_vrml_output</a></li>
 <li><a href="#text_output">text_output</a></li>
+<li><a href="#video_output">video_output</a></li>
 </ul>
 <h2 id="csv_output">csv_output<a class="headerlink" href="#csv_output" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">csv_output</span><span class="p">(</span>
@@ -1808,6 +1838,157 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
 
   </div>
 
+</div><h2 id="pyvista_vrml_output">pyvista_vrml_output<a class="headerlink" href="#pyvista_vrml_output" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pyvista_vrml_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>A Pyvista 3D scene using a VRML output.
+See <code>pyvista.export_vrml()</code> for more information. See example <code>PyVistaViz</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Required packages: <code>pyvista</code>, <code>stpyvista</code>.</p>
+</div>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to story data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see
+<a href="https://github.com/deeplime-io/onecode/tree/main/examples">examples projects</a>).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Path to the output Plotly JSON file which must have a <code>.json</code> extension. Unless
+absolute, a path is relative to the <code>outputs</code> folder of the flow currently running.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>Typically to be used by Streamlit for display purpose only. If not defined, it
+will default to the <code>key</code>.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>tags</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td><p>Optional meta-data information about the expected file. This information is only
+used when the JSON output attributes are written to the output manifest.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Extra user meta-data to attach to the element. Argument names cannot overwrite
+existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">pyvista_vrml_output</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">current_flow</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+
+<span class="n">vrml_file</span> <span class="o">=</span> <span class="n">pyvista_vrml_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;PyvistaVrmlOutput&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/file.vrml&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My PyvistaVrmlOutput&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Graph&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">window_size</span><span class="o">=</span><span class="p">[</span><span class="mi">600</span><span class="p">,</span><span class="mi">600</span><span class="p">])</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Cube</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">mesh</span><span class="p">[</span><span class="s1">&#39;myscalar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="s1">&#39;myscalar&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">view_isometric</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">export_vrml</span><span class="p">(</span><span class="n">vrml_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vrml_file</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.vrml&quot;</span>
+</code></pre></div>
+</div>
+
+  </div>
+
 </div><h2 id="text_output">text_output<a class="headerlink" href="#text_output" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">text_output</span><span class="p">(</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1954,6 +2135,147 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.txt&quot;</span>
+</code></pre></div>
+</div>
+
+  </div>
+
+</div><h2 id="video_output">video_output<a class="headerlink" href="#video_output" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">video_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>An embedded video player.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to story data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see
+<a href="https://github.com/deeplime-io/onecode/tree/main/examples">examples projects</a>).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Path to the output video file which must have a <code>.mp4</code> extension. Unless
+absolute, a path is relative to the <code>outputs</code> folder of the flow currently running.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>Typically to be used by Streamlit for display purpose only. If not defined, it
+will default to the <code>key</code>.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>tags</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td><p>Optional meta-data information about the expected file. This information is only
+used when the JSON output attributes are written to the output manifest.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Extra user meta-data to attach to the element. Argument names cannot overwrite
+existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">video_output</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">current_flow</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+
+<span class="n">video_file</span> <span class="o">=</span> <span class="n">video_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;VideoOutput&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/file.mp4&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My VideoOutput&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Video&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># define your animation here, for instance, with matplotlib</span>
+<span class="c1"># https://matplotlib.org/stable/api/animation_api.html</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">video_file</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.mp4&quot;</span>
 </code></pre></div>
 </div>
 
