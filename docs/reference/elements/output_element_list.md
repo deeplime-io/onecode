@@ -86,7 +86,7 @@ def text_output(
 
 ## video_output
 ```python
-def text_output(
+def video_output(
     key: str,
     value: str,
     label: Optional[str] = None,
