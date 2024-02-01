@@ -81,6 +81,7 @@ docs = [
 
 [tool.poetry.scripts]
 onecode-start = 'onecode.cli.start:main'
+onecode-build = 'onecode.cli.start:main'
 onecode-create = 'onecode.cli.create:main'
 onecode-add = 'onecode.cli.add:main'
 onecode-extract = 'onecode.cli.extract:main'
