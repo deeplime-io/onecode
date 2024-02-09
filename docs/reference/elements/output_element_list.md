@@ -4,6 +4,7 @@ Available output elements for OneCode projects:
 
 * [csv_output](#csv_output)
 * [file_output](#file_output)
+* [html_output](#html_output)
 * [image_output](#image_output)
 * [plotly_output](#plotly_output)
 * [pyvista_vrml_output](#pyvista_vrml_output)
@@ -33,6 +34,18 @@ def file_output(
 )
 ```
 ::: onecode.elements.output.file_output.FileOutput.__init__
+
+
+## file_output
+```python
+def html_output(
+    key: str,
+    value: str,
+    label: Optional[str] = None,
+    tags: Optional[List[str]] = None
+)
+```
+::: onecode.elements.output.html_output.HtmlOutput.__init__
 
 
 ## image_output
