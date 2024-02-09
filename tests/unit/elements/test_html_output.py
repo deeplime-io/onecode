@@ -2,6 +2,8 @@ import json
 import os
 import shutil
 
+import pytest
+
 from onecode import Env, HtmlOutput, Mode, Project
 from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
@@ -88,6 +90,34 @@ def test_load_then_execute_html_output():
             "tags": ["Core"],
             "kind": "HtmlOutput"
         }
+
+    try:
+        shutil.rmtree(folder_path)
+    except Exception:
+        pass
+
+
+def test_execute_invalid_extension_html_output():
+    _, folder, flow_id = _generate_flow_name()
+    tmp = _clean_flow(folder)
+    folder_path = os.path.join(tmp, folder)
+    data_path = os.path.join(folder_path, 'data')
+    os.makedirs(data_path)
+    os.environ[Env.ONECODE_PROJECT_DATA] = data_path
+    Project().reset()
+    Project().mode = Mode.EXECUTE
+    Project().current_flow = flow_id
+
+    widget = HtmlOutput(
+        key="HtmlOutput",
+        value="my_file.shtml",
+        tags=["HTML"]
+    )
+
+    with pytest.raises(ValueError) as excinfo:
+        widget()
+
+    assert "[htmloutput] Invalid file extension: .shtml (accepted: .html)" == str(excinfo.value)
 
     try:
         shutil.rmtree(folder_path)

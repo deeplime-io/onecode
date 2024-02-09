@@ -103,7 +103,7 @@ class HtmlOutput(OutputElement):
 
         if ext.lower() not in valid_ext:
             raise ValueError(
-                f"[{self.key}] Invalid image extension: {ext} (accepted: {', '.join(valid_ext)})"
+                f"[{self.key}] Invalid file extension: {ext} (accepted: {', '.join(valid_ext)})"
             )
 
     @staticmethod
