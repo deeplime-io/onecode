@@ -28,7 +28,9 @@ def test_empty_project():
         'onecode.PlotlyOutput',
         'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
-        'onecode.VideoOutput'
+        'onecode.VideoOutput',
+        'onecode.HtmlOutput',
+        'onecode.SectionHeader'
     }
     assert p.mode == Mode.EXECUTE
     assert p.current_flow is None
@@ -74,6 +76,8 @@ def test_project_reset():
         'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
         'onecode.VideoOutput',
+        'onecode.HtmlOutput',
+        'onecode.SectionHeader',
         'NewLib.NewElement'
     }
     assert p.mode == Mode.STREAMLIT
@@ -108,7 +112,9 @@ def test_project_reset():
         'onecode.PlotlyOutput',
         'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
-        'onecode.VideoOutput'
+        'onecode.VideoOutput',
+        'onecode.HtmlOutput',
+        'onecode.SectionHeader'
     }
     assert p.mode == Mode.CONSOLE
     assert p.current_flow is None
