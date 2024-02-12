@@ -265,7 +265,7 @@ if _selected == "Step1":
                 st.error(
                     '\n'.join(
                         traceback.format_exception(
-                            etype=type(_e),
+                            type(_e),
                             value=_e,
                             tb=_e.__traceback__
                         )
@@ -383,7 +383,7 @@ if _selected == "Step2":
                 st.error(
                     '\n'.join(
                         traceback.format_exception(
-                            etype=type(_e),
+                            type(_e),
                             value=_e,
                             tb=_e.__traceback__
                         )
@@ -538,7 +538,7 @@ if _selected == "Step3":
                 st.error(
                     '\n'.join(
                         traceback.format_exception(
-                            etype=type(_e),
+                            type(_e),
                             value=_e,
                             tb=_e.__traceback__
                         )

@@ -381,7 +381,7 @@ if _selected == {k}:
                 st.error(
                     '\\n'.join(
                         traceback.format_exception(
-                            etype=type(_e),
+                            type(_e),
                             value=_e,
                             tb=_e.__traceback__
                         )

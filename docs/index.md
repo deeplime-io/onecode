@@ -286,26 +286,22 @@ contributions.
 
 ---
 ## FAQ
-> Why did you choose Streamlit for interfacing OneCode? Are there any alternatives?
+> Is the utilization of Streamlit going away?
 
-There are some really good tools out there such as Panel and Dash. Technically, if you're up for it,
-you can extend OneCode add a `Panel` mode or a `Dash` mode. As long as you know the logic of these
-libraries and are able to determine the code to be generated, OneCode allows you to plug it in.
-
-We chose Streamlit for several of reasons:
-
-- its functioning is the closest one to the envisionned OneCode logic
-- it is simple enough to do everything without involving any explicit callback mechanism
-- it is easier for tech-savvies/data scientists to get started with, especially when it comes to
-create and customize new elements
+In a nutshell, yes. Streamlit is a great tool but has its own limitations and no longer fulfill our use case.
+Using Streamlit was always temporary and to get started really quickly but keeping Community plugins compatible
+together with rapid changes of the Streamlit API is not where we see valuable time spent (as a matter of fact,
+we had to stick to version < 1.18 whereas Streamlit is at 1.31 at the time of writing this doc).
+Note that this change will take place in OneCode `1.x` and a compatible `onecode-streamlit` library will be
+available as open-source under MIT License.
 
 > Why do I need OneCode at all, I could just build my application with Streamlit?
 
-That's absolutely true, Streamlit or other alternatives are perfectly suitable for that and as a
-matter of fact, you can make a more custom application. It is possible your scenario can work out
-without OneCode and that's definitely ok: pick the right tool for your use case.
-When it comes to deploying your application for different purposes (batch, interactive, etc.) or in
-different environments, you may find handy to not have to adapt your original code: it will
+That's absolutely true, Streamlit or other alternatives are perfectly suitable for that.
+However beware of the limitations you can hit (file size handling, data caching, server overload, etc.).
+There are scenarios that can work out without OneCode and that's definitely ok: pick the right tool for your use case.
+When it comes to deploying your application for different purposes (batch, interactive, long process, large file processing, etc.)
+or in different environments, you may find handy to not have to adapt your original code: it will
 definitely save you time and frustration and let you focus on the gist of the work rather than the
 deployment work.
 
@@ -316,13 +312,14 @@ If you would like to add new elements or customize some elements' behavior, chec
 
 > Are there any collaborative platform that run OneCode projects?
 
-There is one in the works called `GeoLand`, centralizing data and OneCode projects. It's at the
-Proof of Concept (POC) stage. [Contact us](mailto: contact@deeplime.io) if you would like be part of the beta-testers cohort.
+There is one in the works called at [onecode.rocks](https://onecode.rocks), centralizing data and OneCode projects.
+Sign up there if you would like be part of the beta-testers cohort.
 
 
 ---
 ## Credits
 Credits to all open-source libraries that helped build this project. Special thanks to:
 
-- Streamlit and its contributors for making such a great tool on which we can rely.
+- Streamlit and its contributors for making such a great tool that was very helpful to get started.
 - PyCG and its contributors for making the Call Graph algos essential to the OneCode mechanism.
+- Geode Solutions and Spotlight Earth for testing extensively the library and providing invaluable feedback.
