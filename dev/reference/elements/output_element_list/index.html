@@ -544,6 +544,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#file_output_1" class="md-nav__link">
+    file_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#image_output" class="md-nav__link">
     image_output
   </a>
@@ -1200,6 +1207,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#file_output_1" class="md-nav__link">
+    file_output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#image_output" class="md-nav__link">
     image_output
   </a>
@@ -1254,6 +1268,7 @@
 <ul>
 <li><a href="#csv_output">csv_output</a></li>
 <li><a href="#file_output">file_output</a></li>
+<li><a href="#html_output">html_output</a></li>
 <li><a href="#image_output">image_output</a></li>
 <li><a href="#plotly_output">plotly_output</a></li>
 <li><a href="#pyvista_vrml_output">pyvista_vrml_output</a></li>
@@ -1295,7 +1310,7 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1435,7 +1450,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1540,6 +1555,146 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
 
   </div>
 
+</div><h2 id="file_output_1">file_output<a class="headerlink" href="#file_output_1" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">html_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Link to HTML file opening in a new tab.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see
+<a href="https://github.com/deeplime-io/onecode/tree/main/examples">examples projects</a>).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Path to the output file. Unless absolute, a path is relative to the <code>outputs</code>
+folder of the flow currently running.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>label</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
+          </td>
+          <td><p>Typically to be used by Streamlit for display purpose only. If not defined, it
+will default to the <code>key</code>.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>tags</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td><p>Optional meta-data information about the expected file. This information is only
+used when the JSON output attributes are written to the output manifest.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Extra user meta-data to attach to the element. Argument names cannot overwrite
+existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">html_output</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">current_flow</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="n">html_output</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;HtmlOutput&quot;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/file.html&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My HtmlOutput&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;HTML&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;Hello OneCode!&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;/path/to/file.html&quot;</span>
+</code></pre></div>
+</div>
+
+  </div>
+
 </div><h2 id="image_output">image_output<a class="headerlink" href="#image_output" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">image_output</span><span class="p">(</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1575,7 +1730,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1727,7 +1882,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1878,7 +2033,7 @@ See <code>pyvista.export_vrml()</code> for more information. See example <code>P
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2025,7 +2180,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2175,7 +2330,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
