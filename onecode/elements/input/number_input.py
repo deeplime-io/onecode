@@ -26,7 +26,7 @@ class NumberInput(InputElement):
         A field for numerical values.
 
         Args:
-            key: ID of the element. It must be unique as it is the key used to story data in
+            key: ID of the element. It must be unique as it is the key used to store data in
                 Project(), otherwise it will lead to conflicts at runtime in both execution and
                 Streamlit modes. The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to

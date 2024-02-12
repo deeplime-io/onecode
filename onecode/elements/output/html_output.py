@@ -9,7 +9,7 @@ from ...base.project import Project
 from ..output_element import OutputElement
 
 
-class PyvistaVrmlOutput(OutputElement):
+class HtmlOutput(OutputElement):
     @check_type
     def __init__(
         self,
@@ -20,11 +20,7 @@ class PyvistaVrmlOutput(OutputElement):
         **kwargs: Any
     ):
         """
-        A Pyvista 3D scene using a VRML output.
-        See `pyvista.export_vrml()` for more information. See example `PyVistaViz`.
-
-        !!! warning
-            Required packages: `pyvista`, `stpyvista`.
+        Link to HTML file opening in a new tab.
 
         Args:
             key: ID of the element. It must be unique as it is the key used to store data in
@@ -33,8 +29,8 @@ class PyvistaVrmlOutput(OutputElement):
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see
                 [examples projects](https://github.com/deeplime-io/onecode/tree/main/examples)).
-            value: Path to the output Plotly JSON file which must have a `.json` extension. Unless
-                absolute, a path is relative to the `outputs` folder of the flow currently running.
+            value: Path to the output file. Unless absolute, a path is relative to the `outputs`
+                folder of the flow currently running.
             label: Typically to be used by Streamlit for display purpose only. If not defined, it
                 will default to the `key`.
             tags: Optional meta-data information about the expected file. This information is only
@@ -48,32 +44,26 @@ class PyvistaVrmlOutput(OutputElement):
 
         !!! example
             ```py
-            import pyvista as pv
-            from onecode import pyvista_vrml_output, Mode, Project
+            from onecode import html_output, Mode, Project
 
             Project().mode = Mode.EXECUTE
             Project().current_flow = 'test'
 
-            vrml_file = pyvista_vrml_output(
-                key="PyvistaVrmlOutput",
-                value="/path/to/file.vrml",
-                label="My PyvistaVrmlOutput",
-                tags=['Graph']
+            file = html_output(
+                key="HtmlOutput",
+                value="/path/to/file.html",
+                label="My HtmlOutput",
+                tags=['HTML']
             )
 
-            plotter = pv.Plotter(window_size=[600,600])
-            mesh = pv.Cube(center=(0,0,0))
-            mesh['myscalar'] = mesh.points[:, 2] * mesh.points[:, 0]
-            plotter.add_mesh(mesh, scalars='myscalar', cmap='bwr', line_width=1)
-            plotter.view_isometric()
-            plotter.background_color = 'white'
+            with open(file, 'w') as f:
+                f.write('<html><body>Hello OneCode!</body></html>')
 
-            plotter.export_vrml(vrml_file)
-            print(vrml_file)
+            print(file)
             ```
 
             ```py title="Output"
-            "/path/to/file.vrml"
+            "/path/to/file.html"
             ```
 
         """
@@ -103,42 +93,34 @@ class PyvistaVrmlOutput(OutputElement):
     ) -> None:
         """
         Raises:
-            ValueError: if the file does not have a VRML extension `.vrml`.
+            ValueError: if the file does not have a HTML extension, i-e: `.html`.
 
         """
-        _, ext = os.path.splitext(value)
+        _, ext = os.path.splitext(self.value)
         valid_ext = [
-            '.vrml',
+            '.html',
         ]
 
         if ext.lower() not in valid_ext:
             raise ValueError(
-                f"[{self.key}] Invalid VRML extension: {ext} (accepted: {', '.join(valid_ext)})"
+                f"[{self.key}] Invalid file extension: {ext} (accepted: {', '.join(valid_ext)})"
             )
-
-    @staticmethod
-    def imports() -> List[str]:
-        """
-        Returns:
-            Python import statements required by the Streamlit code.
-
-        """
-        return [
-            "import pyvista as pv",
-            "from stpyvista import stpyvista"
-        ]
 
     @staticmethod
     def streamlit() -> str:
         """
         Returns:
-            The Streamlit code to show a Pyvista 3D scene loading a VRML as a Pyvista Plotter.
+            The Streamlit code to show the filename with a hyperlink.
 
         """
         return """
-_scene = pv.Plotter()
-_scene.import_vrml(value)
-_scene.reset_camera()
-stpyvista(_scene, key='{key}')
+value = os.path.abspath(value)  # allows compat with Windows
+if not os.path.exists(value) and not os.path.isfile(value):
+    st.warning(f'Invalid file path: {{value}}')
 
+else:
+    st.markdown(
+        f"<a href='file://{value}' target='_blank'>{os.path.basename(value)}</a>",
+        unsafe_allow_html=True
+    )
 """
