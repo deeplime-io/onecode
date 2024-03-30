@@ -50,6 +50,9 @@ class NeuralNetInput(InputElement):
         elif dropout < 0 or dropout > 1:
             raise ValueError(f"Dropout must be in range [0, 1]: {dropout}")
 
+    def _json_form(self) -> Dict:
+        return {}
+
     def streamlit(
         self,
         id: str

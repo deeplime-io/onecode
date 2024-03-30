@@ -434,7 +434,7 @@ class InputElement(ABC):
 
         """
         return [
-            self.optional,
+            self._disabled,
             self.count
         ]
 
