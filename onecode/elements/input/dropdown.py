@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -168,24 +168,3 @@ class Dropdown(InputElement):
             self.count,
             self.options
         ]
-
-    def _json_form(self) -> Dict:
-        if self.multiple:
-            return {
-                "type": "array",
-                "uniqueItems": True,
-                "items": {
-                    "enum": self.options
-                }
-            }
-
-        else:
-            return {
-                "type": "object",
-                "properties": {
-                    self.key: {
-                        "title": self.label,
-                        "enum": self.options
-                    }
-                }
-            }

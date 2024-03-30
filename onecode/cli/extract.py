@@ -98,6 +98,7 @@ def extract_json(
         to_file: Path of the output file to dump the JSON to.
         all: If False, extract only the values of the parameter, otherwise extract values and
             associated data such as `label`, `kind`, etc.
+        verbose: If True, print out debug information.
 
     """
     Project().mode = Mode.EXTRACT_ALL if all else Mode.EXTRACT
@@ -137,7 +138,10 @@ def main(cli: bool = True) -> None:    # pragma: no cover
     parser = argparse.ArgumentParser(
         description='Extract OneCode project parameters to JSON file'
     )
-    parser.add_argument('output_file', help='Path to the output JSON file')
+    parser.add_argument(
+        'output_file',
+        help='Path to the output JSON file'
+    )
     parser.add_argument(
         '--all',
         help='Extract parameters with their full info set',

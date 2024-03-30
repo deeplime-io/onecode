@@ -15,13 +15,13 @@ def test_instantiation_error():
 
     err_str = strip("""
         Can't instantiate abstract class InputElement with abstract methods
-        _json_form, _validate, _value_type
+        _validate, _value_type
     """)
 
     if sys.version_info >= (3, 12):
         err_str = strip("""
             Can't instantiate abstract class InputElement without an implementation
-            for abstract methods '_json_form', '_validate', '_value_type'
+            for abstract methods _validate', '_value_type'
         """)
 
     assert err_str == str(excinfo.value)

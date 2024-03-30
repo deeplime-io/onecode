@@ -91,10 +91,7 @@ def test_invalid_handler():
     Logger.info("Hello from OneCode!")
 
     log_str = handler.log.split(' - ')
-    assert log_str[1] in [
-        str(f"{Env.ONECODE_LOGGER_NAME}.test_logger.py:91"),
-        str(f"{Env.ONECODE_LOGGER_NAME}.logger.py:113")         # when run through pycov
-    ]
+    assert log_str[1] == '|OneCode|.validate_call_decorator.py:81'
     assert log_str[2] == str("Hello from OneCode!")
 
 

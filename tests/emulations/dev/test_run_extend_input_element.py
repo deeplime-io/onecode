@@ -22,7 +22,7 @@ def test_execute_single_count():
         'w'
     ) as f:
         f.write("""
-from typing import Any, Dict, Union
+from typing import Any, Union
 
 from onecode import InputElement
 
@@ -49,10 +49,6 @@ class MyInputElement(InputElement):
     ) -> None:
         pass
 
-    def _json_form(self) -> Dict:
-        return {
-            "type": "number"
-        }
 """)
 
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'w') as f:

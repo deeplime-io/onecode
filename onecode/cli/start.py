@@ -13,74 +13,41 @@ from ..base.decorator import check_type
 from ..base.enums import *  # noqa
 from ..base.enums import ElementType, Env, Mode
 from ..base.project import Project
+from ..cli.extract import process
 from ..utils.module import register_ext_module
 from .utils import process_call_graph
 
 
 @check_type
-def process(calls: List[Dict[str, str]]) -> Dict:
+def extract_gui(
+    project_path: str,
+    to_file: str,
+    verbose: bool = False
+) -> None:
     """
+    Generate the UI JSON format for OneCode Cloud.
 
-    """
-    params = {}
-    data = {}
-    required = []
-
-    for code in calls:
-        try:
-            t = eval(f"{code['func']}_type")
-
-            # output are skipped
-            if t == ElementType.INPUT:
-                k, v = eval(f"{code['loc']}")
-                params[k] = v["properties"]
-                data[k] = v["value"]
-                if not v["optional"]:
-                    required.append(k)
-
-        except Exception as e:
-            print(f"=> {code['loc']}")
-            print('Error ', e)
-
-    return params, data, required
-
-
-@check_type
-def extract_gui(verbose: bool = False) -> None:
-    """
+    Args:
+        project_path: Path to the root of the OneCode project.
+        to_file: Path of the output file to dump the JSON to.
+        verbose: If True, print out debug information.
 
     """
-    cur_dir = os.getcwd()
-    statements = process_call_graph(cur_dir, verbose)
+    Project().mode = Mode.BUILD_GUI
+    statements = process_call_graph(project_path, verbose)
 
     schema = {
-        "title": os.path.basename(cur_dir),
-        "type": "object",
-        "properties": {}
+        "title": os.path.basename(project_path),
+        "flows": {}
     }
 
-    data = {}
-
-    for k, v in statements.items():
-        _params, _data, _required = process(v["calls"])
-
-        if k in _params.keys():
-            raise ValueError(
-                f"Step cannot carry the same name as a parameter {k}"
-            )
-
-        schema["properties"][k] = {
-            "type": "object",
-            "title": k,
-            "required": _required,
-            "properties": _params
-        }
-
-        data = {**data, **_data}
+    for flow, cg in statements.items():
+        p = process(cg["calls"])
+        schema['flows'][flow] = p
 
         # refactor dependencies for easier triggering from the UI
         deps = {}
-        for key, props in _params.items():
+        for key, props in p.items():
             for elt in props["dependencies"]:
                 if elt not in deps:
                     deps[elt] = set()
@@ -88,16 +55,10 @@ def extract_gui(verbose: bool = False) -> None:
             props["dependencies"] = []
 
         for elt_from, elt_to in deps.items():
-            schema["properties"][k]["properties"][elt_from]["dependencies"] = list(elt_to)
+            schema["flows"][flow][elt_from]["dependencies"] = list(elt_to)
 
-    with open('app_schema.json', 'w') as out_schema:
-        json.dump(schema, out_schema, indent=4)
-
-    with open('app_data.json', 'w') as out_data:
-        json.dump(data, out_data, indent=4)
-
-    with open('app_ui.json', 'w') as out_ui:
-        json.dump({}, out_ui, indent=4)
+    with open(to_file, 'w') as out:
+        json.dump(schema, out, indent=4)
 
 
 def main() -> None:   # pragma: no cover
@@ -117,10 +78,20 @@ def main() -> None:   # pragma: no cover
     """
     parser = argparse.ArgumentParser(description='Start the OneCode Project in Interactive Mode.')
     parser.add_argument(
+        '--output_file',
+        default='app_ui.json',
+        help='Path to the output JSON file'
+    )
+    parser.add_argument(
         '--modules',
         nargs='*',
         default=[],
         help='Optional list of modules to import first'
+    )
+    parser.add_argument(
+        '--path',
+        required=False,
+        help='Path to the project root directory if not the current working directory'
     )
     parser.add_argument(
         '--verbose',
@@ -128,11 +99,6 @@ def main() -> None:   # pragma: no cover
         help='Print verbose information when processing files'
     )
     args = parser.parse_args()
-
-    # if data root not set, set it to data folder in current working directory
-    if Env.ONECODE_PROJECT_DATA not in os.environ:
-        os.environ[Env.ONECODE_PROJECT_DATA] = os.path.join(os.getcwd(), 'data')
-        Project().reset()
 
     # optionally load required modules dynamically,
     # typically modules extending OneCode
@@ -142,5 +108,10 @@ def main() -> None:   # pragma: no cover
     # register elements from OneCode inline extensions if any
     globals()['onecode_ext'] = register_ext_module()
 
-    Project().mode = Mode.BUILD_GUI
-    extract_gui(args.verbose)
+    project_path = args.path if args.path is not None else os.getcwd()
+
+    out_filename = args.output_file if args.output_file.endswith('.json') \
+        else f'{args.output_file}.json'
+
+    print('\n')
+    extract_gui(project_path, out_filename, args.verbose)

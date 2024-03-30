@@ -1,5 +1,5 @@
 import sys
-from typing import Any, Dict
+from typing import Any
 
 import pytest
 
@@ -28,11 +28,6 @@ def my_input_element():
             value: Any
         ) -> None:
             pass
-
-        def _json_form(self) -> Dict:
-            return {
-                "type": "string"
-            }
 
     return _MyInputElement
 
@@ -70,11 +65,6 @@ def test_extend_input_element_missing_validate():
         def _value_type(self) -> type:
             return str
 
-        def _json_form(self) -> Dict:
-            return {
-                "type": "boolean"
-            }
-
     with pytest.raises(TypeError) as excinfo:
         _MyInputElement('test', 'test_value', None, 5)
 
@@ -87,43 +77,6 @@ def test_extend_input_element_missing_validate():
         """)
     elif py_version >= (3, 9):
         err_str = "Can't instantiate abstract class _MyInputElement with abstract method _validate"
-
-    assert err_str == str(excinfo.value)
-
-
-def test_extend_input_element_missing_json_form():
-    class _MyInputElement(InputElement):
-        def __init__(
-            self,
-            key: str,
-            value: str,
-            label: str,
-            extra: int
-        ):
-            super().__init__(key, value, label, extra=extra)
-
-        @property
-        def _value_type(self) -> type:
-            return str
-
-        def _validate(
-            self,
-            value: Any
-        ) -> None:
-            pass
-
-    with pytest.raises(TypeError) as excinfo:
-        _MyInputElement('test', 'test_value', None, 5)
-
-    py_version = sys.version_info
-    err_str = "Can't instantiate abstract class _MyInputElement with abstract methods _json_form"
-    if sys.version_info >= (3, 12):
-        err_str = strip("""
-            Can't instantiate abstract class _MyInputElement without an implementation
-            for abstract method '_json_form'
-        """)
-    elif py_version >= (3, 9):
-        err_str = "Can't instantiate abstract class _MyInputElement with abstract method _json_form"
 
     assert err_str == str(excinfo.value)
 
@@ -156,11 +109,6 @@ def test_extend_input_element_invalid_extra_args():
             value: Any
         ) -> None:
             pass
-
-        def _json_form(self) -> Dict:
-            return {
-                "type": "string"
-            }
 
     with pytest.raises(AttributeError) as excinfo:
         _MyInputElement('test', 'test_value', None, 5)

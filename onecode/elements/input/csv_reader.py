@@ -98,7 +98,7 @@ class CsvReader(InputElement):
             ```
 
         """
-        df = pd.read_csv(value, engine='pyarrow')
+        df = pd.read_csv(value)
 
         meta = {
             "columns": df.columns.to_list(),
@@ -126,7 +126,7 @@ class CsvReader(InputElement):
         if self._value is not None:
             if type(self._value) is str:
                 filepath = Project().get_input_path(self._value)
-                return pd.read_csv(filepath, engine='pyarrow') \
+                return pd.read_csv(filepath) \
                     if os.path.exists(filepath) or filepath.startswith('https://') else None
 
             elif type(self._value) is list and all(
@@ -134,8 +134,7 @@ class CsvReader(InputElement):
             ):
                 return [
                     pd.read_csv(
-                        Project().get_input_path(val),
-                        engine='pyarrow'
+                        Project().get_input_path(val)
                     ) if os.path.exists(
                         Project().get_input_path(val)
                     ) or filepath.startswith('https://') else None for val in self._value
@@ -155,9 +154,3 @@ class CsvReader(InputElement):
         """
         if value.empty:
             raise ValueError(f"[{self.key}] Empty dataframe")
-
-    def _json_form(self) -> Dict:
-        return {
-            "type": "string",
-            "format": "data-url"
-        }

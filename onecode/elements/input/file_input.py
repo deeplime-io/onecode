@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 from ...base.decorator import check_type
 from ...base.project import Project
@@ -159,20 +159,3 @@ class FileInput(InputElement):
                 self._validate_file_value(v)
         else:
             self._validate_file_value(value)
-
-    def _json_form(self) -> Dict:
-        if self.multiple:
-            return {
-                "type": "array",
-                "title": self.label,
-                "items": {
-                    "type": "string",
-                    "format": "data-url"
-                }
-            }
-
-        else:
-            return {
-                "type": "string",
-                "format": "data-url"
-            }

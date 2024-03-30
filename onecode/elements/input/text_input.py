@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from ...base.decorator import check_type
 from ..input_element import InputElement
@@ -103,9 +103,3 @@ class TextInput(InputElement):
 
         """
         pass
-
-    def _json_form(self) -> Dict:
-        return {
-            "type": "string",
-            "maxLength": self.max_chars
-        }

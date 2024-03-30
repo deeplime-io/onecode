@@ -430,7 +430,7 @@ class InputElement(ABC):
     def _dynamic_attributes(self) -> List[str]:
         """
         Re-implement to expose attributes with potential dynamic expressions.
-        By default, `optional` and `count` may hold dynamic expressions.
+        By default, `_disabled` and `count` may hold dynamic expressions.
 
         """
         return [
@@ -438,23 +438,14 @@ class InputElement(ABC):
             self.count
         ]
 
-    @abstractmethod
-    def _json_form(self) -> Dict:
-        pass
-
     def _build_gui(self) -> Dict:
-        k, v = self._extract()
+        k, p = self._extract_all()
 
         # if count is None => else return array
         params = {
-            "value": v,
-            "optional": self.optional,
-            "properties": {
-                **self._json_form(),
-                "title": self.label,
-                "metadata": "metadata" in self.__class__.__dict__,
-                "dependencies": self.dependencies()
-            },
+            **p,
+            "metadata": "metadata" in self.__class__.__dict__,
+            "dependencies": self.dependencies()
         }
 
         return k, params
