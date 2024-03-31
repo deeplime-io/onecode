@@ -1425,7 +1425,7 @@
 <img alt="Windows supported" src="https://img.shields.io/badge/platform-linux-%23f2c300?logo=linux" />
 <img alt="Linux supported" src="https://img.shields.io/badge/platform-windows-%230072c9?logo=windows" />
 <a href="https://codeclimate.com/github/deeplime-io/onecode/maintainability"><img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/df236aa4b4ab765ba7db/maintainability" /></a>
-<a href="https://codecov.io/gh/deeplime-io/onecode"><img alt="Coverage" src="https://codecov.io/gh/deeplime-io/onecode/graph/badge.svg?token=BF54VNGWM5" /></a></p>
+<a href="https://codecov.io/gh/deeplime-io/onecode"><img alt="Coverage" src="https://codecov.io/gh/deeplime-io/onecode/branch/main/graph/badge.svg?token=BF54VNGWM5" /></a></p>
 <hr />
 <h2 id="manifesto">Manifesto<a class="headerlink" href="#manifesto" title="Permanent link">&para;</a></h2>
 <p>Whether we are in the industry, academia, or simply in our everyday-life, we find ourselves encountering 3 categories of profiles no matter what the topic:</p>
@@ -1706,22 +1706,26 @@ contributions.</p>
 <hr />
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Is the utilization of Streamlit going away?</p>
+<p>Why did you choose Streamlit for interfacing OneCode? Are there any alternatives?</p>
 </blockquote>
-<p>In a nutshell, yes. Streamlit is a great tool but has its own limitations and no longer fulfill our use case.
-Using Streamlit was always temporary and to get started really quickly but keeping Community plugins compatible
-together with rapid changes of the Streamlit API is not where we see valuable time spent (as a matter of fact,
-we had to stick to version &lt; 1.18 whereas Streamlit is at 1.31 at the time of writing this doc).
-Note that this change will take place in OneCode <code>1.x</code> and a compatible <code>onecode-streamlit</code> library will be
-available as open-source under MIT License.</p>
+<p>There are some really good tools out there such as Panel and Dash. Technically, if you're up for it,
+you can extend OneCode add a <code>Panel</code> mode or a <code>Dash</code> mode. As long as you know the logic of these
+libraries and are able to determine the code to be generated, OneCode allows you to plug it in.</p>
+<p>We chose Streamlit for several of reasons:</p>
+<ul>
+<li>its functioning is the closest one to the envisionned OneCode logic</li>
+<li>it is simple enough to do everything without involving any explicit callback mechanism</li>
+<li>it is easier for tech-savvies/data scientists to get started with, especially when it comes to
+create and customize new elements</li>
+</ul>
 <blockquote>
 <p>Why do I need OneCode at all, I could just build my application with Streamlit?</p>
 </blockquote>
-<p>That's absolutely true, Streamlit or other alternatives are perfectly suitable for that.
-However beware of the limitations you can hit (file size handling, data caching, server overload, etc.).
-There are scenarios that can work out without OneCode and that's definitely ok: pick the right tool for your use case.
-When it comes to deploying your application for different purposes (batch, interactive, long process, large file processing, etc.)
-or in different environments, you may find handy to not have to adapt your original code: it will
+<p>That's absolutely true, Streamlit or other alternatives are perfectly suitable for that and as a
+matter of fact, you can make a more custom application. It is possible your scenario can work out
+without OneCode and that's definitely ok: pick the right tool for your use case.
+When it comes to deploying your application for different purposes (batch, interactive, etc.) or in
+different environments, you may find handy to not have to adapt your original code: it will
 definitely save you time and frustration and let you focus on the gist of the work rather than the
 deployment work.</p>
 <blockquote>
@@ -1732,15 +1736,14 @@ deployment work.</p>
 <blockquote>
 <p>Are there any collaborative platform that run OneCode projects?</p>
 </blockquote>
-<p>There is one in the works called at <a href="https://onecode.rocks">onecode.rocks</a>, centralizing data and OneCode projects.
-Sign up there if you would like be part of the beta-testers cohort.</p>
+<p>There is one in the works called <code>GeoLand</code>, centralizing data and OneCode projects. It's at the
+Proof of Concept (POC) stage. <a href="mailto: contact@deeplime.io">Contact us</a> if you would like be part of the beta-testers cohort.</p>
 <hr />
 <h2 id="credits">Credits<a class="headerlink" href="#credits" title="Permanent link">&para;</a></h2>
 <p>Credits to all open-source libraries that helped build this project. Special thanks to:</p>
 <ul>
-<li>Streamlit and its contributors for making such a great tool that was very helpful to get started.</li>
+<li>Streamlit and its contributors for making such a great tool on which we can rely.</li>
 <li>PyCG and its contributors for making the Call Graph algos essential to the OneCode mechanism.</li>
-<li>Geode Solutions and Spotlight Earth for testing extensively the library and providing invaluable feedback.</li>
 </ul>
 
 
