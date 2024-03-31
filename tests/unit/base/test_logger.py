@@ -1,6 +1,6 @@
 import logging
 
-from onecode import ColoredFormatter, ConfigOption, Env, Logger, Project
+from onecode import ColoredFormatter, ConfigOption, Logger, Project
 
 
 def test_logger_debug(caplog):

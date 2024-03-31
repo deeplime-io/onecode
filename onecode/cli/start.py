@@ -11,11 +11,74 @@ import onecode  # noqa
 
 from ..base.decorator import check_type
 from ..base.enums import *  # noqa
-from ..base.enums import ElementType, Env, Mode
+from ..base.enums import ElementType, Mode
 from ..base.project import Project
-from ..cli.extract import process
 from ..utils.module import register_ext_module
 from .utils import process_call_graph
+
+
+@check_type
+def process(calls: List[Dict[str, str]]) -> Dict:
+    """
+    Evaluate the given calls such as:
+    - only `ElementType.INPUT` are considered.
+    - result of evaluation is interpreted as (key, value) and aggregated in the final
+        dictionnary returned by this function.
+
+    Ensure the proper `Project().mode` is set before calling this function (as it will control
+    the evaluation of the code call). This function is typically used for `InputElement` JSON
+    extraction. Although the `extract_json()` function directly pipes the calls from the code
+    call graph (through `process_call_graph()`), you may input your own code calls (see example
+    below).
+
+    Args:
+        calls: List of `{"func": <function_name>, "loc": <code_to_eval>}` where `func` is the name
+            of the function corresponding to the `InputElement` (i-e its snake case form - see the
+            element developer section for more info), and `loc` is the "line of code" to evaluate
+            through the Python interpreter.
+
+    Returns:
+        A dictionnary containing the results of the code evaluation associated to their key id.
+
+    !!! example
+        ```py
+        Project().mode = Mode.EXTRACT_ALL
+
+        # processing a single call of Slider element
+        process([{"func": "onecode.slider", "loc": "onecode.slider('my_slider', 0.4)"}])
+        # => returns the JSON for this parameter, i-e:
+        # { kind: Slider, value: 0.4, label: 'my_slider', ... }
+
+        # processing a single call of a custom MyBox element
+        process([{"func": "onecode_ext.my_box", "loc": "onecode_ext.my_box('my_box', 'X')"}])
+        # => returns the JSON for this parameter, i-e:
+        # { kind: MyBox, value: 'X', label: 'my_box', ... }
+
+        # piping the entire call graph of a OneCode Project
+        statements = process_call_graph(project_path)
+        for v in statements.values():
+            p = process(v["calls"])
+            # ...
+
+        ```
+
+    """
+    params = {}
+
+    for code in calls:
+        try:
+            t = eval(f"{code['func']}_type")
+
+            # output are skipped
+            if t == ElementType.INPUT:
+                k, v = eval(f"{code['loc']}")
+                params[k] = v
+
+        except Exception as e:
+            print(f"=> {code['loc']}")
+            print('Error ', e)
+
+    return params
 
 
 @check_type
@@ -36,14 +99,15 @@ def extract_gui(
     Project().mode = Mode.BUILD_GUI
     statements = process_call_graph(project_path, verbose)
 
-    schema = {
-        "title": os.path.basename(project_path),
-        "flows": {}
-    }
+    schema = []
 
     for flow, cg in statements.items():
         p = process(cg["calls"])
-        schema['flows'][flow] = p
+        cur_flow = {
+            "id": cg["entry_point"],
+            "label": flow,
+            "items": p
+        }
 
         # refactor dependencies for easier triggering from the UI
         deps = {}
@@ -55,7 +119,9 @@ def extract_gui(
             props["dependencies"] = []
 
         for elt_from, elt_to in deps.items():
-            schema["flows"][flow][elt_from]["dependencies"] = list(elt_to)
+            cur_flow["items"][elt_from]["dependencies"] = list(elt_to)
+
+        schema.append(cur_flow)
 
     with open(to_file, 'w') as out:
         json.dump(schema, out, indent=4)
