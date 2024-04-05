@@ -565,6 +565,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#section_header" class="md-nav__link">
+    section_header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#slider" class="md-nav__link">
     slider
   </a>
@@ -1249,6 +1256,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#section_header" class="md-nav__link">
+    section_header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#slider" class="md-nav__link">
     slider
   </a>
@@ -1287,6 +1301,7 @@
 <li><a href="#folder_input">folder_input</a></li>
 <li><a href="#number_input">number_input</a></li>
 <li><a href="#radio_button">radio_button</a></li>
+<li><a href="#section_header">section_header</a></li>
 <li><a href="#slider">slider</a></li>
 <li><a href="#text_input">text_input</a></li>
 </ul>
@@ -1327,7 +1342,7 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1487,7 +1502,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1660,7 +1675,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -1865,7 +1880,7 @@ print(widget)
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2062,7 +2077,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2226,7 +2241,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2418,7 +2433,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2580,6 +2595,100 @@ assert widget is None
 
   </div>
 
+</div><h2 id="section_header">section_header<a class="headerlink" href="#section_header" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">section_header</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span>
+</code></pre></div>
+</p>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+  <div class="doc doc-contents first">
+  
+      <p>A simple header.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>key</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
+Project(), otherwise it will lead to conflicts at runtime in both execution and
+Streamlit modes. The key will be transformed into snake case and slugified to avoid
+any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
+choose a key that is meaningful for your context (see examples projects).</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Extra user meta-data to attach to the element. Argument names cannot overwrite
+existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>if the <code>key</code> is empty or starts with <code>_</code>.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>AttributeError</code>
+          </td>
+          <td><p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p></td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">section_header</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
+
+<span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">section_header</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;My SectionHeader&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;OneCode rocks!&quot;</span>
+</code></pre></div>
+</div>
+
+  </div>
+
 </div><h2 id="slider">slider<a class="headerlink" href="#slider" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">slider</span><span class="p">(</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2620,7 +2729,7 @@ assert widget is None
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2812,7 +2921,7 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
           <td>
                 <code>str</code>
           </td>
-          <td><p>ID of the element. It must be unique as it is the key used to story data in
+          <td><p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
@@ -2836,7 +2945,7 @@ choose a key that is meaningful for your context (see examples projects).</p></t
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
-          <td><p>Label to display next to the checkbox.</p></td>
+          <td><p>Label to display on top of the text area.</p></td>
           <td>
                 <code>None</code>
           </td>
