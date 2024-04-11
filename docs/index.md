@@ -297,11 +297,11 @@ project.
 
 > Why do I need OneCode at all, I could just build my application with Streamlit?
 
-That's absolutely true, Streamlit or other alternatives are perfectly suitable for that and as a
-matter of fact, you can make a more custom application. It is possible your scenario can work out
-without OneCode and that's definitely ok: pick the right tool for your use case.
-When it comes to deploying your application for different purposes (batch, interactive, etc.) or in
-different environments, you may find handy to not have to adapt your original code: it will
+That's absolutely true, Streamlit or other alternatives are perfectly suitable for that.
+However beware of the limitations you can hit (file size handling, data caching, server overload, etc.).
+There are scenarios that can work out without OneCode and that's definitely ok: pick the right tool for your use case.
+When it comes to deploying your application for different purposes (batch, interactive, long process, large file processing, etc.)
+or in different environments, you may find handy to not have to adapt your original code: it will
 definitely save you time and frustration and let you focus on the gist of the work rather than the
 deployment work.
 
@@ -312,9 +312,8 @@ If you would like to add new elements or customize some elements' behavior, chec
 
 > Are there any collaborative platform that run OneCode projects?
 
-There is one in the works called `GeoLand`, centralizing data and OneCode projects. It's at the
-Proof of Concept (POC) stage. [Contact us](mailto: contact@deeplime.io) if you would like be part of
-the beta-testers cohort.
+There is one in the works called at [onecode.rocks](https://onecode.rocks), centralizing data and OneCode projects.
+Sign up there if you would like be part of the beta-testers cohort.
 
 
 ---
@@ -322,4 +321,4 @@ the beta-testers cohort.
 Credits to all open-source libraries that helped build this project. Special thanks to:
 
 - PyCG and its contributors for making the Call Graph algos essential to the OneCode mechanism.
-- Geode Solutions and Spotlight Earth for their early testing.
+- Geode Solutions and Spotlight Earth for testing the library and providing invaluable feedback.

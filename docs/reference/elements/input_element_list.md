@@ -9,6 +9,7 @@ Available input elements for OneCode projects:
 * [folder_input](#folder_input)
 * [number_input](#number_input)
 * [radio_button](#radio_button)
+* [section_header](#section_header)
 * [slider](#slider)
 * [text_input](#text_input)
 
@@ -120,6 +121,16 @@ def radio_button(
 )
 ```
 ::: onecode.elements.input.radio_button.RadioButton.__init__
+
+
+## section_header
+```python
+def section_header(
+    key: str,
+    value: str
+)
+```
+::: onecode.elements.input.section_header.SectionHeader.__init__
 
 
 ## slider

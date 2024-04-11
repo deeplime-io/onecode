@@ -47,14 +47,19 @@ class TextOutput(OutputElement):
             ```py
             from onecode import text_output, Mode, Project
 
-            Project().mode = Mode.CONSOLE
-            widget = text_output(
+            Project().mode = Mode.EXECUTE
+            Project().current_flow = 'test'
+
+            text_file = text_output(
                 key="TextOutput",
                 value="/path/to/file.txt",
                 label="My TextOutput",
                 tags=['Text'],
                 truncate_at=1000
             )
+
+            with open(text_file, 'w') as f:
+                f.write('Hello OneCode!')
             print(widget)
             ```
 
@@ -76,9 +81,9 @@ class TextOutput(OutputElement):
     def value(self) -> str:
         """
         Returns:
-            The path or list of paths for the output file(s): if paths are not absolute, then
-            they are considered relative to the data output folder. See
-            [Best Practices With Data][best-practices-with-data] for more information.
+            The path to the output file: if path are not absolute, then it is considered relative
+            to the data output folder. See [Best Practices With Data][best-practices-with-data]
+            for more information.
 
         """
         return Project().get_output_path(self._value)

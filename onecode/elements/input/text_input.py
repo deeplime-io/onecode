@@ -32,7 +32,7 @@ class TextInput(InputElement):
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see examples projects).
             value: Initial text value.
-            label: Label to display next to the checkbox.
+            label: Label to display on top of the text area.
             count: Specify the number of occurence of the widget. OneCode typically uses it for the
                 UI case. Note that if `count` is defined, the expected `value` should always
                 be a list, even if the `count` is `1`. `count` can either be a fixed number

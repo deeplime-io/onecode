@@ -1,0 +1,16 @@
+Covariance Model for experimental variogram dip = 90
+========================================================
+
+Model with 2 components 
+ 
+Component 1 : 
+Sill : 0.2899720322225928 
+Covariance type : Nugget 
+
+Component 2 : 
+Sill : 0.6882912810366775 
+Covariance type : Spherical 
+Scales : (52.163572050659965, 7.609727689453264, 11.195822717296538) 
+Angles : (0.0, 71.112974300761, 90.0) 
+
+Total sill = 0.9782633132592703 
