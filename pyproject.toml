@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onecode"
-version = "0.5.0"
+version = "0.5.0.dev"
 description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
