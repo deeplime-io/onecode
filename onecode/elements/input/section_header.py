@@ -70,22 +70,3 @@ class SectionHeader(InputElement):
 
         """
         pass
-
-    @check_type
-    def streamlit(
-        self,
-        id: str
-    ) -> str:
-        """
-        Returns:
-            The Streamlit code for a header section (`st.header`).
-
-        """
-        val = f'"{self.value}"' if self.value is not None else "''"
-
-        return f"""
-# Header {self.key}
-{self.key} = {val}
-st.header({val})
-
-"""

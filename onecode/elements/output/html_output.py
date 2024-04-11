@@ -105,22 +105,3 @@ class HtmlOutput(OutputElement):
             raise ValueError(
                 f"[{self.key}] Invalid file extension: {ext} (accepted: {', '.join(valid_ext)})"
             )
-
-    @staticmethod
-    def streamlit() -> str:
-        """
-        Returns:
-            The Streamlit code to show the filename with a hyperlink.
-
-        """
-        return """
-value = os.path.abspath(value)  # allows compat with Windows
-if not os.path.exists(value) and not os.path.isfile(value):
-    st.warning(f'Invalid file path: {{value}}')
-
-else:
-    st.markdown(
-        f"<a href='file://{value}' target='_blank'>{os.path.basename(value)}</a>",
-        unsafe_allow_html=True
-    )
-"""

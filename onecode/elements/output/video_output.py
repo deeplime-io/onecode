@@ -106,12 +106,3 @@ class VideoOutput(OutputElement):
             raise ValueError(
                 f"[{self.key}] Invalid video extension: {ext} (accepted: {', '.join(valid_ext)})"
             )
-
-    @staticmethod
-    def streamlit() -> str:
-        """
-        Returns:
-            The Streamlit code to show an embedded video player.
-
-        """
-        return "st.video(value)"

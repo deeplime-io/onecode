@@ -115,30 +115,3 @@ class PyvistaVrmlOutput(OutputElement):
             raise ValueError(
                 f"[{self.key}] Invalid VRML extension: {ext} (accepted: {', '.join(valid_ext)})"
             )
-
-    @staticmethod
-    def imports() -> List[str]:
-        """
-        Returns:
-            Python import statements required by the Streamlit code.
-
-        """
-        return [
-            "import pyvista as pv",
-            "from stpyvista import stpyvista"
-        ]
-
-    @staticmethod
-    def streamlit() -> str:
-        """
-        Returns:
-            The Streamlit code to show a Pyvista 3D scene loading a VRML as a Pyvista Plotter.
-
-        """
-        return """
-_scene = pv.Plotter()
-_scene.import_vrml(value)
-_scene.reset_camera()
-stpyvista(_scene, key='{key}')
-
-"""
