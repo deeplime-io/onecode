@@ -5,9 +5,15 @@ import ast
 import os
 from typing import Callable
 
-from pydantic import validate_call
-
 from .enums import Env
+
+_do_type_check = (
+    Env.ONECODE_DO_TYPECHECK in os.environ and
+    bool(ast.literal_eval(os.environ[Env.ONECODE_DO_TYPECHECK]))
+)
+
+if _do_type_check:
+    from pydantic import validate_call
 
 
 def check_type(func: Callable):  # pragma: no cover
@@ -19,10 +25,7 @@ def check_type(func: Callable):  # pragma: no cover
         func: Function to apply type-checking.
 
     """
-    if (
-        Env.ONECODE_DO_TYPECHECK in os.environ and
-        bool(ast.literal_eval(os.environ[Env.ONECODE_DO_TYPECHECK]))
-    ):
+    if _do_type_check:
         return validate_call(func, config=dict(arbitrary_types_allowed=True))
 
     return func
