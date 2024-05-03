@@ -445,7 +445,7 @@ class InputElement(ABC):
         params = {
             **p,
             "metadata": "metadata" in self.__class__.__dict__,
-            "dependencies": self.dependencies()
+            "depends_on": self.dependencies()
         }
 
         return k, params

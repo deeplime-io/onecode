@@ -112,11 +112,12 @@ def extract_gui(
         # refactor dependencies for easier triggering from the UI
         deps = {}
         for key, props in p.items():
-            for elt in props["dependencies"]:
+            props["dependencies"] = []
+            
+            for elt in props["depends_on"]:
                 if elt not in deps:
                     deps[elt] = set()
                 deps[elt].add(key)
-            props["dependencies"] = []
 
         for elt_from, elt_to in deps.items():
             cur_flow["items"][elt_from]["dependencies"] = list(elt_to)
