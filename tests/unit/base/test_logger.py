@@ -91,7 +91,7 @@ def test_invalid_handler():
     Logger.info("Hello from OneCode!")
 
     log_str = handler.log.split(' - ')
-    assert log_str[1] == '|OneCode|.validate_call_decorator.py:81'
+    assert log_str[1] == '|OneCode|.test_logger.py:91'
     assert log_str[2] == str("Hello from OneCode!")
 
 
