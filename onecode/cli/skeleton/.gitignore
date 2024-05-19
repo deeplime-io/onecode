@@ -143,4 +143,4 @@ data/*
 *.png
 
 # generate app file
-app.py
+app_ui.json

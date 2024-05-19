@@ -82,12 +82,13 @@ def main(
     return all_manifests[0] if len(all_manifests) == 1 else all_manifests
 
 
-if __name__ == '__main__':
+def _main(raw_args: List[str] = None):
     parser = argparse.ArgumentParser(description='Use optional JSON parameters file')
     parser.add_argument('--flow', default=None, help='Specify the flow to run')
     parser.add_argument('--flush', action="store_true", help='Flush the logs immediately')
     parser.add_argument('file', nargs='?', help='Path to the input JSON file')
-    args = parser.parse_args()
+
+    args = parser.parse_args(raw_args)
 
     data = None
     if args.file is not None:
@@ -106,3 +107,7 @@ if __name__ == '__main__':
         Project().set_config(ConfigOption.FLUSH_STDOUT, True)
 
     main(data, args.flow)
+
+
+if __name__ == '__main__':
+    _main()

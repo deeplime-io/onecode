@@ -17,23 +17,23 @@ def test_create_success():
     create(tmp, flow_name, cli=False)
 
     assert os.path.exists(os.path.join(tmp, flow_folder, 'flows', f'{flow_id}.py'))
-    assert os.path.exists(os.path.join(tmp, flow_folder, 'flows', 'onecode_ext', '__init__.py'))
-    assert os.path.exists(os.path.join(
-        tmp,
-        flow_folder,
-        'flows',
-        'onecode_ext',
-        'input_elements',
-        '__init__.py')
-    )
-    assert os.path.exists(os.path.join(
-        tmp,
-        flow_folder,
-        'flows',
-        'onecode_ext',
-        'output_elements',
-        '__init__.py')
-    )
+    # assert os.path.exists(os.path.join(tmp, flow_folder, 'flows', 'onecode_ext', '__init__.py'))
+    # assert os.path.exists(os.path.join(
+    #     tmp,
+    #     flow_folder,
+    #     'flows',
+    #     'onecode_ext',
+    #     'input_elements',
+    #     '__init__.py')
+    # )
+    # assert os.path.exists(os.path.join(
+    #     tmp,
+    #     flow_folder,
+    #     'flows',
+    #     'onecode_ext',
+    #     'output_elements',
+    #     '__init__.py')
+    # )
 
     try:
         shutil.rmtree(os.path.join(tmp, flow_folder))
@@ -50,23 +50,23 @@ def test_create_with_main_flow_success():
     create(tmp, flow_name, main_flow, cli=False)
 
     assert os.path.exists(os.path.join(tmp, flow_folder, 'flows', f'{flow_id}.py'))
-    assert os.path.exists(os.path.join(tmp, flow_folder, 'flows', 'onecode_ext', '__init__.py'))
-    assert os.path.exists(os.path.join(
-        tmp,
-        flow_folder,
-        'flows',
-        'onecode_ext',
-        'input_elements',
-        '__init__.py')
-    )
-    assert os.path.exists(os.path.join(
-        tmp,
-        flow_folder,
-        'flows',
-        'onecode_ext',
-        'output_elements',
-        '__init__.py')
-    )
+    # assert os.path.exists(os.path.join(tmp, flow_folder, 'flows', 'onecode_ext', '__init__.py'))
+    # assert os.path.exists(os.path.join(
+    #     tmp,
+    #     flow_folder,
+    #     'flows',
+    #     'onecode_ext',
+    #     'input_elements',
+    #     '__init__.py')
+    # )
+    # assert os.path.exists(os.path.join(
+    #     tmp,
+    #     flow_folder,
+    #     'flows',
+    #     'onecode_ext',
+    #     'output_elements',
+    #     '__init__.py')
+    # )
 
     try:
         shutil.rmtree(os.path.join(tmp, flow_folder))

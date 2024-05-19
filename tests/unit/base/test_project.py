@@ -26,11 +26,9 @@ def test_empty_project():
         'onecode.CsvOutput',
         'onecode.ImageOutput',
         'onecode.PlotlyOutput',
-        'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
         'onecode.VideoOutput',
-        'onecode.HtmlOutput',
-        'onecode.SectionHeader'
+        'onecode.HtmlOutput'
     }
     assert p.mode == Mode.EXECUTE
     assert p.current_flow is None
@@ -73,11 +71,9 @@ def test_project_reset():
         'onecode.CsvOutput',
         'onecode.ImageOutput',
         'onecode.PlotlyOutput',
-        'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
         'onecode.VideoOutput',
         'onecode.HtmlOutput',
-        'onecode.SectionHeader',
         'NewLib.NewElement'
     }
     assert p.mode == Mode.EXTRACT
@@ -110,11 +106,9 @@ def test_project_reset():
         'onecode.CsvOutput',
         'onecode.ImageOutput',
         'onecode.PlotlyOutput',
-        'onecode.PyvistaVrmlOutput',
         'onecode.TextOutput',
         'onecode.VideoOutput',
-        'onecode.HtmlOutput',
-        'onecode.SectionHeader'
+        'onecode.HtmlOutput'
     }
     assert p.mode == Mode.CONSOLE
     assert p.current_flow is None

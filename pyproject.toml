@@ -5,7 +5,7 @@ description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
 license = "MIT"
-keywords = ["onecode", "procedures"]
+keywords = ["onecode", "share", "deploy", "cloud"]
 homepage = "https://github.com/deeplime-io/onecode"
 repository = "https://github.com/deeplime-io/onecode"
 documentation = "https://deeplime-io.github.io/onecode"
@@ -58,10 +58,6 @@ pytest-xdist = { version = ">=3.1.0,<4", optional = true }
 toml = { version = ">=0.10.2,<1", optional = true }
 
 [tool.poetry.extras]
-tech-expert = [
-
-]
-
 developer = [
     "datatest",
     "pydantic",
@@ -84,7 +80,7 @@ docs = [
 
 [tool.poetry.scripts]
 onecode-start = 'onecode.cli.start:main'
-onecode-build = 'onecode.cli.start:main'
+onecode-build = 'onecode.cli.build:main'
 onecode-create = 'onecode.cli.create:main'
 onecode-add = 'onecode.cli.add:main'
 onecode-extract = 'onecode.cli.extract:main'

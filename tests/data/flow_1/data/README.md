@@ -1,4 +1,5 @@
 ## Info
 
-Place here your data. It is the default directory where getting/putting data unless specified otherwise
-(see onecode.Project()).
+Default folder for:
+* searching input data
+* output data (typically under `data/outputs`)

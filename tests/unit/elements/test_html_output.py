@@ -42,7 +42,7 @@ def test_execute_html_output():
 
     assert widget() == os.path.join(data_path, 'outputs', 'my_file.html')
     assert widget.key == "htmloutput"
-    assert widget.label == "'''HtmlOutput'''"
+    assert widget.label == "HtmlOutput"
     assert widget._label == "HtmlOutput"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:
@@ -79,7 +79,7 @@ def test_load_then_execute_html_output():
 
     assert widget() == os.path.join(data_path, 'outputs', 'my_file.html')
     assert widget.key == "htmloutput"
-    assert widget.label == "'''HtmlOutput'''"
+    assert widget.label == "HtmlOutput"
     assert widget._label == "HtmlOutput"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:

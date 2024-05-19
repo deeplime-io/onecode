@@ -45,7 +45,7 @@ def add(
 
             _add_flow(project_path, name, before)
 
-            time.sleep(1 if cli else 0)
+            time.sleep(0.5 if cli else 0)
             spinner.text = f"Added {name} flow"
             spinner.ok("✅")
 

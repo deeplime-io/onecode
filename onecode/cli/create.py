@@ -3,8 +3,6 @@
 
 import os
 import shutil
-import stat
-import subprocess
 import time
 
 from InquirerPy import prompt
@@ -49,36 +47,8 @@ def create(
 
             shutil.copytree(os.path.join(os.path.dirname(__file__), 'skeleton'), project_path)
             _add_flow(project_path, name if main_flow_name is None else main_flow_name)
-            try:
-                process = subprocess.run(['git', 'init'], cwd=project_path, capture_output=True)
-                err = process.stderr.decode()
-                if err:   # pragma: no cover
-                    raise SystemError(err)
 
-                print(f'\n{process.stdout.decode()}')
-
-                precommit_hook = os.path.join(project_path, '.git', 'hooks', 'pre-commit')
-                with open(precommit_hook, 'w') as f:
-                    f.write("""#!/bin/bash
-
-extract=$(onecode-extract data/parameters.json)
-if [[ "$extract" != *"Parameters extracted to data/parameters.json"* ]]
-then
-  echo "Error extracting parameters"
-  exit 1
-fi
-
-echo "OneCode parameters extracted and auto-committed"
-exec git add data/parameters.json
-""")
-                # chmod +x required
-                st = os.stat(precommit_hook)
-                os.chmod(precommit_hook, st.st_mode | stat.S_IEXEC)
-
-            except Exception:   # pragma: no cover
-                print('\nWarning: Git not properly initialized')
-
-            time.sleep(1 if cli else 0)
+            time.sleep(0.5 if cli else 0)
             spinner.text = f"Created {name} OneCode project"
             spinner.ok("✅")
 
