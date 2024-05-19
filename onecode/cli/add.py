@@ -67,18 +67,27 @@ def main() -> None:    # pragma: no cover
     """
     questions = [
         {
+            "type": "confirm",
+            "name": "proceed",
+            "message": "Multi-steps are not yet available on OneCode Cloud, "
+                       "would you like to continue anyway?",
+            "default": False,
+        },
+        {
             "type": "filepath",
             "name": "project_path",
             "message": "Enter the path of the existing OneCode project",
             "default": os.getcwd(),
             "validate": PathValidator(is_dir=True, message="Input is not a directory"),
             "only_directories": True,
+            "when": lambda result: result["proceed"],
         },
         {
             "type": "input",
             "name": "name",
             "message": "Enter the name of the new flow to add:",
-            "validate": lambda result: len(result) > 0
+            "validate": lambda result: len(result) > 0,
+            "when": lambda result: result["proceed"],
         },
         {
             "type": "list",
@@ -86,8 +95,10 @@ def main() -> None:    # pragma: no cover
             "message": "Choose before which flow:",
             "choices": lambda result: _get_flow_choices(result['project_path']),
             "default": None,
+            "when": lambda result: result["proceed"],
         }
     ]
 
     result = prompt(questions)
-    add(result['project_path'], result['name'], result['before'])
+    if result['proceed']:
+        add(result['project_path'], result['name'], result['before'])
