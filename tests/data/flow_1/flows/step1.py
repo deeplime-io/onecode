@@ -29,6 +29,6 @@ def run():
         time.sleep(0.5)
         oc.Logger.info(f'info: {x}')
 
-    oc.Logger.info(oc.csv_output('My CSV', 'test.csv'))
+    oc.Logger.info(oc.file_output('My CSV', 'test.csv'))
 
     return 0

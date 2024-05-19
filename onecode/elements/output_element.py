@@ -36,8 +36,7 @@ class OutputElement(ABC):
         out at runtime.
 
     !!! note
-        Depending on your case, you may need to subclass `value` too (e.g. like CsvOutput
-        and FileOutput).
+        Depending on your case, you may need to subclass `value` too (e.g. like `FileOutput`).
 
     !!! tip
         Don't forget that the Python filename of an element should correspond to the snake case
@@ -131,7 +130,7 @@ class OutputElement(ABC):
         """
         Get the value of the element. By default this value is the one provided during at the
         initialization. Feel free to overwrite this property as required. For instance,
-        FileOutput and CsvOutput re-implement it for their own purpose.
+        FileOutput re-implements it for its own purpose.
 
         Returns:
             By default, the same as the initial value.

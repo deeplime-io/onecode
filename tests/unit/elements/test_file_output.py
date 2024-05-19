@@ -19,6 +19,7 @@ def test_console_file_output():
     assert type(widget()) == FileOutput
     assert widget.testdata == "data"
     assert widget.kind == "FileOutput"
+    assert widget.mimetype == "text/plain"
 
 
 def test_execute_file_output():
@@ -34,21 +35,23 @@ def test_execute_file_output():
 
     widget = FileOutput(
         key="FileOutput",
-        value="my_file.txt",
-        tags=["Core"]
+        value="my_file.jpg",
+        tags=["Image"]
     )
 
-    assert widget() == os.path.join(data_path, 'outputs', 'my_file.txt')
+    assert widget() == os.path.join(data_path, 'outputs', 'my_file.jpg')
     assert widget.key == "fileoutput"
     assert widget.label == "FileOutput"
     assert widget._label == "FileOutput"
+    assert widget.mimetype == "image/jpeg"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:
         assert json.loads(f.read()) == {
             "key": "fileoutput",
             "label": "FileOutput",
-            "value": os.path.join(data_path, 'outputs', 'my_file.txt'),
-            "tags": ["Core"],
+            "value": os.path.join(data_path, 'outputs', 'my_file.jpg'),
+            "tags": ["Image"],
+            "mimetype": 'image/jpeg',
             "kind": "FileOutput"
         }
 
@@ -79,6 +82,7 @@ def test_load_then_execute_file_output():
     assert widget.key == "fileoutput"
     assert widget.label == "FileOutput"
     assert widget._label == "FileOutput"
+    assert widget.mimetype == "text/plain"
 
     with open(os.path.join(data_path, 'outputs', flow_id, 'MANIFEST.txt'), 'r') as f:
         assert json.loads(f.read()) == {
@@ -86,6 +90,7 @@ def test_load_then_execute_file_output():
             "label": "FileOutput",
             "value": os.path.join(data_path, 'outputs', 'my_file.txt'),
             "tags": ["Core"],
+            "mimetype": 'text/plain',
             "kind": "FileOutput"
         }
 

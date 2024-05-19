@@ -36,6 +36,7 @@ def test_execute():
             "key": "my_file_output",
             "label": "My Label",
             "value": f"{flow_data}/outputs/test_file.txt",
+            "mimetype": "text/plain",
             "tags": ["Core"],
             "kind": "FileOutput"
         }

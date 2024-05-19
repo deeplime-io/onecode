@@ -38,7 +38,7 @@ def test_valid_element_verbose(capsys):
  >> (flows\\step1.run) function <builtin>.range ⏩
  >> (flows\\step1.run) function time.sleep ⏩
  >> (flows\\step1.run) function onecode.Logger.info ⏩
- >> (flows\\step1.run) function onecode.csv_output ✅
+ >> (flows\\step1.run) function onecode.file_output ✅
  >> (flows\\step1.run) function onecode.Logger.info ⏩
 Processing Step2...
  >> (flows\\step2.run) function onecode.Project ⏩
@@ -66,7 +66,7 @@ Processing Step3...
  >> (flows.step1.run) function <builtin>.range ⏩
  >> (flows.step1.run) function time.sleep ⏩
  >> (flows.step1.run) function onecode.Logger.info ⏩
- >> (flows.step1.run) function onecode.csv_output ✅
+ >> (flows.step1.run) function onecode.file_output ✅
  >> (flows.step1.run) function onecode.Logger.info ⏩
 Processing Step2...
  >> (flows.step2.run) function onecode.Project ⏩

@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
+import mimetypes
+import os
 from typing import Any, List, Optional
 
 from ...base.decorator import check_type
@@ -16,6 +18,7 @@ class FileOutput(OutputElement):
         value: str,
         label: Optional[str] = None,
         tags: Optional[List[str]] = None,
+        make_path: bool = False,
         **kwargs: Any
     ):
         """
@@ -71,8 +74,12 @@ class FileOutput(OutputElement):
             value,
             label,
             tags=tags,
+            mimetype=mimetypes.guess_type(value)[0],
             **kwargs
         )
+
+        if make_path:
+            os.makedirs(os.path.dirname(self.value), exist_ok=True)
 
     @property
     def value(self) -> str:

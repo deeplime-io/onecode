@@ -23,12 +23,6 @@ def test_empty_project():
         'onecode.Slider',
         'onecode.TextInput',
         'onecode.FileOutput',
-        'onecode.CsvOutput',
-        'onecode.ImageOutput',
-        'onecode.PlotlyOutput',
-        'onecode.TextOutput',
-        'onecode.VideoOutput',
-        'onecode.HtmlOutput'
     }
     assert p.mode == Mode.EXECUTE
     assert p.current_flow is None
@@ -68,12 +62,6 @@ def test_project_reset():
         'onecode.Slider',
         'onecode.TextInput',
         'onecode.FileOutput',
-        'onecode.CsvOutput',
-        'onecode.ImageOutput',
-        'onecode.PlotlyOutput',
-        'onecode.TextOutput',
-        'onecode.VideoOutput',
-        'onecode.HtmlOutput',
         'NewLib.NewElement'
     }
     assert p.mode == Mode.EXTRACT
@@ -103,12 +91,6 @@ def test_project_reset():
         'onecode.Slider',
         'onecode.TextInput',
         'onecode.FileOutput',
-        'onecode.CsvOutput',
-        'onecode.ImageOutput',
-        'onecode.PlotlyOutput',
-        'onecode.TextOutput',
-        'onecode.VideoOutput',
-        'onecode.HtmlOutput'
     }
     assert p.mode == Mode.CONSOLE
     assert p.current_flow is None

@@ -268,8 +268,10 @@ class Project(metaclass=Singleton):
 
         !!! example
             ```json
-            {"key": "x", "value": "file1.csv", "kind": "CsvOutput", "tags": ["CSV"] }
-            {"key": "y", "value": "file2.txt", "kind": "TextOutput", "tags": ["TXT"] }
+            {"key": "x", "value": "file1.csv", "kind": "FileOutput", "tags": ["CSV"],
+                "mimetype": "text/csv" }
+            {"key": "y", "value": "file2.txt", "kind": "FileOutput", "tags": ["TXT"],
+                "mimetype": "text/plain" }
             ...
             ```
 
