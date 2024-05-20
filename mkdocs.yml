@@ -11,7 +11,6 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  font: Montserrat
   logo: assets/oc_light.png
   favicon: assets/favicon.ico
   features:
@@ -53,10 +52,6 @@ nav:
     - OutputElement:
       - Abstract OutputElement: reference/elements/output_element.md
       - FileOutput: reference/elements/output/file_output.md
-      - ImageOutput: reference/elements/output/image_output.md
-      - PlotlyOutput: reference/elements/output/plotly_output.md
-      - TextOutput: reference/elements/output/text_output.md
-      - CsvOutput: reference/elements/output/csv_output.md
     - Utilities: reference/utils/utils.md
     - Extending OneCode: extending_onecode.md
   - Changelogs:
@@ -70,32 +65,17 @@ nav:
 markdown_extensions:
   - admonition
   - codehilite
-  - markdown_katex:
-      no_inline_svg: True
-      insert_fonts_css: True
-      macro-file: macros.tex
   - toc:
       permalink: True
   - pymdownx.snippets:
       check_paths: true
-  - pymdownx.arithmatex
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.smartsymbols
+  - pymdownx.superfences
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - search
-  - mkdocs-jupyter
   - mkdocstrings:
       default_handler: python
       handlers:
@@ -119,4 +99,4 @@ extra:
   version:
     provider: mike
 
-copyright: Copyright &copy; 2022 - 2023, DeepLime
+copyright: Copyright &copy; 2022 - 2024, DeepLime
