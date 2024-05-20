@@ -11,6 +11,8 @@
 
 
 ---
+**Note:** `main` branch is iso with `0.x` and no longer active (active devs switched to branch `1.x`)
+
 ## Manifesto
 Whether we are in the industry, academia, or simply in our everyday-life, we find ourselves encountering 3 categories of profiles no matter what the topic:
 
