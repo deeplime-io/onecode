@@ -80,6 +80,7 @@ onecode-build = 'onecode.cli.build:main'
 onecode-create = 'onecode.cli.create:main'
 onecode-add = 'onecode.cli.add:main'
 onecode-extract = 'onecode.cli.extract:main'
+onecode-zip = 'onecode.cli.zip:main'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
