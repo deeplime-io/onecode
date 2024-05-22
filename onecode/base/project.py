@@ -242,9 +242,8 @@ class Project(metaclass=Singleton):
         filepath: str
     ) -> str:
         """
-        Get the constructed output path for the given file path. If the file path is absolute or
-        null, the path is left unchanged, otherwise the path is considered relative to the data
-        output path (typically `<data_root>/outputs/`).
+        Get the constructed output path for the given file path. The path is always considered
+        relative to the data output path (typically `<data_root>/outputs/`).
 
         Args:
             filepath: filename of file path to construct the output path from.
@@ -253,8 +252,7 @@ class Project(metaclass=Singleton):
             The constructed output path to the file.
 
         """
-        return filepath if not filepath or os.path.isabs(filepath) \
-            else os.path.join(self.data_root, 'outputs', filepath)
+        return None if filepath is None else os.path.join(self.data_root, 'outputs', filepath)
 
     def get_output_manifest(self) -> str:
         """

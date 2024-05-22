@@ -37,7 +37,7 @@ def zip_output(
 
                     output_file = output["value"]
                     arcpath = os.path.join(
-                        "data",
+                        "outputs",
                         os.path.relpath(output_file, os.path.join(data_path, "outputs"))
                     )
 
@@ -57,7 +57,7 @@ def main() -> None:    # pragma: no cover
 
     parser = argparse.ArgumentParser(description='Start the OneCode Project in Interactive Mode.')
     parser.add_argument(
-        '--output_file',
+        '--output-file',
         default='data.zip',
         help='Path to the output zip file'
     )
