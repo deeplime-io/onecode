@@ -3,7 +3,7 @@ name: Validation
 on:
   push:
     branches:
-      - main
+      - '*.x'
       - patch/**
     path:
       - onecode/**
@@ -41,7 +41,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
@@ -58,7 +58,7 @@ jobs:
           pip install .[developer]
 
       - name: Check Testing With Emulations
-        if: ${{ matrix.os == 'ubuntu-latest' }}
+        if: ${{ matrix.os != 'windows-latest' }}
         run: |
           ONECODE_DO_TYPECHECK=1 python -m pytest tests -n auto --with-emulations
 
