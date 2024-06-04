@@ -57,10 +57,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install .[developer]
 
-      - name: Check Testing
+      - name: Check Testing Linux/MacOS
+        if: ${{ matrix.os != 'windows-latest' }}
+        run: |
+          ONECODE_DO_TYPECHECK=1 python -m pytest tests -n auto
+
+      - name: Check Testing Windows
+        if: ${{ matrix.os == 'windows-latest' }}
         run: |
           set ONECODE_DO_TYPECHECK=1
-          python -m pytest tests -n auto
+          python -m pytest tests
 
   coverage:
     name: Run coverage report
