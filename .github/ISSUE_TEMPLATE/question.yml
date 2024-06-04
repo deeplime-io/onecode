@@ -4,6 +4,7 @@ title: "[Question]: "
 labels: ["question", "new"]
 
 body:
+
   - type: checkboxes
     id: answer
     attributes:
@@ -14,40 +15,32 @@ body:
         - label: the GitHub Issues
     validations:
       required: false
+
   - type: markdown
     attributes:
       value: |
-        ## Your Environnement
+        ## Product
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product
+      description: OneCode Cloud or OneCode Python?
+      multiple: false
+      options:
+        - OneCode Cloud
+        - OneCode Python
+    validations:
+      required: true
+
   - type: input
     id: version
     attributes:
       label: Version (tag/commit sha)
-      description: Which Version of OneCode are you on.
+      description: '[Python only] Which Version of OneCode are you on?'
       placeholder: ex. 0.1.0
     validations:
-      required: true
-  - type: dropdown
-    id: os
-    attributes:
-      label: OS
-      description: Which OS are you on ?
-      multiple: false
-      options:
-        - Linux
-        - Windows
-    validations:
-      required: true
-  - type: checkboxes
-    id: profile
-    attributes:
-      label: Profile
-      description: What is your OneCode profile ?
-      options:
-        - label: Expert
-        - label: Tech-Savvy
-        - label: Developer
-    validations:
       required: false
+      
   - type: textarea
     id: question
     attributes:

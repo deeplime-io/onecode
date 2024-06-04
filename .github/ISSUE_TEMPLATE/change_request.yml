@@ -13,36 +13,30 @@ body:
     id: type
     attributes:
       label: Type
-      description: New feature or Improvement ?
+      description: New feature or Improvement?
       multiple: false
       options:
         - New feature
         - Improvement
     validations:
       required: true
-  - type: dropdown
-    id: os
+
+  - type: markdown
     attributes:
-      label: OS
-      description: Is it OS-specific ?
+      value: |
+        ## Product
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product
+      description: OneCode Cloud or OneCode Python?
       multiple: false
       options:
-        - Not particularly
-        - Linux
-        - Windows
+        - OneCode Cloud
+        - OneCode Python
     validations:
       required: true
-  - type: checkboxes
-    id: profile
-    attributes:
-      label: Profile
-      description: Who is it for ?
-      options:
-        - label: Expert
-        - label: Tech-Savvy
-        - label: Developer
-    validations:
-      required: false
+
   - type: textarea
     id: details
     attributes:
@@ -50,11 +44,10 @@ body:
       placeholder: |
         * Description
 
-        * Sample Code
+        * Sample Code (for OneCode Python)
         ```python
         # example of code that would illustrate this request
-        ```
 
-        * Desired screenshot/output
+        ```
     validations:
       required: true
