@@ -17,6 +17,7 @@ def test_console_single_number_input():
     assert type(widget()) == NumberInput
     assert widget.testdata == "data"
     assert widget.kind == "NumberInput"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_number_input():
@@ -192,6 +193,36 @@ def test_execute_invalid_optional_number_input():
     assert "[numberinput] Value is required: None provided" == str(excinfo.value)
 
 
+def test_build_gui_number_input():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = NumberInput(
+        key="NumberInput",
+        value=[0.5, 12.3],
+        label="My NumberInput",
+        optional="$x$",
+        count=2,
+        min=0.1,
+        max=15.6,
+        step=0.1
+    )
+
+    assert widget() == ('numberinput', {
+        "key": "numberinput",
+        "kind": "NumberInput",
+        "value": [0.5, 12.3],
+        "min": 0.1,
+        "max": 15.6,
+        "step": 0.1,
+        "label": "My NumberInput",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        'metadata': False,
+        'depends_on': ['x']
+    })
+
+
 def test_extract_all_number_input():
     Project().mode = Mode.EXTRACT_ALL
 
@@ -287,3 +318,36 @@ def test_load_then_execute_number_input_no_key():
     assert widget.key == "numberinput"
     assert widget.label == "NumberInput"
     assert widget._label == "NumberInput"
+
+
+def test_number_input_metadata():
+    metadata = NumberInput.metadata(True)
+
+    assert metadata == {}
+
+
+def test_number_input_dependencies():
+    widget = NumberInput(
+        key="NumberInput",
+        value=None,
+        optional=True
+    )
+
+    assert widget.dependencies() == []
+
+    widget = NumberInput(
+        key="NumberInput",
+        value=None,
+        optional="len($df1$) > 1",
+    )
+
+    assert set(widget.dependencies()) == {"df1"}
+
+    widget = NumberInput(
+        key="NumberInput",
+        value=None,
+        optional=True,
+        count="len($df1$)"
+    )
+
+    assert set(widget.dependencies()) == {"df1"}

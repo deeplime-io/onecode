@@ -16,6 +16,7 @@ def test_console_single_radio_button():
     assert type(widget()) == RadioButton
     assert widget.testdata == "data"
     assert widget.kind == "RadioButton"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_radio_button():
@@ -104,6 +105,34 @@ def test_execute_invalid_option():
         widget()
 
     assert "[radiobutton] Not a valid choice: C" == str(excinfo.value)
+
+
+def test_build_gui_radio_button():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = RadioButton(
+        key="RadioButton",
+        value=["A", "C"],
+        label="My RadioButton",
+        optional="$x$",
+        count=2,
+        options=["A", "B", "C"],
+        horizontal=True
+    )
+
+    assert widget() == ('radiobutton', {
+        "key": "radiobutton",
+        "kind": "RadioButton",
+        "value": ["A", "C"],
+        "label": "My RadioButton",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        "options": ["A", "B", "C"],
+        "horizontal": True,
+        'metadata': False,
+        'depends_on': ['x']
+    })
 
 
 def test_extract_all_radio_button():
@@ -197,3 +226,38 @@ def test_load_then_execute_radio_button_no_key():
     assert widget.key == "radiobutton"
     assert widget.label == "RadioButton"
     assert widget._label == "RadioButton"
+
+
+def test_radio_button_metadata():
+    metadata = RadioButton.metadata(True)
+
+    assert metadata == {}
+
+
+def test_radio_button_dependencies():
+    widget = RadioButton(
+        key="RadioButton",
+        value=None,
+        optional=True,
+        options=["A", "B", "C"]
+    )
+
+    assert widget.dependencies() == []
+
+    widget = RadioButton(
+        key="RadioButton",
+        value=None,
+        optional="len($df1$) > 1",
+    )
+
+    assert set(widget.dependencies()) == {"df1"}
+
+    widget = RadioButton(
+        key="RadioButton",
+        value=None,
+        optional=True,
+        options=["A", "B", "C"],
+        count="len($df1$)"
+    )
+
+    assert set(widget.dependencies()) == {"df1"}

@@ -25,6 +25,7 @@ def test_console_single_file_input():
     assert type(widget()) == FileInput
     assert widget.testdata == "data"
     assert widget.kind == "FileInput"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_file_input_single_selection():
@@ -371,6 +372,36 @@ def test_execute_invalid_optional_file_input():
     assert "[fileinput] Value is required: None provided" == str(excinfo.value)
 
 
+def test_build_gui_file_input():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = FileInput(
+        key="FileInput",
+        value=["/path/to/file.jpg"],
+        label="My FileInput",
+        optional="$x$",
+        count=2,
+        multiple=True,
+        tags=["Core"],
+        types=[FileFilter.IMAGE]
+    )
+
+    assert widget() == ('fileinput', {
+        "key": "fileinput",
+        "kind": "FileInput",
+        "value": ["/path/to/file.jpg"],
+        "label": "My FileInput",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        "tags": ["Core"],
+        "types": [("Image", ".jpg .png .jpeg")],
+        "multiple": True,
+        'metadata': False,
+        'depends_on': ['x']
+    })
+
+
 def test_extract_all_file_input():
     Project().mode = Mode.EXTRACT_ALL
 
@@ -486,3 +517,36 @@ def test_load_then_execute_file_input_no_key():
         shutil.rmtree(folder_path)
     except Exception:
         pass
+
+
+def test_file_input_metadata():
+    metadata = FileInput.metadata(True)
+
+    assert metadata == {}
+
+
+def test_file_input_dependencies():
+    widget = FileInput(
+        key="FileInput",
+        value=None,
+        optional=True
+    )
+
+    assert widget.dependencies() == []
+
+    widget = FileInput(
+        key="FileInput",
+        value=None,
+        optional="len($df1$) > 1",
+    )
+
+    assert set(widget.dependencies()) == {"df1"}
+
+    widget = FileInput(
+        key="FileInput",
+        value=None,
+        optional=True,
+        count="len($df1$)"
+    )
+
+    assert set(widget.dependencies()) == {"df1"}

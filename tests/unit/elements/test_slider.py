@@ -16,6 +16,7 @@ def test_console_single_slider():
     assert type(widget()) == Slider
     assert widget.testdata == "data"
     assert widget.kind == "Slider"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_slider():
@@ -237,6 +238,36 @@ def test_execute_invalid_optional_slider():
     assert "[slider] Value is required: None provided" == str(excinfo.value)
 
 
+def test_build_gui_slider():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = Slider(
+        key="Slider",
+        value=[0.5, 12.3],
+        label="My Slider",
+        optional="$x$",
+        count=2,
+        min=0.1,
+        max=15.6,
+        step=0.1
+    )
+
+    assert widget() == ('slider', {
+        "key": "slider",
+        "kind": "Slider",
+        "value": [0.5, 12.3],
+        "min": 0.1,
+        "max": 15.6,
+        "step": 0.1,
+        "label": "My Slider",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        'metadata': False,
+        'depends_on': ['x']
+    })
+
+
 def test_extract_all_slider():
     Project().mode = Mode.EXTRACT_ALL
 
@@ -332,3 +363,36 @@ def test_load_then_execute_slider_no_key():
     assert widget.key == "slider"
     assert widget.label == "Slider"
     assert widget._label == "Slider"
+
+
+def test_slider_metadata():
+    metadata = Slider.metadata(True)
+
+    assert metadata == {}
+
+
+def test_slider_dependencies():
+    widget = Slider(
+        key="Slider",
+        value=None,
+        optional=True
+    )
+
+    assert widget.dependencies() == []
+
+    widget = Slider(
+        key="Slider",
+        value=None,
+        optional="len($df1$) > 1",
+    )
+
+    assert set(widget.dependencies()) == {"df1"}
+
+    widget = Slider(
+        key="Slider",
+        value=None,
+        optional=True,
+        count="len($df1$)"
+    )
+
+    assert set(widget.dependencies()) == {"df1"}

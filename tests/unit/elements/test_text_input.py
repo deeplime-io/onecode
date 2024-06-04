@@ -16,6 +16,7 @@ def test_console_single_text_input():
     assert type(widget()) == TextInput
     assert widget.testdata == "data"
     assert widget.kind == "TextInput"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_text_input():
@@ -102,6 +103,35 @@ def test_execute_invalid_optional_text_input():
         widget()
 
     assert "[textinput] Value is required: None provided" == str(excinfo.value)
+
+
+def test_build_gui_text_input():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = TextInput(
+        key="TextInput",
+        value=["OneCode", "rocks!"],
+        label="My TextInput",
+        optional="$x$",
+        count=2,
+        max_chars=500,
+        placeholder="My Placeholder"
+    )
+
+    assert widget() == ('textinput', {
+        "key": "textinput",
+        "kind": "TextInput",
+        "value": ["OneCode", "rocks!"],
+        "label": "My TextInput",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        "max_chars": 500,
+        "placeholder": "My Placeholder",
+        "multiline": False,
+        'metadata': False,
+        'depends_on': ['x']
+    })
 
 
 def test_extract_all_text_input():
@@ -196,3 +226,36 @@ def test_load_then_execute_text_input_no_key():
     assert widget.key == "textinput"
     assert widget.label == "TextInput"
     assert widget._label == "TextInput"
+
+
+def test_text_input_metadata():
+    metadata = TextInput.metadata(True)
+
+    assert metadata == {}
+
+
+def test_text_input_dependencies():
+    widget = TextInput(
+        key="TextInput",
+        value=None,
+        optional=True
+    )
+
+    assert widget.dependencies() == []
+
+    widget = TextInput(
+        key="TextInput",
+        value=None,
+        optional="len($df1$) > 1",
+    )
+
+    assert set(widget.dependencies()) == {"df1"}
+
+    widget = TextInput(
+        key="TextInput",
+        value=None,
+        optional=True,
+        count="len($df1$)"
+    )
+
+    assert set(widget.dependencies()) == {"df1"}

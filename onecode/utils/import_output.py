@@ -88,7 +88,7 @@ def import_output(
 
         try:
             def _xdef(cls):
-                def _x(*args, **kwargs):
+                def _x(*args, **kwargs):    # pragma: no cover
                     empty_ctor = not args and not kwargs
                     return getattr(cls, "static_call")(cls) if empty_ctor \
                         else cls(*args, **kwargs)()

@@ -25,6 +25,7 @@ def test_console_csv_reader():
     assert type(widget()) == CsvReader
     assert widget.testdata == "data"
     assert widget.kind == "CsvReader"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_csv_reader():
@@ -179,6 +180,32 @@ def test_execute_invalid_optional_csv_reader():
     assert "[csvreader] Value is required: None provided" == str(excinfo.value)
 
 
+def test_build_gui_csv_reader():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = CsvReader(
+        key="CsvReader",
+        value=["/path/to/file.csv"],
+        label="My CsvReader",
+        optional="$x$",
+        count=2,
+        tags=["CSV"]
+    )
+
+    assert widget() == ('csvreader', {
+        "key": "csvreader",
+        "kind": "CsvReader",
+        "value": ["/path/to/file.csv"],
+        "label": "My CsvReader",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        "tags": ["CSV"],
+        'metadata': True,
+        'depends_on': ['x']
+    })
+
+
 def test_extract_all_csv_reader():
     Project().mode = Mode.EXTRACT_ALL
 
@@ -311,3 +338,48 @@ def test_empty_csv_reader():
         shutil.rmtree(folder_path)
     except Exception:
         pass
+
+
+def test_csv_reader_metadata():
+    _, folder, _ = _generate_flow_name()
+    tmp = _clean_flow(folder)
+    folder_path = os.path.join(tmp, folder)
+
+    csv_file = _generate_csv_file(folder_path, 'test.csv')
+    metadata = CsvReader.metadata(csv_file)
+
+    assert list(metadata.keys()) == ["columns", "stats"]
+    assert metadata["columns"] == ["A", "B", "C"]
+    assert isinstance(metadata["stats"], dict)
+
+    try:
+        shutil.rmtree(folder_path)
+    except Exception:
+        pass
+
+
+def test_csv_reader_dependencies():
+    widget = CsvReader(
+        key="CsvReader",
+        value=None,
+        optional=True
+    )
+
+    assert widget.dependencies() == []
+
+    widget = CsvReader(
+        key="CsvReader",
+        value=None,
+        optional="len($df1$) > 1",
+    )
+
+    assert set(widget.dependencies()) == {"df1"}
+
+    widget = CsvReader(
+        key="CsvReader",
+        value=None,
+        optional=True,
+        count="len($df1$)"
+    )
+
+    assert set(widget.dependencies()) == {"df1"}

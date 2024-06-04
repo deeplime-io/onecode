@@ -61,6 +61,32 @@ def test_execute_file_output():
         pass
 
 
+def test_execute_file_output_make_path():
+    _, folder, flow_id = _generate_flow_name()
+    tmp = _clean_flow(folder)
+    folder_path = os.path.join(tmp, folder)
+    data_path = os.path.join(folder_path, 'data')
+    os.makedirs(data_path)
+    os.environ[Env.ONECODE_PROJECT_DATA] = data_path
+    Project().reset()
+    Project().mode = Mode.LOAD_THEN_EXECUTE
+    Project().current_flow = flow_id
+
+    widget = FileOutput(
+        key="FileOutput",
+        value="test/my_file.txt",
+        tags=["Core"],
+        make_path=True
+    )
+
+    assert os.path.exists(os.path.dirname(widget()))
+
+    try:
+        shutil.rmtree(folder_path)
+    except Exception:
+        pass
+
+
 def test_load_then_execute_file_output():
     _, folder, flow_id = _generate_flow_name()
     tmp = _clean_flow(folder)

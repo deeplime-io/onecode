@@ -16,6 +16,7 @@ def test_console_single_dropdown():
     assert type(widget()) == Dropdown
     assert widget.testdata == "data"
     assert widget.kind == "Dropdown"
+    assert widget.hide_when_disabled is False
 
 
 def test_execute_single_dropdown_single_choice():
@@ -151,6 +152,34 @@ def test_execute_invalid_option():
     assert "[dropdown] Not a valid choice: C" == str(excinfo.value)
 
 
+def test_build_gui_dropdown():
+    Project().mode = Mode.BUILD_GUI
+
+    widget = Dropdown(
+        key="Dropdown",
+        value=[["A", "B"], ["C"]],
+        label="My Dropdown",
+        optional="$x$",
+        count=2,
+        multiple=True,
+        options=["A", "B", "C"]
+    )
+
+    assert widget() == ('dropdown', {
+        "key": "dropdown",
+        "kind": "Dropdown",
+        "value": [["A", "B"], ["C"]],
+        "label": "My Dropdown",
+        "disabled": '$x$',
+        "optional": True,
+        "count": 2,
+        "multiple": True,
+        "options": ["A", "B", "C"],
+        'metadata': False,
+        'depends_on': ['x']
+    })
+
+
 def test_extract_all_dropdown():
     Project().mode = Mode.EXTRACT_ALL
 
@@ -244,3 +273,42 @@ def test_load_then_execute_dropdown_no_key():
     assert widget.key == "dropdown"
     assert widget.label == "Dropdown"
     assert widget._label == "Dropdown"
+
+
+def test_dropdown_metadata():
+    metadata = Dropdown.metadata(True)
+
+    assert metadata == {}
+
+
+def test_dropdown_dependencies():
+    widget = Dropdown(
+        key="Dropdown",
+        value=None,
+        optional=True,
+        options=["A", "B", "C"],
+        multiple=True
+    )
+
+    assert widget.dependencies() == []
+
+    widget = Dropdown(
+        key="Dropdown",
+        value=None,
+        optional="len($df1$) > 1",
+        options="$df2$.columns",
+        multiple=True
+    )
+
+    assert set(widget.dependencies()) == {"df1", "df2"}
+
+    widget = Dropdown(
+        key="Dropdown",
+        value=None,
+        optional=True,
+        options="$df2$.columns",
+        count="len($df1$)",
+        multiple=True
+    )
+
+    assert set(widget.dependencies()) == {"df1", "df2"}
