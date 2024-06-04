@@ -33,6 +33,24 @@ def test_execute_single_slider():
     assert widget._label == "Slider"
 
 
+def test_execute_single_slider_int_value():
+    Project().mode = Mode.EXECUTE
+
+    widget = Slider(
+        key="Slider",
+        value=2,
+        step=1,
+        min=0,
+        max=5
+    )
+
+    assert widget() == 2
+    assert isinstance(widget(), int)
+    assert widget.key == "slider"
+    assert widget.label == "Slider"
+    assert widget._label == "Slider"
+
+
 def test_execute_multiple_slider():
     Project().mode = Mode.EXECUTE
 
@@ -44,6 +62,22 @@ def test_execute_multiple_slider():
     )
 
     assert widget() == [0.6, 0.3, 0.4]
+
+
+def test_execute_multiple_slider_int_values():
+    Project().mode = Mode.EXECUTE
+
+    widget = Slider(
+        key="Slider",
+        value=[2, 1, 3],
+        count=3,
+        step=1,
+        min=0,
+        max=5
+    )
+
+    assert widget() == [2, 1, 3]
+    assert all(isinstance(v, int) for v in widget())
 
 
 def test_execute_optional_slider():

@@ -96,19 +96,21 @@ class Slider(InputElement):
         return Union[float, int]
 
     @property
-    def value(self) -> Union[float, int]:
+    def value(self) -> Optional[Union[float, int, List[float], List[int]]]:
         """
         Get the value of the element as an integer if min, max and steps are all integers.
 
         """
-        val = self._value
+        int_possible = _is_int(self.max) and _is_int(self.min) and _is_int(self.step)
 
-        return int(val) if (
-            _is_int(val) and
-            _is_int(self.max) and
-            _is_int(self.min) and
-            _is_int(self.step)
-        ) else val
+        if int_possible:
+            if type(self._value) is list:
+                return [int(v) for v in self._value]
+
+            else:
+                return int(self._value)
+
+        return self._value
 
     @check_type
     def _validate(
