@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -1840,15 +1840,13 @@ extending OneCode and demonstrating:</p>
 </p>
 
 
-
 <div class="doc doc-object doc-function">
 
 
 
 
+    <div class="doc doc-contents first">
 
-  <div class="doc doc-contents first">
-  
       <p>Use this function to register your <code>InputElement</code>. Here is what it does for you in details.</p>
 <p>For each file located in the same folder as the <code>init_file</code> path:</p>
 <ol>
@@ -1897,51 +1895,50 @@ extending OneCode and demonstrating:</p>
 </ol>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>init_file</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>path to the <strong>init</strong>.py file located in the same directory as the input elements.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr>
-          <td><code>module_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Python name of the module to import the elements under. The module will then be
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>init_file</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>path to the <strong>init</strong>.py file located in the same directory as the input elements.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>module_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Python name of the module to import the elements under. The module will then be
 available for importing using regular Python import statements.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div><h2 id="registering-output-elements">Registering output elements<a class="headerlink" href="#registering-output-elements" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">import_output</span><span class="p">(</span>
@@ -1952,15 +1949,13 @@ available for importing using regular Python import statements.</p>
 </p>
 
 
-
 <div class="doc doc-object doc-function">
 
 
 
 
+    <div class="doc doc-contents first">
 
-  <div class="doc doc-contents first">
-  
       <p>Use this function to register your <code>OutputElement</code>. Here is what it does for you in details.</p>
 <p>For each file located in the same folder as the <code>init_file</code> path:</p>
 <ol>
@@ -2017,51 +2012,50 @@ available for importing using regular Python import statements.</p>
 </ol>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>init_file</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>path to the <strong>init</strong>.py file located in the same directory as the input elements.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr>
-          <td><code>module_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Python name of the module to import the elements under. The module will then be
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>init_file</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>path to the <strong>init</strong>.py file located in the same directory as the input elements.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>module_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Python name of the module to import the elements under. The module will then be
 available for importing using regular Python import statements.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2123,7 +2117,7 @@ available for importing using regular Python import statements.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>

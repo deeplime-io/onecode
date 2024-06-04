@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1680,9 +1680,9 @@
 
 
 
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1694,97 +1694,92 @@
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.extract.extract_json" class="doc doc-heading">
-          <code class=" language-python"><span class="n">extract_json</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">to_file</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">extract_json</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">to_file</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.extract.extract_json" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Extract the input parameter out of the given OneCode project and dump it to the specified file.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>project_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the root of the OneCode project.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr>
-          <td><code>to_file</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path of the output file to dump the JSON to.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>all</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[bool]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If False, extract only the values of the parameter, otherwise extract values and
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>project_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the root of the OneCode project.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>to_file</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path of the output file to dump the JSON to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>all</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If False, extract only the values of the parameter, otherwise extract values and
 associated data such as <code>label</code>, <code>kind</code>, etc.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.extract.main" class="doc doc-heading">
-          <code class=" language-python"><span class="n">main</span><span class="p">(</span><span class="n">cli</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">main</span><span class="p">(</span><span class="n">cli</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.extract.main" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <div class="highlight"><pre><span></span><code>usage:<span class="w"> </span>onecode-extract<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--all<span class="o">]</span><span class="w"> </span><span class="o">[</span>--modules<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span><span class="o">[</span>MODULES<span class="w"> </span>...<span class="o">]]]</span><span class="w"> </span><span class="o">[</span>--path<span class="w"> </span>PATH<span class="o">]</span>
 <span class="w">    </span><span class="o">[</span>--verbose<span class="o">]</span><span class="w"> </span>output_file
 
@@ -1802,23 +1797,21 @@ optional<span class="w"> </span>arguments:
 <span class="w">  </span>--verbose<span class="w">             </span>Print<span class="w"> </span>verbose<span class="w"> </span>information<span class="w"> </span>when<span class="w"> </span>processing<span class="w"> </span>files
 </code></pre></div>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.extract.process" class="doc doc-heading">
-          <code class=" language-python"><span class="n">process</span><span class="p">(</span><span class="n">calls</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">process</span><span class="p">(</span><span class="n">calls</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.extract.process" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Evaluate the given calls such as:
 - only <code>ElementType.INPUT</code> are considered.
 - result of evaluation is interpreted as (key, value) and aggregated in the final
@@ -1830,61 +1823,59 @@ call graph (through <code>process_call_graph()</code>), you may input your own c
 below).</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>calls</code></td>
-          <td>
-                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>List of <code>{"func": &lt;function_name&gt;, "loc": &lt;code_to_eval&gt;}</code> where <code>func</code> is the name
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>calls</code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of <code>{"func": &lt;function_name&gt;, "loc": &lt;code_to_eval&gt;}</code> where <code>func</code> is the name
 of the function corresponding to the <code>InputElement</code> (i-e its snake case form - see the
 element developer section for more info), and <code>loc</code> is the "line of code" to evaluate
 through the Python interpreter.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code><span title="typing.Dict">Dict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionnary containing the results of the code evaluation associated to their key id.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionnary containing the results of the code evaluation associated to their key id.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <div class="admonition example">
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXTRACT_ALL</span>
@@ -1907,7 +1898,7 @@ through the Python interpreter.</p>
 </code></pre></div>
 </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1915,7 +1906,7 @@ through the Python interpreter.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -1977,7 +1968,7 @@ through the Python interpreter.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>

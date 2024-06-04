@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1698,13 +1698,13 @@
 
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="onecode.elements.input_element.InputElement">InputElement</span></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="onecode.elements.input_element.InputElement">InputElement</span></code></p>
 
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1719,8 +1719,8 @@
 
 
 <h2 id="onecode.elements.input.slider.Slider._value_type" class="doc doc-heading">
-          <code class=" language-python"><span class="n">_value_type</span><span class="p">:</span> <span class="nb">type</span></code>
-  
+            <code class=" language-python"><span class="n">_value_type</span><span class="p">:</span> <span class="nb">type</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -1728,232 +1728,228 @@
 <a href="#onecode.elements.input.slider.Slider._value_type" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the Slider value type: floating point or integer number <code>float|int</code>.</p>
-  </div>
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.elements.input.slider.Slider.__init__" class="doc doc-heading">
-          <code class=" language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hide_when_disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hide_when_disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 <a href="#onecode.elements.input.slider.Slider.__init__" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>A slider for numerical values.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>key</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>ID of the element. It must be unique as it is the key used to store data in
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the element. It must be unique as it is the key used to store data in
 Project(), otherwise it will lead to conflicts at runtime in both execution and
 Streamlit modes. The key will be transformed into snake case and slugified to avoid
 any special character or whitespace. Note that an ID cannot start with <code>_</code>. Try to
 choose a key that is meaningful for your context (see examples projects).</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>value</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[float, <span title="typing.List">List</span>[float]]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Initial numerical value.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>label</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Label to display on top of the field.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>count</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Specify the number of occurence of the widget. OneCode typically uses it for the
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[float, <span title="typing.List">List</span>[float]]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Initial numerical value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>label</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Label to display on top of the field.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>count</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Specify the number of occurence of the widget. OneCode typically uses it for the
 streamlit case. Note that if <code>count</code> is defined, the expected <code>value</code> should always
 be a list, even if the <code>count</code> is <code>1</code>. <code>count</code> can either be a fixed number
 (e.g. <code>3</code>) or an expression dependent of other elements (see
 <a class="autorefs autorefs-internal" href="../../../../tips_and_tricks/#using-runtime-expressions-in-elements">Using Expressions</a> for more information).</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>optional</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[bool, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Specify whether the value may be None. <code>optional</code> can either be a fixed
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>optional</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[bool, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Specify whether the value may be None. <code>optional</code> can either be a fixed
 boolean (<code>False</code> or <code>True</code>) or a conditional expression dependent of other elements
 (see <a class="autorefs autorefs-internal" href="../../../../tips_and_tricks/#using-runtime-expressions-in-elements">Using Expressions</a> for more
 information).</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>hide_when_disabled</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If element is optional, set it to True to hide it from the
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>hide_when_disabled</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If element is optional, set it to True to hide it from the
 interface, otherwise it will be shown disabled.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>min</code></td>
-          <td>
-                <code>float</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Mandatory lower bound, defaults to 0.</p>
-            </div>
-          </td>
-          <td>
-                <code>0.0</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>max</code></td>
-          <td>
-                <code>float</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Mandatory upper bound, defaults to 1.</p>
-            </div>
-          </td>
-          <td>
-                <code>1.0</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>step</code></td>
-          <td>
-                <code>float</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Mandatory step used when incrementing/decrementing the slider, defaults to 0.1.</p>
-            </div>
-          </td>
-          <td>
-                <code>0.1</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>**kwargs</code></td>
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Extra user meta-data to attach to the element. Argument names cannot overwrite
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>min</code></td>
+            <td>
+                  <code>float</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Mandatory lower bound, defaults to 0.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>max</code></td>
+            <td>
+                  <code>float</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Mandatory upper bound, defaults to 1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>1.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>step</code></td>
+            <td>
+                  <code>float</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Mandatory step used when incrementing/decrementing the slider, defaults to 0.1.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>**kwargs</code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Extra user meta-data to attach to the element. Argument names cannot overwrite
 existing attributes or methods name such as <code>streamlit</code>, <code>_value</code>, etc.</p>
-            </div>
-          </td>
-          <td>
-                <code>{}</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                  <code>{}</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the <code>key</code> is empty or starts with <code>_</code>.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td>
-                <code>AttributeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the <code>key</code> is empty or starts with <code>_</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>AttributeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if one the <code>kwargs</code> conflicts with an existing attribute or method.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
       <div class="admonition example">
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">onecode</span> <span class="kn">import</span> <span class="n">slider</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Project</span>
@@ -1971,92 +1967,86 @@ existing attributes or methods name such as <code>streamlit</code>, <code>_value
 </code></pre></div>
 </div>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.elements.input.slider.Slider._validate" class="doc doc-heading">
-          <code class=" language-python"><span class="n">_validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">_validate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
 <a href="#onecode.elements.input.slider.Slider._validate" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
 
 
 
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the value is out of bound (min/max) or if the minimum is greather than
-the maximum.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the value is out of bound (min/max) or if the minimum is greather than
+the maximum.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.elements.input.slider.Slider.streamlit" class="doc doc-heading">
-          <code class=" language-python"><span class="n">streamlit</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">streamlit</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></code>
 
 <a href="#onecode.elements.input.slider.Slider.streamlit" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
 
 
 
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The Streamlit code for a slider (<code>st.slider</code>).</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Streamlit code for a slider (<code>st.slider</code>).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2064,8 +2054,7 @@ the maximum.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2127,7 +2116,7 @@ the maximum.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>

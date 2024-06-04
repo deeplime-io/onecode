@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1716,9 +1716,9 @@
 
 
 
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1730,463 +1730,443 @@
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.utils._add_flow" class="doc doc-heading">
-          <code class=" language-python"><span class="n">_add_flow</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">_add_flow</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">before</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils._add_flow" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Internal function to add a flow to an existing OneCode project.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>project_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the root of the OneCode project.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr>
-          <td><code>name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Name of the new flow to add. Note that the name will be slugified, i-e all special
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>project_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the root of the OneCode project.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the new flow to add. Note that the name will be slugified, i-e all special
 characters and whitespaces will be converted to "_". See <code>slugify</code> for more information.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>before</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Insert the new flow before this flow id. Set it to None to put it in last position.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>before</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Insert the new flow before this flow id. Set it to None to put it in last position.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the flow name is empty or is already used.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the flow name is empty or is already used.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.utils._get_flow_choices" class="doc doc-heading">
-          <code class=" language-python"><span class="n">_get_flow_choices</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">_get_flow_choices</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils._get_flow_choices" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Internal function for CLI commands to get the existing OneCode project's flows as interactive
 Choice for InquirerPy.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>project_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the root of the OneCode project.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>project_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the root of the OneCode project.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code><span title="typing.List">List</span>[<span title="InquirerPy.base.control.Choice">Choice</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Flow id and label as InquirerPy Choices.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="InquirerPy.base.control.Choice">Choice</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Flow id and label as InquirerPy Choices.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.utils.extract_calls" class="doc doc-heading">
-          <code class=" language-python"><span class="n">extract_calls</span><span class="p">(</span><span class="n">entry_point</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">calls</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">extract_calls</span><span class="p">(</span><span class="n">entry_point</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">calls</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils.extract_calls" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Given a code Call Graph, extract only the code calls related to OneCode-like elements. This
 includes built-in input/output elements from OneCode and also any registered element coming from
 <code>onecode_ext</code> as well as derived OneCode packages. See <a class="autorefs autorefs-internal" href="../../../extending_onecode/#extending-onecode">Extending OneCode</a>
 for more information on how to register new element.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>entry_point</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Call Graph function name from which to start the extraction from, e.g.
-<code>flows.my_flow.run</code>.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr>
-          <td><code>graph</code></td>
-          <td>
-                <code><span title="typing.Dict">Dict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Call Graph typically constructed by the DeepLime forked PyCG. Check out PyCG for
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>entry_point</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Call Graph function name from which to start the extraction from, e.g.
+<code>flows.my_flow.run</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>graph</code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Call Graph typically constructed by the DeepLime forked PyCG. Check out PyCG for
 more information about the graph structure or directly the forked repository at
 https://github.com/deeplime-io/PyCG/tree/onecode</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>calls</code></td>
-          <td>
-                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>List of calls as <code>{"func": &lt;function_name&gt;, "loc": &lt;code_to_eval&gt;}</code> where results
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>calls</code></td>
+            <td>
+                  <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of calls as <code>{"func": &lt;function_name&gt;, "loc": &lt;code_to_eval&gt;}</code> where results
 are aggregated. These <code>calls</code> are typically piped to the <code>process</code> functions for JSON
 extraction or Streamlit code generation.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>verbose</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If True, print out debug information such as elements being processed.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>verbose</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, print out debug information such as elements being processed.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.utils.get_flows" class="doc doc-heading">
-          <code class=" language-python"><span class="n">get_flows</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">get_flows</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils.get_flows" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the flows configuration as stored at the OneCode project's root (filename is given by the
 variable <code>Env.ONECODE_CONFIG_FILE</code>).</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>project_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the root of the OneCode project.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>project_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the root of the OneCode project.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code><span title="typing.Dict">Dict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The JSON content of the OneCode project flow configuration as a dictionnary.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The JSON content of the OneCode project flow configuration as a dictionnary.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.cli.utils.process_call_graph" class="doc doc-heading">
-          <code class=" language-python"><span class="n">process_call_graph</span><span class="p">(</span><span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">process_call_graph</span><span class="p">(</span><span class="n">project_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#onecode.cli.utils.process_call_graph" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Process a OneCode project to extract the code calls related to OneCode-like elements.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>project_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the root of the OneCode project.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>project_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the root of the OneCode project.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>verbose</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, print out debug information such as elements being processed.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>verbose</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If True, print out debug information such as elements being processed.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>FileNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the OneCode project configuration file is not found.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>FileNotFoundError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the OneCode project configuration file is not found.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="collections.OrderedDict">OrderedDict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The list of OneCode-like elements code statements ready to be evaluated.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code><span title="collections.OrderedDict">OrderedDict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The list of OneCode-like elements code statements ready to be evaluated.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
@@ -2194,7 +2174,7 @@ variable <code>Env.ONECODE_CONFIG_FILE</code>).</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2256,7 +2236,7 @@ variable <code>Env.ONECODE_CONFIG_FILE</code>).</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>

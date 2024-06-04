@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1912,97 +1912,96 @@
 
 
 
-  <div class="doc doc-contents first">
+    <div class="doc doc-contents first">
 
-  
+
       <p>Single Project object to centralize OneCode project data, such as the data path,
 parameter values, registered elements, flow currently running, current running
 mode, etc.</p>
 <p>See <a class="autorefs autorefs-internal" href="#onecode.base.project.Project.reset"><code>reset()</code></a> for Project default's initialization.</p>
 
 
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.registered_elements" href="#onecode.base.project.Project.registered_elements">registered_elements</a></code></td>
+            <td>
+                  <code><span title="typing.Set">Set</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>List of elements registered for processing.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.mode" href="#onecode.base.project.Project.mode">mode</a></code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="onecode.base.enums.Mode" href="../enums/#onecode.base.enums.Mode">Mode</a>, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Control how elements are processed.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.current_flow" href="#onecode.base.project.Project.current_flow">current_flow</a></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ID of the flow currently running.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.data_root" href="#onecode.base.project.Project.data_root">data_root</a></code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the data folder.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.data" href="#onecode.base.project.Project.data">data</a></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionnary containing the data values from interpreted elements.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.config" href="#onecode.base.project.Project.config">config</a></code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionnary containing the project configuration.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.registered_elements" href="#onecode.base.project.Project.registered_elements">registered_elements</a></code></td>
-          <td>
-                <code><span title="typing.Set">Set</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>List of elements registered for processing.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.mode" href="#onecode.base.project.Project.mode">mode</a></code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="onecode.base.enums.Mode" href="../enums/#onecode.base.enums.Mode">Mode</a>, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Control how elements are processed.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.current_flow" href="#onecode.base.project.Project.current_flow">current_flow</a></code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>ID of the flow currently running.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.data_root" href="#onecode.base.project.Project.data_root">data_root</a></code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the data folder.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.data" href="#onecode.base.project.Project.data">data</a></code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Dictionnary containing the data values from interpreted elements.</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><a class="autorefs autorefs-internal" title="onecode.base.project.Project.config" href="#onecode.base.project.Project.config">config</a></code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Dictionnary containing the project configuration.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
 
 
-  
 
   <div class="doc doc-children">
 
@@ -2017,8 +2016,8 @@ mode, etc.</p>
 
 
 <h2 id="onecode.base.project.Project.config" class="doc doc-heading">
-          <code class=" language-python"><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span></code>
-  
+            <code class=" language-python"><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2026,11 +2025,11 @@ mode, etc.</p>
 <a href="#onecode.base.project.Project.config" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the Project current configuration options.</p>
 <p>Config is simply a key-value dictionnary.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2039,8 +2038,8 @@ mode, etc.</p>
 
 
 <h2 id="onecode.base.project.Project.current_flow" class="doc doc-heading">
-          <code class=" language-python"><span class="n">current_flow</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
-  
+            <code class=" language-python"><span class="n">current_flow</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
       <small class="doc doc-label doc-label-writable"><code>writable</code></small>
@@ -2049,12 +2048,12 @@ mode, etc.</p>
 <a href="#onecode.base.project.Project.current_flow" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the currently running flow. If no flow is running, None is returned. It is automatically
 set when OneCode project is run through the main entry point of from streamlit (i-e
 <code>python main.py</code> or <code>onecode-start</code>)</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2063,8 +2062,8 @@ set when OneCode project is run through the main entry point of from streamlit (
 
 
 <h2 id="onecode.base.project.Project.data" class="doc doc-heading">
-          <code class=" language-python"><span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span></code>
-  
+            <code class=" language-python"><span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
       <small class="doc doc-label doc-label-writable"><code>writable</code></small>
@@ -2073,12 +2072,12 @@ set when OneCode project is run through the main entry point of from streamlit (
 <a href="#onecode.base.project.Project.data" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the Project current data. Data is typically set either at the start when running in
 mode <code>LOAD_THEN_EXECUTE</code> or incrementaly after each call to any input element.</p>
 <p>Data is simply a key-value dictionnary.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2087,8 +2086,8 @@ mode <code>LOAD_THEN_EXECUTE</code> or incrementaly after each call to any input
 
 
 <h2 id="onecode.base.project.Project.data_root" class="doc doc-heading">
-          <code class=" language-python"><span class="n">data_root</span><span class="p">:</span> <span class="nb">str</span></code>
-  
+            <code class=" language-python"><span class="n">data_root</span><span class="p">:</span> <span class="nb">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2096,11 +2095,11 @@ mode <code>LOAD_THEN_EXECUTE</code> or incrementaly after each call to any input
 <a href="#onecode.base.project.Project.data_root" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the path to the root of the data folder. See <a class="autorefs autorefs-internal" href="#onecode.base.project.Project.reset"><code>reset()</code></a> to know
 how the data path is initialized.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2109,8 +2108,8 @@ how the data path is initialized.</p>
 
 
 <h2 id="onecode.base.project.Project.mode" class="doc doc-heading">
-          <code class=" language-python"><span class="n">mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Mode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code>
-  
+            <code class=" language-python"><span class="n">mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Mode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
       <small class="doc doc-label doc-label-writable"><code>writable</code></small>
@@ -2119,12 +2118,12 @@ how the data path is initialized.</p>
 <a href="#onecode.base.project.Project.mode" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the currently set mode for the OneCode Project. A string is returned in case of custom
 modes. See <a class="autorefs autorefs-internal" href="../enums/#onecode.base.enums.Mode">Mode</a> and <a class="autorefs autorefs-internal" href="../../../extending_onecode/#extending-onecode">Extending OneCode</a> for
 more information.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2133,8 +2132,8 @@ more information.</p>
 
 
 <h2 id="onecode.base.project.Project.registered_elements" class="doc doc-heading">
-          <code class=" language-python"><span class="n">registered_elements</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
-  
+            <code class=" language-python"><span class="n">registered_elements</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2142,341 +2141,323 @@ more information.</p>
 <a href="#onecode.base.project.Project.registered_elements" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the list of registered elements (<code>InputElement</code> and <code>OutputElement</code>).
 Once a library is registered, it is required to register the elements that need to be
 processed.</p>
 <p>By default, it returns all Input/Output Elements of <code>onecode</code> library.</p>
 <p>See <a class="autorefs autorefs-internal" href="../../../extending_onecode/#extending-onecode">Extending OneCode</a> for more information.</p>
-  </div>
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project._set_data_root" class="doc doc-heading">
-          <code class=" language-python"><span class="n">_set_data_root</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">_set_data_root</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project._set_data_root" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Protected method to set the data root path. It is unsafe to use this method and change
 the data path while running the OneCode project.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>data_path</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the data root.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>data_path</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the data root.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>NotADirectoryError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the data path does not exist or is not a directory.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>NotADirectoryError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the data path does not exist or is not a directory.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.add_data" class="doc doc-heading">
-          <code class=" language-python"><span class="n">add_data</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">add_data</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.add_data" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Add a key-value pair to the data dictionnary.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>key</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Unique key to set the attach the value to.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique key to set the attach the value to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Value corresponding to the given key.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>value</code></td>
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Value corresponding to the given key.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the key is empty or None.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the key is empty or None.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.get_config" class="doc doc-heading">
-          <code class=" language-python"><span class="n">get_config</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">get_config</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.get_config" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the value corresponding to the key config.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>key</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="onecode.base.enums.ConfigOption" href="../enums/#onecode.base.enums.ConfigOption">ConfigOption</a>, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Unique key to get the value from.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="onecode.base.enums.ConfigOption" href="../enums/#onecode.base.enums.ConfigOption">ConfigOption</a>, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique key to get the value from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the key does not exists.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the key does not exists.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.get_input_path" class="doc doc-heading">
-          <code class=" language-python"><span class="n">get_input_path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">get_input_path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.get_input_path" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the constructed input path for the given file path. If the file path is absolute or
 null, the path is left unchanged, otherwise the path is considered relative to the data
 root path.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>filepath</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>filename of file path to construct the input path from.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filepath</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>filename of file path to construct the input path from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The constructed input path to the file.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The constructed input path to the file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.get_output_manifest" class="doc doc-heading">
-          <code class=" language-python"><span class="n">get_output_manifest</span><span class="p">()</span></code>
+            <code class=" language-python"><span class="n">get_output_manifest</span><span class="p">()</span></code>
 
 <a href="#onecode.base.project.Project.get_output_manifest" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the path to the current flow manifest file, typically
 <code>&lt;data_root&gt;/outputs/&lt;flow&gt;/MANIFEST.txt</code>. If the path does not exist, it is automatically
 created.</p>
@@ -2492,197 +2473,186 @@ entry but the entire file is not a JSON.</p>
 </div>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path to the output MANIFEST.txt file for the currently running flow.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the output MANIFEST.txt file for the currently running flow.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.get_output_path" class="doc doc-heading">
-          <code class=" language-python"><span class="n">get_output_path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">get_output_path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.get_output_path" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get the constructed output path for the given file path. If the file path is absolute or
 null, the path is left unchanged, otherwise the path is considered relative to the data
 output path (typically <code>&lt;data_root&gt;/outputs/</code>).</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>filepath</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>filename of file path to construct the output path from.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>filepath</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>filename of file path to construct the output path from.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The constructed output path to the file.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The constructed output path to the file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.register_element" class="doc doc-heading">
-          <code class=" language-python"><span class="n">register_element</span><span class="p">(</span><span class="n">element_name</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">register_element</span><span class="p">(</span><span class="n">element_name</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.register_element" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Register the given element as part of the elements to be processed. The element must be of
 the form '<module>.<class_name>', e.g. <code>onecode_ext.MyInput</code></p>
 <p>See <a class="autorefs autorefs-internal" href="../../../extending_onecode/#extending-onecode">Extending OneCode</a> for more information.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>element_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Python name of the element (i-e class name).</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>element_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Python name of the element (i-e class name).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if element is not of the form '<module>.<class_name>' of if the class name
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if element is not of the form '<module>.<class_name>' of if the class name
 is already snake case.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.reset" class="doc doc-heading">
-          <code class=" language-python"><span class="n">reset</span><span class="p">()</span></code>
+            <code class=" language-python"><span class="n">reset</span><span class="p">()</span></code>
 
 <a href="#onecode.base.project.Project.reset" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Reset the project to its default values:
 - the data path is initialized in priority to <code>ONECODE_PROJECT_DATA</code> if provided in the
 Environment variables, otherwise to the <code>data</code> folder located in the same directory from
@@ -2692,110 +2662,104 @@ to the current working directory.
 - currently running flow and data are None.
 - registered elements default to the OneCode ones.</p>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.set_config" class="doc doc-heading">
-          <code class=" language-python"><span class="n">set_config</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">set_config</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.set_config" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Add a key-value pair to the config dictionnary.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>key</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="onecode.base.enums.ConfigOption" href="../enums/#onecode.base.enums.ConfigOption">ConfigOption</a>, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Unique key to set the attach the value to.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="onecode.base.enums.ConfigOption" href="../enums/#onecode.base.enums.ConfigOption">ConfigOption</a>, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique key to set the attach the value to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Value corresponding to the given key.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>value</code></td>
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Value corresponding to the given key.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>if the key is empty or None.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>if the key is empty or None.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="onecode.base.project.Project.write_output" class="doc doc-heading">
-          <code class=" language-python"><span class="n">write_output</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></code>
+            <code class=" language-python"><span class="n">write_output</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></code>
 
 <a href="#onecode.base.project.Project.write_output" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Write data to the output manifest file corresponding to the currently running flow.
 This function is thread and process-safe, i-e if there is concurrent writing to the
 manifest file (e.g. parallelization through multiprocessing), writing will be queued so
@@ -2805,36 +2769,35 @@ without data loss.</p>
 execution, it is possible to manully call it too to output custom data.</p>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>output</code></td>
-          <td>
-                <code><span title="typing.Dict">Dict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Output data to write to the manifest file.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>output</code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Output data to write to the manifest file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2842,8 +2805,7 @@ execution, it is possible to manully call it too to output custom data.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2905,7 +2867,7 @@ execution, it is possible to manully call it too to output custom data.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>
