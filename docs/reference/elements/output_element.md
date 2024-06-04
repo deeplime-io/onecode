@@ -1,3 +1,0 @@
-# OutputElement
-
-::: onecode.elements.OutputElement

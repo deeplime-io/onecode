@@ -35,17 +35,9 @@ class CsvReader(InputElement):
                 choose a key that is meaningful for your context (see examples projects).
             value: Path to the CSV file. CSV file must exists.
             label: Label to display on top of the table.
-            count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                UI case. Note that if `count` is defined, the expected `value` should always
-                be a list, even if the `count` is `1`. `count` can either be a fixed number
-                (e.g. `3`) or an expression dependent of other elements (see
-                [Using Expressions][using-runtime-expressions-in-elements] for more information).
-            optional: Specify whether the value may be None. `optional` can either be a fixed
-                boolean (`False` or `True`) or a conditional expression dependent of other elements
-                (see [Using Expressions][using-runtime-expressions-in-elements] for more
-                information).
-            hide_when_disabled: If element is optional, set it to True to hide it from the
-                interface, otherwise it will be shown disabled.
+            count: Placeholder, ignore until we activate this feature.
+            optional: Specify whether the `value` may be None.
+            hide_when_disabled: Placeholder, ignore until we activate this feature.
             tags: Optional meta-data information about the expected file. This information is only
                 used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
@@ -120,7 +112,7 @@ class CsvReader(InputElement):
         """
         Returns:
             The Pandas DataFrame loaded from the provided file path, otherwise None if the
-            file does not exists.
+                file does not exists.
 
         """
         if self._value is not None:

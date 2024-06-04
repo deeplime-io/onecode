@@ -141,8 +141,7 @@ def extract_calls(
     """
     Given a code Call Graph, extract only the code calls related to OneCode-like elements. This
     includes built-in input/output elements from OneCode and also any registered element coming from
-    `onecode_ext` as well as derived OneCode packages. See [Extending OneCode][extending-onecode]
-    for more information on how to register new element.
+    `onecode_ext` as well as derived OneCode packages.
 
     Args:
         entry_point: Call Graph function name from which to start the extraction from, e.g.

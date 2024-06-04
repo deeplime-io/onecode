@@ -36,19 +36,11 @@ class FileInput(InputElement):
                 choose a key that is meaningful for your context (see examples projects).
             value: Path to file(s). Files' existence will be checked at execution time. If paths
                 are not absolute, then they are considered relative to the data root folder. See
-                [Best Practices With Data][best-practices-with-data] for more information.
+                [Organizing Data][organizing-data] for more information.
             label: Label to display left of the file selector.
-            count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                IO case. Note that if `count` is defined, the expected `value` should always
-                be a list, even if the `count` is `1`. `count` can either be a fixed number
-                (e.g. `3`) or an expression dependent of other elements (see
-                [Using Expressions][using-runtime-expressions-in-elements] for more information).
-            optional: Specify whether the value may be None. `optional` can either be a fixed
-                boolean (`False` or `True`) or a conditional expression dependent of other elements
-                (see [Using Expressions][using-runtime-expressions-in-elements] for more
-                information).
-            hide_when_disabled: If element is optional, set it to True to hide it from the
-                interface, otherwise it will be shown disabled.
+            count: Placeholder, ignore until we activate this feature.
+            optional: Specify whether the `value` may be None.
+            hide_when_disabled: Placeholder, ignore until we activate this feature.
             types: List of filters allowing to narrow file selection in the UI mode. Each filter
                 must be a pair of (name, list of allowed extensions), e.g.
                 `("Image", ".jpg .png .jpeg")`. You may use the FileFilter enums for convenience.
@@ -109,8 +101,8 @@ class FileInput(InputElement):
         """
         Returns:
             The path or list of paths for the selected file(s): if paths are not absolute, then
-            they are considered relative to the data root folder. See
-            [Best Practices With Data][best-practices-with-data] for more information.
+                they are considered relative to the data root folder. See
+                [Organizing Data][organizing-data] for more information.
 
         """
         if self._value is not None:

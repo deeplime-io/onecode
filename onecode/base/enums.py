@@ -56,6 +56,8 @@ class Mode(StrEnum):
     - `EXTRACT_ALL`: extract parameters, their default value and all their attributes
         (kind, name, etc.) to JSON. It may be used either through regular Python scripts or the CLI.
         :octicons-arrow-both-24: `"_extract_all"`
+    - `BUILD_GUI`: write the UI file (JSON format) readable by OneCode Cloud to build the
+        graphical user interface :octicons-arrow-both-24: `"_build_gui"`
 
     These modes correspond to the function names of the Input/Output Element objects (e.g.
     `InputElement._execute()`). Therefore you can easily extend Input/Output Element with new modes

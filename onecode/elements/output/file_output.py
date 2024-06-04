@@ -30,13 +30,14 @@ class FileOutput(OutputElement):
                 The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see
-                [examples projects](https://github.com/deeplime-io/onecode/tree/main/examples)).
+                [examples projects](https://github.com/deeplime-io/onecode/tree/1.x/examples)).
             value: Path to the output file. Unless absolute, a path is relative to the `outputs`
                 folder of the flow currently running.
             label: Typically to be used for display purpose only. If not defined, it
                 will default to the `key`.
             tags: Optional meta-data information about the expected file. This information is only
                 used when the JSON output attributes are written to the output manifest.
+            make_path: True to create the directory structure of the given file path.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
                 existing attributes or methods name such as `_validate`, `_value`, etc.
 
@@ -55,7 +56,8 @@ class FileOutput(OutputElement):
                 key="FileOutput",
                 value="/path/to/file.txt",
                 label="My FileOutput",
-                tags=['TXT']
+                tags=['TXT'],
+                make_path=True
             )
 
             with open(file, 'w') as f:
@@ -65,6 +67,7 @@ class FileOutput(OutputElement):
             ```
 
             ```py title="Output"
+            # create /path/to folders
             "/path/to/file.txt"
             ```
 
@@ -86,8 +89,8 @@ class FileOutput(OutputElement):
         """
         Returns:
             The path to the output file: if path are not absolute, then it is considered relative
-            to the data output folder. See [Best Practices With Data][best-practices-with-data]
-            for more information.
+                to the data output folder. See [Organizing Data][organizing-data]
+                for more information.
 
         """
         return Project().get_output_path(self._value)

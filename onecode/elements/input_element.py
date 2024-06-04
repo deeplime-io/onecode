@@ -84,17 +84,9 @@ class InputElement(ABC):
                 element.
             label: Typically to be used for display purpose only. If not defined, it
                 will default to the `key`.
-            count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                UI case. Note that if `count` is defined, the expected `value` should always be
-                a list, even if the `count` is `1`. `count` can either be a fixed number
-                (e.g. `3`) or an expression dependent of other elements (see
-                [Using Expressions][using-runtime-expressions-in-elements] for more information).
-            optional: Specify whether the value may be None. `optional` can either be a fixed
-                boolean (`False` or `True`) or a conditional expression dependent of other elements
-                (see [Using Expressions][using-runtime-expressions-in-elements] for more
-                information).
-            hide_when_disabled: Only used for UI case: if element is optional, set it to True to
-                hide it from the interface, otherwise it will be shown disabled.
+            count: Placeholder, ignore until we activate this feature.
+            optional: Specify whether the `value` may be None.
+            hide_when_disabled: Placeholder, ignore until we activate this feature.
             **kwargs: Extra arguments to populate the element with. Argument names cannot overwrite
                 existing attributes or methods name such as `_validate`, `_value`, etc.
 

@@ -67,7 +67,7 @@ class OutputElement(ABC):
                 The key will be transformed into snake case and slugified to avoid
                 any special character or whitespace. Note that an ID cannot start with `_`. Try to
                 choose a key that is meaningful for your context (see
-                [examples projects](https://github.com/deeplime-io/onecode/tree/main/examples)).
+                [examples projects](https://github.com/deeplime-io/onecode/tree/1.x/examples)).
             value: Initial value for the parameter. This value may be transformed depending on the
                 element.
             label: Typically to be used for display purpose only. If not defined, it

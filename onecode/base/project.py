@@ -103,8 +103,6 @@ class Project(metaclass=Singleton):
 
         By default, it returns all Input/Output Elements of `onecode` library.
 
-        See [Extending OneCode][extending-onecode] for more information.
-
         """
         return self._registered_elements
 
@@ -116,8 +114,6 @@ class Project(metaclass=Singleton):
         """
         Register the given element as part of the elements to be processed. The element must be of
         the form '<module>.<class_name>', e.g. `onecode_ext.MyInput`
-
-        See [Extending OneCode][extending-onecode] for more information.
 
         Args:
             element_name: Python name of the element (i-e class name).
@@ -144,8 +140,7 @@ class Project(metaclass=Singleton):
     def mode(self) -> Union[Mode, str]:
         """
         Get the currently set mode for the OneCode Project. A string is returned in case of custom
-        modes. See [Mode][onecode.Mode] and [Extending OneCode][extending-onecode] for
-        more information.
+        modes. See [Mode][onecode.Mode] for more information.
 
         """
         return self._mode
@@ -157,8 +152,7 @@ class Project(metaclass=Singleton):
     ) -> None:
         """
         Set the current mode for the OneCode Project. You can use a custom string for custom modes.
-        See [Mode][onecode.enums.Mode] and [Extending OneCode][extending-onecode] for more
-        information.
+        See [Mode][onecode.enums.Mode] for more information.
 
         """
         self._mode = mode

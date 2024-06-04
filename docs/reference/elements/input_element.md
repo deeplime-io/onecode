@@ -1,3 +1,0 @@
-# InputElement
-
-::: onecode.elements.InputElement

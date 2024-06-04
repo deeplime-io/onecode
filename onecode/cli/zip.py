@@ -19,6 +19,15 @@ def zip_output(
     verbose: bool = False,
 ) -> None:
     """
+    Zip OneCode project output data.
+
+    Args:
+        project_path: Path to the root of the OneCode project.
+        data_path: Path to the data folder.
+        to_file: Path of the output archive file.
+        compression_level: Compression level from 0 (no-compression) to 9 (highest).
+        verbose: If True, print out debug information.
+
     """
 
     compression = zipfile.ZIP_STORED if compression_level == 0 else zipfile.ZIP_DEFLATED
@@ -53,6 +62,22 @@ def zip_output(
 
 def main() -> None:    # pragma: no cover
     """
+    ```bash
+    usage: onecode-zip [-h] [--output-file FILE] [--path PATH]
+        [--data PATH] [--compression INT] [--verbose]
+
+    Archive the outputs in a zip file
+
+    optional arguments:
+      -h, --help            Show this help message and exit
+      --output-file FILE    Path to the output zip file, defaults to data.zip
+      --path PATH           Path to the project root directory if not the current working directory
+      --data PATH           Path to the data root directory if not the default data directory
+      --compression INT     Compression level from 0 (no compresssion) to 9 (highest compression),
+                                defaults to 6
+      --verbose             Print verbose information when processing files
+    ```
+
     """
 
     parser = argparse.ArgumentParser(description='Start the OneCode Project in Interactive Mode.')
@@ -76,7 +101,7 @@ def main() -> None:    # pragma: no cover
         default=6,
         type=int,
         choices=range(10),
-        help='Archivr compression level'
+        help='Archiver compression level'
     )
     parser.add_argument(
         '--verbose',

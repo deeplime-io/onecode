@@ -33,17 +33,9 @@ class Slider(InputElement):
                 choose a key that is meaningful for your context (see examples projects).
             value: Initial numerical value.
             label: Label to display on top of the field.
-            count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                UI case. Note that if `count` is defined, the expected `value` should always
-                be a list, even if the `count` is `1`. `count` can either be a fixed number
-                (e.g. `3`) or an expression dependent of other elements (see
-                [Using Expressions][using-runtime-expressions-in-elements] for more information).
-            optional: Specify whether the value may be None. `optional` can either be a fixed
-                boolean (`False` or `True`) or a conditional expression dependent of other elements
-                (see [Using Expressions][using-runtime-expressions-in-elements] for more
-                information).
-            hide_when_disabled: If element is optional, set it to True to hide it from the
-                interface, otherwise it will be shown disabled.
+            count: Placeholder, ignore until we activate this feature.
+            optional: Specify whether the `value` may be None.
+            hide_when_disabled: Placeholder, ignore until we activate this feature.
             min: Mandatory lower bound, defaults to 0.
             max: Mandatory upper bound, defaults to 1.
             step: Mandatory step used when incrementing/decrementing the slider, defaults to 0.1.

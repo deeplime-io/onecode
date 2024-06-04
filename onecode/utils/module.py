@@ -22,7 +22,6 @@ def register_ext_module(
 
     Note that a `onecode_ext` module is shipped by default with any OneCode project. As soon as the
     developer creates new elements as part of this module, the `onecode_ext` will be registered.
-    See [Extending OneCode][extending-onecode] for more information.
 
     !!! info
         It is not required to call this function explicitely. It is already done automatically as

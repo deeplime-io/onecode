@@ -83,14 +83,17 @@ def main() -> None:    # pragma: no cover
             "message": "Enter your OneCode project name:",
             "validate": lambda result: len(result) > 0
         },
-        {
-            "type": "input",
-            "name": "flow_name",
-            "message": "Pick a name for your main flow:",
-            "validate": lambda result: len(result) > 0,
-            "default": lambda answers: answers['name']
-        }
+        # {
+        #     "type": "input",
+        #     "name": "flow_name",
+        #     "message": "Pick a name for your main flow:",
+        #     "validate": lambda result: len(result) > 0,
+        #     "default": lambda answers: answers['name']
+        # }
     ]
 
     result = prompt(questions)
-    create(result['project_path'], result['name'], result['flow_name'])
+
+    # As OneCode Cloud does not support yet multi-step, flow_name = name
+    # create(result['project_path'], result['name'], result['flow_name'])
+    create(result['project_path'], result['name'], result['name'])

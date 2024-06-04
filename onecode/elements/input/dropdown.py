@@ -36,21 +36,10 @@ class Dropdown(InputElement):
                 choose a key that is meaningful for your context (see examples projects).
             value: Pre-selected value(s) among the options.
             label: Label to display left of the dropdown menu.
-            count: Specify the number of occurence of the widget. OneCode typically uses it for the
-                UI case. Note that if `count` is defined, the expected `value` should always
-                be a list, even if the `count` is `1`. `count` can either be a fixed number
-                (e.g. `3`) or an expression dependent of other elements (see
-                [Using Expressions][using-runtime-expressions-in-elements] for more information).
-            optional: Specify whether the value may be None. `optional` can either be a fixed
-                boolean (`False` or `True`) or a conditional expression dependent of other elements
-                (see [Using Expressions][using-runtime-expressions-in-elements] for more
-                information).
-            hide_when_disabled: If element is optional, set it to True to hide it from the
-                interface, otherwise it will be shown disabled.
-            options: List all possible options available in the dropdown menu. This list may either
-                be fixed or dynamic (to a certain extent): in the latter case, use
-                [Expressions][using-runtime-expressions-in-elements] in a similar way as `optional`
-                and `count`. See example below.
+            count: Placeholder, ignore until we activate this feature.
+            optional: Specify whether the `value` may be None.
+            hide_when_disabled: Placeholder, ignore until we activate this feature.
+            options: List all possible options available in the dropdown menu.
             multiple: Set to True if multiple choice is allowed, otherwise only a single element can
                 be selected.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite

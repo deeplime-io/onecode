@@ -21,39 +21,19 @@ theme:
 
 nav:
   - Getting Started: index.md
-  - Tips and Tricks: tips_and_tricks.md
-  - API Reference:
+  - Cheatsheet:
+     - Elements: reference/elements/element_list.md
+     - Organizing data: organizing_data.md
+  - Full API:
     - CLI: reference/cli/cli.md
+    - Elements:
+      - Input Elements: reference/elements/input_elements_api.md
+      - Output Elements: reference/elements/output_elements_api.md
     - Base:
       - Logger: reference/base/logger.md
       - Enumerator: reference/base/enums.md
       - Project: reference/base/project.md
-    - Elements:
-      - Input Elements: reference/elements/input_element_list.md
-      - Output Elements: reference/elements/output_element_list.md
-  - Developer's corner:
-    - CLI:
-      - Create a project: reference/cli/create.md
-      - Add a flow to a project: reference/cli/add.md
-      - Run a project in UI mode: reference/cli/start.md
-      - Extract project parameters: reference/cli/extract.md
-      - Utilities: reference/cli/utils.md
-    - InputElements:
-      - Abstract InputElement: reference/elements/input_element.md
-      - Checkbox: reference/elements/input/checkbox.md
-      - RadioButton: reference/elements/input/radio_button.md
-      - Dropdown: reference/elements/input/dropdown.md
-      - NumberInput: reference/elements/input/number_input.md
-      - Slider: reference/elements/input/slider.md
-      - FileInput: reference/elements/input/file_input.md
-      - FolderInput: reference/elements/input/folder_input.md
-      - TextInput: reference/elements/input/text_input.md
-      - CsvReader: reference/elements/input/csv_reader.md
-    - OutputElement:
-      - Abstract OutputElement: reference/elements/output_element.md
-      - FileOutput: reference/elements/output/file_output.md
-    - Utilities: reference/utils/utils.md
-    - Extending OneCode: extending_onecode.md
+  - FAQs: faq.md
   - Changelogs:
     - 1.0.0: changelogs/1.0.0.md
     - 0.4.0: changelogs/0.4.0.md

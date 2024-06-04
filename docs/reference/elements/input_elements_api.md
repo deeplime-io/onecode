@@ -1,4 +1,4 @@
-# Input Elements
+# Input Elements API
 
 Available input elements for OneCode projects:
 
@@ -6,10 +6,8 @@ Available input elements for OneCode projects:
 * [csv_reader](#csv_reader)
 * [dropdown](#dropdown)
 * [file_input](#file_input)
-* [folder_input](#folder_input)
 * [number_input](#number_input)
 * [radio_button](#radio_button)
-* [section_header](#section_header)
 * [slider](#slider)
 * [text_input](#text_input)
 
@@ -76,20 +74,6 @@ def file_input(
 ::: onecode.elements.input.file_input.FileInput.__init__
 
 
-## folder_input
-```python
-def folder_input(
-    key: str,
-    value: Optional[Union[str, List[str]]],
-    label: Optional[str] = None,
-    count: Optional[Union[int, str]] = None,
-    optional: Union[bool, str] = False,
-    hide_when_disabled: bool = False
-)
-```
-::: onecode.elements.input.folder_input.FolderInput.__init__
-
-
 ## number_input
 ```python
 def number_input(
@@ -121,16 +105,6 @@ def radio_button(
 )
 ```
 ::: onecode.elements.input.radio_button.RadioButton.__init__
-
-
-## section_header
-```python
-def section_header(
-    key: str,
-    value: str
-)
-```
-::: onecode.elements.input.section_header.SectionHeader.__init__
 
 
 ## slider

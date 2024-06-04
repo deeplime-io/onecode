@@ -126,7 +126,7 @@ def main(cli: bool = True) -> None:    # pragma: no cover
       output_file           Path to the output JSON file
 
     optional arguments:
-      -h, --help            show this help message and exit
+      -h, --help            Show this help message and exit
       --all                 Extract parameters with their full info set
       --modules [MODULES [MODULES ...]]
                             Optional list of modules to import first
