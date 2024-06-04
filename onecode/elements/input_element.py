@@ -426,7 +426,7 @@ class InputElement(ABC):
 
         """
         return [
-            self._disabled,
+            self.disabled,
             self.count
         ]
 

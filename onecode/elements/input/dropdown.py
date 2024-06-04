@@ -153,7 +153,7 @@ class Dropdown(InputElement):
 
         """
         return [
-            self.optional,
+            self.disabled,
             self.count,
             self.options
         ]
