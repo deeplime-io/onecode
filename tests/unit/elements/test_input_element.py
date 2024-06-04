@@ -21,7 +21,7 @@ def test_instantiation_error():
     if sys.version_info >= (3, 12):
         err_str = strip("""
             Can't instantiate abstract class InputElement without an implementation
-            for abstract methods _validate', '_value_type'
+            for abstract methods '_validate', '_value_type'
         """)
 
     assert err_str == str(excinfo.value)

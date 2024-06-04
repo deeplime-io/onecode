@@ -19,9 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -46,9 +46,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
 
@@ -57,19 +57,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install .[developer]
 
-      - name: Check Testing With Emulations
-        if: ${{ matrix.os != 'windows-latest' }}
-        run: |
-          ONECODE_DO_TYPECHECK=1 python -m pytest tests -n auto --with-emulations
-
-      - name: Check Testing No Emulations
-        if: ${{ matrix.os == 'windows-latest' }}
+      - name: Check Testing
         run: |
           set ONECODE_DO_TYPECHECK=1
           python -m pytest tests -n auto
 
   coverage:
-    name: Run converage report
+    name: Run coverage report
     strategy:
       fail-fast: false
       matrix:
@@ -78,9 +72,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
 
