@@ -11,6 +11,7 @@ from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
 def test_empty_project():
     p = Project()
+    dr = 2 if os.name == 'nt' else 0    # typicall "D:"
 
     assert p.registered_elements == {
         'onecode.Checkbox',
@@ -35,11 +36,12 @@ def test_empty_project():
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
     assert p.get_input_path('/path/to/test.txt') == '/path/to/test.txt'
     assert p.get_output_path('test.txt') == os.path.join(os.getcwd(), 'outputs', 'test.txt')
-    assert p.get_output_path('/path/to/test.txt') == '/path/to/test.txt'
+    assert p.get_output_path('/path/to/test.txt')[dr:] == '/path/to/test.txt'
 
 
 def test_project_reset():
     p = Project()
+    dr = 2 if os.name == 'nt' else 0    # typicall "D:"
     data_path = os.path.join(os.getcwd(), 'tests', 'data')
     os.environ[Env.ONECODE_PROJECT_DATA] = data_path
     p.reset()
@@ -74,7 +76,7 @@ def test_project_reset():
     assert p.get_input_path('test.txt') == os.path.join(data_path, 'test.txt')
     assert p.get_input_path('/path/to/test.txt') == '/path/to/test.txt'
     assert p.get_output_path('test.txt') == os.path.join(data_path, 'outputs', 'test.txt')
-    assert p.get_output_path('/path/to/test.txt') == '/path/to/test.txt'
+    assert p.get_output_path('/path/to/test.txt')[dr:] == '/path/to/test.txt'
 
     del os.environ[Env.ONECODE_PROJECT_DATA]
     p.reset()
@@ -101,7 +103,7 @@ def test_project_reset():
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
     assert p.get_input_path('/path/to/test.txt') == '/path/to/test.txt'
     assert p.get_output_path('test.txt') == os.path.join(os.getcwd(), 'outputs', 'test.txt')
-    assert p.get_output_path('/path/to/test.txt') == '/path/to/test.txt'
+    assert p.get_output_path('/path/to/test.txt')[dr:] == '/path/to/test.txt'
 
 
 def test_output_manifest():
