@@ -7,6 +7,10 @@ from ...base.decorator import check_type
 from ..input_element import InputElement
 
 
+def _is_int(x):
+    return int(x) == x
+
+
 class Slider(InputElement):
     @check_type
     def __init__(
@@ -90,6 +94,21 @@ class Slider(InputElement):
 
         """
         return Union[float, int]
+
+    @property
+    def value(self) -> Union[float, int]:
+        """
+        Get the value of the element as an integer if min, max and steps are all integers.
+
+        """
+        val = self._value
+
+        return int(val) if (
+            _is_int(val) and
+            _is_int(self.max) and
+            _is_int(self.min) and
+            _is_int(self.step)
+        ) else val
 
     @check_type
     def _validate(
