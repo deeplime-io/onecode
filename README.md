@@ -8,8 +8,7 @@
 ![Linux supported](https://img.shields.io/badge/platform-windows-4287f5?logo=windows)
 ![MacOS supported](https://img.shields.io/badge/platform-macos-dedcde?logo=apple)
 [![Maintainability](https://api.codeclimate.com/v1/badges/df236aa4b4ab765ba7db/maintainability)](https://codeclimate.com/github/deeplime-io/onecode/maintainability)
-[![Coverage](https://codecov.io/gh/deeplime-io/onecode/graph/badge.svg?token=BF54VNGWM5)](https://codecov.io/gh/deeplime-io/onecode)
-
+[![Coverage](https://codecov.io/gh/deeplime-io/onecode/branch/1.x/graph/badge.svg?token=BF54VNGWM5)](https://codecov.io/gh/deeplime-io/onecode)
 
 ---
 

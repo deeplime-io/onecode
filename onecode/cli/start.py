@@ -1,10 +1,11 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
+# pragma: no cover
 import argparse
 
 
-def main() -> None:   # pragma: no cover
+def main() -> None:
     """
     ```bash
     usage: onecode-start [-h] [--modules [MODULES [MODULES ...]]] [--verbose]

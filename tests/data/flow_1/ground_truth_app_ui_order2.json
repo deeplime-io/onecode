@@ -1,0 +1,156 @@
+[
+    {
+        "id": "step1",
+        "label": "Step1",
+        "items": {
+            "csv": {
+                "key": "csv",
+                "kind": "CsvReader",
+                "label": "csv",
+                "value": "input_test.csv",
+                "count": null,
+                "optional": false,
+                "disabled": false,
+                "tags": null,
+                "metadata": true,
+                "depends_on": [],
+                "dependencies": [
+                    "column_x"
+                ]
+            },
+            "column_x": {
+                "key": "column_x",
+                "kind": "Dropdown",
+                "label": "Column X",
+                "value": "x",
+                "count": null,
+                "optional": false,
+                "disabled": false,
+                "options": "$csv$.columns",
+                "multiple": false,
+                "metadata": false,
+                "depends_on": [
+                    "csv"
+                ],
+                "dependencies": []
+            }
+        }
+    },
+    {
+        "id": "step2",
+        "label": "Step2",
+        "items": {
+            "my_slider_1": {
+                "key": "my_slider_1",
+                "kind": "Slider",
+                "label": "My slider\"1",
+                "value": 0.5,
+                "count": null,
+                "optional": false,
+                "disabled": false,
+                "min": 0.0,
+                "max": 6.0,
+                "step": 0.1,
+                "metadata": false,
+                "depends_on": [],
+                "dependencies": [
+                    "my_slider_2"
+                ]
+            },
+            "my_slider_2": {
+                "key": "my_slider_2",
+                "kind": "Slider",
+                "label": "My slider 2",
+                "value": 0.2,
+                "count": null,
+                "optional": true,
+                "disabled": "$my_slider_1$ * 2 < 3",
+                "min": 0.0,
+                "max": 1.0,
+                "step": 0.1,
+                "metadata": false,
+                "depends_on": [
+                    "my_slider_1"
+                ],
+                "dependencies": []
+            }
+        }
+    },
+    {
+        "id": "step3",
+        "label": "Step3",
+        "items": {
+            "my_l_slid_10": {
+                "key": "my_l_slid_10",
+                "kind": "Slider",
+                "label": "my l'slid 10",
+                "value": 2.0,
+                "count": null,
+                "optional": false,
+                "disabled": false,
+                "min": 1.0,
+                "max": 6.0,
+                "step": 1.0,
+                "metadata": false,
+                "depends_on": [],
+                "dependencies": [
+                    "my_input",
+                    "my_input_2"
+                ]
+            },
+            "my_input": {
+                "key": "my_input",
+                "kind": "FileInput",
+                "label": "my input",
+                "value": "README.md",
+                "count": null,
+                "optional": true,
+                "disabled": "$my_l_slid_10$ * 2 < 3",
+                "types": [
+                    [
+                        "MD",
+                        "*.md"
+                    ],
+                    [
+                        "Image",
+                        ".jpg .png .jpeg"
+                    ]
+                ],
+                "multiple": false,
+                "tags": null,
+                "metadata": false,
+                "depends_on": [
+                    "my_l_slid_10"
+                ],
+                "dependencies": []
+            },
+            "my_input_2": {
+                "key": "my_input_2",
+                "kind": "FileInput",
+                "label": "my input 2",
+                "value": [
+                    [
+                        "x.py",
+                        "y.py"
+                    ]
+                ],
+                "count": "2 * $my_l_slid_10$",
+                "optional": false,
+                "disabled": false,
+                "types": [
+                    [
+                        "Python",
+                        ".py"
+                    ]
+                ],
+                "multiple": true,
+                "tags": null,
+                "metadata": false,
+                "depends_on": [
+                    "my_l_slid_10"
+                ],
+                "dependencies": []
+            }
+        }
+    }
+]
