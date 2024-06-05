@@ -1,0 +1,22 @@
+/* mkdocstrings styling
+/* Indentation. */
+div.doc-contents:not(.first) {
+  padding-left: 25px;
+  border-left: 4px solid rgba(230, 230, 230);
+  margin-bottom: 80px;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #0f172a;
+  --md-primary-fg-color--light: #b3e189;
+  --md-primary-fg-color--dark: #21ba45;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0f172a;
+}
+
+.md-typeset a {
+  text-decoration: underline;
+  text-color: #0f172a;
+}
