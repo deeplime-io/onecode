@@ -21,7 +21,8 @@ theme:
 
 nav:
   - Getting Started: index.md
-  - Cheatsheet:
+  - OneCode Cloud: user_doc.md
+  - Python Cheatsheet:
      - Elements: reference/elements/element_list.md
      - Organizing data: organizing_data.md
   - Full API:
