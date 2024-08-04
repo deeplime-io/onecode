@@ -4,11 +4,14 @@
 import importlib
 import os
 import sys
+from collections import OrderedDict
 from glob import iglob
 from pathlib import Path
 from types import ModuleType
 from typing import Dict, List, Optional
 
+import requirements
+from packaging.specifiers import SpecifierSet
 from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
 
@@ -97,37 +100,65 @@ def _find_version(dist_name: str) -> str:
 
 
 @check_type
-def check_modules_in_env(
-    modules: List[str]
+def check_modules(
+    modules: List[str],
+    requirements_file: str = None
 ) -> Dict[str, bool]:
     """
-    Checks whether all imported modules are present in the current Python environment.
+    Checks whether all imported modules are present in the current Python environment,
+    as well as if the version matches the ones in requirements.txt file if provided.
 
     Args:
         modules: list of modules to check.
+        requirements_file: path to the requirements.txt file to check versions against.
 
     Returns:
         Modules metadata organized by module names.
 
     """
+    # read requirements file and list modules with versions constraints
+    req_mods = None
+    if requirements_file is not None and os.path.exists(requirements_file):
+        req_mods = {}
+        with open(requirements_file) as f:
+            for req in requirements.parse(f):
+                req_mods[req.name] = SpecifierSet(
+                    ','.join([''.join(s) for s in req.specs]), prereleases=True
+                )
+
     # map import names into distributions names
     # - find_spec() work on import name (will return if module is present, builtin or not)
     # - packages_distributions() is a dictionnary mapping from import name into distribution name
     # => builtins packages are the ones present in the env but not found in the distributions.
     distributions = importlib.metadata.packages_distributions()
 
-    mods = {}
-    for m in modules:
-        mod_ok = importlib.util.find_spec(m) is not None
+    mods = OrderedDict()
+    for m in sorted(modules):
+        in_env = importlib.util.find_spec(m) is not None
         dist_name = distributions.get(m, [m])[0]
         version = _find_version(dist_name)
-        builtin = mod_ok and version is None
+        builtin = in_env and version is None
+
+        msg = None
+        if not in_env:
+            msg = f'💥 {dist_name} not in Python environment'
+
+        elif not builtin and req_mods is not None:
+            if dist_name not in req_mods:
+                msg = f"🚫 {dist_name} not in requirements.txt"
+
+            elif version not in req_mods[dist_name]:
+                msg = (
+                    f"🚫 {dist_name} version mismatch: {version} vs"
+                    f" {str(req_mods[dist_name])} in requirements.txt"
+                )
 
         mods[m] = {
-            "in_env": mod_ok,
+            "in_env": in_env,
             "builtin": builtin,
             "version": version,
-            "dist_name": dist_name
+            "dist_name": dist_name,
+            "msg": msg
         }
 
     return mods
@@ -152,7 +183,7 @@ def write_requirements(
 
     """
     with open(to_file, 'w') as f:
-        modules = check_modules_in_env(
+        modules = check_modules(
             get_imported_modules(scripts_folder)
         )
 

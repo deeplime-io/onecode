@@ -30,6 +30,7 @@ pydash = ">=5.1.0,<8"
 python-slugify = ">=6.1.2,<9"
 strenum = ">=0.4.6,<1"
 typeguard = ">=3,<5"
+requirements-parser = ">=0.10.2,<1"
 
 # cli
 astunparse = ">=1.6.3,<2"

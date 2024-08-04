@@ -4,7 +4,7 @@ import argparse
 import os
 
 from ..base.logger import Logger
-from ..utils import check_modules_in_env, get_imported_modules
+from ..utils import check_modules, get_imported_modules
 
 
 def main() -> None:   # pragma: no cover
@@ -30,25 +30,23 @@ def main() -> None:   # pragma: no cover
     )
     args = parser.parse_args()
 
-    modules = check_modules_in_env(
-        get_imported_modules(args.path if args.path is not None else os.getcwd())
+    project_path = args.path if args.path is not None else os.getcwd()
+    modules = check_modules(
+        modules=get_imported_modules(project_path),
+        requirements_file=os.path.join(project_path, 'requirements.txt')
     )
 
-    modules_names = list(modules.keys())
-    modules_names = sorted(modules_names)
+    for name, m in modules.items():
+        msg = m.get("msg")
 
-    for name in modules_names:
-        m = modules.get(name)
-        in_env = m.get("in_env")
-        version = m.get("version", "")
-        dist_name = m.get("dist_name")
-
-        if name != dist_name:
-            dist_name = f"{name} [{dist_name}]"
-
-        if not in_env:
-            Logger.warning(f'💥 {dist_name}')
-
+        if msg is not None:
+            Logger.warning(msg)
         else:
+            dist_name = m.get("dist_name")
+            version = m.get("version")
             version_str = f" ({version})" if version is not None else ""
+
+            if name != dist_name:
+                dist_name = f"{name} [{dist_name}]"
+
             Logger.info(f'✅ {dist_name}{version_str}')
