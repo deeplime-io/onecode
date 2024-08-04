@@ -18,6 +18,8 @@ from onecode import (
     Logger,
     Mode,
     Project,
+    check_modules_in_env,
+    get_imported_modules,
     register_ext_module
 )
 
@@ -58,6 +60,23 @@ def main(
     Logger().reset()
     Logger().add_handler(logger)
 
+    # check all packages are present in current Python env
+    # to do: check against an existing requirements.txt
+    modules = check_modules_in_env(
+        get_imported_modules(os.path.dirname(__file__))
+    )
+
+    not_in_env = [m.get("dist_name") for _, m in modules.items() if not m.get("in_env")]
+    not_in_env = sorted(not_in_env)
+
+    if len(not_in_env) > 0:
+        Logger.warning("The following libraries may be missing in your Python env.")
+        Logger.warning("Run 'onecode-install' to try to fix it:")
+
+    for name in not_in_env:
+        Logger.warning(f'💥 {name}')
+
+    # start workflow
     with open(config_file) as f:
         workflows = json.load(f)
 

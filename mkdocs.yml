@@ -36,6 +36,7 @@ nav:
       - Project: reference/base/project.md
   - FAQs: faq.md
   - Changelogs:
+    - 1.1.0: changelogs/1.1.0.md
     - 1.0.0: changelogs/1.0.0.md
     - 0.4.0: changelogs/0.4.0.md
     - 0.3.0: changelogs/0.3.0.md

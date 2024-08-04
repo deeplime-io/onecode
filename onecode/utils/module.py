@@ -13,7 +13,6 @@ from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
 
 from ..base.decorator import check_type
-from ..base.logger import Logger
 
 
 @check_type
@@ -54,12 +53,13 @@ def register_ext_module(
         return module
 
 
-def get_imported_modules(scripts_folder: str = os.getcwd()) -> List[str]:
+@check_type
+def get_imported_modules(scripts_folder: str) -> List[str]:
     """
     Get the names of all modules imported by the Python scripts present in the given folder.
 
     Args:
-        scripts_folder: folder containing the python. Defaults to the working directory.
+        scripts_folder: folder containing the python.
 
     Returns:
         List of modules names imported by the Python scripts.
@@ -74,35 +74,95 @@ def get_imported_modules(scripts_folder: str = os.getcwd()) -> List[str]:
     )
     cg.analyze()
 
-    return list(cg.output_external_mods().keys())
+    return list(cg.output_external_mods().keys() - {'<builtin>'})
 
 
-def check_modules_in_env(
-    modules: List[str],
-    verbose: bool = False
-) -> Dict[str, bool]:
+@check_type
+def _find_version(dist_name: str) -> str:
     """
-    Check whether all imported modules are present in
-
-    !!! info
-        It is not required to call this function explicitely. It is already done automatically as
-        part of the OneCode project under `main.py`.
+    Find the version of the distribution package if found.
 
     Args:
-        scripts_folder: Path to the root of the OneCode project.
+        dist_name: package distribution name (may be different from import name).
 
-    Returns:
-        The module if it contains Python code, otherwise None.
+    Return:
+        The version of the package or None if not found.
 
     """
+    ctx = importlib.metadata.DistributionFinder.Context(name=dist_name)
+    candidates = importlib.metadata.Distribution.discover(context=ctx)
+    dist = next(iter(candidates), None)
+
+    return dist.version if dist is not None else None
+
+
+@check_type
+def check_modules_in_env(
+    modules: List[str]
+) -> Dict[str, bool]:
+    """
+    Checks whether all imported modules are present in the current Python environment.
+
+    Args:
+        modules: list of modules to check.
+
+    Returns:
+        Modules metadata organized by module names.
+
+    """
+    # map import names into distributions names
+    # - find_spec() work on import name (will return if module is present, builtin or not)
+    # - packages_distributions() is a dictionnary mapping from import name into distribution name
+    # => builtins packages are the ones present in the env but not found in the distributions.
+    distributions = importlib.metadata.packages_distributions()
+
     mods = {}
     for m in modules:
-        mod_ok = importlib.util.find_spec(m) is not None or m == '<builtin>'
-        mods[m] = mod_ok
-        if verbose:
-            if mod_ok:
-                Logger.info(f'{m} ✅')
-            else:
-                Logger.warning(f'{m} 💥')
+        mod_ok = importlib.util.find_spec(m) is not None
+        dist_name = distributions.get(m, [m])[0]
+        version = _find_version(dist_name)
+        builtin = mod_ok and version is None
+
+        mods[m] = {
+            "in_env": mod_ok,
+            "builtin": builtin,
+            "version": version,
+            "dist_name": dist_name
+        }
 
     return mods
+
+
+@check_type
+def write_requirements(
+    to_file: str,
+    scripts_folder: str = os.getcwd(),
+    specify_version: bool = False
+) -> None:
+    """
+    Write the guessed required packages as a file.
+
+    !!! note
+        The list of modules may not be 100% accurate as it uses heuristics to do so.
+
+    Args:
+        to_file: file in which required modules will be output.
+        scripts_folder: folder containing the python. Defaults to the working directory.
+        specify_version: lock to a specific version when found in current Python environment.
+
+    """
+    with open(to_file, 'w') as f:
+        modules = check_modules_in_env(
+            get_imported_modules(scripts_folder)
+        )
+
+        for _, m in modules.items():
+            builtin = m.get("builtin")
+            version = m.get("version", "")
+            req = m.get("dist_name")
+
+            if version is not None and specify_version:
+                req = f"{req}=={version}"
+
+            if not builtin:
+                f.write(f"{req}\n")

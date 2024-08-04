@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onecode"
-version = "1.0.0"
+version = "1.1.0.dev"
 description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
@@ -81,6 +81,8 @@ onecode-create = 'onecode.cli.create:main'
 onecode-add = 'onecode.cli.add:main'
 onecode-extract = 'onecode.cli.extract:main'
 onecode-zip = 'onecode.cli.zip:main'
+onecode-require = 'onecode.cli.require:main'
+onecode-check = 'onecode.cli.check:main'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
