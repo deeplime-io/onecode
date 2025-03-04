@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import argparse
+import importlib
 import json
 import os
 from typing import Dict, List
@@ -167,10 +168,8 @@ def main() -> None:   # pragma: no cover
 
     # optionally load required modules dynamically,
     # typically modules extending OneCode
-    if len(args.modules) > 0:
-        print('[Warning] Ignoring extra modules, not yet supported on onecode 1.x')
-    # for mod in args.modules:
-    #     globals()[mod] = importlib.import_module(mod)
+    for mod in args.modules:
+        globals()[mod] = importlib.import_module(mod)
 
     # register elements from OneCode inline extensions if any
     # globals()['onecode_ext'] = register_ext_module()

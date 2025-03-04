@@ -32,3 +32,26 @@
     onecode-zip
 
     ```
+
+## Check project modules
+::: onecode.cli.check.main
+!!! example
+    ```bash
+    # modules required by project are in the Python environnement and/or requirements.txt
+    onecode-check
+
+    [INFO]  - |OneCode|.check.py:52 - ✅ argparse
+    [INFO]  - |OneCode|.check.py:52 - ✅ importlib
+    [INFO]  - |OneCode|.check.py:52 - ✅ json
+    [INFO]  - |OneCode|.check.py:52 - ✅ onecode (1.1.0)
+    [INFO]  - |OneCode|.check.py:52 - ✅ os
+    ```
+
+## Get project requirements
+::: onecode.cli.require.main
+!!! example
+    ```bash
+    # generate requirements.txt file
+    onecode-require requirements.txt
+
+    ```

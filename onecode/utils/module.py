@@ -192,7 +192,7 @@ def write_requirements(
             version = m.get("version", "")
             req = m.get("dist_name")
 
-            if version is not None and specify_version:
+            if version is not None and specify_version:     # pragma: no cover
                 req = f"{req}=={version}"
 
             if not builtin:
