@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - '*.x'
-    path:
+    paths:
         - docs/**
         - mkdocs.yml
         - onecode/**
