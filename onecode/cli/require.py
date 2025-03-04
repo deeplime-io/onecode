@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
-import argparse
-import os
+import argparse  # pragma: no cover
+import os  # pragma: no cover
 
-from ..utils import write_requirements
+from ..utils import write_requirements  # pragma: no cover
 
 
 def main() -> None:   # pragma: no cover
