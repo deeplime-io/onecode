@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../1.1.0/">
+        <link rel="prev" href="../../faq/">
       
       
-        <link rel="next" href="../0.4.0/">
+        <link rel="next" href="../1.0.0/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -20,7 +20,7 @@
     
     
       
-        <title>1.0.0 - OneCode Library</title>
+        <title>1.1.0 - OneCode Library</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.0.0
+              1.1.0
             
           </span>
         </div>
@@ -299,7 +299,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../1.1.0/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   Changelogs
@@ -823,28 +823,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../1.1.0/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    1.1.0
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -859,7 +837,7 @@
           
   
   <span class="md-ellipsis">
-    1.0.0
+    1.1.0
     
   </span>
   
@@ -871,7 +849,7 @@
         
   
   <span class="md-ellipsis">
-    1.0.0
+    1.1.0
     
   </span>
   
@@ -927,19 +905,32 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1.0.0
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1122,15 +1113,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1147,7 +1129,7 @@
 
 
 
-  <h1>1.0.0</h1>
+  <h1>1.1.0</h1>
 
 <h2 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <table>
@@ -1160,9 +1142,9 @@
 </thead>
 <tbody>
 <tr>
-<td>[No Ref]</td>
-<td>Fix filename in <code>Logger</code> message when typechecking is on</td>
-<td>When typechecking is on, decorator filename was printed out instead of the actual filename from where the Logging originates from.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1177,24 +1159,9 @@
 </thead>
 <tbody>
 <tr>
-<td>[No Ref]</td>
-<td>Python versions 3.11 and 3.12 now supported</td>
-<td>All Python versions ranging from 3.8 through 3.12 are now supported.</td>
-</tr>
-<tr>
-<td>[No Ref]</td>
-<td><code>Slider</code> returns integers when possible</td>
-<td>When min/max/step are integers, value is necessary an integer and returned as such.</td>
-</tr>
-<tr>
-<td>[No Ref]</td>
-<td>Refactor all file type output elements under <code>FileOutput</code></td>
-<td>No longer necessary to have one class per FileOutput type.</td>
-</tr>
-<tr>
-<td>[No Ref]</td>
-<td><code>FileOutput</code> to optionally create output path</td>
-<td>Use <code>make_path</code> in <code>file_output()</code> to automatically make the path if doesn't exists.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1209,35 +1176,19 @@
 </thead>
 <tbody>
 <tr>
-<td>[No Ref]</td>
-<td>OneCode Cloud compatibility</td>
-<td>Rework and Streamlit extraction to make OneCode Apps deployable on OneCode Cloud.</td>
+<td>[No ref]</td>
+<td>Check whether all packages are present in Python environment</td>
+<td>Automatically check if a package may be missing when a OneCode project is started.</td>
 </tr>
 <tr>
-<td>[No Ref]</td>
-<td>New CLI <code>onecode-build</code></td>
-<td>Extract the GUI JSON file used to build the UI on OneCode Cloud.</td>
-</tr>
-<tr>
-<td>[No Ref]</td>
-<td>New CLI <code>onecode-zip</code></td>
-<td>Archive all output data in a zip file.</td>
-</tr>
-<tr>
-<td>[No Ref]</td>
-<td>Add element dependency</td>
-<td>Retrieve elements dependencies when attributes are dynamic.</td>
+<td>[No ref]</td>
+<td>CLI to auto-generate requirements.txt</td>
+<td>Automatically generate a requirements.txt from a set of Python scripts and Python environment.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="breaking-changes"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:" /> Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
-<p>While it has been nice to get started with, Streamlit app generation is no longer part of OneCode. See <a href="https://github.com/deeplime-io/onecode-streamlit"><code>onecode-streamlit</code></a> for more information on backward-compatibility.</p>
-<p>Checkout <a href="https://deeplime-io.github.io/onecode/1.0.0/#upgrading-from-0x">this guide to upgrade from <code>0.x</code></a>.</p>
-<h2 id="notes"><img alt="📒" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4d2.svg" title=":ledger:" /> Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>pyarrow</code> no longer a direct dependency of <code>onecode</code>. As a consequence, <code>CsvReader</code> element no longer read CSV through <code>pyarrow.read_csv()</code> but <code>pandas.read_csv()</code></li>
-<li><code>pydantic</code> no longer a strong dependency, it was moved to the <code>developer</code> dependencies. Therefore using the variable <code>ONECODE_DO_TYPECHECK=1</code> requires the <code>pydantic</code> installation.</li>
-</ul>
+<p>None</p>
 
 
 
