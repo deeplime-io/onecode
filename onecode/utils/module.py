@@ -8,7 +8,7 @@ from collections import OrderedDict
 from glob import iglob
 from pathlib import Path
 from types import ModuleType
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 import requirements
 from packaging.specifiers import SpecifierSet
@@ -81,7 +81,7 @@ def get_imported_modules(scripts_folder: str) -> List[str]:
 
 
 @check_type
-def _find_version(dist_name: str) -> str:
+def _find_version(dist_name: str) -> Optional[str]:
     """
     Find the version of the distribution package if found.
 
@@ -102,8 +102,8 @@ def _find_version(dist_name: str) -> str:
 @check_type
 def check_modules(
     modules: List[str],
-    requirements_file: str = None
-) -> Dict[str, bool]:
+    requirements_file: Optional[str] = None
+) -> Dict[str, Union[bool, None, str]]:
     """
     Checks whether all imported modules are present in the current Python environment,
     as well as if the version matches the ones in requirements.txt file if provided.
@@ -149,7 +149,7 @@ def check_modules(
 
             elif version not in req_mods[dist_name]:
                 msg = (
-                    f"🚫 {dist_name} version mismatch: {version} vs"
+                    f"⚠️ {dist_name} version mismatch: {version} vs"
                     f" {str(req_mods[dist_name])} in requirements.txt"
                 )
 
@@ -187,7 +187,7 @@ def write_requirements(
             get_imported_modules(scripts_folder)
         )
 
-        for _, m in modules.items():
+        for m in modules.values():
             builtin = m.get("builtin")
             version = m.get("version", "")
             req = m.get("dist_name")

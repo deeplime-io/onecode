@@ -79,7 +79,7 @@ def main(
 
         Logger.warning(
             "Run 'onecode-require requirements.txt' then 'pip install -r requirements.txt'"
-            " to try to fix it:"
+            " to try to fix it."
         )
 
     # start workflow

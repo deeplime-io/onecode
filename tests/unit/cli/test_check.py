@@ -81,7 +81,7 @@ def test_check_modules():
     assert modules['onecode']['builtin'] is False
     assert modules['onecode']['dist_name'] == 'onecode'
     assert modules['onecode']['msg'] == (
-        f"🚫 onecode version mismatch: {modules['onecode']['version']} vs"
+        f"⚠️ onecode version mismatch: {modules['onecode']['version']} vs"
         f" <1 in requirements.txt"
     )
 
