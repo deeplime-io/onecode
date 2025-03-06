@@ -4,6 +4,7 @@
 import os
 import sys
 from glob import glob
+from inspect import Signature, signature
 
 import pydash
 
@@ -81,6 +82,13 @@ def import_input(
             def _xdef(cls):
                 def _x(*args, **kwargs):
                     return cls(*args, **kwargs)()
+
+                # Allow introspection (Jupyter, inspect, etc. but not VSCode)
+                _x.__annotations__ = cls.__init__.__annotations__
+                _x.__doc__ = cls.__init__.__doc__
+                _x.__signature__ = Signature([
+                    p for name, p in signature(cls.__init__).parameters.items() if name != 'self'
+                ])
                 return _x
 
             def _typedef():
