@@ -40,24 +40,28 @@ def zip_output(
         for flow in get_flows(project_path):
             print(f"Processing flow {flow['label']}...")
 
-            with open(os.path.join(data_path, "outputs", flow["file"], "MANIFEST.txt")) as f:
-                for line in f:
-                    output = json.loads(line)
+            manifest_file = os.path.join(data_path, "outputs", flow["file"], "MANIFEST.txt")
+            if os.path.exists(manifest_file):
+                with open(manifest_file) as f:
+                    for line in f:
+                        output = json.loads(line)
 
-                    output_file = output["value"]
-                    arcpath = os.path.join(
-                        "outputs",
-                        os.path.relpath(output_file, os.path.join(data_path, "outputs"))
-                    )
-
-                    if verbose:
-                        print(f"Archiving {output['key']}: {output_file} => {arcpath}")
-
-                    if os.path.exists(output_file):
-                        zf.write(
-                            output_file,
-                            arcname=arcpath
+                        output_file = output["value"]
+                        arcpath = os.path.join(
+                            "outputs",
+                            os.path.relpath(output_file, os.path.join(data_path, "outputs"))
                         )
+
+                        if verbose:
+                            print(f"Archiving {output['key']}: {output_file} => {arcpath}")
+
+                        if os.path.exists(output_file):
+                            zf.write(
+                                output_file,
+                                arcname=arcpath
+                            )
+            else:   # pragma: no cover
+                print("No files to be processed")
 
 
 def main() -> None:    # pragma: no cover
