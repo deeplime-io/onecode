@@ -66,7 +66,7 @@ def main(
         requirements_file=os.path.join(cur_dir, 'requirements.txt')
     )
 
-    warn_mods = [m.get("msg") for _, m in modules.items() if m.get("msg") is not None]
+    warn_mods = [m.get("msg") for m in modules.values() if m.get("msg") is not None]
 
     if len(warn_mods) > 0:
         Logger.warning(
