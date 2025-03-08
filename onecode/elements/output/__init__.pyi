@@ -6,11 +6,10 @@ from typing import Any, List, Optional, Tuple, Union
 
 def file_output(
     key: str,
-    value: Optional[Union[bool, List[bool]]],
+    value: str,
     label: Optional[str] = None,
-    count: Optional[Union[int, str]] = None,
-    optional: Union[bool, str] = False,
-    hide_when_disabled: bool = False,
+    tags: Optional[List[str]] = None,
+    make_path: bool = False,
     **kwargs: Any
 ):
     """
