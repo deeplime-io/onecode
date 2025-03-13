@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1365,7 +1365,7 @@
         <p>Single Project object to centralize OneCode project data, such as the data path,
 parameter values, registered elements, flow currently running, current running
 mode, etc.</p>
-<p>See <a class="autorefs autorefs-internal" href="#onecode.base.project.Project.reset"><code>reset()</code></a> for Project default's initialization.</p>
+<p>See <a class="autorefs autorefs-internal" title="reset(keep_registered_elements=False)" href="#onecode.base.project.Project.reset"><code>reset()</code></a> for Project default's initialization.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -1379,7 +1379,11 @@ mode, etc.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="registered_elements (onecode.base.project.Project.registered_elements)" href="#onecode.base.project.Project.registered_elements">registered_elements</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="registered_elements
+
+  
+      property
+   (onecode.base.project.Project.registered_elements)" href="#onecode.base.project.Project.registered_elements">registered_elements</a></code></td>
             <td>
                   <code><span title="typing.Set">Set</span>[<span title="str">str</span>]</code>
             </td>
@@ -1390,7 +1394,12 @@ mode, etc.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="mode (onecode.base.project.Project.mode)" href="#onecode.base.project.Project.mode">mode</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="mode
+
+  
+      property
+      writable
+   (onecode.base.project.Project.mode)" href="#onecode.base.project.Project.mode">mode</a></code></td>
             <td>
                   <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="Mode (onecode.base.enums.Mode)" href="../enums/#onecode.base.enums.Mode">Mode</a>, <span title="str">str</span>]</code>
             </td>
@@ -1401,7 +1410,12 @@ mode, etc.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="current_flow (onecode.base.project.Project.current_flow)" href="#onecode.base.project.Project.current_flow">current_flow</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="current_flow
+
+  
+      property
+      writable
+   (onecode.base.project.Project.current_flow)" href="#onecode.base.project.Project.current_flow">current_flow</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -1412,7 +1426,11 @@ mode, etc.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="data_root (onecode.base.project.Project.data_root)" href="#onecode.base.project.Project.data_root">data_root</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="data_root
+
+  
+      property
+   (onecode.base.project.Project.data_root)" href="#onecode.base.project.Project.data_root">data_root</a></code></td>
             <td>
                   <code><span title="str">str</span></code>
             </td>
@@ -1423,7 +1441,12 @@ mode, etc.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="data (onecode.base.project.Project.data)" href="#onecode.base.project.Project.data">data</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="data
+
+  
+      property
+      writable
+   (onecode.base.project.Project.data)" href="#onecode.base.project.Project.data">data</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
             </td>
@@ -1434,7 +1457,11 @@ mode, etc.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="config (onecode.base.project.Project.config)" href="#onecode.base.project.Project.config">config</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="config
+
+  
+      property
+   (onecode.base.project.Project.config)" href="#onecode.base.project.Project.config">config</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
             </td>
@@ -1446,6 +1473,7 @@ mode, etc.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -1481,6 +1509,7 @@ mode, etc.</p>
 
         <p>Get the Project current configuration options.</p>
 <p>Config is simply a key-value dictionnary.</p>
+
     </div>
 
 </div>
@@ -1505,6 +1534,7 @@ mode, etc.</p>
         <p>Get the currently running flow. If no flow is running, None is returned. It is automatically
 set when OneCode project is run through the main entry point (i-e
 <code>python main.py</code> or <code>onecode-start</code>)</p>
+
     </div>
 
 </div>
@@ -1529,6 +1559,7 @@ set when OneCode project is run through the main entry point (i-e
         <p>Get the Project current data. Data is typically set either at the start when running in
 mode <code>LOAD_THEN_EXECUTE</code> or incrementaly after each call to any input element.</p>
 <p>Data is simply a key-value dictionnary.</p>
+
     </div>
 
 </div>
@@ -1549,8 +1580,9 @@ mode <code>LOAD_THEN_EXECUTE</code> or incrementaly after each call to any input
 
     <div class="doc doc-contents ">
 
-        <p>Get the path to the root of the data folder. See <a class="autorefs autorefs-internal" href="#onecode.base.project.Project.reset"><code>reset()</code></a> to know
+        <p>Get the path to the root of the data folder. See <a class="autorefs autorefs-internal" title="reset(keep_registered_elements=False)" href="#onecode.base.project.Project.reset"><code>reset()</code></a> to know
 how the data path is initialized.</p>
+
     </div>
 
 </div>
@@ -1574,6 +1606,7 @@ how the data path is initialized.</p>
 
         <p>Get the currently set mode for the OneCode Project. A string is returned in case of custom
 modes. See <a class="autorefs autorefs-internal" href="../enums/#onecode.base.enums.Mode">Mode</a> for more information.</p>
+
     </div>
 
 </div>
@@ -1598,6 +1631,7 @@ modes. See <a class="autorefs autorefs-internal" href="../enums/#onecode.base.en
 Once a library is registered, it is required to register the elements that need to be
 processed.</p>
 <p>By default, it returns all Input/Output Elements of <code>onecode</code> library.</p>
+
     </div>
 
 </div>
@@ -1671,6 +1705,7 @@ the data path while running the OneCode project.</p>
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -1759,6 +1794,7 @@ the data path while running the OneCode project.</p>
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1829,6 +1865,7 @@ the data path while running the OneCode project.</p>
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -1903,6 +1940,7 @@ root path.</p>
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -1956,6 +1994,7 @@ entry but the entire file is not a JSON.</p>
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -2028,6 +2067,7 @@ relative to the data output path (typically <code>&lt;data_root&gt;/outputs/</co
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -2102,6 +2142,7 @@ is already snake case.</p>
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -2156,6 +2197,7 @@ to the current working directory.
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
@@ -2244,6 +2286,7 @@ to the current working directory.
       </tbody>
     </table>
 
+
     </div>
 
 </div>
@@ -2297,6 +2340,7 @@ execution, it is possible to manully call it too to output custom data.</p>
           </tr>
       </tbody>
     </table>
+
 
     </div>
 
