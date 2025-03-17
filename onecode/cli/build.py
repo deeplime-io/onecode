@@ -132,7 +132,7 @@ def main() -> None:   # pragma: no cover
     ```bash
     usage: onecode-start [-h] [--modules [MODULES [MODULES ...]]] [--verbose]
 
-    Start the OneCode Project in Interactive mode.
+    Extract OneCode UI schema to JSON file.
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -142,7 +142,7 @@ def main() -> None:   # pragma: no cover
     ```
 
     """
-    parser = argparse.ArgumentParser(description='Start the OneCode Project in Interactive Mode.')
+    parser = argparse.ArgumentParser(description='Extract OneCode UI schema to JSON file.')
     parser.add_argument(
         '--output_file',
         default='app_ui.json',
