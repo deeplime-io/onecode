@@ -61,10 +61,11 @@ def main(
     Logger().add_handler(logger)
 
     # check all packages are present in current Python env
-    modules = check_modules(
-        modules=get_imported_modules(cur_dir),
-        requirements_file=os.path.join(cur_dir, 'requirements.txt')
-    )
+    if Project().get_config(ConfigOption.CHECK_MODULES):
+        modules = check_modules(
+            modules=get_imported_modules(cur_dir),
+            requirements_file=os.path.join(cur_dir, 'requirements.txt')
+        )
 
     warn_mods = [m.get("msg") for _, m in modules.items() if m.get("msg") is not None]
 

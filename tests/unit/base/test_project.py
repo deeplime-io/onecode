@@ -31,6 +31,7 @@ def test_empty_project():
         ConfigOption.FLUSH_STDOUT: False,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
+        ConfigOption.CHECK_MODULES: True,
     }
     assert p.data_root == os.getcwd()
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
@@ -71,6 +72,7 @@ def test_project_reset():
         ConfigOption.FLUSH_STDOUT: True,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
+        ConfigOption.CHECK_MODULES: True,
     }
     assert p.data_root == data_path
     assert p.get_input_path('test.txt') == os.path.join(data_path, 'test.txt')
@@ -97,7 +99,8 @@ def test_project_reset():
     assert p.config == {
         ConfigOption.FLUSH_STDOUT: False,
         ConfigOption.LOGGER_COLOR: True,
-        ConfigOption.LOGGER_TIMESTAMP: True
+        ConfigOption.LOGGER_TIMESTAMP: True,
+        ConfigOption.CHECK_MODULES: True,
     }
     assert p.data_root == os.getcwd()
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
@@ -209,6 +212,7 @@ def test_config_option():
         ConfigOption.FLUSH_STDOUT: False,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
+        ConfigOption.CHECK_MODULES: True,
         'XX': 56.4
     }
 
