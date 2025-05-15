@@ -12,6 +12,7 @@
                 "optional": false,
                 "disabled": false,
                 "tags": null,
+                "delimiter": null,
                 "metadata": true,
                 "depends_on": [],
                 "dependencies": [

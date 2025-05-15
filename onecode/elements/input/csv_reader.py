@@ -22,6 +22,7 @@ class CsvReader(InputElement):
         optional: Union[bool, str] = False,
         hide_when_disabled: bool = False,
         tags: Optional[List[str]] = None,
+        delimiter: Optional[str] = None,
         **kwargs: Any
     ):
         """
@@ -40,6 +41,8 @@ class CsvReader(InputElement):
             hide_when_disabled: Placeholder, ignore until we activate this feature.
             tags: Optional meta-data information about the expected file. This information is only
                 used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
+            delimiter: Optional delimiter used to separate values in the CSV file. If not provided,
+                the default delimiter "," will be used.
             **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
                 existing attributes or methods name such as `_validate`, `_value`, etc.
 
@@ -57,7 +60,8 @@ class CsvReader(InputElement):
                 key="CsvReader",
                 value="/path/to/file.csv",
                 label="My CSV Reader",
-                tags=['CSV']
+                tags=['CSV'],
+                delimiter=","
             )
 
             pd.testing.assert_frame_equal(widget, pd.read_csv("/path/to/file.csv"))
@@ -72,6 +76,7 @@ class CsvReader(InputElement):
             optional,
             hide_when_disabled,
             tags=tags,
+            delimiter=delimiter,
             **kwargs
         )
 
@@ -117,16 +122,19 @@ class CsvReader(InputElement):
         """
         if self._value is not None:
             if type(self._value) is str:
-                filepath = Project().get_input_path(self._value)
-                return pd.read_csv(filepath) \
+                delimiter = self.delimiter if self.delimiter else ","
+                filepath = Project().get_input_path(self._value, delimiter=delimiter)
+                return pd.read_csv(filepath, delimiter=delimiter) \
                     if os.path.exists(filepath) or filepath.startswith('https://') else None
 
             elif type(self._value) is list and all(
                 type(v) is str for v in self._value
             ):
+                delimiter = self.delimiter if self.delimiter else ","
                 return [
                     pd.read_csv(
-                        Project().get_input_path(val)
+                        Project().get_input_path(val),
+                        delimiter=delimiter
                     ) if os.path.exists(
                         Project().get_input_path(val)
                     ) or filepath.startswith('https://') else None for val in self._value

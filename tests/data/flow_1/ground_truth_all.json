@@ -7,7 +7,8 @@
         "count": null,
         "optional": false,
         "disabled": false,
-        "tags": null
+        "tags": null,
+        "delimiter": null
     },
     "column_x": {
         "key": "column_x",
