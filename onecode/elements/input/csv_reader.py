@@ -123,7 +123,7 @@ class CsvReader(InputElement):
         if self._value is not None:
             if type(self._value) is str:
                 delimiter = self.delimiter if self.delimiter else ","
-                filepath = Project().get_input_path(self._value, delimiter=delimiter)
+                filepath = Project().get_input_path(self._value)
                 return pd.read_csv(filepath, delimiter=delimiter) \
                     if os.path.exists(filepath) or filepath.startswith('https://') else None
 

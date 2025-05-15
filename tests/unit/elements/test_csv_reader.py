@@ -201,6 +201,7 @@ def test_build_gui_csv_reader():
         "optional": True,
         "count": 2,
         "tags": ["CSV"],
+        "delimiter": None,
         'metadata': True,
         'depends_on': ['x']
     })
@@ -226,7 +227,8 @@ def test_extract_all_csv_reader():
         "disabled": '$x$',
         "optional": True,
         "count": 2,
-        "tags": ["CSV"]
+        "tags": ["CSV"],
+        "delimiter": None
     })
 
 
@@ -253,7 +255,8 @@ def test_extract_all_csv_reader_with_data():
         "disabled": '$x$',
         "optional": True,
         "count": 2,
-        "tags": ["CSV"]
+        "tags": ["CSV"],
+        "delimiter": None
     })
 
 
