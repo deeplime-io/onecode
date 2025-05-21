@@ -201,7 +201,9 @@ def test_build_gui_csv_reader():
         "optional": True,
         "count": 2,
         "tags": ["CSV"],
-        "delimiter": None,
+        "read_options": {},
+        "parse_options": {"delimiter": None},
+        "convert_options": {},
         'metadata': True,
         'depends_on': ['x']
     })
@@ -228,7 +230,9 @@ def test_extract_all_csv_reader():
         "optional": True,
         "count": 2,
         "tags": ["CSV"],
-        "delimiter": None
+        "read_options": {},
+        "parse_options": {"delimiter": None},
+        "convert_options": {}
     })
 
 
@@ -256,7 +260,9 @@ def test_extract_all_csv_reader_with_data():
         "optional": True,
         "count": 2,
         "tags": ["CSV"],
-        "delimiter": None
+        "read_options": {},
+        "parse_options": {"delimiter": None},
+        "convert_options": {}
     })
 
 

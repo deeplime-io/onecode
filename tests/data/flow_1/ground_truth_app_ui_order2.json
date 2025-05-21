@@ -12,7 +12,9 @@
                 "optional": false,
                 "disabled": false,
                 "tags": null,
-                "delimiter": null,
+                "read_options": {},
+                "parse_options": {"delimiter": null},
+                "convert_options": {},
                 "metadata": true,
                 "depends_on": [],
                 "dependencies": [
