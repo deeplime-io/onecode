@@ -77,7 +77,7 @@ class CsvReader(InputElement):
             hide_when_disabled,
             tags=tags,
             read_options={},
-            parse_options={"delimiter":sep},
+            parse_options={"delimiter": sep},
             convert_options={},
             **kwargs
         )
