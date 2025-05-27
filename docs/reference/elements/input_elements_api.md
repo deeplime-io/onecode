@@ -36,7 +36,7 @@ def csv_reader(
     optional: Union[bool, str] = False,
     hide_when_disabled: bool = False,
     tags: Optional[List[str]] = None,
-    delimiter: Optional[str] = None
+    sep: Optional[str] = None
 )
 ```
 ::: onecode.elements.input.csv_reader.CsvReader.__init__
