@@ -40,7 +40,7 @@ class ConfigOption(StrEnum):
     FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
     LOGGER_COLOR        = "LOGGER_COLOR"            # noqa: E-221
     LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
-    CHECK_MODULES       = "CHECK_MODULES"        # noqa: E-221
+    CHECK_MODULES       = "CHECK_MODULES"           # noqa: E-221
 
 
 class Mode(StrEnum):
