@@ -8,9 +8,13 @@
         "optional": false,
         "disabled": false,
         "tags": null,
-        "read_options": {},
-        "parse_options": {"delimiter": null},
-        "convert_options": {}
+        "csv_options": {
+            "read_options": {},
+            "parse_options": {
+                "delimiter": null
+            },
+            "convert_options": {}
+        }
     },
     "column_x": {
         "key": "column_x",

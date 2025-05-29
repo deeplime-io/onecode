@@ -76,9 +76,13 @@ class CsvReader(InputElement):
             optional,
             hide_when_disabled,
             tags=tags,
-            read_options={},
-            parse_options={"delimiter": sep},
-            convert_options={},
+            csv_options={
+                "read_options": {},
+                "parse_options": {
+                    "delimiter": sep
+                },
+                "convert_options": {},
+            },
             **kwargs
         )
 
@@ -125,8 +129,10 @@ class CsvReader(InputElement):
         if self._value is not None:
             if type(self._value) is str:
                 filepath = Project().get_input_path(self._value)
-                return pd.read_csv(filepath, delimiter=self.parse_options["delimiter"]) \
-                    if os.path.exists(filepath) or filepath.startswith('https://') else None
+                return pd.read_csv(
+                    filepath,
+                    delimiter=self.csv_options["parse_options"]["delimiter"]
+                ) if os.path.exists(filepath) or filepath.startswith('https://') else None
 
             elif type(self._value) is list and all(
                 type(v) is str for v in self._value
@@ -134,7 +140,7 @@ class CsvReader(InputElement):
                 return [
                     pd.read_csv(
                         Project().get_input_path(val),
-                        delimiter=self.parse_options["delimiter"]
+                        delimiter=self.csv_options["parse_options"]["delimiter"]
                     ) if os.path.exists(
                         Project().get_input_path(val)
                     ) or filepath.startswith('https://') else None for val in self._value
