@@ -62,6 +62,7 @@ def csv_reader(
     optional: Union[bool, str] = False,
     hide_when_disabled: bool = False,
     tags: Optional[List[str]] = None,
+    sep: Optional[str] = None,
     **kwargs: Any
 ):
     """
@@ -80,6 +81,8 @@ def csv_reader(
         hide_when_disabled: Placeholder, ignore until we activate this feature.
         tags: Optional meta-data information about the expected file. This information is only
             used by the `Mode.EXTRACT_ALL` when dumping attributes to JSON.
+        sep: Optional delimiter used to separate values in the CSV file. If not provided,
+            the default delimiter "," will be used.
         **kwargs: Extra user meta-data to attach to the element. Argument names cannot overwrite
             existing attributes or methods name such as `_validate`, `_value`, etc.
 
@@ -97,7 +100,8 @@ def csv_reader(
             key="CsvReader",
             value="/path/to/file.csv",
             label="My CSV Reader",
-            tags=['CSV']
+            tags=['CSV'],
+            sep=","
         )
 
         pd.testing.assert_frame_equal(widget, pd.read_csv("/path/to/file.csv"))

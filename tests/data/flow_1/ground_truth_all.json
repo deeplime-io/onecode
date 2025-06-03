@@ -7,7 +7,14 @@
         "count": null,
         "optional": false,
         "disabled": false,
-        "tags": null
+        "tags": null,
+        "csv_options": {
+            "read_options": {},
+            "parse_options": {
+                "delimiter": null
+            },
+            "convert_options": {}
+        }
     },
     "column_x": {
         "key": "column_x",
