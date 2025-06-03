@@ -76,7 +76,7 @@ def test_check_modules():
         'msg': None
     }
 
-    assert modules['onecode']['version'].split('.dev')[0] == "1.1.0"
+    assert modules['onecode']['version'].split('.dev')[0] == "1.2.0"
     assert modules['onecode']['in_env'] is True
     assert modules['onecode']['builtin'] is False
     assert modules['onecode']['dist_name'] == 'onecode'

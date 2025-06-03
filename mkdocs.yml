@@ -23,26 +23,27 @@ nav:
   - Getting Started: index.md
   - OneCode Cloud: user_doc.md
   - Python Cheatsheet:
-     - Elements: reference/elements/element_list.md
-     - Organizing data: organizing_data.md
+      - Elements: reference/elements/element_list.md
+      - Organizing data: organizing_data.md
   - Full API:
-    - CLI: reference/cli/cli.md
-    - Elements:
-      - Input Elements: reference/elements/input_elements_api.md
-      - Output Elements: reference/elements/output_elements_api.md
-    - Base:
-      - Logger: reference/base/logger.md
-      - Enumerator: reference/base/enums.md
-      - Project: reference/base/project.md
+      - CLI: reference/cli/cli.md
+      - Elements:
+          - Input Elements: reference/elements/input_elements_api.md
+          - Output Elements: reference/elements/output_elements_api.md
+      - Base:
+          - Logger: reference/base/logger.md
+          - Enumerator: reference/base/enums.md
+          - Project: reference/base/project.md
   - FAQs: faq.md
   - Changelogs:
-    - 1.1.0: changelogs/1.1.0.md
-    - 1.0.0: changelogs/1.0.0.md
-    - 0.4.0: changelogs/0.4.0.md
-    - 0.3.0: changelogs/0.3.0.md
-    - 0.2.1: changelogs/0.2.1.md
-    - 0.2.0: changelogs/0.2.0.md
-    - 0.1.0: changelogs/0.1.0.md
+      - 1.2.0: changelogs/1.2.0.md
+      - 1.1.0: changelogs/1.1.0.md
+      - 1.0.0: changelogs/1.0.0.md
+      - 0.4.0: changelogs/0.4.0.md
+      - 0.3.0: changelogs/0.3.0.md
+      - 0.2.1: changelogs/0.2.1.md
+      - 0.2.0: changelogs/0.2.0.md
+      - 0.1.0: changelogs/0.1.0.md
 
 markdown_extensions:
   - admonition
@@ -72,9 +73,8 @@ plugins:
               - "^"
   - autorefs
 
-
 extra_css:
-        - stylesheets/extra.css
+  - stylesheets/extra.css
 
 extra:
   homepage: https://deeplime.io/

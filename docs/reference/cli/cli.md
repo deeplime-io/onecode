@@ -43,7 +43,7 @@
     [INFO]  - |OneCode|.check.py:52 - ✅ argparse
     [INFO]  - |OneCode|.check.py:52 - ✅ importlib
     [INFO]  - |OneCode|.check.py:52 - ✅ json
-    [INFO]  - |OneCode|.check.py:52 - ✅ onecode (1.1.0)
+    [INFO]  - |OneCode|.check.py:52 - ✅ onecode (1.2.0)
     [INFO]  - |OneCode|.check.py:52 - ✅ os
     ```
 
