@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onecode"
-version = "1.1.0.dev"
+version = "1.1.0"
 description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
@@ -19,7 +19,7 @@ classifiers = [
   "Operating System :: Microsoft :: Windows",
   "Programming Language :: Python",
   "Topic :: Scientific/Engineering",
-  "Topic :: Software Development :: Code Generators"
+  "Topic :: Software Development :: Code Generators",
 ]
 
 [tool.poetry.dependencies]
@@ -56,23 +56,23 @@ toml = { version = ">=0.10.2,<1", optional = true }
 
 [tool.poetry.extras]
 developer = [
-    "datatest",
-    "pydantic",
-    "pytest",
-    "pytest-cov",
-    "pytest-xdist",
-    "toml"
+  "datatest",
+  "pydantic",
+  "pytest",
+  "pytest-cov",
+  "pytest-xdist",
+  "toml",
 ]
 
 docs = [
-    "griffe",
-    "markdown-katex",
-    "mike",
-    "mkdocs",
-    "mkdocs-jupyter",
-    "mkdocs-material",
-    "mkdocstrings",
-    "mkdocstrings-python"
+  "griffe",
+  "markdown-katex",
+  "mike",
+  "mkdocs",
+  "mkdocs-jupyter",
+  "mkdocs-material",
+  "mkdocstrings",
+  "mkdocstrings-python",
 ]
 
 [tool.poetry.scripts]
