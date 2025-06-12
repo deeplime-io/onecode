@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8, <3.13"
+python = ">=3.8, <3.14"
 'flufl.lock' = ">=7.1.1,<9"
 pandas = ">=1.4.0,<3"
 pydash = ">=5.1.0,<8"
