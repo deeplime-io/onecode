@@ -35,12 +35,15 @@ class ConfigOption(StrEnum):
     - `LOGGER_TIMESTAMP`: to timestamp the logs :octicons-arrow-both-24: `"LOGGER_TIMESTAMP": True`
     - `CHECK_MODULES`: to check modules in requirements.txt are present in the current environment
         when starting the OneCode application :octicons-arrow-both-24: `"CHECK_MODULES": True`
+    - `CLOUD_ENV`: used by OneCode Cloud to identify cloud env
+        typically to handle code using display :octicons-arrow-both-24: `"CLOUD_ENV": False`
 
     """
     FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
     LOGGER_COLOR        = "LOGGER_COLOR"            # noqa: E-221
     LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
     CHECK_MODULES       = "CHECK_MODULES"           # noqa: E-221
+    CLOUD_ENV           = "CLOUD_ENV"               # noqa: E-221
 
 
 class Mode(StrEnum):
