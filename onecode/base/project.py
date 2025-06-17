@@ -89,6 +89,7 @@ class Project(metaclass=Singleton):
             ConfigOption.LOGGER_COLOR: True,
             ConfigOption.LOGGER_TIMESTAMP: True,
             ConfigOption.CHECK_MODULES: True,
+            ConfigOption.CLOUD_ENV: False,
             **{k[len("ONECODE_CONFIG_"):]: os.environ[k]
                 for k in os.environ if k.startswith("ONECODE_CONFIG_")},
             **{k[len("ONECODE_FLAG_"):]: bool(ast.literal_eval(os.environ[k]))
