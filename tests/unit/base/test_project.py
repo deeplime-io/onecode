@@ -35,6 +35,7 @@ def test_empty_project():
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CLOUD_ENV: False,
     }
     assert p.data_root == os.getcwd()
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
@@ -80,6 +81,7 @@ def test_project_reset():
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CLOUD_ENV: False,
     }
     assert p.data_root == data_path
     assert p.get_input_path('test.txt') == os.path.join(data_path, 'test.txt')
@@ -108,6 +110,7 @@ def test_project_reset():
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CLOUD_ENV: False,
     }
     assert p.data_root == os.getcwd()
     assert p.get_input_path('test.txt') == os.path.join(os.getcwd(), 'test.txt')
@@ -220,6 +223,7 @@ def test_config_option():
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CLOUD_ENV: False,
         'XX': 56.4
     }
 
