@@ -6,8 +6,8 @@ import os
 from typing import List, Tuple
 
 from ...base.decorator import check_type
-from ..internal.download import _run_downloads
-from ..internal.upload import _run_upload
+from .internal.download import _run_downloads
+from .internal.upload import _run_upload
 
 
 @check_type

@@ -10,8 +10,8 @@ from textual.reactive import reactive
 from textual.timer import Timer
 from textual.widgets import Footer, Header, Static
 
-from ...base.enums import ConfigOption, Env
-from ...base.project import Project
+from ....base.enums import ConfigOption, Env
+from ....base.project import Project
 
 _STATUS_ORDER = [
     "init", "provisioning", "running", "post-processing", "failed", "success"
@@ -104,8 +104,10 @@ class _JobDashboard(App):
         try:
             async with httpx.AsyncClient(timeout=5) as client:
                 response = await client.get(
-                    f"{Project().get_config(ConfigOption.API_URL)}/apps/exec/jobs/{self._slug}"
-                    f"?max_jobs={self._max_jobs}",
+                    f"{Project().get_config(ConfigOption.API_URL)}/apps/exec/jobs/{self._slug}",
+                    params={
+                        "max_jobs": self._max_jobs
+                    },
                     headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
                 )
                 if not response.is_success:

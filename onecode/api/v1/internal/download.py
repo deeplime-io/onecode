@@ -16,8 +16,8 @@ from rich.progress import (
     TransferSpeedColumn
 )
 
-from ...base.enums import ConfigOption, Env
-from ...base.project import Project
+from ....base.enums import ConfigOption, Env
+from ....base.project import Project
 
 
 async def _run_downloads(
