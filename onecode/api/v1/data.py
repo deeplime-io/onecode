@@ -7,6 +7,7 @@ from typing import List, Tuple
 
 from ...base.decorator import check_type
 from ..internal.download import _run_downloads
+from ..internal.upload import _run_upload
 
 
 @check_type
@@ -19,6 +20,8 @@ def download(
     show_progress: bool = True
 ) -> Tuple[List[str], bool]:
     """
+    Download the specified file(s) from OneCode Cloud storage.
+
     Args:
         prefix: prefix path within the OneCode Cloud storage.
             Any file matching the prefix will be downloaded.
@@ -76,3 +79,40 @@ def download(
         )
     )
     return res
+
+
+@check_type
+def upload(
+    file: str,
+    path_to: str,
+    expiry: int = 600,
+    chunk_size: int = 1024 * 1024,  # 1 MB
+    show_progress: bool = True
+) -> Tuple[List[str], bool]:
+    """
+    Upload the specified file to OneCode Cloud storage.
+
+    Args:
+        file: local machine path of the file to upload.
+        path_to: path within the OneCode Cloud storage.
+        expiry: time in seconds after which the upload expires.
+            Defaults to 600 seconds.
+        chunk_size: when uploading big files, write by chunk to limit memory usage.
+            Defaults to 1 MB
+        show_progress: whether the progress bar is displayed.
+            Defaults to True
+
+    Raises:
+        ValueError: if response status is not 200 (OK).
+
+    """
+
+    asyncio.run(
+        _run_upload(
+            file,
+            path_to,
+            expiry,
+            chunk_size,
+            show_progress
+        )
+    )

@@ -40,7 +40,12 @@ async def _run_downloads(
             },
             headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
         )
-        download_res.raise_for_status()
+        if not download_res.is_success:
+            raise Exception(
+                f"{download_res.status_code}: "
+                f"{download_res.json().get('error', 'Unknown error')}"
+            )
+
         download_data: Dict = download_res.json()
         download_urls = download_data.get("urls")
 

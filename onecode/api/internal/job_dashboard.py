@@ -108,8 +108,14 @@ class _JobDashboard(App):
                     f"?max_jobs={self._max_jobs}",
                     headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
                 )
-                response.raise_for_status()
+                if not response.is_success:
+                    raise Exception(
+                        f"{response.status_code}: "
+                        f"{response.json().get('error', 'Unknown error')}"
+                    )
+
                 self.job_data = response.json().get("jobs", [])
+
         except Exception as e:
             self.job_data = [{
                 "id": "ERROR",
