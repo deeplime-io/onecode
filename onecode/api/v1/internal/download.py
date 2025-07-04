@@ -16,10 +16,12 @@ from rich.progress import (
     TransferSpeedColumn
 )
 
+from ....base.decorator import check_type
 from ....base.enums import ConfigOption, Env
 from ....base.project import Project
 
 
+@check_type
 async def _run_downloads(
     prefix: str,
     path_to: str = os.getcwd(),
@@ -87,6 +89,7 @@ async def _run_downloads(
     return list(download_urls.keys()), download_data.get("max_reached")
 
 
+@check_type
 async def _download_streaming(
     client,
     url: str,

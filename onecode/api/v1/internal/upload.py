@@ -15,10 +15,12 @@ from rich.progress import (
     TransferSpeedColumn
 )
 
+from ....base.decorator import check_type
 from ....base.enums import ConfigOption, Env
 from ....base.project import Project
 
 
+@check_type
 class _StreamingFile:
     def __init__(
         self,
@@ -46,6 +48,7 @@ class _StreamingFile:
         self.file.close()
 
 
+@check_type
 async def _run_upload(
     file: str,
     path_to: str,
