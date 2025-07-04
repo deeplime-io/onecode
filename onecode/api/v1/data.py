@@ -4,7 +4,7 @@
 import asyncio
 import os
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List, Tuple
 
 import httpx
 from rich.progress import (
@@ -29,7 +29,7 @@ def download(
     max_concurrent: int = 3,
     chunk_size: int = 1024 * 1024,  # 1 MB
     show_progress: bool = True
-):
+) -> Tuple[List[str], bool]:
     """
     Args:
         prefix: prefix path within the OneCode Cloud storage.
@@ -69,14 +69,15 @@ def download(
     If the limit of 50 files is reached with more files to match, `max_reached` will be True.
 
     Returns:
-        The list of files downloaded and whether or not the max number of files was reached.
+        A tuple with the list of files downloaded and whether or not
+        the max number of files was reached.
 
     Raises:
         ValueError: if response status is not 200 (OK).
 
     """
 
-    asyncio.run(
+    res = asyncio.run(
         _run_downloads(
             prefix,
             path_to,
@@ -86,6 +87,7 @@ def download(
             show_progress,
         )
     )
+    return res
 
 
 async def _run_downloads(
@@ -95,7 +97,7 @@ async def _run_downloads(
     max_concurrent: int = 3,
     chunk_size: int = 1024 * 1024,  # 1 MB
     show_progress: bool = True
-):
+) -> Tuple[List[str], bool]:
     semaphore = asyncio.Semaphore(max_concurrent)
     download_urls: Dict = {}
 
@@ -147,7 +149,7 @@ async def _run_downloads(
             ]
             await asyncio.gather(*tasks)
 
-    return download_urls.keys(), download_data.get("max_reached")
+    return list(download_urls.keys()), download_data.get("max_reached")
 
 
 async def _download_streaming(
