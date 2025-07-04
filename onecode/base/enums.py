@@ -17,12 +17,15 @@ class Env(StrEnum):
     :octicons-arrow-both-24: `"ONECODE_DO_TYPECHECK"`
     - `ONECODE_LOGGER_NAME`: base logger name to avoid logging conflict with other loggers
     :octicons-arrow-both-24: `|OneCode|`
+    - `ONECODE_API_TOKEN`: env variable that will hold the OneCode API token
+    :octicons-arrow-both-24: `ONECODE_API`
 
     """
     ONECODE_PROJECT_DATA    = "ONECODE_PROJECT_DATA"    # noqa: E-221
     ONECODE_CONFIG_FILE     = ".onecode.json"           # noqa: E-221
     ONECODE_DO_TYPECHECK    = "ONECODE_DO_TYPECHECK"    # noqa: E-221
     ONECODE_LOGGER_NAME     = "|OneCode|"               # noqa: E-221
+    ONECODE_API_TOKEN       = "ONECODE_API"             # noqa: E-221
 
 
 class ConfigOption(StrEnum):
@@ -37,6 +40,8 @@ class ConfigOption(StrEnum):
         when starting the OneCode application :octicons-arrow-both-24: `"CHECK_MODULES": True`
     - `CLOUD_ENV`: used by OneCode Cloud to identify cloud env
         typically to handle code using display :octicons-arrow-both-24: `"CLOUD_ENV": False`
+    - `API_URL`: use to make HTTP calls to OneCode Cloud API
+        :octicons-arrow-both-24: `"API_URL": https://api.onecode.rocks`
 
     """
     FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
@@ -44,6 +49,7 @@ class ConfigOption(StrEnum):
     LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
     CHECK_MODULES       = "CHECK_MODULES"           # noqa: E-221
     CLOUD_ENV           = "CLOUD_ENV"               # noqa: E-221
+    API_URL             = "API_URL"                 # noqa: E-221
 
 
 class Mode(StrEnum):
