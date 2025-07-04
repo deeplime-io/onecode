@@ -1,5 +1,8 @@
+# SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
+# SPDX-License-Identifier: MIT
+
 from ...base.decorator import check_type
-from ..widgets.job_dashboard import _JobDashboard
+from ..internal.job_dashboard import _JobDashboard
 
 
 @check_type
