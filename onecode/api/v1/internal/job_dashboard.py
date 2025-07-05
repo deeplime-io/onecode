@@ -1,5 +1,6 @@
 import asyncio
 import os
+from datetime import timezone
 
 import httpx
 import pyperclip
@@ -244,7 +245,7 @@ class _JobDashboard(App):
                 str(job["id"]),
                 Text(job["status"], style=_STATUS_COLORS.get(job["status"], "white")),
                 job["type"],
-                self.format_datetime(job["createdAt"]),
+                self.format_datetime(job.get("createdAt", "")),
                 self.format_datetime(job.get("finishedAt", ""))
             )
             self.table.add_row(*row)
@@ -264,7 +265,8 @@ class _JobDashboard(App):
         if not dt_str:
             return ""
         try:
-            dt = isoparse(dt_str)
+            # Dates are known to be UTC in DB but TZ is not stored.
+            dt = isoparse(dt_str).replace(tzinfo=timezone.utc).astimezone()
             return dt.strftime("%Y-%m-%d %H:%M")
         except Exception:
             return dt_str
