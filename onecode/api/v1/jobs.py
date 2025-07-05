@@ -45,8 +45,6 @@ def job_logs(
 
     """
 
-    
-
     if after is not None:
         after = get_datetime(after)
 
@@ -66,7 +64,7 @@ def job_logs(
                 after = 0
 
             # add 1 micro-sec delta to avoid re-fetching last log
-            after = max(after, logs[-1].get('timestamp', 0) ) + 1
+            after = max(after, logs[-1].get('timestamp', 0)) + 1
 
         status, logs = asyncio.run(
             _get_logs(

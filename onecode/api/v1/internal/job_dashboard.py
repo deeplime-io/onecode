@@ -10,15 +10,13 @@ from textual.containers import Container, VerticalScroll
 from textual.reactive import reactive
 from textual.screen import Screen
 from textual.timer import Timer
-from textual.widgets import DataTable, Footer, Header, Static
 from textual.widget import Widget
-from textual.timer import Timer
+from textual.widgets import DataTable, Footer, Header, Static
 
 from ....base.enums import ConfigOption, Env
 from ....base.project import Project
-from .utils import _COLORMAPS
-from .utils import get_datetime
 from .logs import _get_logs
+from .utils import _COLORMAPS, get_datetime
 
 _STATUS_ORDER = [
     "init", "provisioning", "running", "post-processing", "failed", "success"
