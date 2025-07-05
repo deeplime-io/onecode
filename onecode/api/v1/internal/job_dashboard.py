@@ -11,11 +11,14 @@ from textual.reactive import reactive
 from textual.screen import Screen
 from textual.timer import Timer
 from textual.widgets import DataTable, Footer, Header, Static
+from textual.widget import Widget
+from textual.timer import Timer
 
 from ....base.enums import ConfigOption, Env
 from ....base.project import Project
-from .logs import _COLORMAPS
+from .utils import _COLORMAPS
 from .utils import get_datetime
+from .logs import _get_logs
 
 _STATUS_ORDER = [
     "init", "provisioning", "running", "post-processing", "failed", "success"
@@ -77,45 +80,20 @@ class _LogScreen(Screen):
         self.run_worker(self._poll_logs(), exclusive=True)
 
     async def _poll_logs(self):
-        finished = self.status in ['failed', 'success']
-        if finished:
+        if self.status in ['failed', 'success']:
             self.notify(f"Status: {self.status}", timeout=3)
 
-        while not finished:
+        while self.status not in ['failed', 'success']:
             try:
                 self.notify(f"Status: {self.status} => fetching...", timeout=1.5)
-                async with httpx.AsyncClient() as client:
-                    status_res = await client.get(
-                        f'{Project().get_config(ConfigOption.API_URL)}'
-                        f'/apps/exec/status/{self.job_id}',
-                        headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
-                    )
-                    if not status_res.is_success:
-                        raise Exception(
-                            f"{status_res.status_code}: "
-                            f"{status_res.json().get('error', 'Unknown error')}"
-                        )
-                    self.status = status_res.json().get("job_status")
-
-                    logs_res = await client.get(
-                        f'{Project().get_config(ConfigOption.API_URL)}'
-                        f'/apps/exec/logs/{self.job_id}',
-                        params={
-                            "after": self.last_ts + 1000
-                        },
-                        headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
-                    )
-                    if not logs_res.is_success:
-                        raise Exception(
-                            f"{logs_res.status_code}: "
-                            f"{logs_res.json().get('error', 'Unknown error')}"
-                        )
-
-                    new_logs = logs_res.json().get("logs", [])
-                    for entry in new_logs:
-                        await self.container.mount(self._render_log(entry))
-                        self.last_ts = max(self.last_ts, entry["timestamp"])
-                    await asyncio.sleep(3)
+                self.status, logs = await _get_logs(
+                    self.job_id,
+                    after=self.last_ts + 1,
+                    wait=3
+                )
+                for entry in logs:
+                    await self.container.mount(self._render_log(entry))
+                    self.last_ts = max(self.last_ts, entry["timestamp"])
             except Exception as e:
                 await self.container.mount(Static(f"[red]Log error: {e}[/]", markup=True))
                 await asyncio.sleep(5)
@@ -127,6 +105,31 @@ class _LogScreen(Screen):
         if color in _COLORMAPS:
             color = _COLORMAPS[color]
         return Static(f"[{color}]{ts} - {msg}[/]", markup=True)
+
+
+class _LoadingModal(Widget):
+    DEFAULT_CSS = """
+    _LoadingModal {
+        layer: overlay;
+        background: rgba(0, 0, 0, 0.6); /* dark translucent */
+        height: 100%;
+        width: 100%;
+        align: center middle;
+    }
+
+    _LoadingModal > .modal-box {
+        background: $panel;
+        border: round $accent;
+        padding: 2 4;
+        content-align: center middle;
+    }
+    """
+
+    def compose(self):
+        yield Container(
+            Static("⏳ [bold]Loading logs...[/]", markup=True),
+            classes="modal-box"
+        )
 
 
 class _JobDashboard(App):
@@ -223,6 +226,14 @@ class _JobDashboard(App):
         self.update_table()
 
     def update_table(self):
+        # record selection
+        cursor_row = self.table.cursor_row
+        selected_job_id = None
+        if cursor_row is not None and len(self.table.rows) > 0:
+            selected = self.table.get_row_at(cursor_row)
+            if selected:
+                selected_job_id = selected[0]
+
         self.table.clear(columns=True)
         self.table.add_columns("ID", "Status", "Type", "Created At", "Finished At")
 
@@ -243,8 +254,14 @@ class _JobDashboard(App):
             self.row_index_to_job.append(job)
 
         self.table.focus()
-        if len(self.row_index_to_job) > 0:
-            self.table.cursor_coordinate = (0, 0)
+
+        # Restore selection
+        table_size = len(self.table.rows)
+        if selected_job_id is not None and table_size > 0:
+            for i in range(table_size):
+                if self.table.get_row_at(i)[0] == selected_job_id:
+                    self.table.move_cursor(row=i)
+                    break
 
     def format_datetime(self, dt_str: str):
         if not dt_str:
@@ -285,24 +302,19 @@ class _JobDashboard(App):
     async def action_get_job_logs(self):
         selected = self.table.cursor_row
         if selected is not None and selected < len(self.row_index_to_job):
+            self.loading_modal = _LoadingModal()
+            await self.mount(self.loading_modal)
+
             job = self.row_index_to_job[selected]
             job_id = job["id"]
             self.notify(f"Logs for job: {job_id}", timeout=3)
 
             try:
-                async with httpx.AsyncClient(timeout=5) as client:
-                    logs_res = await client.get(
-                        f'{Project().get_config(ConfigOption.API_URL)}/apps/exec/logs/{job_id}',
-                        headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
-                    )
-                    if not logs_res.is_success:
-                        raise Exception(
-                            f"{logs_res.status_code}: "
-                            f"{logs_res.json().get('error', 'Unknown error')}"
-                        )
-
-                    logs = logs_res.json().get("logs", [])
-                    await self.app.push_screen(_LogScreen(job_id, logs, job["status"]))
+                status, logs = await _get_logs(job_id)
+                await self.app.push_screen(_LogScreen(job_id, logs, status))
 
             except Exception as e:
                 self.notify(f"Error: {e}", severity="error", timeout=5)
+
+            finally:
+                await self.loading_modal.remove()

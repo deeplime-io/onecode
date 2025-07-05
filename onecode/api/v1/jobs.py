@@ -6,7 +6,7 @@ import asyncio
 from ...base.decorator import check_type
 from .internal.job_dashboard import _JobDashboard
 from .internal.logs import _get_logs
-from .internal.utils import get_datetime
+from .internal.utils import get_datetime, print_logs
 
 
 @check_type
@@ -44,24 +44,35 @@ def job_logs(
         keep_streaming: if True and job is still running, keep fetching the logs.
 
     """
+
+    
+
     if after is not None:
         after = get_datetime(after)
 
-    status, last_timestamp = asyncio.run(
+    # get initial logs
+    status, logs = asyncio.run(
         _get_logs(
             job_id,
             after
         )
     )
+    print_logs(logs)
 
+    # if streaming and job is not over, keep fetching logs
     while keep_streaming and status not in ['failed', 'success']:
-        if last_timestamp is not None:
-            last_timestamp += 1000
+        if len(logs) > 0:
+            if after is None:
+                after = 0
 
-        status, last_timestamp = asyncio.run(
+            # add 1 micro-sec delta to avoid re-fetching last log
+            after = max(after, logs[-1].get('timestamp', 0) ) + 1
+
+        status, logs = asyncio.run(
             _get_logs(
                 job_id,
-                after=last_timestamp,
+                after,
                 wait=3
             )
         )
+        print_logs(logs)
