@@ -1,30 +1,26 @@
 import os
+import asyncio
 
 import httpx
 from dateutil.parser import isoparse
-from rich.panel import Panel
-from rich.table import Table
+from rich.text import Text
+import pyperclip
 from textual.app import App, ComposeResult
-from textual.containers import Container, VerticalScroll
+from textual.containers import Container, ScrollableContainer
 from textual.reactive import reactive
 from textual.timer import Timer
-from textual.widgets import Footer, Header, Static
+from textual.widgets import Footer, Header, Static, DataTable
+from textual.screen import Screen
 
 from ....base.enums import ConfigOption, Env
 from ....base.project import Project
+from .utils import get_datetime
+from .logs import _COLORMAPS
 
 _STATUS_ORDER = [
     "init", "provisioning", "running", "post-processing", "failed", "success"
 ]
 
-_STATUS_KEYS = {
-    "1": "init",
-    "2": "provisioning",
-    "3": "running",
-    "4": "post-processing",
-    "5": "failed",
-    "6": "success"
-}
 
 _STATUS_COLORS = {
     "init": "yellow",
@@ -41,26 +37,54 @@ class _Countdown(Static):
         self.update(f"[bold white]Refresh in: {seconds}s[/bold white]")
 
 
+class _LogScreen(Screen):
+    BINDINGS = [
+        ("q", "app.pop_screen", "Close"),
+        ("l", "app.pop_screen", "Close"),
+        ("escape", "app.pop_screen", "Close")
+    ]
+
+    def __init__(self, logs: list[dict]):
+        super().__init__()
+        self.logs = logs
+
+    def compose(self):
+        yield ScrollableContainer(
+            *[self._render_log_entry(entry) for entry in self.logs],
+            id="log-container"
+        )
+
+    def _render_log_entry(self, entry: dict) -> Static:
+        ts = get_datetime(entry["timestamp"])
+        msg = entry["message"]
+        color = entry.get("color", "white")
+        if color in _COLORMAPS:
+            color = _COLORMAPS[color]
+        return Static(f"[{color}]{ts} - {msg}[/]", markup=True)
+
+
 class _JobDashboard(App):
+    TITLE = "Job Dashboard"
+
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("a", "filter_all", "All Statuses"),
-        ("r", "filter_running", "Only Running"),
-        ("1", "toggle_status_1", "Toggle init"),
-        ("2", "toggle_status_2", "Toggle provisioning"),
-        ("3", "toggle_status_3", "Toggle running"),
-        ("4", "toggle_status_4", "Toggle post-processing"),
-        ("5", "toggle_status_5", "Toggle failed"),
-        ("6", "toggle_status_6", "Toggle success"),
+        ("r", "filter_running", "Only running"),
+        ("f", "filter_failed", "Only failed"),
+        ("s", "filter_success", "Only success"),
+        ("c", "copy_job", "Copy selected job"),
+        ("l", "get_job_logs", "Display job log"),
     ]
 
     job_data = reactive([])
     visible_statuses = reactive(set(_STATUS_ORDER))
     refresh_in = reactive(3)
+    row_index_to_job: dict[int, dict]
 
     # Widgets
     countdown_widget: _Countdown
     dashboard_container: Container
+    table: DataTable
 
     # Timers
     countdown_timer: Timer
@@ -81,10 +105,14 @@ class _JobDashboard(App):
 
     def compose(self) -> ComposeResult:
         self.countdown_widget = _Countdown()
-        self.dashboard_container = VerticalScroll(self.countdown_widget, id="dashboard")
-        # self.dashboard_container.styles.padding = 1
-        # self.dashboard_container.styles.scrollbar_gutter = "stable"
-        # self.dashboard_container.styles.overflow_y = "scroll"
+        self.table = DataTable(zebra_stripes=True)
+        self.table.cursor_type = "row"
+
+        self.dashboard_container = Container(
+            self.countdown_widget,
+            self.table,
+            id="dashboard"
+        )
 
         yield Header()
         yield self.dashboard_container
@@ -129,33 +157,28 @@ class _JobDashboard(App):
         self.update_table()
 
     def update_table(self):
-        # Remove old table panel, but keep countdown
-        for child in self.dashboard_container.children[1:]:
-            child.remove()
+        self.table.clear(columns=True)
+        self.table.add_columns("ID", "Status", "Type", "Created At", "Finished At")
 
-        table = Table(title="Job Status", expand=True)
-        table.add_column("ID", style="dim")
-        table.add_column("Status", style="bold")
-        table.add_column("Type")
-        table.add_column("Created At")
-        table.add_column("Finished At")
+        self.row_index_to_job = []
 
         for job in self.job_data:
             if job["status"] not in self.visible_statuses:
                 continue
 
-            status = job["status"]
-            color = _STATUS_COLORS.get(status, "white")
-
-            table.add_row(
+            row = (
                 str(job["id"]),
-                f"[{color}]{status}[/]",
+                Text(job["status"], style=_STATUS_COLORS.get(job["status"], "white")),
                 job["type"],
                 self.format_datetime(job["createdAt"]),
                 self.format_datetime(job.get("finishedAt", ""))
             )
+            self.table.add_row(*row)
+            self.row_index_to_job.append(job)
 
-        self.dashboard_container.mount(Static(Panel(table)))
+        self.table.focus()
+        if len(self.row_index_to_job) > 0:
+            self.table.cursor_coordinate = (0, 0)
 
     def format_datetime(self, dt_str: str):
         if not dt_str:
@@ -175,17 +198,45 @@ class _JobDashboard(App):
         self.visible_statuses = {"init", "provisioning", "running", "post-processing"}
         self.update_table()
 
-    def toggle_status(self, key: str):
-        status = _STATUS_KEYS[key]
-        if status in self.visible_statuses:
-            self.visible_statuses.remove(status)
-        else:
-            self.visible_statuses.add(status)
+    def action_filter_failed(self):
+        self.visible_statuses = {"failed"}
         self.update_table()
 
-    def action_toggle_status_1(self): self.toggle_status("1")
-    def action_toggle_status_2(self): self.toggle_status("2")
-    def action_toggle_status_3(self): self.toggle_status("3")
-    def action_toggle_status_4(self): self.toggle_status("4")
-    def action_toggle_status_5(self): self.toggle_status("5")
-    def action_toggle_status_6(self): self.toggle_status("6")
+    def action_filter_success(self):
+        self.visible_statuses = {"success"}
+        self.update_table()
+
+    def action_copy_job(self):
+        selected = self.table.cursor_row
+        if selected is not None and selected < len(self.row_index_to_job):
+            job = self.row_index_to_job[selected]
+            try:
+                pyperclip.copy(str(job['id']))
+                self.notify("Job ID copied to clipboard", timeout=3)
+            except Exception as e:
+                self.notify(f"Failed to copy to clipboard: {str(e)}", timeout=5, severity="error")
+
+    async def action_get_job_logs(self):
+        selected = self.table.cursor_row
+        if selected is not None and selected < len(self.row_index_to_job):
+            job = self.row_index_to_job[selected]
+            job_id = job["id"]
+            self.notify(f"Logs for job: {job_id}", timeout=5)
+            
+            try:
+                async with httpx.AsyncClient(timeout=5) as client:
+                    logs_res = await client.get(
+                        f'{Project().get_config(ConfigOption.API_URL)}/apps/exec/logs/{job_id}',
+                        headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+                    )
+                    if not logs_res.is_success:
+                        raise Exception(
+                            f"{logs_res.status_code}: "
+                            f"{logs_res.json().get('error', 'Unknown error')}"
+                        )
+
+                    logs = logs_res.json().get("logs", [])
+                    await self.app.push_screen(_LogScreen(logs))
+
+            except Exception as e:
+                self.notify(f"Error: {e}", severity="error")
