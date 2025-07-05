@@ -176,6 +176,7 @@ class _JobDashboard(App):
         self.countdown_widget = _Countdown()
         self.table = DataTable(zebra_stripes=True)
         self.table.cursor_type = "row"
+        self.table.add_columns("ID", "Status", "Type", "Created At", "Finished At")
 
         self.dashboard_container = Container(
             self.countdown_widget,
@@ -234,9 +235,7 @@ class _JobDashboard(App):
             if selected:
                 selected_job_id = selected[0]
 
-        self.table.clear(columns=True)
-        self.table.add_columns("ID", "Status", "Type", "Created At", "Finished At")
-
+        self.table.clear(columns=False)
         self.row_index_to_job = []
 
         for job in self.job_data:
