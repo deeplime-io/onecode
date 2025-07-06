@@ -13,9 +13,8 @@ from textual.timer import Timer
 from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
 
+from ...utils import _COLORMAPS, JOB_STATUS, api_token, api_url, get_datetime
 from .logs import _get_logs
-from ...utils import _COLORMAPS, get_datetime, api_token, api_url, JOB_STATUS
-
 
 _STATUS_COLORS = {
     "init": "yellow",

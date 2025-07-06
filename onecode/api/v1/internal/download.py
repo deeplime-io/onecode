@@ -16,8 +16,8 @@ from rich.progress import (
     TransferSpeedColumn
 )
 
-from ...utils import api_token, api_url
 from ....base.decorator import check_type
+from ...utils import api_token, api_url
 
 
 @check_type

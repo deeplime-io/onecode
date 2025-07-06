@@ -4,9 +4,9 @@
 import asyncio
 
 from ...base.decorator import check_type
-from .internal.logs import _get_logs
-from .internal.job_dashboard import _JobDashboard
 from ..utils import get_datetime, print_logs
+from .internal.job_dashboard import _JobDashboard
+from .internal.logs import _get_logs
 from .internal.status import _get_status
 
 

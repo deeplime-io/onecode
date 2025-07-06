@@ -19,5 +19,5 @@ async def _get_status(
                 f"{status_res.status_code}: "
                 f"{status_res.json().get('error', 'Unknown error')}"
             )
-        
+
         return status_res.json().get("job_status")

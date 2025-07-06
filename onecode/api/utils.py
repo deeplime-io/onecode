@@ -9,9 +9,8 @@ from dateutil import parser
 from rich.console import Console
 
 from ..base.decorator import check_type
-from ..base.project import Project
 from ..base.enums import ConfigOption, Env
-
+from ..base.project import Project
 
 _COLORMAPS = {
     "grey": "bright_cyan"
@@ -36,12 +35,13 @@ JOB_STATUS = [
     "success"
 ]
 
+
 def api_url():
     """
     Returns the OneCode Cloud API URL as defined in Project config option under `API_URL`.
 
     """
-    
+
     return f'{Project().get_config(ConfigOption.API_URL)}'
 
 
@@ -51,7 +51,7 @@ def api_token():
     and format it as headers for HTTP requests.
 
     """
-    
+
     return {'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
 
 

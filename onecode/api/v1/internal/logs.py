@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 
 import asyncio
-import os
 from datetime import datetime
 
 import httpx
