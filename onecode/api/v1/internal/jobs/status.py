@@ -3,7 +3,7 @@
 
 import httpx
 
-from ...utils import api_token, api_url
+from ....utils import api_token, api_url
 
 
 async def _get_status(

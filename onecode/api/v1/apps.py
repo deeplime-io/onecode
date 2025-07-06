@@ -5,9 +5,9 @@ import asyncio
 
 from ...base.decorator import check_type
 from ..utils import get_datetime, print_logs
-from .internal.job_dashboard import _JobDashboard
-from .internal.logs import _get_logs
-from .internal.status import _get_status
+from .internal.jobs.dashboard import _JobDashboard
+from .internal.jobs.logs import _get_logs
+from .internal.jobs.status import _get_status
 
 
 @check_type
@@ -82,13 +82,14 @@ def status(
     job_id: str
 ):
     """
-    Get the status of the given job. Possible status are listed under `JOB_STATUS`.
+    Get the status of the given job. Possible status are listed under
+    `api.utils.JOB_STATUS`.
 
     Args:
         job_id: ID of the job
 
     Returns:
-        The current job status, among the list of `JOB_STATUS`.
+        The current job status, among the list of `api.utils.JOB_STATUS`.
 
     """
 
@@ -97,3 +98,28 @@ def status(
             job_id
         )
     )
+
+
+@check_type
+def parameters(
+    slug: str
+):
+    """
+    Get the default parameter template for the given app.
+    The template is in JSON format and is similar to what you would get
+    with `onecode-extract` CLI.
+    Edit this template to fit your own parameters before starting a job.
+
+    Args:
+        slug: slug name of the app to get parameters from.
+
+    Returns:
+        The default parameters as JSON.
+
+    """
+
+    # return asyncio.run(
+    #     _get_status(
+    #         job_id
+    #     )
+    # )
