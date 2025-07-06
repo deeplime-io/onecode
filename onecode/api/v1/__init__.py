@@ -1,5 +1,9 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from .apps import *
-from .data import *
+from . import apps, data
+
+__all__ = [
+    "apps",
+    "data"
+]

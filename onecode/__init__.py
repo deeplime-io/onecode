@@ -3,8 +3,6 @@
 
 __version__ = "2.0.0.pre"
 
-
-from .api import *
 from .base import *
 from .elements import *
 from .utils import *
