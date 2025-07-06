@@ -8,8 +8,7 @@ from datetime import datetime
 import httpx
 
 from ....base.decorator import check_type
-from ....base.enums import ConfigOption, Env
-from ....base.project import Project
+from ...utils import api_token, api_url
 
 
 @check_type
@@ -25,8 +24,8 @@ async def _get_logs(
 
     async with httpx.AsyncClient() as client:
         status_res = await client.get(
-            f'{Project().get_config(ConfigOption.API_URL)}/apps/exec/status/{job_id}',
-            headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+            f'{api_url()}/apps/exec/status/{job_id}',
+            headers=api_token()
         )
         if not status_res.is_success:
             raise Exception(
@@ -36,11 +35,11 @@ async def _get_logs(
         status = status_res.json().get("job_status")
 
         logs_res = await client.get(
-            f'{Project().get_config(ConfigOption.API_URL)}/apps/exec/logs/{job_id}',
+            f'{api_url()}/apps/exec/logs/{job_id}',
             params={
                 "after": after
             },
-            headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+            headers=api_token()
         )
         if not logs_res.is_success:
             raise Exception(

@@ -16,9 +16,8 @@ from rich.progress import (
     TransferSpeedColumn
 )
 
+from ...utils import api_token, api_url
 from ....base.decorator import check_type
-from ....base.enums import ConfigOption, Env
-from ....base.project import Project
 
 
 @check_type
@@ -35,12 +34,12 @@ async def _run_downloads(
 
     async with httpx.AsyncClient() as client:
         download_res = await client.post(
-            f'{Project().get_config(ConfigOption.API_URL)}/data/read/download',
+            f'{api_url()}/data/read/download',
             json={
                 "path": prefix,
                 "expiry": expiry
             },
-            headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+            headers=api_token()
         )
         if not download_res.is_success:
             raise Exception(

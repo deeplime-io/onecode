@@ -16,8 +16,7 @@ from rich.progress import (
 )
 
 from ....base.decorator import check_type
-from ....base.enums import ConfigOption, Env
-from ....base.project import Project
+from ...utils import api_token, api_url
 
 
 @check_type
@@ -70,12 +69,12 @@ async def _run_upload(
 
     async with httpx.AsyncClient() as client:
         upload_res = await client.post(
-            f'{Project().get_config(ConfigOption.API_URL)}/data/write/upload',
+            f'{api_url()}/data/write/upload',
             json={
                 "path": path_to,
                 "expiry": expiry
             },
-            headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+            headers=api_token()
         )
         if not upload_res.is_success:
             raise Exception(

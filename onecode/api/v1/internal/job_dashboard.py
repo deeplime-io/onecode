@@ -1,5 +1,4 @@
 import asyncio
-import os
 from datetime import timezone
 
 import httpx
@@ -14,14 +13,8 @@ from textual.timer import Timer
 from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
 
-from ....base.enums import ConfigOption, Env
-from ....base.project import Project
 from .logs import _get_logs
-from .utils import _COLORMAPS, get_datetime
-
-_STATUS_ORDER = [
-    "init", "provisioning", "running", "post-processing", "failed", "success"
-]
+from ...utils import _COLORMAPS, get_datetime, api_token, api_url, JOB_STATUS
 
 
 _STATUS_COLORS = {
@@ -94,7 +87,7 @@ class _LogScreen(Screen):
                     await self.container.mount(self._render_log(entry))
                     self.last_ts = max(self.last_ts, entry["timestamp"])
             except Exception as e:
-                await self.container.mount(Static(f"[red]Log error: {e}[/]", markup=True))
+                await self.container.mount(Static(f"[red]Log error: {str(e)}[/]", markup=True))
                 await asyncio.sleep(5)
 
     def _render_log(self, entry: dict) -> Static:
@@ -145,7 +138,7 @@ class _JobDashboard(App):
     ]
 
     job_data = reactive([])
-    visible_statuses = reactive(set(_STATUS_ORDER))
+    visible_statuses = reactive(set(JOB_STATUS))
     refresh_in = reactive(3)
     row_index_to_job: dict[int, dict]
 
@@ -201,11 +194,11 @@ class _JobDashboard(App):
         try:
             async with httpx.AsyncClient(timeout=5) as client:
                 response = await client.get(
-                    f"{Project().get_config(ConfigOption.API_URL)}/apps/exec/jobs/{self._slug}",
+                    f"{api_url()}/apps/exec/jobs/{self._slug}",
                     params={
                         "max_jobs": self._max_jobs
                     },
-                    headers={'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+                    headers=api_token()
                 )
                 if not response.is_success:
                     raise Exception(
@@ -273,7 +266,7 @@ class _JobDashboard(App):
 
     # Filter handlers
     def action_filter_all(self):
-        self.visible_statuses = set(_STATUS_ORDER)
+        self.visible_statuses = set(JOB_STATUS)
         self.update_table()
 
     def action_filter_running(self):
@@ -313,7 +306,7 @@ class _JobDashboard(App):
                 await self.app.push_screen(_LogScreen(job_id, logs, status))
 
             except Exception as e:
-                self.notify(f"Error: {e}", severity="error", timeout=5)
+                self.notify(f"Error: {str(e)}", severity="error", timeout=5)
 
             finally:
                 await self.loading_modal.remove()

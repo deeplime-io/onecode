@@ -4,13 +4,14 @@
 import asyncio
 
 from ...base.decorator import check_type
-from .internal.job_dashboard import _JobDashboard
 from .internal.logs import _get_logs
-from .internal.utils import get_datetime, print_logs
+from .internal.job_dashboard import _JobDashboard
+from ..utils import get_datetime, print_logs
+from .internal.status import _get_status
 
 
 @check_type
-def job_dashboard(
+def dashboard(
     slug: str,
     max_jobs: int = 10,
     refresh: int = 3
@@ -29,7 +30,7 @@ def job_dashboard(
 
 
 @check_type
-def job_logs(
+def logs(
     job_id: str,
     after: int | float = None,
     keep_streaming: bool = True
@@ -74,3 +75,25 @@ def job_logs(
             )
         )
         print_logs(logs)
+
+
+@check_type
+def status(
+    job_id: str
+):
+    """
+    Get the status of the given job. Possible status are listed under `JOB_STATUS`.
+
+    Args:
+        job_id: ID of the job
+
+    Returns:
+        The current job status, among the list of `JOB_STATUS`.
+
+    """
+
+    return asyncio.run(
+        _get_status(
+            job_id
+        )
+    )
