@@ -3,7 +3,7 @@
 
 import os
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Literal, TypedDict
 
 from dateutil import parser
 from rich.console import Console
@@ -34,6 +34,30 @@ JOB_STATUS = [
     "failed",
     "success"
 ]
+
+
+class ComputeOptions(TypedDict):
+    """
+    Compute options required to start a job
+    - compute_type:
+        - xs: 1 vCPU | 4 GB RAM
+        - s: 2 vCPU | 8 GB RAM
+        - m: 4 vCPU | 16 GB RAM
+        - l: 8 vCPU | 32 GB RAM
+        - xl: 16 vCPU | 64 GB RAM
+        - xxl: 16 vCPU | 120 GB RAM
+    - spot: True to use cheaper but killable compute if demand is high
+    - timout: time in seconds after which the job is killed no matter what
+    - storage:
+        - small: 20 GB disk size minus the app size
+        - large: 200 GB disk size minus the app size
+
+    """
+
+    compute_type: Literal["xs", "s", "m", "l", "xl", "xxl"]
+    spot: bool
+    timeout: int
+    storage: Literal["small", "large"]
 
 
 def api_url():
