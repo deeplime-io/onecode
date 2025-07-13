@@ -14,7 +14,7 @@ from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
 
 from ....utils import _COLORMAPS, JOB_STATUS, api_token, api_url, get_datetime
-from .logs import _get_logs
+from .logs import async_logs
 
 _STATUS_COLORS = {
     "init": "yellow",
@@ -77,7 +77,7 @@ class _LogScreen(Screen):
         while self.status not in ['failed', 'success']:
             try:
                 self.notify(f"Status: {self.status} => fetching...", timeout=1.5)
-                self.status, logs = await _get_logs(
+                self.status, logs = await async_logs(
                     self.job_id,
                     after=self.last_ts + 1,
                     wait=3
@@ -301,7 +301,7 @@ class JobDashboard(App):
             self.notify(f"Logs for job: {job_id}", timeout=3)
 
             try:
-                status, logs = await _get_logs(job_id)
+                status, logs = await async_logs(job_id)
                 await self.app.push_screen(_LogScreen(job_id, logs, status))
 
             except Exception as e:

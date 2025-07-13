@@ -18,7 +18,6 @@ from .....base.decorator import check_type
 from ....utils import api_token, api_url
 
 
-@check_type
 class _StreamingFile:
     def __init__(
         self,
