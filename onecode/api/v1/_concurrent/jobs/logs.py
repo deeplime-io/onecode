@@ -11,7 +11,7 @@ from ....utils import api_token, api_url
 
 
 @check_type
-async def _get_logs(
+async def async_logs(
     job_id: str,
     after: datetime = None,
     wait: int = None,

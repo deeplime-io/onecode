@@ -5,5 +5,5 @@ from . import apps, data
 
 __all__ = [
     "apps",
-    "data"
+    "data",
 ]

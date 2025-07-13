@@ -8,7 +8,7 @@ import httpx
 from ....utils import ComputeOptions, api_token, api_url
 
 
-async def _start(
+async def async_start(
     slug: str,
     output_prefix: str,
     params: Dict,

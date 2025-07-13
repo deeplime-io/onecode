@@ -6,8 +6,8 @@ import os
 from typing import List, Tuple
 
 from ...base.decorator import check_type
-from .internal.data.download import _run_downloads
-from .internal.data.upload import _run_upload
+from ._concurrent.data.download import async_downloads
+from ._concurrent.data.upload import async_upload
 
 
 @check_type
@@ -69,7 +69,7 @@ def download(
     """
 
     res = asyncio.run(
-        _run_downloads(
+        async_downloads(
             prefix,
             path_to,
             expiry,
@@ -108,7 +108,7 @@ def upload(
     """
 
     asyncio.run(
-        _run_upload(
+        async_upload(
             file,
             path_to,
             expiry,

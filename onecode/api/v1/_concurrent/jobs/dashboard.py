@@ -123,7 +123,7 @@ class _LoadingModal(Widget):
         )
 
 
-class _JobDashboard(App):
+class JobDashboard(App):
     TITLE = "Job Dashboard"
 
     BINDINGS = [

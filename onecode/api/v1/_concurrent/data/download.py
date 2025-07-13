@@ -21,7 +21,7 @@ from ....utils import api_token, api_url
 
 
 @check_type
-async def _run_downloads(
+async def async_downloads(
     prefix: str,
     path_to: str = os.getcwd(),
     expiry: int = 600,

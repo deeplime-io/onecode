@@ -6,12 +6,12 @@ import httpx
 from ....utils import api_token, api_url
 
 
-async def _get_parameters(
-    slug: str
+async def async_status(
+    job_id: str
 ):
     async with httpx.AsyncClient() as client:
         status_res = await client.get(
-            f'{api_url()}/apps/exec/parameters/{slug}',
+            f'{api_url()}/apps/exec/status/{job_id}',
             headers=api_token()
         )
         if not status_res.is_success:
@@ -20,4 +20,4 @@ async def _get_parameters(
                 f"{status_res.json().get('error', 'Unknown error')}"
             )
 
-        return status_res.json().get("payload")
+        return status_res.json().get("job_status")

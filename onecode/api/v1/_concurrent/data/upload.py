@@ -47,7 +47,7 @@ class _StreamingFile:
 
 
 @check_type
-async def _run_upload(
+async def async_upload(
     file: str,
     path_to: str,
     expiry: int = 600,
