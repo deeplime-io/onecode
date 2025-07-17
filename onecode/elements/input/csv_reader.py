@@ -61,7 +61,7 @@ class CsvReader(InputElement):
                 value="/path/to/file.csv",
                 label="My CSV Reader",
                 tags=['CSV'],
-                delimiter=","
+                sep=","
             )
 
             pd.testing.assert_frame_equal(widget, pd.read_csv("/path/to/file.csv"))
