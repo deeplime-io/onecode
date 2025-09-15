@@ -193,7 +193,7 @@ class InputElement(ABC):
             The element disabling condition.
 
         """
-        return self._disabled
+        return self._disabled if isinstance(self._disabled, str) else False
 
     @property
     def hide_when_disabled(self) -> bool:
