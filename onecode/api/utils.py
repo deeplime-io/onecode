@@ -76,7 +76,10 @@ def api_token():
 
     """
 
-    return {'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, '')}
+    return {
+        'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, ''),
+        'ONECODE_API_TYPE': 'API_KEY'
+    }
 
 
 @check_type
