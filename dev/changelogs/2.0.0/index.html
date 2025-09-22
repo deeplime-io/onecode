@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../0.2.1/">
+        <link rel="prev" href="../../faq/">
       
       
-        <link rel="next" href="../0.1.0/">
+        <link rel="next" href="../1.2.0/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -20,7 +20,7 @@
     
     
       
-        <title>0.2.0 - OneCode Library</title>
+        <title>2.0.0 - OneCode Library</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0.2.0
+              2.0.0
             
           </span>
         </div>
@@ -313,7 +313,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../2.0.0/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -859,10 +859,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../2.0.0/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    2.0.0
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -873,6 +893,60 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Fixes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhancements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breaking changes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1020,30 +1094,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    0.2.0
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0.2.0/" class="md-nav__link">
         
   
   
@@ -1054,60 +1108,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#bug-fixes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Bug Fixes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enhancements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enhancements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      New Features
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#breaking-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Breaking changes
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1219,7 +1219,7 @@
 
 
 
-  <h1>0.2.0</h1>
+  <h1>2.0.0</h1>
 
 <h2 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <table>
@@ -1232,14 +1232,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/deeplime-io/onecode/issues/9">9</a></td>
-<td>Correct <code>gatherUsageStats</code> env variable</td>
-<td><code>onecode-start</code> used wrong variable name to prevent sending stats.</td>
-</tr>
-<tr>
-<td>[No ref]</td>
-<td><code>kind</code> is now a property of the <code>InputElement</code> and <code>OutputElement</code></td>
-<td><code>kind</code> would have potentially been overwritten while extracting element through <code>onecode-extract</code>.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1254,24 +1249,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/deeplime-io/onecode/issues/5">5</a></td>
-<td>Improving DeepLearning example</td>
-<td>Allow initialization of <code>NeuralNetInput</code> custom element with different layer specs.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/deeplime-io/onecode/issues/10">10</a></td>
-<td>Allow for custom import and init statements in InputElement and OutputElement</td>
-<td>Streamlit <code>app.py</code> generated through <code>onecode-start</code> now has placeholders for import and init statements. See <code>imports()</code> and <code>init()</code> static methods in <code>InputElement</code> and <code>OutputElement</code>.</td>
-</tr>
-<tr>
-<td>[No ref]</td>
-<td>Allow meta-data for elements</td>
-<td>Meta-data can now be attached to any Input/Output element through <code>**kwargs</code>.</td>
-</tr>
-<tr>
-<td>[No ref]</td>
-<td>Namespace logging</td>
-<td>Logger (info, warning, critical and debug) now uses a namespace <code>|OneCode|</code> rather than the root logging.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1286,41 +1266,14 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/deeplime-io/onecode/issues/1">1</a></td>
-<td>New input element <code>FolderInput</code></td>
-<td><code>FolderInput</code> allows folder selection. <code>LASConverter</code> example showcases it.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/deeplime-io/onecode/issues/2">2</a></td>
-<td>New output element <code>PlotlyOutput</code></td>
-<td><code>PlotlyOutput</code> allows to visualize Plotly charts. <code>ExperimentalVariography</code> example showcases it.</td>
-</tr>
-<tr>
-<td>[No ref]</td>
-<td>Setup Project configuration through environment variables</td>
-<td>Allow additional way to setup Project configuration options from command line.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="breaking-changes"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:" /> Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p><a href="https://github.com/deeplime-io/onecode/issues/10">10</a> introduces a potential breaking change if you have custom <code>InputElement</code> or <code>OutputElement</code> where the <code>streamlit()</code> method relies on one of these statements being present in <code>app.py</code>:
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">filedialog</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="kn">import</span> <span class="n">csv</span> <span class="k">as</span> <span class="n">pacsv</span>
-<span class="n">_root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
-</code></pre></div>
-If this is the case, simply inherit <code>import()</code> and/or <code>init()</code> static methods so that they return the relevant statements.
-See <code>FileInput.imports()</code> and <code>FileInput.init()</code> as examples.</p>
-</li>
-<li>
-<p>Custom <code>InputElement</code> or <code>OutputElement</code> can no longer initialized with an argument named <code>kind</code>:
-it now is a reserved attribute. This change was triggered by a bug fix as <code>kind</code> was potentially overwritten
-when extracting element through <code>onecode-extract</code>. Upgrade your custom element by changing your argument name.</p>
-</li>
-</ul>
+<p>None</p>
 
 
 
