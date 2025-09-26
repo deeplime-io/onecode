@@ -13,7 +13,14 @@ from textual.timer import Timer
 from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
 
-from ....utils import _COLORMAPS, JOB_STATUS, api_token, api_url, get_datetime
+from ....utils import (
+    _COLORMAPS,
+    JOB_STATUS,
+    api_timeout,
+    api_token,
+    api_url,
+    get_datetime
+)
 from .logs import async_logs
 
 _STATUS_COLORS = {
@@ -191,7 +198,7 @@ class JobDashboard(App):
     async def fetch_jobs(self):
         self.refresh_in = self._refresh
         try:
-            async with httpx.AsyncClient(timeout=5) as client:
+            async with httpx.AsyncClient(timeout=api_timeout()) as client:
                 response = await client.get(
                     f"{api_url()}/apps/exec/jobs/{self._slug}",
                     params={

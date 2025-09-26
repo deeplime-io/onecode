@@ -4,8 +4,13 @@ from typing import Callable, Optional
 
 import httpx
 
+from .utils import api_timeout
 
-def with_httpx_client(param_name: str = "client", **client_kwargs):
+
+def with_httpx_client(
+    param_name: str = "client",
+    **client_kwargs
+):
     """
     Decorator that injects an httpx.AsyncClient into an async function.
 
@@ -24,7 +29,7 @@ def with_httpx_client(param_name: str = "client", **client_kwargs):
             own_client = False
 
             if client is None:
-                client = httpx.AsyncClient(**client_kwargs)
+                client = httpx.AsyncClient(timeout=api_timeout(), **client_kwargs)
                 kwargs[param_name] = client
                 own_client = True
 

@@ -42,6 +42,8 @@ class ConfigOption(StrEnum):
         typically to handle code using display :octicons-arrow-both-24: `"CLOUD_ENV": False`
     - `API_URL`: use to make HTTP calls to OneCode Cloud API
         :octicons-arrow-both-24: `"API_URL": https://api.onecode.rocks`
+    - `API_TIMEOUT`: use to set a global timeout for the HTTP OneCode Cloud HTTP API
+        :octicons-arrow-both-24: `"API_TIMEOUT": 5`
 
     """
     FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
@@ -50,6 +52,7 @@ class ConfigOption(StrEnum):
     CHECK_MODULES       = "CHECK_MODULES"           # noqa: E-221
     CLOUD_ENV           = "CLOUD_ENV"               # noqa: E-221
     API_URL             = "API_URL"                 # noqa: E-221
+    API_TIMEOUT         = "API_TIMEOUT"             # noqa: E-221
 
 
 class Mode(StrEnum):

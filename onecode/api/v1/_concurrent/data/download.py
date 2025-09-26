@@ -17,7 +17,7 @@ from rich.progress import (
 )
 
 from .....base.decorator import check_type
-from ....utils import api_token, api_url
+from ....utils import api_timeout, api_token, api_url
 
 
 @check_type
@@ -32,7 +32,7 @@ async def async_downloads(
     semaphore = asyncio.Semaphore(max_concurrent)
     download_urls: Dict = {}
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=api_timeout()) as client:
         download_res = await client.post(
             f'{api_url()}/data/read/download',
             json={

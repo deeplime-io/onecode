@@ -82,6 +82,16 @@ def api_token():
     }
 
 
+def api_timeout():
+    """
+    Return the OneCode Cloud API HTTP calls global timeout defined.
+    It can either be defined in the `ONECODE_CONFIG_API_TIMEOUT` env variable,
+    or at runtime with `Project().set_config(ConfigOption.API_TIMEOUT, 5)`.
+
+    """
+    return float(Project().get_config(ConfigOption.API_TIMEOUT))
+
+
 @check_type
 def get_datetime(
     input: str | int

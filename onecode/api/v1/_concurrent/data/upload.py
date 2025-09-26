@@ -15,7 +15,7 @@ from rich.progress import (
 )
 
 from .....base.decorator import check_type
-from ....utils import api_token, api_url
+from ....utils import api_timeout, api_token, api_url
 
 
 class _StreamingFile:
@@ -65,7 +65,7 @@ async def async_upload(
         "Content-Type": mime_type
     }
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=api_timeout()) as client:
         upload_res = await client.post(
             f'{api_url()}/data/write/upload',
             json={
