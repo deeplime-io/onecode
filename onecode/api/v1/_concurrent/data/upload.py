@@ -40,7 +40,8 @@ class _StreamingFile:
             chunk = self.file.read(self.chunk_size)
             if not chunk:
                 break
-            self.progress.update(self.task_id, advance=len(chunk))
+            if self.progress is not None:
+                self.progress.update(self.task_id, advance=len(chunk))
             yield chunk
         self.file.close()
 
@@ -102,7 +103,7 @@ async def async_upload(
                 response.raise_for_status()
                 print("✅ Upload complete:", response.status_code)
         else:
-            stream = _StreamingFile(file_path, chunk_size)
+            stream = _StreamingFile(file_path, chunk_size, progress=None, task_id=None)
             response = await client.put(upload_url, content=stream, headers=headers)
             response.raise_for_status()
-            print("✅ Upload complete (no progress):", response.status_code)
+            print("✅ Upload complete:", response.status_code)
