@@ -34,7 +34,7 @@ def test_empty_project():
         ConfigOption.FLUSH_STDOUT: False,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
-        ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CHECK_MODULES: False,
         ConfigOption.CLOUD_ENV: False,
     }
     assert p.data_root == os.getcwd()
@@ -80,7 +80,7 @@ def test_project_reset():
         ConfigOption.FLUSH_STDOUT: True,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
-        ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CHECK_MODULES: False,
         ConfigOption.CLOUD_ENV: False,
     }
     assert p.data_root == data_path
@@ -109,7 +109,7 @@ def test_project_reset():
         ConfigOption.FLUSH_STDOUT: False,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
-        ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CHECK_MODULES: False,
         ConfigOption.CLOUD_ENV: False,
     }
     assert p.data_root == os.getcwd()
@@ -222,7 +222,7 @@ def test_config_option():
         ConfigOption.FLUSH_STDOUT: False,
         ConfigOption.LOGGER_COLOR: True,
         ConfigOption.LOGGER_TIMESTAMP: True,
-        ConfigOption.CHECK_MODULES: True,
+        ConfigOption.CHECK_MODULES: False,
         ConfigOption.CLOUD_ENV: False,
         'XX': 56.4
     }
