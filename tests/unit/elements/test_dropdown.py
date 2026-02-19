@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from onecode import Dropdown, Mode, Project
@@ -100,7 +102,11 @@ def test_execute_invalid_single_dropdown_single_choice():
     with pytest.raises(TypeError) as excinfo:
         widget()
 
-    assert "Invalid value A, expected: list(typing.Union[str, int, float])" == str(excinfo.value)
+    if sys.version_info < (3, 14):
+        assert "Invalid value A, expected: list(typing.Union[str, int, float])" \
+            == str(excinfo.value)
+    else:
+        assert "Invalid value A, expected: list(str | int | float)" == str(excinfo.value)
 
 
 def test_execute_invalid_single_dropdown_multiple_choice():
@@ -117,8 +123,12 @@ def test_execute_invalid_single_dropdown_multiple_choice():
     with pytest.raises(TypeError) as excinfo:
         widget()
 
-    assert "Invalid value type for each element of ['A', 'C'], expected: " \
-           "typing.List[typing.Union[str, int, float]]" == str(excinfo.value)
+    if sys.version_info < (3, 14):
+        assert "Invalid value type for each element of ['A', 'C'], expected: " \
+            "typing.List[typing.Union[str, int, float]]" == str(excinfo.value)
+    else:
+        assert "Invalid value type for each element of ['A', 'C'], expected: " \
+            "typing.List[str | int | float]" == str(excinfo.value)
 
 
 def text_execute_invalid_optional_dropdown():
