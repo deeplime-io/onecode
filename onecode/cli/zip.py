@@ -31,6 +31,7 @@ def zip_output(
     """
 
     compression = zipfile.ZIP_STORED if compression_level == 0 else zipfile.ZIP_DEFLATED
+    files_in_archive = set()
     with zipfile.ZipFile(
         to_file,
         "w",
@@ -51,6 +52,11 @@ def zip_output(
                             "outputs",
                             os.path.relpath(output_file, os.path.join(data_path, "outputs"))
                         )
+
+                        if arcpath in files_in_archive:    # pragma: no cover
+                            continue
+
+                        files_in_archive.add(arcpath)
 
                         if verbose:
                             print(f"Archiving {output['key']}: {output_file} => {arcpath}")
