@@ -73,18 +73,30 @@ def test_output_multiprocess():
     flow_dir = os.path.join(tmp, flow_folder)
     flow_data = os.path.join(flow_dir, 'data')
 
-    with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
+    with open(os.path.join(flow_dir, 'flows', 'utils.py'), 'w') as f:
         f.write("""
-    from multiprocessing import Process
+import onecode
 
-    def write_output(data):
-        onecode.Project().write_output({data: '0'})
 
+def write_output(data, flow_name):
+    onecode.Project().current_flow = flow_name
+    onecode.Project().write_output({data: '0'})
+    """)
+
+    with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'w') as f:
+        f.write("""
+from multiprocessing import Process
+from flows.utils import write_output
+import onecode
+
+
+def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
-
+    parent_flow = onecode.Project().current_flow
+                
     for name in names:
-        proc = Process(target=write_output, args=(name,))
+        proc = Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
         proc.start()
 
@@ -119,18 +131,30 @@ def test_manifest_cleaning():
     flow_dir = os.path.join(tmp, flow_folder)
     flow_data = os.path.join(flow_dir, 'data')
 
-    with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'a') as f:
+    with open(os.path.join(flow_dir, 'flows', 'utils.py'), 'w') as f:
         f.write("""
-    from multiprocessing import Process
+import onecode
 
-    def write_output(data):
-        onecode.Project().write_output({data: '0'})
 
+def write_output(data, flow_name):
+    onecode.Project().current_flow = flow_name
+    onecode.Project().write_output({data: '0'})
+    """)
+
+    with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'w') as f:
+        f.write("""
+from multiprocessing import Process
+from flows.utils import write_output
+import onecode
+
+      
+def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
+    parent_flow = onecode.Project().current_flow
 
     for name in names:
-        proc = Process(target=write_output, args=(name,))
+        proc = Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
         proc.start()
 

@@ -23,7 +23,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8, <3.14"
+python = ">=3.8, <3.15"
 'flufl.lock' = ">=7.1.1,<9"
 pandas = ">=1.4.0,<3"
 pydash = ">=5.1.0,<8"
@@ -33,9 +33,8 @@ typeguard = ">=3,<5"
 requirements-parser = ">=0.10.2,<1"
 
 # cli
-astunparse = ">=1.6.3,<2"
 inquirerpy = ">=0.3.3,<1"
-onecode-pycg = ">=0.0.7,<1"
+onecode-pycg = ">=0.0.7,<2"
 yaspin = ">=2.1.0,<4"
 
 # docs

@@ -9,7 +9,6 @@ from glob import iglob
 from typing import Dict, List, Optional
 
 import pydash
-from astunparse import unparse
 from InquirerPy.base.control import Choice
 from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
@@ -178,7 +177,7 @@ def extract_calls(
                 code.body[0].value.func = ast.parse(fn['normed'])
                 calls.append({
                     "func": fn['normed'],
-                    "loc": unparse(code).strip()
+                    "loc": ast.unparse(code).strip()
                 })
             else:
                 if verbose:
