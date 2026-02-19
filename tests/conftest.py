@@ -1,3 +1,4 @@
+import logging
 import os
 
 import pytest
@@ -11,6 +12,8 @@ def clear_project():
         del os.environ[Env.ONECODE_PROJECT_DATA]
     Project().reset()
     Logger().reset()
+    logger = logging.getLogger(Env.ONECODE_LOGGER_NAME)
+    logger.propagate = True
     Project().mode = Mode.EXECUTE
 
 

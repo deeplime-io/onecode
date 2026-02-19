@@ -144,7 +144,10 @@ class Logger(metaclass=Singleton):
 
         handler = logging.StreamHandler(sys.stdout)
         handler.setFormatter(ColoredFormatter(Project().get_config(ConfigOption.LOGGER_COLOR)))
-        logging.getLogger(Env.ONECODE_LOGGER_NAME).addHandler(handler)
+
+        base_logger = logging.getLogger(Env.ONECODE_LOGGER_NAME)
+        base_logger.addHandler(handler)
+        base_logger.propagate = False
         self.set_level(logging.INFO)
 
     @check_type
