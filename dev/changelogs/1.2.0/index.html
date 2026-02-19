@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../faq/">
+        <link rel="prev" href="../1.2.1/">
       
       
         <link rel="next" href="../1.1.0/">
@@ -315,7 +315,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../1.2.1/" class="md-tabs__link">
           
   
   
@@ -961,6 +961,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1401,13 +1429,18 @@
 </tr>
 <tr>
 <td>[No Ref]</td>
-<td>Python version 3.13 now supported</td>
-<td>All Python versions ranging from 3.10 through 3.13 are now supported.</td>
+<td>Python version 3.13 and 3.14 are now supported</td>
+<td>All Python versions ranging from 3.10 through 3.14 are now supported.</td>
 </tr>
 <tr>
 <td>[No Ref]</td>
 <td>No longer checking modules at startup</td>
 <td><code>ONECODE_FLAG_CHECK_MODULES</code> not set to False by default as verbosity is annoying, especially combined with #45.</td>
+</tr>
+<tr>
+<td>[No Ref]</td>
+<td>Avoid warnings on duplicate files with <code>onecode-zip</code></td>
+<td><code>onecode-zip</code> checks first if file already added to the archive (in case of duplicates entry in MANIFEST).</td>
 </tr>
 </tbody>
 </table>
