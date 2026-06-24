@@ -189,7 +189,7 @@ def extract_calls(
 
     # PyCG is not exactly equivalent on Windows vs Linux wrt to graph keys
     if os.name == 'nt' and not entry_point.startswith('flows\\'):
-        entry_point = f'flows\\{entry_point.replace(".", "\\")}'
+        entry_point = 'flows\\' + entry_point.replace('.', '\\')
 
     entry_point = _resolve_graph_key(entry_point, graph)
 
