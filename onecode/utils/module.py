@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: MIT
 
 import importlib
+import json
 import os
 import sys
 from collections import OrderedDict
-from glob import iglob
 from pathlib import Path
 from types import ModuleType
 from typing import Dict, List, Optional, Union
@@ -16,6 +16,7 @@ from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
 
 from ..base.decorator import check_type
+from ..base.enums import Env
 
 
 @check_type
@@ -57,6 +58,46 @@ def register_ext_module(
 
 
 @check_type
+def get_call_graph_entry_files(project_path: str) -> List[str]:
+    """
+    Return the Python entry files used for static call-graph analysis.
+
+    Analysis starts from ``main.py`` and includes only the flow scripts registered in
+    ``.onecode.json`` — the same flows executed at runtime by ``main.py``. This avoids
+    scanning unrelated project files (e.g. ``.venv``, unused scripts, or data helpers).
+
+    Args:
+        project_path: Path to the root of the OneCode project.
+
+    Returns:
+        Absolute paths to the entry Python files.
+
+    Raises:
+        FileNotFoundError: if ``main.py`` or ``.onecode.json`` is missing.
+
+    """
+    project_path = os.path.abspath(project_path)
+    main_py = os.path.join(project_path, 'main.py')
+    if not os.path.isfile(main_py):
+        raise FileNotFoundError('main.py not found at project root')
+
+    config_file = os.path.join(project_path, Env.ONECODE_CONFIG_FILE)
+    if not os.path.isfile(config_file):
+        raise FileNotFoundError('Ensure you are at the root of your OneCode project')
+
+    entry_files = [main_py]
+    with open(config_file, 'r') as f:
+        flows = json.load(f)
+
+    for flow in flows:
+        flow_py = os.path.join(project_path, 'flows', f"{flow['file']}.py")
+        if os.path.isfile(flow_py):
+            entry_files.append(flow_py)
+
+    return entry_files
+
+
+@check_type
 def get_imported_modules(scripts_folder: str) -> List[str]:
     """
     Get the names of all modules imported by the Python scripts present in the given folder.
@@ -68,7 +109,7 @@ def get_imported_modules(scripts_folder: str) -> List[str]:
         List of modules names imported by the Python scripts.
 
     """
-    entry_files = list(iglob(os.path.join(scripts_folder, '**', '*.py'), recursive=True))
+    entry_files = get_call_graph_entry_files(scripts_folder)
     cg = CallGraphGenerator(
         entry_files,
         scripts_folder,

@@ -5,7 +5,6 @@ import ast
 import json
 import os
 from collections import OrderedDict
-from glob import iglob
 from typing import Dict, List, Optional
 
 import pydash
@@ -17,6 +16,7 @@ from slugify import slugify
 from ..base.decorator import check_type
 from ..base.enums import Env
 from ..base.project import Project
+from ..utils.module import get_call_graph_entry_files
 
 
 @check_type
@@ -214,13 +214,7 @@ def process_call_graph(
         raise FileNotFoundError('Ensure you are at the root of your OneCode project')
 
     statements = OrderedDict()
-    entry_files = [
-        filename for filename in iglob(
-            os.path.join(project_path, 'flows', '**', '*.py'), recursive=True
-        ) if filename != '__init__.py' and not filename.startswith(
-            os.path.join(project_path, 'flows', 'onecode_ext')
-        )
-    ]
+    entry_files = get_call_graph_entry_files(project_path)
 
     cg = CallGraphGenerator(
         entry_files,
