@@ -130,6 +130,31 @@ def run():
         json.dump(flows, f, indent=4)
 
 
+def _resolve_graph_key(name: str, graph: Dict) -> str:
+    """
+    Resolve a PyCG graph key across platform naming differences.
+
+    On Windows, relative imports inside ``flows/`` are often keyed as ``utils.xx``
+    while the analyzed module lives under ``flows\\utils.xx``.
+    """
+    if name in graph:
+        return name
+
+    candidates = []
+    module_name = name[len('flows.'):] if name.startswith('flows.') else name
+
+    if not name.startswith('flows.'):
+        candidates.append(f'flows.{module_name}')
+    candidates.append(name)
+    candidates.append(f'flows\\{module_name}')
+
+    for candidate in candidates:
+        if candidate in graph:
+            return candidate
+
+    return name
+
+
 # check_type decorator not compatible with recursive calls
 def extract_calls(
     entry_point: str,
@@ -164,7 +189,9 @@ def extract_calls(
 
     # PyCG is not exactly equivalent on Windows vs Linux wrt to graph keys
     if os.name == 'nt' and not entry_point.startswith('flows\\'):
-        entry_point = f'flows\\{entry_point}'
+        entry_point = f'flows\\{entry_point.replace(".", "\\")}'
+
+    entry_point = _resolve_graph_key(entry_point, graph)
 
     if entry_point in graph:
         for fn in graph[entry_point]:
@@ -183,7 +210,8 @@ def extract_calls(
                 if verbose:
                     print(f" >> ({entry_point}) function {fn['normed']} ⏩")
 
-                extract_calls(fn['normed'], graph, calls)
+                next_point = _resolve_graph_key(fn['normed'], graph)
+                extract_calls(next_point, graph, calls)
 
 
 @check_type

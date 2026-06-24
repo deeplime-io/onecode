@@ -5,6 +5,46 @@ from datatest import working_directory
 
 from onecode import Project, register_ext_module
 from onecode.cli import process_call_graph
+from onecode.cli.utils import _resolve_graph_key, extract_calls
+
+
+def test_resolve_graph_key_windows_style():
+    graph = {
+        'flows\\step2.run': [],
+        'flows\\utils.xx': [
+            {
+                'normed': 'onecode.slider',
+                'code': "onecode.slider('My slider\"1', 0.5, max=6)",
+            }
+        ],
+    }
+
+    assert _resolve_graph_key('utils.xx', graph) == 'flows\\utils.xx'
+    assert _resolve_graph_key('flows\\step2.run', graph) == 'flows\\step2.run'
+
+
+def test_extract_calls_resolves_windows_helper_modules():
+    graph = {
+        'flows\\step2.run': [
+            {
+                'normed': 'utils.xx',
+                'code': 'xx()',
+            }
+        ],
+        'flows\\utils.xx': [
+            {
+                'normed': 'onecode.slider',
+                'code': "onecode.slider('My slider\"1', 0.5, max=6)",
+            }
+        ],
+    }
+
+    Project().reset()
+    calls = []
+    extract_calls('flows\\step2.run', graph, calls)
+
+    assert len(calls) == 1
+    assert calls[0]['func'] == 'onecode.slider'
 
 
 def test_invalid_call_graph():
