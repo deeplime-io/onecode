@@ -13,7 +13,7 @@ def test_get_call_graph_entry_files_flow_1():
 
     assert entry_files[0].endswith('main.py')
     assert set(os.path.basename(f) for f in entry_files[1:]) == {
-        'step1.py', 'step2.py', 'step3.py'
+        'step1.py', 'step2.py', 'step3.py', 'utils.py'
     }
     assert 'unused.py' not in {os.path.basename(f) for f in entry_files}
 
