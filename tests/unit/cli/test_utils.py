@@ -10,7 +10,13 @@ from onecode.cli.utils import _resolve_graph_key, extract_calls
 
 def test_resolve_graph_key_windows_style():
     graph = {
-        'flows\\step2.run': [],
+        'flows\\step1.run': [],
+        'flows\\step2.run': [
+            {
+                'normed': 'utils.xx',
+                'code': 'xx()',
+            }
+        ],
         'flows\\utils.xx': [
             {
                 'normed': 'onecode.slider',
@@ -19,8 +25,8 @@ def test_resolve_graph_key_windows_style():
         ],
     }
 
+    assert _resolve_graph_key('flows.step1.run', graph) == 'flows\\step1.run'
     assert _resolve_graph_key('utils.xx', graph) == 'flows\\utils.xx'
-    assert _resolve_graph_key('flows\\step2.run', graph) == 'flows\\step2.run'
 
 
 def test_extract_calls_resolves_windows_helper_modules():
@@ -41,7 +47,7 @@ def test_extract_calls_resolves_windows_helper_modules():
 
     Project().reset()
     calls = []
-    extract_calls('flows\\step2.run', graph, calls)
+    extract_calls('flows.step2.run', graph, calls)
 
     assert len(calls) == 1
     assert calls[0]['func'] == 'onecode.slider'

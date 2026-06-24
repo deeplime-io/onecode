@@ -130,23 +130,32 @@ def run():
         json.dump(flows, f, indent=4)
 
 
+def _flow_module_name(name: str) -> str:
+    if name.startswith('flows.'):
+        return name[len('flows.'):]
+    if name.startswith('flows\\'):
+        return name[len('flows\\'):]
+    return name
+
+
 def _resolve_graph_key(name: str, graph: Dict) -> str:
     """
     Resolve a PyCG graph key across platform naming differences.
 
-    On Windows, relative imports inside ``flows/`` are often keyed as ``utils.xx``
-    while the analyzed module lives under ``flows\\utils.xx``.
+    On Windows, PyCG keeps path separators in module namespaces (``flows\\step1.run``)
+    while Linux uses dots (``flows.step1.run``). Relative imports inside ``flows/``
+    are often keyed as ``utils.xx`` while the analyzed module lives under
+    ``flows\\utils.xx``.
     """
     if name in graph:
         return name
 
-    candidates = []
-    module_name = name[len('flows.'):] if name.startswith('flows.') else name
-
-    if not name.startswith('flows.'):
-        candidates.append(f'flows.{module_name}')
-    candidates.append(name)
-    candidates.append(f'flows\\{module_name}')
+    module_name = _flow_module_name(name)
+    candidates = [
+        f'flows.{module_name}',
+        name,
+        f'flows\\{module_name}',
+    ]
 
     for candidate in candidates:
         if candidate in graph:
@@ -186,10 +195,6 @@ def extract_calls(
         f"{ent.split('.')[0]}.{pydash.snake_case(ent.split('.')[1])}"
         for ent in Project().registered_elements
     }
-
-    # PyCG is not exactly equivalent on Windows vs Linux wrt to graph keys
-    if os.name == 'nt' and not entry_point.startswith('flows\\'):
-        entry_point = 'flows\\' + entry_point.replace('.', '\\')
 
     entry_point = _resolve_graph_key(entry_point, graph)
 
@@ -260,10 +265,7 @@ def process_call_graph(
         print(f"Processing {label}...")
 
         calls = []
-        if os.name == 'nt':
-            extract_calls(f"{file}.run", flow_graph, calls, verbose)
-        else:
-            extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
+        extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
 
         statements[label] = {
             "entry_point": file,
