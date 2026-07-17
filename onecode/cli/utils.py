@@ -5,7 +5,6 @@ import ast
 import json
 import os
 from collections import OrderedDict
-from glob import iglob
 from typing import Dict, List, Optional
 
 import pydash
@@ -17,6 +16,7 @@ from slugify import slugify
 from ..base.decorator import check_type
 from ..base.enums import Env
 from ..base.project import Project
+from ..utils.module import get_call_graph_entry_files
 
 
 @check_type
@@ -130,6 +130,40 @@ def run():
         json.dump(flows, f, indent=4)
 
 
+def _flow_module_name(name: str) -> str:
+    if name.startswith('flows.'):
+        return name[len('flows.'):]
+    if name.startswith('flows\\'):
+        return name[len('flows\\'):]
+    return name
+
+
+def _resolve_graph_key(name: str, graph: Dict) -> str:
+    """
+    Resolve a PyCG graph key across platform naming differences.
+
+    On Windows, PyCG keeps path separators in module namespaces (``flows\\step1.run``)
+    while Linux uses dots (``flows.step1.run``). Relative imports inside ``flows/``
+    are often keyed as ``utils.xx`` while the analyzed module lives under
+    ``flows\\utils.xx``.
+    """
+    if name in graph:
+        return name
+
+    module_name = _flow_module_name(name)
+    candidates = [
+        f'flows.{module_name}',
+        name,
+        f'flows\\{module_name}',
+    ]
+
+    for candidate in candidates:
+        if candidate in graph:
+            return candidate
+
+    return name
+
+
 # check_type decorator not compatible with recursive calls
 def extract_calls(
     entry_point: str,
@@ -162,9 +196,7 @@ def extract_calls(
         for ent in Project().registered_elements
     }
 
-    # PyCG is not exactly equivalent on Windows vs Linux wrt to graph keys
-    if os.name == 'nt' and not entry_point.startswith('flows\\'):
-        entry_point = f'flows\\{entry_point}'
+    entry_point = _resolve_graph_key(entry_point, graph)
 
     if entry_point in graph:
         for fn in graph[entry_point]:
@@ -183,7 +215,8 @@ def extract_calls(
                 if verbose:
                     print(f" >> ({entry_point}) function {fn['normed']} ⏩")
 
-                extract_calls(fn['normed'], graph, calls)
+                next_point = _resolve_graph_key(fn['normed'], graph)
+                extract_calls(next_point, graph, calls)
 
 
 @check_type
@@ -214,13 +247,7 @@ def process_call_graph(
         raise FileNotFoundError('Ensure you are at the root of your OneCode project')
 
     statements = OrderedDict()
-    entry_files = [
-        filename for filename in iglob(
-            os.path.join(project_path, 'flows', '**', '*.py'), recursive=True
-        ) if filename != '__init__.py' and not filename.startswith(
-            os.path.join(project_path, 'flows', 'onecode_ext')
-        )
-    ]
+    entry_files = get_call_graph_entry_files(project_path)
 
     cg = CallGraphGenerator(
         entry_files,
@@ -238,10 +265,7 @@ def process_call_graph(
         print(f"Processing {label}...")
 
         calls = []
-        if os.name == 'nt':
-            extract_calls(f"{file}.run", flow_graph, calls, verbose)
-        else:
-            extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
+        extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
 
         statements[label] = {
             "entry_point": file,

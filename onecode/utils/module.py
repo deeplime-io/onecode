@@ -1,11 +1,12 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
+import ast
 import importlib
+import json
 import os
 import sys
 from collections import OrderedDict
-from glob import iglob
 from pathlib import Path
 from types import ModuleType
 from typing import Dict, List, Optional, Union
@@ -16,6 +17,7 @@ from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
 
 from ..base.decorator import check_type
+from ..base.enums import Env
 
 
 @check_type
@@ -56,6 +58,101 @@ def register_ext_module(
         return module
 
 
+def _is_onecode_ext_path(path: str) -> bool:
+    parts = path.replace('\\', '/').split('/')
+    return 'onecode_ext' in parts
+
+
+def _resolve_relative_import(flow_py: str, node: ast.ImportFrom) -> List[str]:
+    base_dir = os.path.dirname(flow_py)
+    module_parts = node.module.split('.') if node.module else []
+    rel_path = os.path.normpath(
+        os.path.join(base_dir, *(['..'] * (node.level - 1)), *module_parts)
+    )
+
+    candidates = []
+    if os.path.isfile(rel_path + '.py'):
+        candidates.append(rel_path + '.py')
+    init_py = os.path.join(rel_path, '__init__.py')
+    if os.path.isfile(init_py):
+        candidates.append(init_py)
+
+    return [path for path in candidates if not _is_onecode_ext_path(path)]
+
+
+def _collect_flow_helper_files(flow_files: List[str]) -> List[str]:
+    helpers = []
+    seen = set(os.path.abspath(path) for path in flow_files)
+
+    pending = list(flow_files)
+    while pending:
+        flow_py = pending.pop()
+        try:
+            with open(flow_py, 'r', encoding='utf-8') as f:
+                tree = ast.parse(f.read(), filename=flow_py)
+        except (OSError, SyntaxError, UnicodeDecodeError):
+            continue
+
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.ImportFrom) or node.level == 0:
+                continue
+
+            for helper_py in _resolve_relative_import(flow_py, node):
+                helper_py = os.path.abspath(helper_py)
+                if helper_py in seen:
+                    continue
+                seen.add(helper_py)
+                helpers.append(helper_py)
+                pending.append(helper_py)
+
+    return helpers
+
+
+@check_type
+def get_call_graph_entry_files(project_path: str) -> List[str]:
+    """
+    Return the Python entry files used for static call-graph analysis.
+
+    Analysis starts from ``main.py`` and includes only the flow scripts registered in
+    ``.onecode.json`` — the same flows executed at runtime by ``main.py`` — plus any
+    helper modules they import locally under ``flows/``. This avoids scanning unrelated
+    project files (e.g. ``.venv``, unused scripts, or data helpers).
+
+    Args:
+        project_path: Path to the root of the OneCode project.
+
+    Returns:
+        Absolute paths to the entry Python files.
+
+    Raises:
+        FileNotFoundError: if ``main.py`` or ``.onecode.json`` is missing.
+
+    """
+    project_path = os.path.abspath(project_path)
+    main_py = os.path.join(project_path, 'main.py')
+    if not os.path.isfile(main_py):
+        raise FileNotFoundError('main.py not found at project root')
+
+    config_file = os.path.join(project_path, Env.ONECODE_CONFIG_FILE)
+    if not os.path.isfile(config_file):
+        raise FileNotFoundError('Ensure you are at the root of your OneCode project')
+
+    entry_files = [main_py]
+    flow_files = []
+    with open(config_file, 'r') as f:
+        flows = json.load(f)
+
+    for flow in flows:
+        flow_py = os.path.join(project_path, 'flows', f"{flow['file']}.py")
+        if os.path.isfile(flow_py):
+            entry_files.append(flow_py)
+            flow_files.append(flow_py)
+
+    entry_files.extend(_collect_flow_helper_files(flow_files))
+
+    return entry_files
+
+
 @check_type
 def get_imported_modules(scripts_folder: str) -> List[str]:
     """
@@ -68,7 +165,7 @@ def get_imported_modules(scripts_folder: str) -> List[str]:
         List of modules names imported by the Python scripts.
 
     """
-    entry_files = list(iglob(os.path.join(scripts_folder, '**', '*.py'), recursive=True))
+    entry_files = get_call_graph_entry_files(scripts_folder)
     cg = CallGraphGenerator(
         entry_files,
         scripts_folder,
