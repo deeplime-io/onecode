@@ -117,14 +117,22 @@ class InputElement(ABC):
         self.__dict__.update(self._extra_args)
 
     @staticmethod
-    def metadata(value: Any) -> Dict:
+    def metadata(value: Any, **options: Any) -> Dict:
         """
-        Re-implement this function to process the `value` and extract metadata from it.
-        By default, it returns an empty dictionnary, meaning no metadata.
+        Re-implement this function to process the `value` and extract metadata from it
+        (dynamic UI / expression evaluator bag). By default, it returns an empty
+        dictionnary, meaning no metadata.
+
+        The GUI builder sets ``metadata: true`` when this method is overridden on the
+        concrete class.
+
+        Args:
+            value: Element value (e.g. local path, or a stream when the cloud service
+                calls this).
+            **options: Element-specific options (e.g. ``csv_options``).
 
         Returns:
-            A dictionnary of metadata.
-
+            A dictionnary of metadata (JSON-serializable).
         """
         return {}
 

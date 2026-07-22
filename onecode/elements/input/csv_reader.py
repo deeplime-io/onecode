@@ -2,13 +2,103 @@
 # SPDX-License-Identifier: MIT
 
 import os
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, BinaryIO, Dict, List, Optional, Union
 
 import pandas as pd
+import pyarrow as pa
+import pyarrow.compute as pc
+import pyarrow.csv as pv
 
 from ...base.decorator import check_type
 from ...base.project import Project
 from ..input_element import InputElement
+
+MAX_UNIQUE = 100_000
+
+
+def _jsonable(value: Any) -> Any:
+    """Convert Arrow/Python scalars to JSON-friendly values."""
+    if value is None:
+        return None
+    if hasattr(value, "as_py"):
+        try:
+            value = value.as_py()
+        except Exception:  # noqa: BLE001
+            pass
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    if hasattr(value, "item"):
+        try:
+            return value.item()
+        except (ValueError, AttributeError):
+            pass
+    return value
+
+
+def _metadata_from_table(table: pa.Table) -> Dict[str, Any]:
+    """Build the expression-evaluator bag (legacy cloud CSV processor shape)."""
+    stats: Dict[str, Any] = {
+        ".columns": list(table.column_names),
+        "__len__()": int(table.num_rows),
+    }
+
+    for column in table.column_names:
+        column_data = table[column]
+        col_key = f".{column}[]"
+
+        if pa.types.is_floating(column_data.type):
+            stats[col_key] = {
+                "unique()": None,
+                "mode()": None,
+                "min()": _jsonable(pc.min(column_data)),
+                "max()": _jsonable(pc.max(column_data)),
+                "mean()": _jsonable(pc.mean(column_data)),
+                "count()": _jsonable(pc.count(column_data)),
+                "sum()": _jsonable(pc.sum(column_data)),
+            }
+        elif pa.types.is_integer(column_data.type):
+            uniq = None
+            most_freq = None
+            try:
+                counts = pc.value_counts(column_data)
+                uniq = pc.unique(column_data).to_pylist()[:MAX_UNIQUE]
+                if len(counts) > 0:
+                    most_freq = counts[0][0].as_py()
+            except Exception:  # noqa: BLE001
+                pass
+            stats[col_key] = {
+                "unique()": [_jsonable(v) for v in uniq] if uniq is not None else None,
+                "mode()": _jsonable(most_freq),
+                "min()": _jsonable(pc.min(column_data)),
+                "max()": _jsonable(pc.max(column_data)),
+                "mean()": _jsonable(pc.mean(column_data)),
+                "count()": _jsonable(pc.count(column_data)),
+                "sum()": _jsonable(pc.sum(column_data)),
+            }
+        else:
+            uniq = None
+            most_freq = None
+            try:
+                counts = pc.value_counts(column_data)
+                uniq = pc.unique(column_data).to_pylist()[:MAX_UNIQUE]
+                if len(counts) > 0:
+                    most_freq = counts[0][0].as_py()
+            except Exception:  # noqa: BLE001
+                pass
+            stats[col_key] = {
+                "unique()": list(uniq) if uniq is not None else None,
+                "mode()": _jsonable(most_freq),
+                "min()": None,
+                "max()": None,
+                "mean()": None,
+                "count()": _jsonable(pc.count(column_data)),
+                "sum()": None,
+            }
+
+    return stats
 
 
 class CsvReader(InputElement):
@@ -87,28 +177,54 @@ class CsvReader(InputElement):
         )
 
     @staticmethod
-    def metadata(value: str) -> Dict:
+    def metadata(value: Union[str, BinaryIO], **options: Any) -> Dict:
         """
-        Returns the metadata associated to the given CSV(s).
+        Build dynamic-UI / expression-evaluator metadata for a CSV.
 
-        Returns:
-            A dictionnary metadata for each CSV path provided:
-            ```py
-            {
-                "columns": df.columns.to_list(),
-                "stats": df.describe().to_dict()
-            }
-            ```
+        Uses PyArrow (same approach as the legacy cloud CSV processor) so large files
+        can be read from a path or a **stream** (e.g. HTTP signed-URL body) without
+        loading via Pandas first.
 
-        """
-        df = pd.read_csv(value)
+        Returns the evaluator bag shape:
 
-        meta = {
-            "columns": df.columns.to_list(),
-            "stats": df.describe().to_dict()
+        ```py
+        {
+            ".columns": ["A", "B"],
+            "__len__()": 123,
+            ".A[]": {
+                "unique()": [...],
+                "mode()": ...,
+                "min()": ...,
+                "max()": ...,
+                "mean()": ...,
+                "count()": ...,
+                "sum()": ...,
+            },
+            ...
         }
+        ```
 
-        return meta
+        Args:
+            value: Filesystem path, or a binary file-like / readable stream.
+            **options: Optional ``csv_options`` with ``read_options``, ``parse_options``,
+                ``convert_options`` (PyArrow CSV option dicts).
+        """
+        csv_options = options.get("csv_options") or {}
+        read_options = dict(csv_options.get("read_options") or {})
+        parse_options = dict(csv_options.get("parse_options") or {})
+        convert_options = dict(csv_options.get("convert_options") or {})
+
+        # Drop null delimiter so PyArrow uses its default.
+        if parse_options.get("delimiter") is None:
+            parse_options.pop("delimiter", None)
+
+        table = pv.read_csv(
+            value,
+            read_options=pv.ReadOptions(**read_options) if read_options else None,
+            parse_options=pv.ParseOptions(**parse_options) if parse_options else None,
+            convert_options=pv.ConvertOptions(**convert_options) if convert_options else None,
+        )
+        return _metadata_from_table(table)
 
     @property
     def _value_type(self) -> type:

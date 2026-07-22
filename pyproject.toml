@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onecode"
-version = "1.2.2"
+version = "1.3.0.dev"
 description = "Python skeleton and library for OneCode projects"
 readme = "README.md"
 authors = ["DeepLime <contact@deeplime.io>"]
@@ -26,6 +26,7 @@ classifiers = [
 python = ">=3.8, <3.15"
 'flufl.lock' = ">=7.1.1,<9"
 pandas = ">=1.4.0,<3"
+pyarrow = ">=12,<22"
 pydash = ">=5.1.0,<8"
 python-slugify = ">=6.1.2,<9"
 strenum = ">=0.4.6,<1"
