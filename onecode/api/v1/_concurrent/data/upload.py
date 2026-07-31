@@ -66,7 +66,11 @@ async def async_upload(
         "Content-Type": mime_type
     }
 
-    async with httpx.AsyncClient(timeout=api_timeout()) as client:
+    # API calls stay short; GCS signed PUT/GET can be large/slow.
+    api_to = float(api_timeout())
+    transfer_to = httpx.Timeout(api_to, read=max(api_to, 600.0), write=max(api_to, 600.0))
+
+    async with httpx.AsyncClient(timeout=transfer_to) as client:
         upload_res = await client.post(
             f'{api_url()}/data/write/upload',
             json={
@@ -107,3 +111,15 @@ async def async_upload(
             response = await client.put(upload_url, content=stream, headers=headers)
             response.raise_for_status()
             print("✅ Upload complete:", response.status_code)
+
+        # Register object in personal storage DB (Storage UI + quota).
+        complete_res = await client.post(
+            f'{api_url()}/data/write/complete',
+            json={"path": path_to},
+            headers=api_token()
+        )
+        if not complete_res.is_success:
+            raise Exception(
+                f"{complete_res.status_code}: "
+                f"{complete_res.json().get('error', 'Failed to register upload')}"
+            )

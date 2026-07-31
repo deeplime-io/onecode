@@ -71,14 +71,16 @@ def api_url():
 
 def api_token():
     """
-    Return the OneCode Cloud API token defined in the `ONECODE_API` env variable
-    and format it as headers for HTTP requests.
+    Return HTTP headers for OneCode Cloud API auth.
+
+    Reads the API key from the `ONECODE_API` env variable and sends it as
+    `Authorization: Bearer <key>` (GCP HTTP API).
 
     """
 
+    token = os.environ.get(Env.ONECODE_API_TOKEN, '')
     return {
-        'ONECODE_API': os.environ.get(Env.ONECODE_API_TOKEN, ''),
-        'ONECODE_API_TYPE': 'API_KEY'
+        'Authorization': f'Bearer {token}'
     }
 
 

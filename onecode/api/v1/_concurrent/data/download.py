@@ -32,7 +32,10 @@ async def async_downloads(
     semaphore = asyncio.Semaphore(max_concurrent)
     download_urls: Dict = {}
 
-    async with httpx.AsyncClient(timeout=api_timeout()) as client:
+    api_to = float(api_timeout())
+    transfer_to = httpx.Timeout(api_to, read=max(api_to, 600.0), write=max(api_to, 600.0))
+
+    async with httpx.AsyncClient(timeout=transfer_to) as client:
         download_res = await client.post(
             f'{api_url()}/data/read/download',
             json={

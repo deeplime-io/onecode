@@ -36,7 +36,7 @@ def test_empty_project():
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
         ConfigOption.CLOUD_ENV: False,
-        ConfigOption.API_URL: 'https://api.onecode.rocks/v1',
+        ConfigOption.API_URL: 'https://api.onecode.ninja/v1',
         ConfigOption.API_TIMEOUT: 5,
     }
     assert p.data_root == os.getcwd()
@@ -84,7 +84,7 @@ def test_project_reset():
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
         ConfigOption.CLOUD_ENV: False,
-        ConfigOption.API_URL: 'https://api.onecode.rocks/v1',
+        ConfigOption.API_URL: 'https://api.onecode.ninja/v1',
         ConfigOption.API_TIMEOUT: 5,
     }
     assert p.data_root == data_path
@@ -115,7 +115,7 @@ def test_project_reset():
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
         ConfigOption.CLOUD_ENV: False,
-        ConfigOption.API_URL: 'https://api.onecode.rocks/v1',
+        ConfigOption.API_URL: 'https://api.onecode.ninja/v1',
         ConfigOption.API_TIMEOUT: 5,
     }
     assert p.data_root == os.getcwd()
@@ -230,7 +230,7 @@ def test_config_option():
         ConfigOption.LOGGER_TIMESTAMP: True,
         ConfigOption.CHECK_MODULES: True,
         ConfigOption.CLOUD_ENV: False,
-        ConfigOption.API_URL: 'https://api.onecode.rocks/v1',
+        ConfigOption.API_URL: 'https://api.onecode.ninja/v1',
         ConfigOption.API_TIMEOUT: 5,
         'XX': 56.4
     }

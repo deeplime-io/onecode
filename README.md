@@ -81,7 +81,9 @@ The following steps will show you how to get setup for the 1st time:
 
 2. Request a beta-tester access [here](https://tally.so/r/mVJbWN).
 
-3. Once you received your confirmation email, login on [onecode.rocks](https://www.onecode.rocks/login).
+3. Once you received your confirmation email, login on [onecode.ninja](https://onecode.ninja/login).
+Set `ONECODE_API` to an API key from **API keys** in the cloud UI, and use
+`Authorization: Bearer` against `https://api.onecode.ninja/v1` (default `API_URL`).
 
 4. Register your first app
     * From the dashboard, navigate to **Apps** in the top menubar.

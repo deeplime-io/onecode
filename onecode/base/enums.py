@@ -17,8 +17,8 @@ class Env(StrEnum):
     :octicons-arrow-both-24: `"ONECODE_DO_TYPECHECK"`
     - `ONECODE_LOGGER_NAME`: base logger name to avoid logging conflict with other loggers
     :octicons-arrow-both-24: `|OneCode|`
-    - `ONECODE_API_TOKEN`: env variable that will hold the OneCode API token
-    :octicons-arrow-both-24: `ONECODE_API`
+    - `ONECODE_API_TOKEN`: env variable holding the OneCode Cloud API key
+    :octicons-arrow-both-24: `ONECODE_API` (sent as `Authorization: Bearer`)
 
     """
     ONECODE_PROJECT_DATA    = "ONECODE_PROJECT_DATA"    # noqa: E-221
@@ -41,7 +41,7 @@ class ConfigOption(StrEnum):
     - `CLOUD_ENV`: used by OneCode Cloud to identify cloud env
         typically to handle code using display :octicons-arrow-both-24: `"CLOUD_ENV": False`
     - `API_URL`: use to make HTTP calls to OneCode Cloud API
-        :octicons-arrow-both-24: `"API_URL": https://api.onecode.rocks`
+        :octicons-arrow-both-24: `"API_URL": https://api.onecode.ninja/v1`
     - `API_TIMEOUT`: use to set a global timeout for the HTTP OneCode Cloud HTTP API
         :octicons-arrow-both-24: `"API_TIMEOUT": 5`
 
