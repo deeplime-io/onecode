@@ -2,6 +2,7 @@ import os
 import shutil
 import tempfile
 import uuid
+import json
 
 from slugify import slugify
 
@@ -39,4 +40,21 @@ def _generate_csv_file(
             f.write("0,1,2\n")
             f.write("3,4,5\n")
 
+    return out_file
+
+
+def _generate_json_file(flow: str, to_file: str, empty: bool = False) -> str:
+    out_file = os.path.join(flow, 'data', to_file)
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
+    
+    data = []
+    if not empty:
+        data = [
+            {"A": 0, "B": 1, "C": 2},
+            {"A": 3, "B": 4, "C": 5}
+        ]
+    
+    with open(out_file, 'w') as f:
+        json.dump(data, f, indent=4)
+    
     return out_file

@@ -122,9 +122,12 @@ class FileFilter(tuple):
     * `PYTHON`:octicons-arrow-both-24: `("Python", ".py")`
     * `IMAGE` :octicons-arrow-both-24: `("Image", ".jpg .png .jpeg")`
     * `ZIP` :octicons-arrow-both-24: `("ZIP", ".zip .gz .tar.gz .7z")`
+    * `JSON` :octicons-arrow-both-24: `("JSON", ".json")`
+    
 
     """
     CSV       = ("CSV", ".csv")                        # noqa: E-221
     PYTHON    = ("Python", ".py")                      # noqa: E-221
     IMAGE     = ("Image", ".jpg .png .jpeg")           # noqa: E-221
     ZIP       = ("ZIP", ".zip .gz .tar.gz .7z")        # noqa: E-221
+    JSON      = ("JSON", ".json")                      # noqa: E-221
