@@ -38,7 +38,6 @@ requirements-parser = ">=0.10.2,<1"
 
 # cli
 inquirerpy = ">=0.3.3,<1"
-onecode-pycg = ">=1.2.0,<2"
 yaspin = ">=3,<4"
 
 # docs
@@ -85,3 +84,22 @@ onecode-check = 'onecode.cli.check:main'
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["."]
+extend-exclude = ["tests/data", "site"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+# pycodestyle 2.15 (current flake8) does not emit E721.
+ignore = ["E721"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["onecode", "tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["E", "F", "W"]
+"onecode/pycg/**" = ["E501"]
+"tests/unit/pycg/**" = ["E501"]

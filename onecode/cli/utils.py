@@ -9,9 +9,10 @@ from typing import Dict, List, Optional
 
 import pydash
 from InquirerPy.base.control import Choice
-from pycg.pycg import CallGraphGenerator
-from pycg.utils.constants import CALL_GRAPH_OP
 from slugify import slugify
+
+from onecode.pycg.pycg import CallGraphGenerator as _CallGraphGenerator
+from onecode.pycg.utils.constants import CALL_GRAPH_OP as _CALL_GRAPH_OP
 
 from ..base.enums import Env
 from ..base.project import Project
@@ -174,9 +175,8 @@ def extract_calls(
     Args:
         entry_point: Call Graph function name from which to start the extraction from, e.g.
             `flows.my_flow.run`.
-        graph: Call Graph typically constructed by the DeepLime forked PyCG. Check out PyCG for
-            more information about the graph structure or directly the forked repository at
-            https://github.com/deeplime-io/PyCG/tree/onecode
+        graph: Enriched call graph produced by the vendored generator in `onecode.pycg`
+            (Apache-2.0, derived from PyCG).
         calls: List of calls as `{"func": <function_name>, "loc": <code_to_eval>}` where results
             are aggregated. These `calls` are typically piped to the `process` functions for JSON
             extraction.
@@ -243,11 +243,11 @@ def process_call_graph(
     statements = OrderedDict()
     entry_files = get_call_graph_entry_files(project_path)
 
-    cg = CallGraphGenerator(
+    cg = _CallGraphGenerator(
         entry_files,
         project_path,
         -1,
-        CALL_GRAPH_OP
+        _CALL_GRAPH_OP
     )
     cg.analyze()
     flow_graph = cg.output_enriched()

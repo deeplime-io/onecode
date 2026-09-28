@@ -13,8 +13,9 @@ from typing import Dict, List, Optional, Union
 
 import requirements
 from packaging.specifiers import SpecifierSet
-from pycg.pycg import CallGraphGenerator
-from pycg.utils.constants import CALL_GRAPH_OP
+
+from onecode.pycg.pycg import CallGraphGenerator as _CallGraphGenerator
+from onecode.pycg.utils.constants import CALL_GRAPH_OP as _CALL_GRAPH_OP
 
 from ..base.enums import Env
 
@@ -162,11 +163,11 @@ def get_imported_modules(scripts_folder: str) -> List[str]:
 
     """
     entry_files = get_call_graph_entry_files(scripts_folder)
-    cg = CallGraphGenerator(
+    cg = _CallGraphGenerator(
         entry_files,
         scripts_folder,
         0,
-        CALL_GRAPH_OP
+        _CALL_GRAPH_OP
     )
     cg.analyze()
 
