@@ -18,18 +18,22 @@ classifiers = [
   "Operating System :: Unix",
   "Operating System :: Microsoft :: Windows",
   "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering",
   "Topic :: Software Development :: Code Generators",
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8, <3.15"
+python = ">=3.11, <3.15"
 'flufl.lock' = ">=7.1.1,<9"
 pandas = ">=1.4.0,<3"
 pyarrow = ">=12,<22"
 pydash = ">=5.1.0,<8"
 python-slugify = ">=6.1.2,<9"
-strenum = ">=0.4.6,<1"
 typeguard = ">=3,<5"
 requirements-parser = ">=0.10.2,<1"
 
