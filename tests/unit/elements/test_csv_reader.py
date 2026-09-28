@@ -124,9 +124,9 @@ def test_execute_invalid_single_csv_reader():
     with pytest.raises(TypeError) as excinfo:
         widget()
 
-    assert """Invalid value    A  B  C
+    assert f"""Invalid value    A  B  C
 0  0  1  2
-1  3  4  5, expected: list(<class 'pandas.core.frame.DataFrame'>)""" == str(excinfo.value)
+1  3  4  5, expected: list({pd.DataFrame})""" == str(excinfo.value)
 
     try:
         shutil.rmtree(folder_path)
@@ -153,11 +153,11 @@ def test_execute_invalid_multiple_csv_reader():
     with pytest.raises(TypeError) as excinfo:
         widget()
 
-    assert """Invalid value type for [   A  B  C
+    assert f"""Invalid value type for [   A  B  C
 0  0  1  2
 1  3  4  5,    A  B  C
 0  0  1  2
-1  3  4  5], expected: <class 'pandas.core.frame.DataFrame'>""" == str(excinfo.value)
+1  3  4  5], expected: {pd.DataFrame}""" == str(excinfo.value)
 
     try:
         shutil.rmtree(folder_path)
@@ -363,9 +363,37 @@ def test_csv_reader_metadata():
     csv_file = _generate_csv_file(folder_path, 'test.csv')
     metadata = CsvReader.metadata(csv_file)
 
-    assert list(metadata.keys()) == ["columns", "stats"]
-    assert metadata["columns"] == ["A", "B", "C"]
-    assert isinstance(metadata["stats"], dict)
+    assert metadata == {
+        ".columns": ["A", "B", "C"],
+        "__len__()": 2,
+        ".A[]": {
+            "unique()": [0, 3],
+            "mode()": 0,
+            "min()": 0,
+            "max()": 3,
+            "mean()": 1.5,
+            "count()": 2,
+            "sum()": 3,
+        },
+        ".B[]": {
+            "unique()": [1, 4],
+            "mode()": 1,
+            "min()": 1,
+            "max()": 4,
+            "mean()": 2.5,
+            "count()": 2,
+            "sum()": 5,
+        },
+        ".C[]": {
+            "unique()": [2, 5],
+            "mode()": 2,
+            "min()": 2,
+            "max()": 5,
+            "mean()": 3.5,
+            "count()": 2,
+            "sum()": 7,
+        },
+    }
 
     try:
         shutil.rmtree(folder_path)

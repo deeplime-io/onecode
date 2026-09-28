@@ -70,7 +70,6 @@ plugins:
             show_source: false
             show_root_toc_entry: false
             separate_signature: false
-            new_path_syntax: yes
             filters:
               - "^_"
               - "^"

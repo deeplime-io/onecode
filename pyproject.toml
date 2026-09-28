@@ -29,32 +29,31 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.11, <3.15"
-'flufl.lock' = ">=7.1.1,<9"
-pandas = ">=1.4.0,<3"
-pyarrow = ">=12,<22"
-pydash = ">=5.1.0,<8"
-python-slugify = ">=6.1.2,<9"
+'flufl.lock' = ">=8,<10"
+pandas = ">=2.3,<4"
+pyarrow = ">=22,<26"
+pydash = ">=7,<9"
+python-slugify = ">=8,<10"
 requirements-parser = ">=0.10.2,<1"
 
 # cli
 inquirerpy = ">=0.3.3,<1"
-onecode-pycg = ">=0.0.7,<2"
-yaspin = ">=2.1.0,<4"
+onecode-pycg = ">=1.2.0,<2"
+yaspin = ">=3,<4"
 
 # docs
-griffe = { version = "^0", optional = true }
-mike = { version = "~1.1", optional = true }
-mkdocs = { version = "^1.5", optional = true }
-mkdocs-material = { version = "^9.5", optional = true }
-mkdocstrings = { version = "^0", optional = true }
-mkdocstrings-python = { version = "^1", optional = true }
+griffe = { version = ">=2,<3", optional = true }
+mike = { version = ">=2,<3", optional = true }
+mkdocs = { version = ">=1.6,<2", optional = true }
+mkdocs-material = { version = ">=9.7.7,<10", optional = true }
+mkdocstrings = { version = ">=1,<2", optional = true }
+mkdocstrings-python = { version = ">=2,<3", optional = true }
 
 # developer
 datatest = { version = ">=0.11.1,<1", optional = true }
-pytest = { version = ">=7,<8", optional = true }
-pytest-cov = { version = ">=2.10.1,<5", optional = true }
-pytest-xdist = { version = ">=3.1.0,<4", optional = true }
-toml = { version = ">=0.10.2,<1", optional = true }
+pytest = { version = ">=9.0.3,<10", optional = true }
+pytest-cov = { version = ">=6,<8", optional = true }
+pytest-xdist = { version = ">=3.6,<4", optional = true }
 
 [tool.poetry.extras]
 developer = [
@@ -62,15 +61,12 @@ developer = [
   "pytest",
   "pytest-cov",
   "pytest-xdist",
-  "toml",
 ]
 
 docs = [
   "griffe",
-  "markdown-katex",
   "mike",
   "mkdocs",
-  "mkdocs-jupyter",
   "mkdocs-material",
   "mkdocstrings",
   "mkdocstrings-python",
