@@ -79,16 +79,25 @@ from flows.utils import write_output
 import onecode
 
 
+def _process_class():
+    # Linux 3.14's default fork server keeps the environment from the first
+    # worker, so a later run still sees a deleted data path. Fork sees the
+    # current ONECODE_PROJECT_DATA. Every other platform keeps Process, which
+    # is the start method these tests have always used.
+    ctx = multiprocessing.get_context()
+    if type(ctx).__name__ == "ForkServerContext":
+        return multiprocessing.get_context("fork").Process
+    return multiprocessing.Process
+
+
 def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
     parent_flow = onecode.Project().current_flow
-    # Spawn so each child sees the current ONECODE_PROJECT_DATA. Python 3.14's
-    # default forkserver keeps the environment from the first process it served.
-    ctx = multiprocessing.get_context("spawn")
+    Process = _process_class()
 
     for name in names:
-        proc = ctx.Process(target=write_output, args=(name, parent_flow))
+        proc = Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
         proc.start()
 
@@ -136,16 +145,25 @@ from flows.utils import write_output
 import onecode
 
 
+def _process_class():
+    # Linux 3.14's default fork server keeps the environment from the first
+    # worker, so a later run still sees a deleted data path. Fork sees the
+    # current ONECODE_PROJECT_DATA. Every other platform keeps Process, which
+    # is the start method these tests have always used.
+    ctx = multiprocessing.get_context()
+    if type(ctx).__name__ == "ForkServerContext":
+        return multiprocessing.get_context("fork").Process
+    return multiprocessing.Process
+
+
 def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
     parent_flow = onecode.Project().current_flow
-    # Spawn so each child sees the current ONECODE_PROJECT_DATA. Python 3.14's
-    # default forkserver keeps the environment from the first process it served.
-    ctx = multiprocessing.get_context("spawn")
+    Process = _process_class()
 
     for name in names:
-        proc = ctx.Process(target=write_output, args=(name, parent_flow))
+        proc = Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
         proc.start()
 
