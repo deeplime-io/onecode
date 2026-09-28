@@ -74,7 +74,7 @@ def write_output(data, flow_name):
 
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'w') as f:
         f.write("""
-from multiprocessing import Process
+import multiprocessing
 from flows.utils import write_output
 import onecode
 
@@ -83,9 +83,12 @@ def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
     parent_flow = onecode.Project().current_flow
+    # Spawn so each child sees the current ONECODE_PROJECT_DATA. Python 3.14's
+    # default forkserver keeps the environment from the first process it served.
+    ctx = multiprocessing.get_context("spawn")
 
     for name in names:
-        proc = Process(target=write_output, args=(name, parent_flow))
+        proc = ctx.Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
         proc.start()
 
@@ -128,7 +131,7 @@ def write_output(data, flow_name):
 
     with open(os.path.join(flow_dir, 'flows', f'{flow_id}.py'), 'w') as f:
         f.write("""
-from multiprocessing import Process
+import multiprocessing
 from flows.utils import write_output
 import onecode
 
@@ -137,9 +140,12 @@ def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
     parent_flow = onecode.Project().current_flow
+    # Spawn so each child sees the current ONECODE_PROJECT_DATA. Python 3.14's
+    # default forkserver keeps the environment from the first process it served.
+    ctx = multiprocessing.get_context("spawn")
 
     for name in names:
-        proc = Process(target=write_output, args=(name, parent_flow))
+        proc = ctx.Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
         proc.start()
 

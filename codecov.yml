@@ -8,6 +8,6 @@ coverage:
         target: 95%
 
 ignore:
-  - "tests/**/*"
-  - "tests/*"
-  - "onecode/pycg/**/*"
+  - "tests"
+  - "onecode/pycg"
+  - "scripts"

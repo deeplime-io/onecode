@@ -422,3 +422,50 @@ def test_csv_reader_dependencies():
     )
 
     assert set(widget.dependencies()) == {"df1"}
+
+
+def test_csv_reader_metadata_float_and_text(tmp_path):
+    csv_file = tmp_path / "mixed.csv"
+    csv_file.write_text("name,score\na,1.5\nb,2.5\n")
+
+    metadata = CsvReader.metadata(csv_file)
+
+    assert metadata[".columns"] == ["name", "score"]
+    assert metadata["__len__()"] == 2
+    assert metadata[".name[]"]["unique()"] == ["a", "b"]
+    assert metadata[".name[]"]["mode()"] == "a"
+    assert metadata[".name[]"]["min()"] is None
+    assert metadata[".name[]"]["sum()"] is None
+    assert metadata[".score[]"]["unique()"] is None
+    assert metadata[".score[]"]["min()"] == 1.5
+    assert metadata[".score[]"]["max()"] == 2.5
+    assert metadata[".score[]"]["mean()"] == 2.0
+    assert metadata[".score[]"]["sum()"] == 4.0
+
+
+def test_jsonable_scalar_edges():
+    from onecode.elements.input.csv_reader import _jsonable
+
+    assert _jsonable(None) is None
+
+    class BrokenArrow:
+        def as_py(self):
+            raise RuntimeError("bad scalar")
+
+        def item(self):
+            return 4
+
+    assert _jsonable(BrokenArrow()) == 4
+
+    class Missing:
+        def as_py(self):
+            return float("nan")
+
+    assert _jsonable(Missing()) is None
+
+    class NotScalar:
+        def item(self):
+            raise ValueError("not a scalar")
+
+    value = NotScalar()
+    assert _jsonable(value) is value
