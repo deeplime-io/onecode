@@ -315,7 +315,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../changelogs/2.0.0/" class="md-tabs__link">
+        <a href="../../../changelogs/1.3.0/" class="md-tabs__link">
           
   
   
@@ -1166,34 +1166,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../changelogs/2.0.0/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2.0.0
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../changelogs/1.3.0/" class="md-nav__link">
         
   
@@ -1877,13 +1849,38 @@ for more info.</p>
 
 
         <p>Single Logger object to handle Python logging within OneCode projects.
-The default logging level is INFO. See [<code>set_level()</code>][onecode.Logger.set_level] to change it.
-Use the static methods [<code>debug()</code>][onecode.Logger.debug], [<code>info()</code>][onecode.Logger.info],
-[<code>warning()</code>][onecode.Logger.warning], [<code>error()</code>][onecode.Logger.error], and
-[<code>critical()</code>][onecode.Logger.critical] to conveniently log your messages with the
-corresponding logging level.</p>
+The default logging level is INFO. See
+<a class="autorefs autorefs-internal" title="set_level(level)" href="#onecode.base.logger.Logger.set_level"><code>set_level()</code></a> to change it.
+Use the static methods
+<a class="autorefs autorefs-internal" title="debug(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.debug"><code>debug()</code></a>,
+<a class="autorefs autorefs-internal" title="info(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.info"><code>info()</code></a>,
+<a class="autorefs autorefs-internal" title="warning(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.warning"><code>warning()</code></a>,
+<a class="autorefs autorefs-internal" title="error(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.error"><code>error()</code></a>, and
+<a class="autorefs autorefs-internal" title="critical(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.critical"><code>critical()</code></a>
+to conveniently log your messages with the corresponding logging level.</p>
 <p>By default, the ColoredFormatter is used. You may add other logging handlers using
-[<code>add_handler()</code>][onecode.Logger.add_handler], for instance to redirect logs to a file.</p>
+<a class="autorefs autorefs-internal" title="add_handler(handler=None, root_logger=True)" href="#onecode.base.logger.Logger.add_handler"><code>add_handler()</code></a>,
+for instance to redirect logs to a file.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
@@ -1936,7 +1933,11 @@ corresponding logging level.</p>
     <div class="doc doc-contents ">
 
         <p>Force flush to stdout if <code>ConfigOption.FLUSH_STDOUT</code> is True. See
-    [Project.config][onecode.Project.config] for more information.</p>
+    <a class="autorefs autorefs-internal" title="config
+
+  
+      property
+  " href="../project/#onecode.base.project.Project.config">Project.config</a> for more information.</p>
 
 
     </div>
@@ -2246,9 +2247,32 @@ as a child of the <code>|OneCode|</code> logger.</p>
     <div class="doc doc-contents ">
 
         <p>Get the Python Logger object corresponding to the given stack level. Preferentially use
-convenience methods [<code>debug()</code>][onecode.Logger.debug], [<code>info()</code>][onecode.Logger.info],
-[<code>warning()</code>][onecode.Logger.warning], [<code>error()</code>][onecode.Logger.error], and
-[<code>critical()</code>][onecode.Logger.critical].</p>
+convenience methods
+<a class="autorefs autorefs-internal" title="debug(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.debug"><code>debug()</code></a>,
+<a class="autorefs autorefs-internal" title="info(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.info"><code>info()</code></a>,
+<a class="autorefs autorefs-internal" title="warning(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.warning"><code>warning()</code></a>,
+<a class="autorefs autorefs-internal" title="error(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.error"><code>error()</code></a>, and
+<a class="autorefs autorefs-internal" title="critical(msg)
+
+  
+      staticmethod
+  " href="#onecode.base.logger.Logger.critical"><code>critical()</code></a>.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
