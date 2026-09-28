@@ -80,14 +80,15 @@ import onecode
 
 
 def _process_class():
-    # Linux 3.14's default fork server keeps the environment from the first
-    # worker, so a later run still sees a deleted data path. Fork sees the
-    # current ONECODE_PROJECT_DATA. Every other platform keeps Process, which
-    # is the start method these tests have always used.
+    # Fork from this multi-threaded pytest process warns, and can deadlock.
+    # Linux 3.14's fork server also keeps ONECODE_PROJECT_DATA from the first
+    # worker. Spawn starts a fresh interpreter with the current environment.
+    # Windows and macOS already default to spawn; a second spawn context drops
+    # workers there, so those platforms keep Process.
     ctx = multiprocessing.get_context()
-    if type(ctx).__name__ == "ForkServerContext":
-        return multiprocessing.get_context("fork").Process
-    return multiprocessing.Process
+    if type(ctx).__name__ == "SpawnContext":
+        return multiprocessing.Process
+    return multiprocessing.get_context("spawn").Process
 
 
 def run():
@@ -148,14 +149,15 @@ import onecode
 
 
 def _process_class():
-    # Linux 3.14's default fork server keeps the environment from the first
-    # worker, so a later run still sees a deleted data path. Fork sees the
-    # current ONECODE_PROJECT_DATA. Every other platform keeps Process, which
-    # is the start method these tests have always used.
+    # Fork from this multi-threaded pytest process warns, and can deadlock.
+    # Linux 3.14's fork server also keeps ONECODE_PROJECT_DATA from the first
+    # worker. Spawn starts a fresh interpreter with the current environment.
+    # Windows and macOS already default to spawn; a second spawn context drops
+    # workers there, so those platforms keep Process.
     ctx = multiprocessing.get_context()
-    if type(ctx).__name__ == "ForkServerContext":
-        return multiprocessing.get_context("fork").Process
-    return multiprocessing.Process
+    if type(ctx).__name__ == "SpawnContext":
+        return multiprocessing.Process
+    return multiprocessing.get_context("spawn").Process
 
 
 def run():
