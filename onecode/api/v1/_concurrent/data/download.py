@@ -13,7 +13,7 @@ from rich.progress import (
     Progress,
     TextColumn,
     TimeRemainingColumn,
-    TransferSpeedColumn
+    TransferSpeedColumn,
 )
 
 from ....utils import api_timeout, api_token, api_url

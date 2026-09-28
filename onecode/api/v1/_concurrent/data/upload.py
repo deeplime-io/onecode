@@ -6,13 +6,7 @@ from pathlib import Path
 from typing import Dict
 
 import httpx
-from rich.progress import (
-    BarColumn,
-    Progress,
-    TextColumn,
-    TimeRemainingColumn,
-    TransferSpeedColumn
-)
+from rich.progress import BarColumn, Progress, TextColumn, TimeRemainingColumn, TransferSpeedColumn
 
 from ....utils import api_timeout, api_token, api_url
 
