@@ -155,7 +155,7 @@ datatest = { version = ">=0.11.1,<1", optional = true }
         self.assertIn("pyarrow", names)
         self.assertNotIn("pytest", names)
         self.assertNotIn("mkdocs", names)
-        self.assertEqual(version, "1.3.0.dev")
+        self.assertEqual(version, "2.0.0rc3")
 
 
 class ReleaseAssetTest(unittest.TestCase):
