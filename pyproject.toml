@@ -27,6 +27,9 @@ classifiers = [
   "Topic :: Software Development :: Code Generators",
 ]
 
+[tool.poetry.urls]
+SBOM = "https://github.com/deeplime-io/onecode/releases/latest"
+
 [tool.poetry.dependencies]
 python = ">=3.11, <3.15"
 'flufl.lock' = ">=8,<10"
