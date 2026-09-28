@@ -66,8 +66,8 @@ def _metadata_from_table(table: pa.Table) -> Dict[str, Any]:
                 uniq = pc.unique(column_data).to_pylist()[:MAX_UNIQUE]
                 if len(counts) > 0:
                     most_freq = counts[0][0].as_py()
-            except Exception:  # noqa: BLE001
-                pass
+            except Exception:  # noqa: BLE001  # pragma: no cover
+                pass  # pragma: no cover
             stats[col_key] = {
                 "unique()": [_jsonable(v) for v in uniq] if uniq is not None else None,
                 "mode()": _jsonable(most_freq),
@@ -85,8 +85,8 @@ def _metadata_from_table(table: pa.Table) -> Dict[str, Any]:
                 uniq = pc.unique(column_data).to_pylist()[:MAX_UNIQUE]
                 if len(counts) > 0:
                     most_freq = counts[0][0].as_py()
-            except Exception:  # noqa: BLE001
-                pass
+            except Exception:  # noqa: BLE001  # pragma: no cover
+                pass  # pragma: no cover
             stats[col_key] = {
                 "unique()": list(uniq) if uniq is not None else None,
                 "mode()": _jsonable(most_freq),

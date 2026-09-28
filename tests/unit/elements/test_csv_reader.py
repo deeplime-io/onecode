@@ -469,3 +469,7 @@ def test_jsonable_scalar_edges():
 
     value = NotScalar()
     assert _jsonable(value) is value
+
+    # pd.isna on an array returns an array, which cannot be used as a boolean.
+    result = _jsonable(pd.array([1, 2]))
+    assert list(result) == [1, 2]
