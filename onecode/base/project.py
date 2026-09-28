@@ -8,9 +8,8 @@ import sys
 from typing import Any, Dict, Optional, Set, Union
 
 import pydash
-from flufl.lock import Lock
+from filelock import FileLock
 
-from .decorator import check_type
 from .enums import ConfigOption, Env, Mode
 from .singleton import Singleton
 
@@ -88,7 +87,7 @@ class Project(metaclass=Singleton):
             ConfigOption.FLUSH_STDOUT: False,
             ConfigOption.LOGGER_COLOR: True,
             ConfigOption.LOGGER_TIMESTAMP: True,
-            ConfigOption.CHECK_MODULES: True,
+            ConfigOption.CHECK_MODULES: False,
             ConfigOption.CLOUD_ENV: False,
             ConfigOption.API_URL: 'https://api.onecode.rocks/v1',
             ConfigOption.API_TIMEOUT: 5,
@@ -110,7 +109,6 @@ class Project(metaclass=Singleton):
         """
         return self._registered_elements
 
-    @check_type
     def register_element(
         self,
         element_name: str
@@ -192,7 +190,6 @@ class Project(metaclass=Singleton):
         """
         return self._data_root
 
-    @check_type
     def _set_data_root(
         self,
         data_path: str
@@ -214,7 +211,6 @@ class Project(metaclass=Singleton):
 
         self._data_root = data_path
 
-    @check_type
     def get_input_path(
         self,
         filepath: str
@@ -234,7 +230,6 @@ class Project(metaclass=Singleton):
         return filepath if not filepath or os.path.isabs(filepath) \
             else os.path.join(self.data_root, filepath)
 
-    @check_type
     def get_output_path(
         self,
         filepath: str
@@ -320,7 +315,6 @@ class Project(metaclass=Singleton):
         """
         self._data = data
 
-    @check_type
     def add_data(
         self,
         key: str,
@@ -345,7 +339,6 @@ class Project(metaclass=Singleton):
 
         self._data[key] = value
 
-    @check_type
     def set_config(
         self,
         key: Union[ConfigOption, str],
@@ -367,7 +360,6 @@ class Project(metaclass=Singleton):
 
         self._config[key] = value
 
-    @check_type
     def get_config(
         self,
         key: Union[ConfigOption, str]
@@ -387,7 +379,6 @@ class Project(metaclass=Singleton):
 
         return self._config[key]
 
-    @check_type
     def write_output(
         self,
         output: Dict
@@ -406,9 +397,11 @@ class Project(metaclass=Singleton):
             output: Output data to write to the manifest file.
 
         """
-        manifest_dir = os.path.dirname(self.get_output_manifest())
+        manifest = self.get_output_manifest()
+        lock_path = os.path.join(os.path.dirname(manifest), '.locks', 'MANIFEST.lock')
 
-        # manage concurrent access in case of multiprocessing
-        with Lock(os.path.join(manifest_dir, '.locks', 'MANIFEST.lock'), lifetime=3):
-            with open(self.get_output_manifest(), "a") as f:
-                f.write(f'{json.dumps(output)}\n')
+        # OS lock (fcntl on Unix, msvcrt on Windows). Released when the holder
+        # exits, so a slow process is not interrupted by a timeout.
+        with FileLock(lock_path, timeout=-1, preserve_lock_file=True):
+            with open(manifest, "a") as handle:
+                handle.write(f'{json.dumps(output)}\n')

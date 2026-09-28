@@ -4,13 +4,11 @@
 import asyncio
 from typing import Dict, List, Tuple
 
-from ...base.decorator import check_type
 from ..utils import ComputeOptions
 from ._concurrent.apps.parameters import async_parameters
 from ._concurrent.apps.start import async_start
 
 
-@check_type
 def parameters(
     slug: str
 ) -> Dict:
@@ -35,7 +33,6 @@ def parameters(
     )
 
 
-@check_type
 def start(
     slug: str,
     output_prefix: str,

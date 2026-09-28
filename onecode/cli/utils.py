@@ -5,22 +5,20 @@ import ast
 import json
 import os
 from collections import OrderedDict
-from glob import iglob
 from typing import Dict, List, Optional
 
 import pydash
-from astunparse import unparse
 from InquirerPy.base.control import Choice
-from pycg.pycg import CallGraphGenerator
-from pycg.utils.constants import CALL_GRAPH_OP
 from slugify import slugify
 
-from ..base.decorator import check_type
+from onecode.pycg.pycg import CallGraphGenerator as _CallGraphGenerator
+from onecode.pycg.utils.constants import CALL_GRAPH_OP as _CALL_GRAPH_OP
+
 from ..base.enums import Env
 from ..base.project import Project
+from ..utils.module import get_call_graph_entry_files
 
 
-@check_type
 def get_flows(project_path: str) -> Dict:
     """
     Get the flows configuration as stored at the OneCode project's root (filename is given by the
@@ -42,7 +40,6 @@ def get_flows(project_path: str) -> Dict:
     return config
 
 
-@check_type
 def _get_flow_choices(project_path: str) -> List[Choice]:     # pragma: no cover
     """
     Internal function for CLI commands to get the existing OneCode project's flows as interactive
@@ -61,7 +58,6 @@ def _get_flow_choices(project_path: str) -> List[Choice]:     # pragma: no cover
     return choices
 
 
-@check_type
 def _add_flow(
     project_path: str,
     name: Optional[str],
@@ -131,7 +127,40 @@ def run():
         json.dump(flows, f, indent=4)
 
 
-# check_type decorator not compatible with recursive calls
+def _flow_module_name(name: str) -> str:
+    if name.startswith('flows.'):
+        return name[len('flows.'):]
+    if name.startswith('flows\\'):
+        return name[len('flows\\'):]
+    return name
+
+
+def _resolve_graph_key(name: str, graph: Dict) -> str:
+    """
+    Resolve a PyCG graph key across platform naming differences.
+
+    On Windows, PyCG keeps path separators in module namespaces (``flows\\step1.run``)
+    while Linux uses dots (``flows.step1.run``). Relative imports inside ``flows/``
+    are often keyed as ``utils.xx`` while the analyzed module lives under
+    ``flows\\utils.xx``.
+    """
+    if name in graph:
+        return name
+
+    module_name = _flow_module_name(name)
+    candidates = [
+        f'flows.{module_name}',
+        name,
+        f'flows\\{module_name}',
+    ]
+
+    for candidate in candidates:
+        if candidate in graph:
+            return candidate
+
+    return name
+
+
 def extract_calls(
     entry_point: str,
     graph: Dict,
@@ -146,9 +175,8 @@ def extract_calls(
     Args:
         entry_point: Call Graph function name from which to start the extraction from, e.g.
             `flows.my_flow.run`.
-        graph: Call Graph typically constructed by the DeepLime forked PyCG. Check out PyCG for
-            more information about the graph structure or directly the forked repository at
-            https://github.com/deeplime-io/PyCG/tree/onecode
+        graph: Enriched call graph produced by the vendored generator in `onecode.pycg`
+            (Apache-2.0, derived from PyCG).
         calls: List of calls as `{"func": <function_name>, "loc": <code_to_eval>}` where results
             are aggregated. These `calls` are typically piped to the `process` functions for JSON
             extraction.
@@ -163,9 +191,7 @@ def extract_calls(
         for ent in Project().registered_elements
     }
 
-    # PyCG is not exactly equivalent on Windows vs Linux wrt to graph keys
-    if os.name == 'nt' and not entry_point.startswith('flows\\'):
-        entry_point = f'flows\\{entry_point}'
+    entry_point = _resolve_graph_key(entry_point, graph)
 
     if entry_point in graph:
         for fn in graph[entry_point]:
@@ -178,16 +204,16 @@ def extract_calls(
                 code.body[0].value.func = ast.parse(fn['normed'])
                 calls.append({
                     "func": fn['normed'],
-                    "loc": unparse(code).strip()
+                    "loc": ast.unparse(code).strip()
                 })
             else:
                 if verbose:
                     print(f" >> ({entry_point}) function {fn['normed']} ⏩")
 
-                extract_calls(fn['normed'], graph, calls)
+                next_point = _resolve_graph_key(fn['normed'], graph)
+                extract_calls(next_point, graph, calls)
 
 
-@check_type
 def process_call_graph(
     project_path: str = None,
     verbose: bool = False
@@ -215,19 +241,13 @@ def process_call_graph(
         raise FileNotFoundError('Ensure you are at the root of your OneCode project')
 
     statements = OrderedDict()
-    entry_files = [
-        filename for filename in iglob(
-            os.path.join(project_path, 'flows', '**', '*.py'), recursive=True
-        ) if filename != '__init__.py' and not filename.startswith(
-            os.path.join(project_path, 'flows', 'onecode_ext')
-        )
-    ]
+    entry_files = get_call_graph_entry_files(project_path)
 
-    cg = CallGraphGenerator(
+    cg = _CallGraphGenerator(
         entry_files,
         project_path,
         -1,
-        CALL_GRAPH_OP
+        _CALL_GRAPH_OP
     )
     cg.analyze()
     flow_graph = cg.output_enriched()
@@ -239,10 +259,7 @@ def process_call_graph(
         print(f"Processing {label}...")
 
         calls = []
-        if os.name == 'nt':
-            extract_calls(f"{file}.run", flow_graph, calls, verbose)
-        else:
-            extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
+        extract_calls(f"flows.{file}.run", flow_graph, calls, verbose)
 
         statements[label] = {
             "entry_point": file,

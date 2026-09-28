@@ -9,14 +9,12 @@ from typing import Dict, List
 
 import onecode  # noqa
 
-from ..base.decorator import check_type
 from ..base.enums import *  # noqa
 from ..base.enums import ElementType, Mode
 from ..base.project import Project
 from .utils import process_call_graph
 
 
-@check_type
 def process(calls: List[Dict[str, str]]) -> Dict:
     """
     Evaluate the given calls such as:
@@ -80,7 +78,6 @@ def process(calls: List[Dict[str, str]]) -> Dict:
     return params
 
 
-@check_type
 def extract_gui(
     project_path: str,
     to_file: str,

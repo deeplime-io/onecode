@@ -9,12 +9,10 @@ from InquirerPy.validator import PathValidator
 from slugify import slugify
 from yaspin import yaspin
 
-from ..base.decorator import check_type
 from ..base.enums import Env
 from .utils import _add_flow, _get_flow_choices
 
 
-@check_type
 def add(
     project_path: str,
     name: str,

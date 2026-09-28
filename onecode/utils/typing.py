@@ -1,9 +1,8 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
-from typeguard import check_type
+from types import UnionType
+from typing import Any, Union, get_args, get_origin
 
 
 def is_type(
@@ -22,9 +21,22 @@ def is_type(
         True if the object match the type, otherwise False.
 
     """
-    try:
-        check_type(value=obj, expected_type=t)
+    if t is Any:
         return True
 
-    except Exception:
+    origin = get_origin(t)
+    if origin is Union or origin is UnionType:
+        return any(is_type(obj, arg) for arg in get_args(t))
+
+    if origin is list:
+        if not isinstance(obj, list):
+            return False
+        args = get_args(t)
+        if not args or args == (Any,):
+            return True
+        return all(is_type(item, args[0]) for item in obj)
+
+    try:
+        return isinstance(obj, t)
+    except TypeError:
         return False

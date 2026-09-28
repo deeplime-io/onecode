@@ -3,12 +3,10 @@
 
 from typing import Any, List, Optional, Union
 
-from ...base.decorator import check_type
 from ..input_element import InputElement
 
 
 class TextInput(InputElement):
-    @check_type
     def __init__(
         self,
         key: str,
@@ -85,7 +83,6 @@ class TextInput(InputElement):
         """
         return str
 
-    @check_type
     def _validate(
         self,
         value: str

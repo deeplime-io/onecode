@@ -8,7 +8,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import pydash
 from slugify import slugify
 
-from ..base.decorator import check_type
 from ..base.project import Project
 from ..utils.typing import is_type
 
@@ -62,7 +61,6 @@ class InputElement(ABC):
 
     """
 
-    @check_type
     def __init__(
         self,
         key: str,
@@ -117,14 +115,22 @@ class InputElement(ABC):
         self.__dict__.update(self._extra_args)
 
     @staticmethod
-    def metadata(value: Any) -> Dict:
+    def metadata(value: Any, **options: Any) -> Dict:
         """
-        Re-implement this function to process the `value` and extract metadata from it.
-        By default, it returns an empty dictionnary, meaning no metadata.
+        Re-implement this function to process the `value` and extract metadata from it
+        (dynamic UI / expression evaluator bag). By default, it returns an empty
+        dictionnary, meaning no metadata.
+
+        The GUI builder sets ``metadata: true`` when this method is overridden on the
+        concrete class.
+
+        Args:
+            value: Element value (e.g. local path, or a stream when the cloud service
+                calls this).
+            **options: Element-specific options (e.g. ``csv_options``).
 
         Returns:
-            A dictionnary of metadata.
-
+            A dictionnary of metadata (JSON-serializable).
         """
         return {}
 
@@ -193,7 +199,7 @@ class InputElement(ABC):
             The element disabling condition.
 
         """
-        return self._disabled
+        return self._disabled if isinstance(self._disabled, str) else False
 
     @property
     def hide_when_disabled(self) -> bool:
@@ -265,7 +271,6 @@ class InputElement(ABC):
         """
         pass
 
-    @check_type
     def _prepare_and_validate(
         self,
         value: Optional[Any]

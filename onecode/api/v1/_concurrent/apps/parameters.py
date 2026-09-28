@@ -5,12 +5,10 @@ from typing import Optional
 
 import httpx
 
-from .....base.decorator import check_type
 from ...._decorators import with_httpx_client
 from ....utils import api_token, api_url
 
 
-@check_type
 @with_httpx_client()
 async def async_parameters(
     slug: str,

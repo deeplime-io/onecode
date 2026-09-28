@@ -14,7 +14,6 @@ from rich.progress import (
     TransferSpeedColumn
 )
 
-from .....base.decorator import check_type
 from ....utils import api_timeout, api_token, api_url
 
 
@@ -46,7 +45,6 @@ class _StreamingFile:
         self.file.close()
 
 
-@check_type
 async def async_upload(
     file: str,
     path_to: str,

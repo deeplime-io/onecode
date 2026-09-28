@@ -1,3 +1,13 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 95%
+    patch:
+      default:
+        target: 95%
+
 ignore:
-  - "tests/**/*"
-  - "tests/*"
+  - "tests"
+  - "onecode/pycg"
+  - "scripts"

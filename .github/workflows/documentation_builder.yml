@@ -40,7 +40,7 @@ jobs:
           if [[ ${{github.event_name}} == "release" ]]
           then
             echo "Deploy doc for release: ${{ github.event.release.tag_name }}"
-            mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest || mike deploy --push ${{ github.event.release.tag_name }}
+            mike deploy --push --alias-type=redirect --update-aliases ${{ github.event.release.tag_name }} latest || mike deploy --push ${{ github.event.release.tag_name }}
             mike set-default --push latest
           else
             echo "Deploy doc for main"

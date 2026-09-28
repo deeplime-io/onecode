@@ -5,12 +5,10 @@ import asyncio
 import os
 from typing import List, Tuple
 
-from ...base.decorator import check_type
 from ._concurrent.data.download import async_downloads
 from ._concurrent.data.upload import async_upload
 
 
-@check_type
 def download(
     prefix: str,
     path_to: str = os.getcwd(),
@@ -81,7 +79,6 @@ def download(
     return res
 
 
-@check_type
 def upload(
     file: str,
     path_to: str,

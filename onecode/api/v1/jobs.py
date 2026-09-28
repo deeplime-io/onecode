@@ -3,14 +3,12 @@
 
 import asyncio
 
-from ...base.decorator import check_type
 from ..utils import get_datetime, print_logs
 from ._concurrent.jobs.dashboard import JobDashboard
 from ._concurrent.jobs.logs import async_logs
 from ._concurrent.jobs.status import async_status
 
 
-@check_type
 def dashboard(
     slug: str,
     max_jobs: int = 10,
@@ -29,7 +27,6 @@ def dashboard(
     JobDashboard(slug, max_jobs, refresh).run()
 
 
-@check_type
 def logs(
     job_id: str,
     after: int | float = None,
@@ -77,7 +74,6 @@ def logs(
         print_logs(logs)
 
 
-@check_type
 def status(
     job_id: str
 ) -> str:

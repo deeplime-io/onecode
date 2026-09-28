@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 # pyi required for VSCode instrospection
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, List, Optional
 
 def file_output(
     key: str,

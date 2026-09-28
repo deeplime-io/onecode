@@ -8,7 +8,6 @@ from typing import Dict, List, Literal, TypedDict
 from dateutil import parser
 from rich.console import Console
 
-from ..base.decorator import check_type
 from ..base.enums import ConfigOption, Env
 from ..base.project import Project
 
@@ -92,7 +91,6 @@ def api_timeout():
     return float(Project().get_config(ConfigOption.API_TIMEOUT))
 
 
-@check_type
 def get_datetime(
     input: str | int
 ) -> datetime:
@@ -122,7 +120,6 @@ def get_datetime(
     return input
 
 
-@check_type
 def print_logs(
     logs: List[Dict],
     colormap: Dict = _COLORMAPS

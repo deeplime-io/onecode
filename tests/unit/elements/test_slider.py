@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from onecode import Mode, Project, Slider
@@ -106,7 +108,10 @@ def test_execute_invalid_single_slider():
     with pytest.raises(TypeError) as excinfo:
         widget()
 
-    assert "Invalid value 0.6, expected: list(typing.Union[float, int])" == str(excinfo.value)
+    if sys.version_info < (3, 14):
+        assert "Invalid value 0.6, expected: list(typing.Union[float, int])" == str(excinfo.value)
+    else:
+        assert "Invalid value 0.6, expected: list(float | int)" == str(excinfo.value)
 
 
 def test_execute_invalid_multiple_slider():
@@ -122,8 +127,12 @@ def test_execute_invalid_multiple_slider():
     with pytest.raises(TypeError) as excinfo:
         widget()
 
-    assert "Invalid value type for [0.6, 0.3, 0.4], expected: typing.Union[float, int]" == \
-        str(excinfo.value)
+    if sys.version_info < (3, 14):
+        assert "Invalid value type for [0.6, 0.3, 0.4], expected: typing.Union[float, int]" == \
+            str(excinfo.value)
+    else:
+        assert "Invalid value type for [0.6, 0.3, 0.4], expected: float | int" == \
+            str(excinfo.value)
 
 
 def test_execute_invalid_min_max_single_slider():

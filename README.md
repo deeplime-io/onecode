@@ -217,6 +217,10 @@ for your patience on that one.
 
 ## :wave: Getting Help
 
+Security reports go through [private vulnerability reporting](https://github.com/deeplime-io/onecode/security/advisories/new). See [SECURITY.md](SECURITY.md). Security fixes are published for the maintained `1.x` line.
+
+Issues labeled [`cra-vulnerability`](https://github.com/deeplime-io/onecode/issues?q=is%3Aissue+is%3Aopen+label%3Acra-vulnerability) come from the dependency scan. They are not the place to disclose a new flaw.
+
 If you are a OneCode customer, you may directly email our support team.
 Feel free as well to browse the [GitHub Issues](https://github.com/deeplime-io/onecode/issues)
 and reach out to the community by posting bug reports, questions and suggestions.
