@@ -20,7 +20,7 @@ class Project(metaclass=Singleton):
     parameter values, registered elements, flow currently running, current running
     mode, etc.
 
-    See [`reset()`][onecode.Project.reset] for Project default's initialization.
+    See [`reset()`][onecode.base.project.Project.reset] for Project default's initialization.
 
     Attributes:
         registered_elements: List of elements registered for processing.
@@ -182,8 +182,9 @@ class Project(metaclass=Singleton):
     @property
     def data_root(self) -> str:
         """
-        Get the path to the root of the data folder. See [`reset()`][onecode.Project.reset] to know
-        how the data path is initialized.
+        Get the path to the root of the data folder. See
+        [`reset()`][onecode.base.project.Project.reset]
+        to know how the data path is initialized.
 
         """
         return self._data_root
