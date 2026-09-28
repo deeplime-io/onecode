@@ -1,16 +1,11 @@
 import os
 import shutil
 
-import pytest
-from datatest import working_directory
-
 from onecode import Env
 from onecode.cli.create import create
-from tests.utils.flow_cli import _clean_flow, _generate_flow_name
+from tests.utils.flow_cli import _clean_flow, _generate_flow_name, run_project
 
 
-@pytest.mark.emulations
-@working_directory(__file__)
 def test_default_data_path():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -26,7 +21,7 @@ def test_default_data_path():
         f.write(onecode.Project().data_root)
     """)
 
-    os.system(f'cd "{flow_dir}" && python main.py')
+    run_project(flow_dir)
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == flow_data
@@ -34,8 +29,6 @@ def test_default_data_path():
     shutil.rmtree(flow_dir)
 
 
-@pytest.mark.emulations
-@working_directory(__file__)
 def test_env_data_path():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -51,11 +44,8 @@ def test_env_data_path():
         f.write(onecode.Project().data_root)
     """)
 
-    os.system(
-        f'cd "{flow_dir}" && '
-        f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        'python main.py'
-    )
+    os.environ[Env.ONECODE_PROJECT_DATA] = flow_data
+    run_project(flow_dir)
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == flow_data
@@ -63,7 +53,6 @@ def test_env_data_path():
     shutil.rmtree(os.path.join(tmp, flow_folder))
 
 
-@pytest.mark.emulations
 def test_output_multiprocess():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -94,7 +83,7 @@ def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
     parent_flow = onecode.Project().current_flow
-                
+
     for name in names:
         proc = Process(target=write_output, args=(name, parent_flow))
         procs.append(proc)
@@ -104,11 +93,8 @@ def run():
         proc.join()
     """)
 
-    os.system(
-        f'cd "{flow_dir}" && '
-        f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        'python main.py'
-    )
+    os.environ[Env.ONECODE_PROJECT_DATA] = flow_data
+    run_project(flow_dir)
 
     with open(os.path.join(flow_data, 'outputs', flow_id, 'MANIFEST.txt')) as f:
         data = f.read()
@@ -121,7 +107,6 @@ def run():
     shutil.rmtree(os.path.join(tmp, flow_folder))
 
 
-@pytest.mark.emulations
 def test_manifest_cleaning():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -147,7 +132,7 @@ from multiprocessing import Process
 from flows.utils import write_output
 import onecode
 
-      
+
 def run():
     names = ['b', 'a', 'c'] * 10
     procs = []
@@ -162,19 +147,10 @@ def run():
         proc.join()
     """)
 
-    os.system(
-        f'cd "{flow_dir}" && '
-        f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        'python main.py'
-    )
-    os.system(
-        f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        'python main.py'
-    )
-    os.system(
-        f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        'python main.py'
-    )
+    os.environ[Env.ONECODE_PROJECT_DATA] = flow_data
+    run_project(flow_dir)
+    run_project(flow_dir)
+    run_project(flow_dir)
 
     with open(os.path.join(flow_data, 'outputs', flow_id, 'MANIFEST.txt')) as f:
         data = f.read()
