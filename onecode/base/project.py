@@ -182,8 +182,9 @@ class Project(metaclass=Singleton):
     @property
     def data_root(self) -> str:
         """
-        Get the path to the root of the data folder. See [`reset()`][onecode.base.project.Project.reset] to know
-        how the data path is initialized.
+        Get the path to the root of the data folder. See
+        [`reset()`][onecode.base.project.Project.reset]
+        to know how the data path is initialized.
 
         """
         return self._data_root
