@@ -34,7 +34,6 @@ pandas = ">=1.4.0,<3"
 pyarrow = ">=12,<22"
 pydash = ">=5.1.0,<8"
 python-slugify = ">=6.1.2,<9"
-typeguard = ">=3,<5"
 requirements-parser = ">=0.10.2,<1"
 
 # cli
