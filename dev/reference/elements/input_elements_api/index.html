@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -315,7 +315,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../changelogs/1.2.2/" class="md-tabs__link">
+        <a href="../../../changelogs/1.3.0/" class="md-tabs__link">
           
   
   
@@ -1099,6 +1099,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../changelogs/1.3.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../changelogs/1.2.2/" class="md-nav__link">
         
   
@@ -1714,9 +1742,9 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">checkbox</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;Checkbox&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"Checkbox"</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My Checkbox&quot;</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"My Checkbox"</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
@@ -1956,14 +1984,14 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">csv_reader</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;CsvReader&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;/path/to/file.csv&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My CSV Reader&quot;</span><span class="p">,</span>
-    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;CSV&#39;</span><span class="p">],</span>
-    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"CsvReader"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"/path/to/file.csv"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"My CSV Reader"</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'CSV'</span><span class="p">],</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">","</span>
 <span class="p">)</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/path/to/file.csv&quot;</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"/path/to/file.csv"</span><span class="p">))</span>
 </code></pre></div>
 </div>
 
@@ -2198,26 +2226,26 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">dropdown</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;Dropdown&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"Dropdown"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span>
     <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div></p>
-<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]</span>
 </code></pre></div>
 <p>Dynamic options:
 <div class="highlight"><pre><span></span><code>from onecode import csv_reader, dropdown, Mode, Project
 
 Project().mode = Mode.EXECUTE
 
-df = csv_reader(&quot;csv&quot;, &quot;/path/to/file.csv&quot;)
+df = csv_reader("csv", "/path/to/file.csv")
 
 widget = dropdown(
-    key=&quot;Dynamic Dropdown&quot;,
+    key="Dynamic Dropdown",
     value=None,
-    options=&#39;$csv$.columns&#39;,
+    options='$csv$.columns',
     optional=True
 )
 print(widget)
@@ -2478,14 +2506,14 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">file_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;FileInput&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;/path/to/file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/file2.csv&quot;</span><span class="p">],</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"FileInput"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">"/path/to/file1.txt"</span><span class="p">,</span> <span class="s2">"/path/to/file2.csv"</span><span class="p">],</span>
     <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MyTags&#39;</span><span class="p">]</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'MyTags'</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="p">[</span><span class="s2">&quot;/path/to/file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/file2.csv&quot;</span><span class="p">]</span>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="p">[</span><span class="s2">"/path/to/file1.txt"</span><span class="p">,</span> <span class="s2">"/path/to/file2.csv"</span><span class="p">]</span>
 </code></pre></div>
 </div>
 
@@ -2735,7 +2763,7 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">number_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;Number Input&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"Number Input"</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">5.1</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="nb">max</span><span class="o">=</span><span class="mi">6</span>
@@ -2977,25 +3005,25 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">radio_button</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;RadioButton&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"RadioButton"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"A"</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div></p>
-<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;A&quot;</span>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">"A"</span>
 </code></pre></div>
 <p>Dynamic options:
 <div class="highlight"><pre><span></span><code>from onecode import csv_reader, radio_button, Mode, Project
 
 Project().mode = Mode.EXECUTE
 
-df = csv_reader(&quot;csv&quot;, &quot;/path/to/file.csv&quot;)
+df = csv_reader("csv", "/path/to/file.csv")
 
 widget = radio_button(
-    key=&quot;Dynamic RadioButton&quot;,
+    key="Dynamic RadioButton",
     value=None,
-    options=&#39;$csv$.columns&#39;,
+    options='$csv$.columns',
     optional=True
 )
 
@@ -3249,7 +3277,7 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;Slider&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"Slider"</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">5.1</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="nb">max</span><span class="o">=</span><span class="mi">6</span>
@@ -3505,13 +3533,13 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
 
 <span class="n">Project</span><span class="p">()</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">Mode</span><span class="o">.</span><span class="n">EXECUTE</span>
 <span class="n">widget</span> <span class="o">=</span> <span class="n">text_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;TextInput&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;OneCode rocks!&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;My TextInput&quot;</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"TextInput"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"OneCode rocks!"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"My TextInput"</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">&quot;OneCode rocks!&quot;</span>
+<div class="highlight"><span class="filename">Output</span><pre><span></span><code><span class="s2">"OneCode rocks!"</span>
 </code></pre></div>
 </div>
 
@@ -3581,7 +3609,7 @@ existing attributes or methods name such as <code>_validate</code>, <code>_value
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

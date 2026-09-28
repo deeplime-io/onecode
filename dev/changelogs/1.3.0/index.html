@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../1.2.0/">
+        <link rel="prev" href="../../faq/">
       
       
-        <link rel="next" href="../1.0.0/">
+        <link rel="next" href="../1.2.2/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>1.1.0 - OneCode Library</title>
+        <title>1.3.0 - OneCode Library</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1.1.0
+              1.3.0
             
           </span>
         </div>
@@ -315,7 +315,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../1.3.0/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -961,10 +961,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../1.3.0/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3.0
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -980,6 +1005,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1073,35 +1160,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    1.1.0
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../1.1.0/" class="md-nav__link">
         
   
   
@@ -1117,68 +1179,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#bug-fixes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bug Fixes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enhancements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enhancements
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        New Features
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#breaking-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Breaking changes
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1444,7 +1444,7 @@
 
 
 
-  <h1>1.1.0</h1>
+  <h1>1.3.0</h1>
 
 <h2 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h2>
 <table>
@@ -1457,14 +1457,9 @@
 </thead>
 <tbody>
 <tr>
-<td>[No ref]</td>
-<td>Fix <code>onecode-zip</code> CLI no longer throw errors on non-exisiting <code>MANIFEST.txt</code></td>
-<td><code>onecode-zip</code> was trying to read manifest file which may not be present when no output file is generated.</td>
-</tr>
-<tr>
-<td>[No ref]</td>
-<td>Fix <code>onecode-build</code> CLI documentation</td>
-<td><code>onecode-build</code> CLI documentation now reflects the actual behaviour of extracting UI json schema.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1479,14 +1474,39 @@
 </thead>
 <tbody>
 <tr>
-<td>[No ref]</td>
-<td>Input/Output element signature and docstring properly showing in IDE</td>
-<td>Input/Output elements function properly available through VSCode, Jupyter autocompletion, etc.</td>
+<td>[No Ref]</td>
+<td>Meta-data of input element to match expections from OneCode cloud</td>
+<td><code>metadata()</code> to be consistent with OneCode Cloud usage.</td>
 </tr>
 <tr>
-<td><a href="https://github.com/deeplime-io/onecode/issues/39">39</a></td>
-<td>[Request]: Being able to specify separator in csv_reader</td>
-<td>CSV file with other separators than comma can now be used.</td>
+<td>[No Ref]</td>
+<td>Remove the <code>typeguard</code> dependency</td>
+<td><code>is_type</code> now checks values with the standard library. Every item of a list is checked.</td>
+</tr>
+<tr>
+<td>[No Ref]</td>
+<td>Raise minimum dependency versions</td>
+<td>PyArrow, pydash, pytest, and Material for MkDocs now start at versions that include published security fixes. Other runtime, test, and docs dependencies move off release lines that predate the supported Python range.</td>
+</tr>
+<tr>
+<td>[No Ref]</td>
+<td>Vendor the call-graph library</td>
+<td>The <code>onecode-pycg</code> dependency is removed. The call-graph code OneCode uses now lives in <code>onecode.pycg</code> under the Apache License 2.0.</td>
+</tr>
+<tr>
+<td>[No Ref]</td>
+<td>Check style with Ruff</td>
+<td>Formatting CI uses Ruff instead of flake8 and isort.</td>
+</tr>
+<tr>
+<td>[No Ref]</td>
+<td>Publish a dependency SBOM and scan released versions</td>
+<td>Each GitHub release carries a CycloneDX SBOM of the direct runtime dependency ranges. Pull requests report advisories that intersect those ranges, and a daily job updates one issue per affected release. Security reports go through private vulnerability reporting. See <code>SECURITY.md</code>.</td>
+</tr>
+<tr>
+<td>[No Ref]</td>
+<td>Lock the manifest with the operating system</td>
+<td>Concurrent appends to the output manifest now use <code>filelock</code> (<code>fcntl</code> on Unix, <code>msvcrt</code> on Windows). The <code>flufl.lock</code> dependency is removed.</td>
 </tr>
 </tbody>
 </table>
@@ -1501,19 +1521,15 @@
 </thead>
 <tbody>
 <tr>
-<td>[No ref]</td>
-<td>Check whether all packages are present in Python environment</td>
-<td>Automatically check if a package may be missing when a OneCode project is started (may be turned off by <code>CHECK_MODULES</code> configuration option).</td>
-</tr>
-<tr>
-<td>[No ref]</td>
-<td>CLI to auto-generate requirements.txt</td>
-<td>Automatically generate a requirements.txt from a set of Python scripts and Python environment.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="breaking-changes"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" title=":warning:" /> Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
-<p>None</p>
+<p>Python 3.10 and older are no longer supported. OneCode now requires Python 3.11, 3.12, 3.13, or 3.14.</p>
+<p>The <code>check_type</code> decorator and the <code>ONECODE_DO_TYPECHECK</code> environment variable are removed. <code>Env.ONECODE_DO_TYPECHECK</code> is no longer available, and Pydantic is no longer a developer dependency.</p>
 
 
 

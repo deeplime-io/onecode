@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -315,7 +315,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../changelogs/1.2.2/" class="md-tabs__link">
+        <a href="../../../changelogs/1.3.0/" class="md-tabs__link">
           
   
   
@@ -1099,6 +1099,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../changelogs/1.3.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../changelogs/1.2.2/" class="md-nav__link">
         
   
@@ -1540,9 +1568,9 @@ The full API is available <a href="../input_elements_api/">here</a>.</p>
 <hr />
 <h2 id="checkbox">checkbox<a class="headerlink" href="#checkbox" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">do_something</span> <span class="o">=</span> <span class="n">checkbox</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;do_something&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"do_something"</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Do Something?&quot;</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Do Something?"</span>
 <span class="p">)</span>
 
 <span class="k">if</span> <span class="n">do_something</span><span class="p">:</span>
@@ -1550,9 +1578,9 @@ The full API is available <a href="../input_elements_api/">here</a>.</p>
 </code></pre></div>
 <h2 id="csv_reader">csv_reader<a class="headerlink" href="#csv_reader" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">csv_reader</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;my_csv&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;model/data.csv&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Choose a CSV file&quot;</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"my_csv"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"model/data.csv"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Choose a CSV file"</span>
 <span class="p">)</span>
 
 <span class="c1"># df is a pd.DataFrame!</span>
@@ -1561,32 +1589,32 @@ The full API is available <a href="../input_elements_api/">here</a>.</p>
 <h2 id="dropdown">dropdown<a class="headerlink" href="#dropdown" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># single choice</span>
 <span class="n">my_choice</span> <span class="o">=</span> <span class="n">dropdown</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;my_choice&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Choose an animal&quot;</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;fish&quot;</span><span class="p">]</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"my_choice"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"cat"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Choose an animal"</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">"dog"</span><span class="p">,</span> <span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"fish"</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my choice is: </span><span class="si">{</span><span class="n">my_choice</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"my choice is: </span><span class="si">{</span><span class="n">my_choice</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="c1"># multiple choice</span>
 <span class="n">my_multi_choice</span> <span class="o">=</span> <span class="n">dropdown</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;my_multi_choice&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">],</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Choose several animals&quot;</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;fish&quot;</span><span class="p">],</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"my_multi_choice"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">"cat"</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Choose several animals"</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">"dog"</span><span class="p">,</span> <span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"fish"</span><span class="p">],</span>
     <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my multiple choices are: </span><span class="si">{</span><span class="n">my_multi_choice</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"my multiple choices are: </span><span class="si">{</span><span class="n">my_multi_choice</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="file_input">file_input<a class="headerlink" href="#file_input" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># single file</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">file_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;my_file&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;images/my_image.png&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Select an image&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"my_file"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"images/my_image.png"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Select an image"</span><span class="p">,</span>
     <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="n">FileFilter</span><span class="o">.</span><span class="n">IMAGE</span><span class="p">]</span>
 <span class="p">)</span>
 
@@ -1595,10 +1623,10 @@ The full API is available <a href="../input_elements_api/">here</a>.</p>
 
 <span class="c1"># multiple files</span>
 <span class="n">multifiles</span> <span class="o">=</span> <span class="n">file_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;my_file&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;model/test.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;model/test.json&quot;</span><span class="p">],</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Select several files&quot;</span><span class="p">,</span>
-    <span class="n">types</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="s2">&quot;.csv .tsv&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Config&quot;</span><span class="p">,</span> <span class="s2">&quot;.json .yaml .yml&quot;</span><span class="p">)],</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"my_file"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">"model/test.csv"</span><span class="p">,</span> <span class="s2">"model/test.json"</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Select several files"</span><span class="p">,</span>
+    <span class="n">types</span><span class="o">=</span><span class="p">[(</span><span class="s2">"Data"</span><span class="p">,</span> <span class="s2">".csv .tsv"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Config"</span><span class="p">,</span> <span class="s2">".json .yaml .yml"</span><span class="p">)],</span>
     <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
@@ -1608,49 +1636,49 @@ The full API is available <a href="../input_elements_api/">here</a>.</p>
 </code></pre></div>
 <h2 id="number_input">number_input<a class="headerlink" href="#number_input" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">magic_number</span> <span class="o">=</span> <span class="n">number_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;magic_number&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"magic_number"</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Choose a magic number&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Choose a magic number"</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="nb">max</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">step</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your magic number is </span><span class="si">{</span><span class="n">magic_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Your magic number is </span><span class="si">{</span><span class="n">magic_number</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="radio_button">radio_button<a class="headerlink" href="#radio_button" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">animal</span> <span class="o">=</span> <span class="n">radio_button</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;my_choice&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;fish&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Choose an animal&quot;</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;fish&quot;</span><span class="p">],</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"my_choice"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"fish"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Choose an animal"</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">"dog"</span><span class="p">,</span> <span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"fish"</span><span class="p">],</span>
     <span class="n">horizontal</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your animal of choice is </span><span class="si">{</span><span class="n">animal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Your animal of choice is </span><span class="si">{</span><span class="n">animal</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="slider">slider<a class="headerlink" href="#slider" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">magic_number</span> <span class="o">=</span> <span class="n">slider</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;magic_number&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"magic_number"</span><span class="p">,</span>
     <span class="n">value</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Choose a magic number&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Choose a magic number"</span><span class="p">,</span>
     <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="nb">max</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
     <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your magic number is </span><span class="si">{</span><span class="n">magic_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Your magic number is </span><span class="si">{</span><span class="n">magic_number</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="text_input">text_input<a class="headerlink" href="#text_input" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="n">text_input</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;your_name&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;OneCoder&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"your_name"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"OneCoder"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"What is your name?"</span><span class="p">,</span>
     <span class="n">max_chars</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-    <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Type your name here!&quot;</span>
+    <span class="n">placeholder</span><span class="o">=</span><span class="s2">"Type your name here!"</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Your name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <h1 id="output-elements">Output Elements<a class="headerlink" href="#output-elements" title="Permanent link">&para;</a></h1>
 <p>On OneCode Cloud, only file explicitly flagged as output are push back to the storage.
@@ -1667,9 +1695,9 @@ All Output Elements have at least the following attributes:</p>
 The full API is available <a href="../output_elements_api/">here</a>.</p>
 <h2 id="file_output">file_output<a class="headerlink" href="#file_output" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">image</span> <span class="o">=</span> <span class="n">file_output</span><span class="p">(</span>
-    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;output_image&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;model/my_image.png&quot;</span><span class="p">,</span>
-    <span class="n">make_path</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># will create the model folder if doesn&#39;t exist</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">"output_image"</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">"model/my_image.png"</span><span class="p">,</span>
+    <span class="n">make_path</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># will create the model folder if doesn't exist</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -1736,7 +1764,7 @@ The full API is available <a href="../output_elements_api/">here</a>.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

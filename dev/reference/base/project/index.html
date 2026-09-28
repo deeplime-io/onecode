@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -315,7 +315,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../changelogs/1.2.2/" class="md-tabs__link">
+        <a href="../../../changelogs/1.3.0/" class="md-tabs__link">
           
   
   
@@ -1187,6 +1187,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../changelogs/1.3.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../changelogs/1.2.2/" class="md-nav__link">
         
   
@@ -1697,10 +1725,11 @@
     <div class="doc doc-contents first">
 
 
+
         <p>Single Project object to centralize OneCode project data, such as the data path,
 parameter values, registered elements, flow currently running, current running
 mode, etc.</p>
-<p>See <a class="autorefs autorefs-internal" title="reset(keep_registered_elements=False)" href="#onecode.base.project.Project.reset"><code>reset()</code></a> for Project default's initialization.</p>
+<p>See [<code>reset()</code>][onecode.Project.reset] for Project default's initialization.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -1818,7 +1847,8 @@ mode, etc.</p>
 
 
 
-  <div class="doc doc-children">
+
+<div class="doc doc-children">
 
 
 
@@ -1915,7 +1945,7 @@ mode <code>LOAD_THEN_EXECUTE</code> or incrementaly after each call to any input
 
     <div class="doc doc-contents ">
 
-        <p>Get the path to the root of the data folder. See <a class="autorefs autorefs-internal" title="reset(keep_registered_elements=False)" href="#onecode.base.project.Project.reset"><code>reset()</code></a> to know
+        <p>Get the path to the root of the data folder. See [<code>reset()</code>][onecode.Project.reset] to know
 how the data path is initialized.</p>
 
     </div>
@@ -1970,6 +2000,7 @@ processed.</p>
     </div>
 
 </div>
+
 
 
 
@@ -2299,10 +2330,10 @@ entry per output file, each entry containing attributes information. Each line i
 entry but the entire file is not a JSON.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file1.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FileOutput&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CSV&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/csv&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file2.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FileOutput&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;TXT&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;mimetype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/plain&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file1.csv"</span><span class="p">,</span><span class="w"> </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FileOutput"</span><span class="p">,</span><span class="w"> </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"CSV"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/csv"</span><span class="w"> </span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y"</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file2.txt"</span><span class="p">,</span><span class="w"> </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FileOutput"</span><span class="p">,</span><span class="w"> </span><span class="nt">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"TXT"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/plain"</span><span class="w"> </span><span class="p">}</span>
 <span class="err">...</span>
 </code></pre></div>
 </div>
@@ -2750,7 +2781,7 @@ execution, it is possible to manully call it too to output custom data.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
