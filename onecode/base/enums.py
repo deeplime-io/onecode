@@ -12,15 +12,12 @@ class Env(StrEnum):
     :octicons-arrow-both-24: `"ONECODE_PROJECT_DATA"`
     - `ONECODE_CONFIG_FILE`: name of the file containing OneCode project configurations
     :octicons-arrow-both-24: `".onecode.json"`
-    - `ONECODE_DO_TYPECHECK`: set to 1 to force runtime type-checking with Pydantic
-    :octicons-arrow-both-24: `"ONECODE_DO_TYPECHECK"`
     - `ONECODE_LOGGER_NAME`: base logger name to avoid logging conflict with other loggers
     :octicons-arrow-both-24: `|OneCode|`
 
     """
     ONECODE_PROJECT_DATA    = "ONECODE_PROJECT_DATA"    # noqa: E-221
     ONECODE_CONFIG_FILE     = ".onecode.json"           # noqa: E-221
-    ONECODE_DO_TYPECHECK    = "ONECODE_DO_TYPECHECK"    # noqa: E-221
     ONECODE_LOGGER_NAME     = "|OneCode|"               # noqa: E-221
 
 

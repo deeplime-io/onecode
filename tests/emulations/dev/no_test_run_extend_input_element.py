@@ -3,7 +3,6 @@ import shutil
 
 import pytest
 
-from onecode import Env
 from onecode.cli.create import create
 from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
@@ -61,7 +60,7 @@ def run():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"{3 * 14.3 + 5.5 }"

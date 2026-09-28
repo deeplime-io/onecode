@@ -1,24 +1,18 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-import ast
 import inspect
 import logging
 import os
 import sys
 from typing import Any, Optional
 
-from .decorator import check_type
 from .enums import ConfigOption, Env
 from .project import Project
 from .singleton import Singleton
 
-_do_type_check = (
-    Env.ONECODE_DO_TYPECHECK in os.environ and
-    bool(ast.literal_eval(os.environ[Env.ONECODE_DO_TYPECHECK]))
-)
-_logger_stack_level = 6 if _do_type_check else 2
-_stack_level = 4 if _do_type_check else 2
+_logger_stack_level = 2
+_stack_level = 2
 
 
 class ColoredFormatter(logging.Formatter):
@@ -44,7 +38,6 @@ class ColoredFormatter(logging.Formatter):
     BOLD_RED = "\x1b[31;1m"
     RESET = "\x1b[0m"
 
-    @check_type
     def __init__(
         self,
         color: bool = True
@@ -52,7 +45,6 @@ class ColoredFormatter(logging.Formatter):
         super().__init__()
         self._color = color
 
-    @check_type
     def format(
         self,
         record: logging.LogRecord
@@ -150,7 +142,6 @@ class Logger(metaclass=Singleton):
         base_logger.propagate = False
         self.set_level(logging.INFO)
 
-    @check_type
     def add_handler(
         self,
         handler: Optional[logging.Handler] = None,
@@ -182,7 +173,6 @@ class Logger(metaclass=Singleton):
             namespace = Env.ONECODE_LOGGER_NAME if not root_logger else None
             logging.getLogger(namespace).addHandler(handler)
 
-    @check_type
     def set_level(
         self,
         level: int
@@ -198,7 +188,6 @@ class Logger(metaclass=Singleton):
         """
         logging.getLogger(Env.ONECODE_LOGGER_NAME).setLevel(level)
 
-    @check_type
     def logger(
         self,
         stacklevel: int = 1,
@@ -232,7 +221,6 @@ class Logger(metaclass=Singleton):
             sys.stdout.flush()
 
     @staticmethod
-    @check_type
     def debug(msg: Any) -> None:
         """
         Convenience function to log a debug message.
@@ -245,7 +233,6 @@ class Logger(metaclass=Singleton):
         Logger._flush()
 
     @staticmethod
-    @check_type
     def info(msg: Any) -> None:
         """
         Convenience function to log an info message.
@@ -258,7 +245,6 @@ class Logger(metaclass=Singleton):
         Logger._flush()
 
     @staticmethod
-    @check_type
     def warning(msg: Any) -> None:
         """
         Convenience function to log a warning message.
@@ -271,7 +257,6 @@ class Logger(metaclass=Singleton):
         Logger._flush()
 
     @staticmethod
-    @check_type
     def error(msg: Any) -> None:
         """
         Convenience function to log an error message.
@@ -284,7 +269,6 @@ class Logger(metaclass=Singleton):
         Logger._flush()
 
     @staticmethod
-    @check_type
     def critical(msg: Any) -> None:
         """
         Convenience function to log a critical message.

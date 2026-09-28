@@ -4,14 +4,12 @@
 import os
 from typing import Any, List, Optional, Tuple, Union
 
-from ...base.decorator import check_type
 from ...base.project import Project
 from ...utils.typing import is_type
 from ..input_element import InputElement
 
 
 class FileInput(InputElement):
-    @check_type
     def __init__(
         self,
         key: str,
@@ -120,7 +118,6 @@ class FileInput(InputElement):
 
         return None
 
-    @check_type
     def _validate_file_value(
         self,
         value: str
@@ -136,7 +133,6 @@ class FileInput(InputElement):
         elif not os.path.isfile(value):
             raise FileNotFoundError(f"[{self.key}] Path is not a file: {value}")
 
-    @check_type
     def _validate(
         self,
         value: Union[List[str], str]

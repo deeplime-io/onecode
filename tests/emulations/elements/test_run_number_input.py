@@ -4,7 +4,6 @@ import shutil
 
 import pytest
 
-from onecode import Env
 from onecode.cli.create import create
 from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
@@ -25,7 +24,7 @@ def test_execute_single_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "0.5"
@@ -50,7 +49,7 @@ def test_execute_multiple_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[0.5, 0.5]"
@@ -78,7 +77,7 @@ def test_load_then_execute_single_count():
     with open(params, 'w') as f:
         json.dump({"my_number_input": 0.6}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "0.6"
@@ -107,7 +106,7 @@ def test_load_then_execute_multiple_count():
     with open(params, 'w') as f:
         json.dump({"my_number_input": [0.6, 0.4, 0.3]}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[0.6, 0.4, 0.3]"
@@ -133,7 +132,7 @@ def test_execute_invalid_bounds():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Minimum cannot be greater than maximum: 0.8 > 0.4"
@@ -163,7 +162,7 @@ def test_load_then_execute_invalid_bounds():
     with open(params, 'w') as f:
         json.dump({"my_number_input": 0.5}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Minimum cannot be greater than maximum: 0.8 > 0.4"
@@ -189,7 +188,7 @@ def test_execute_invalid_min():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value lower than minimum: 0.5 < 0.51"
@@ -219,7 +218,7 @@ def test_load_then_execute_invalid_min():
     with open(params, 'w') as f:
         json.dump({"my_number_input": 0.5}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value lower than minimum: 0.5 < 0.51"
@@ -245,7 +244,7 @@ def test_execute_invalid_max():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value greater than maximum: 0.5 > 0.49"
@@ -275,7 +274,7 @@ def test_load_then_execute_invalid_max():
     with open(params, 'w') as f:
         json.dump({"my_number_input": 0.5}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value greater than maximum: 0.5 > 0.49"
@@ -302,7 +301,7 @@ def test_execute_invalid_with_count():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value greater than maximum: 0.5 > 0.49"
@@ -333,7 +332,7 @@ def test_load_then_execute_invalid_with_count():
     with open(params, 'w') as f:
         json.dump({"my_number_input": [0.45, 0.5, 0.45]}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value greater than maximum: 0.5 > 0.49"
@@ -357,7 +356,7 @@ def test_execute_optional_value():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -385,7 +384,7 @@ def test_load_then_execute_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_number_input": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -411,7 +410,7 @@ def test_execute_invalid_optional_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value is required: None provided"
@@ -441,7 +440,7 @@ def test_load_then_execute_invalid_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_number_input": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_number_input] Value is required: None provided"
@@ -467,7 +466,7 @@ def test_invalid_name_key():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == 'Key starting with "_" are reserved: _my_number_input'

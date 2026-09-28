@@ -16,11 +16,9 @@ from packaging.specifiers import SpecifierSet
 from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
 
-from ..base.decorator import check_type
 from ..base.enums import Env
 
 
-@check_type
 def register_ext_module(
     project_path: str = os.getcwd(),
     module_name: str = "onecode_ext",
@@ -108,7 +106,6 @@ def _collect_flow_helper_files(flow_files: List[str]) -> List[str]:
     return helpers
 
 
-@check_type
 def get_call_graph_entry_files(project_path: str) -> List[str]:
     """
     Return the Python entry files used for static call-graph analysis.
@@ -153,7 +150,6 @@ def get_call_graph_entry_files(project_path: str) -> List[str]:
     return entry_files
 
 
-@check_type
 def get_imported_modules(scripts_folder: str) -> List[str]:
     """
     Get the names of all modules imported by the Python scripts present in the given folder.
@@ -177,7 +173,6 @@ def get_imported_modules(scripts_folder: str) -> List[str]:
     return list(cg.output_external_mods().keys() - {'<builtin>'})
 
 
-@check_type
 def _find_version(dist_name: str) -> Optional[str]:
     """
     Find the version of the distribution package if found.
@@ -196,7 +191,6 @@ def _find_version(dist_name: str) -> Optional[str]:
     return dist.version if dist is not None else None
 
 
-@check_type
 def check_modules(
     modules: List[str],
     requirements_file: Optional[str] = None
@@ -261,7 +255,6 @@ def check_modules(
     return mods
 
 
-@check_type
 def write_requirements(
     to_file: str,
     scripts_folder: str = os.getcwd(),

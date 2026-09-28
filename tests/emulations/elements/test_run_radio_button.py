@@ -4,7 +4,6 @@ import shutil
 
 import pytest
 
-from onecode import Env
 from onecode.cli.create import create
 from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
@@ -25,7 +24,7 @@ def test_execute_single_count():
         f.write(x)
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "B"
@@ -50,7 +49,7 @@ def test_execute_multiple_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "['B', 'B']"
@@ -78,7 +77,7 @@ def test_load_then_execute_single_count():
     with open(params, 'w') as f:
         json.dump({"my_radio": "B"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "B"
@@ -107,7 +106,7 @@ def test_load_then_execute_multiple_count():
     with open(params, 'w') as f:
         json.dump({"my_radio": ["B", "B", "B"]}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "['B', 'B', 'B']"
@@ -133,7 +132,7 @@ def test_execute_invalid():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_radio] Not a valid choice: D"
@@ -163,7 +162,7 @@ def test_load_then_execute_invalid():
     with open(params, 'w') as f:
         json.dump({"my_radio": "D"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_radio] Not a valid choice: D"
@@ -187,7 +186,7 @@ def test_execute_optional_value():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -215,7 +214,7 @@ def test_load_then_execute_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_radio": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -241,7 +240,7 @@ def test_execute_invalid_optional_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_radio] Value is required: None provided"
@@ -271,7 +270,7 @@ def test_load_then_execute_invalid_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_radio": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_radio] Value is required: None provided"
@@ -297,7 +296,7 @@ def test_invalid_name_key():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == 'Key starting with "_" are reserved: _my_radio'

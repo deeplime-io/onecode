@@ -4,7 +4,6 @@ import shutil
 
 import pytest
 
-from onecode import Env
 from onecode.cli.create import create
 from tests.utils.flow_cli import (
     _clean_flow,
@@ -31,7 +30,7 @@ def test_execute_single_value_single_count():
         f.write(x)
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"{flow_data}/input/test_file.txt"
@@ -62,7 +61,7 @@ def test_execute_multiple_values_single_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"['{flow_data}/input/test_file_1.txt'," \
@@ -90,7 +89,7 @@ def test_execute_single_value_multiple_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"['{flow_data}/input/test_file.txt'," \
@@ -124,7 +123,7 @@ def test_execute_multiple_values_multiple_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == \
@@ -155,7 +154,7 @@ def test_load_then_execute_single_value_single_count():
     with open(params, 'w') as f:
         json.dump({"my_file_input": "input/test_file.txt"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"{flow_data}/input/test_file.txt"
@@ -190,7 +189,7 @@ def test_load_then_execute_multiple_values_single_count():
     with open(params, 'w') as f:
         json.dump({"my_file_input": ['input/test_file_1.txt', 'input/test_file_2.txt']}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"['{flow_data}/input/test_file_1.txt'," \
@@ -224,7 +223,7 @@ def test_load_then_execute_single_value_multiple_count():
             "my_file_input": ["input/test_file.txt", "input/test_file.txt", "input/test_file.txt"]
         }, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"['{flow_data}/input/test_file.txt'," \
@@ -270,7 +269,7 @@ def test_load_then_execute_multiple_values_multiple_count():
             f
         )
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == \
@@ -299,7 +298,7 @@ def test_execute_file_not_found_single_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] File not found: {flow_data}/input/test_file.txt"
@@ -331,7 +330,7 @@ def test_load_execute_file_not_found_single_value():
     with open(params, 'w') as f:
         json.dump({"my_file_input": "input/test_file_1.txt"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] File not found: {flow_data}/input/test_file_1.txt"
@@ -359,7 +358,7 @@ def test_execute_not_a_file_single_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] Path is not a file: {flow_data}/input/test_file.txt"
@@ -392,7 +391,7 @@ def test_load_execute_not_a_file_single_value():
     with open(params, 'w') as f:
         json.dump({"my_file_input": "input/test_file_1.txt"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] Path is not a file: {flow_data}/input/test_file_1.txt"
@@ -424,7 +423,7 @@ def test_execute_file_not_found_multiple_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] File not found: {flow_data}/input/test_file_2.txt"
@@ -461,7 +460,7 @@ def test_load_execute_file_not_found_multiple_value():
     with open(params, 'w') as f:
         json.dump({"my_file_input": ['input/test_file_1.txt', 'input/test_file_3.txt']}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] File not found: {flow_data}/input/test_file_3.txt"
@@ -495,7 +494,7 @@ def test_execute_not_a_file_multiple_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] Path is not a file: {flow_data}/input/test_file.txt"
@@ -532,7 +531,7 @@ def test_load_execute_not_a_file_multiple_value():
     with open(params, 'w') as f:
         json.dump({"my_file_input": ['input/test_file.txt', 'input/test_file_1.txt']}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] Path is not a file: {flow_data}/input/test_file_1.txt"
@@ -577,7 +576,7 @@ def test_load_execute_not_a_file_multiple_value_with_count():
             ]},
             f
         )
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == f"[my_file_input] Path is not a file: {flow_data}/input/test_file.txt"
@@ -601,7 +600,7 @@ def test_execute_optional_value():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -629,7 +628,7 @@ def test_load_then_execute_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_file_input": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -655,7 +654,7 @@ def test_execute_invalid_optional_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_file_input] Value is required: None provided"
@@ -685,7 +684,7 @@ def test_load_then_execute_invalid_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_file_input": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_file_input] Value is required: None provided"
@@ -711,7 +710,7 @@ def test_invalid_name_key():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == 'Key starting with "_" are reserved: _my_file_input'

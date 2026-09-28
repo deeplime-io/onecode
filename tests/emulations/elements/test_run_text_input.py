@@ -4,7 +4,6 @@ import shutil
 
 import pytest
 
-from onecode import Env
 from onecode.cli.create import create
 from tests.utils.flow_cli import _clean_flow, _generate_flow_name
 
@@ -25,7 +24,7 @@ def test_execute_single_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "OneCode rocks!"
@@ -50,7 +49,7 @@ def test_execute_multiple_count():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "['OneCode rocks!', 'OneCode rocks!']"
@@ -78,7 +77,7 @@ def test_load_then_execute_single_count():
     with open(params, 'w') as f:
         json.dump({"my_text": "OneCode rocks!"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "OneCode rocks!"
@@ -107,7 +106,7 @@ def test_load_then_execute_multiple_count():
     with open(params, 'w') as f:
         json.dump({"my_text": ["OneCode", "rocks", "!"]}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "['OneCode', 'rocks', '!']"
@@ -131,7 +130,7 @@ def test_execute_optional_value():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -159,7 +158,7 @@ def test_load_then_execute_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_text": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -185,7 +184,7 @@ def test_execute_invalid_optional_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_text] Value is required: None provided"
@@ -215,7 +214,7 @@ def test_load_then_execute_invalid_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_text": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_text] Value is required: None provided"
@@ -241,7 +240,7 @@ def test_invalid_name_key():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == 'Key starting with "_" are reserved: _my_text'

@@ -10,7 +10,6 @@ from typing import Any, Dict, Optional, Set, Union
 import pydash
 from flufl.lock import Lock
 
-from .decorator import check_type
 from .enums import ConfigOption, Env, Mode
 from .singleton import Singleton
 
@@ -108,7 +107,6 @@ class Project(metaclass=Singleton):
         """
         return self._registered_elements
 
-    @check_type
     def register_element(
         self,
         element_name: str
@@ -190,7 +188,6 @@ class Project(metaclass=Singleton):
         """
         return self._data_root
 
-    @check_type
     def _set_data_root(
         self,
         data_path: str
@@ -212,7 +209,6 @@ class Project(metaclass=Singleton):
 
         self._data_root = data_path
 
-    @check_type
     def get_input_path(
         self,
         filepath: str
@@ -232,7 +228,6 @@ class Project(metaclass=Singleton):
         return filepath if not filepath or os.path.isabs(filepath) \
             else os.path.join(self.data_root, filepath)
 
-    @check_type
     def get_output_path(
         self,
         filepath: str
@@ -318,7 +313,6 @@ class Project(metaclass=Singleton):
         """
         self._data = data
 
-    @check_type
     def add_data(
         self,
         key: str,
@@ -343,7 +337,6 @@ class Project(metaclass=Singleton):
 
         self._data[key] = value
 
-    @check_type
     def set_config(
         self,
         key: Union[ConfigOption, str],
@@ -365,7 +358,6 @@ class Project(metaclass=Singleton):
 
         self._config[key] = value
 
-    @check_type
     def get_config(
         self,
         key: Union[ConfigOption, str]
@@ -385,7 +377,6 @@ class Project(metaclass=Singleton):
 
         return self._config[key]
 
-    @check_type
     def write_output(
         self,
         output: Dict

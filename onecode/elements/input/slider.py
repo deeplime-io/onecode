@@ -3,7 +3,6 @@
 
 from typing import Any, List, Optional, Union
 
-from ...base.decorator import check_type
 from ..input_element import InputElement
 
 
@@ -12,7 +11,6 @@ def _is_int(x):
 
 
 class Slider(InputElement):
-    @check_type
     def __init__(
         self,
         key: str,
@@ -112,7 +110,6 @@ class Slider(InputElement):
 
         return self._value
 
-    @check_type
     def _validate(
         self,
         value: Union[float, int]

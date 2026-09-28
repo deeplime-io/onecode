@@ -8,7 +8,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import pydash
 from slugify import slugify
 
-from ..base.decorator import check_type
 from ..base.project import Project
 from ..utils.typing import is_type
 
@@ -62,7 +61,6 @@ class InputElement(ABC):
 
     """
 
-    @check_type
     def __init__(
         self,
         key: str,
@@ -273,7 +271,6 @@ class InputElement(ABC):
         """
         pass
 
-    @check_type
     def _prepare_and_validate(
         self,
         value: Optional[Any]

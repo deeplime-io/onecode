@@ -9,7 +9,6 @@ import pyarrow as pa
 import pyarrow.compute as pc
 import pyarrow.csv as pv
 
-from ...base.decorator import check_type
 from ...base.project import Project
 from ..input_element import InputElement
 
@@ -102,7 +101,6 @@ def _metadata_from_table(table: pa.Table) -> Dict[str, Any]:
 
 
 class CsvReader(InputElement):
-    @check_type
     def __init__(
         self,
         key: str,
@@ -264,7 +262,6 @@ class CsvReader(InputElement):
 
         return None
 
-    @check_type
     def _validate(
         self,
         value: pd.DataFrame

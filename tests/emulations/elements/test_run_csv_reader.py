@@ -4,7 +4,6 @@ import shutil
 
 import pytest
 
-from onecode import Env
 from onecode.cli.create import create
 from tests.utils.flow_cli import (
     _clean_flow,
@@ -34,7 +33,7 @@ def test_execute_single_count():
         f.write(str(df.equals(x)))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "True"
@@ -64,7 +63,7 @@ def test_execute_multiple_count():
         f.write(str([df.equals(x_df) for x_df in x]))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[True, True]"
@@ -97,7 +96,7 @@ def test_load_then_execute_single_count():
     with open(params, 'w') as f:
         json.dump({"my_csv_reader": "test.csv"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "True"
@@ -131,7 +130,7 @@ def test_load_then_execute_multiple_count():
     with open(params, 'w') as f:
         json.dump({"my_csv_reader": ["test.csv", "test.csv", "test.csv"]}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[True, True, True]"
@@ -162,7 +161,7 @@ def test_execute_invalid_csv():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_csv_reader] Empty dataframe"
@@ -198,7 +197,7 @@ def test_load_then_execute_invalid_csv():
     with open(params, 'w') as f:
         json.dump({"my_csv_reader": "test.csv"}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_csv_reader] Empty dataframe"
@@ -222,7 +221,7 @@ def test_execute_optional_value():
         f.write(str(x))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -250,7 +249,7 @@ def test_load_then_execute_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_csv_reader": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "None"
@@ -276,7 +275,7 @@ def test_execute_invalid_optional_value():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_csv_reader] Value is required: None provided"
@@ -306,7 +305,7 @@ def test_load_then_execute_invalid_optional_value():
     with open(params, 'w') as f:
         json.dump({"my_csv_reader": None}, f)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py {params}')
+    os.system(f'cd "{flow_dir}" && python main.py {params}')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "[my_csv_reader] Value is required: None provided"
@@ -332,7 +331,7 @@ def test_invalid_name_key():
             f.write(str(err))
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == 'Key starting with "_" are reserved: _my_csv_reader'

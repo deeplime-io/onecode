@@ -60,12 +60,11 @@ jobs:
       - name: Check Testing Linux/MacOS
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
-          ONECODE_DO_TYPECHECK=1 python -m pytest tests -n auto
+          python -m pytest tests -n auto
 
       - name: Check Testing Windows
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          set ONECODE_DO_TYPECHECK=1
           python -m pytest tests
 
   coverage:
@@ -92,12 +91,11 @@ jobs:
       - name: Test coverage Linux
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
-          ONECODE_DO_TYPECHECK=1 coverage run -m pytest tests --cov=./ --cov-report=xml
+          coverage run -m pytest tests --cov=./ --cov-report=xml
 
       - name: Test coverage Windows
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          set ONECODE_DO_TYPECHECK=1
           coverage run -m pytest tests --cov=./ --cov-report=xml
 
       - name: Upload coverage reports to Codecov

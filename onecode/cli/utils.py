@@ -13,13 +13,11 @@ from pycg.pycg import CallGraphGenerator
 from pycg.utils.constants import CALL_GRAPH_OP
 from slugify import slugify
 
-from ..base.decorator import check_type
 from ..base.enums import Env
 from ..base.project import Project
 from ..utils.module import get_call_graph_entry_files
 
 
-@check_type
 def get_flows(project_path: str) -> Dict:
     """
     Get the flows configuration as stored at the OneCode project's root (filename is given by the
@@ -41,7 +39,6 @@ def get_flows(project_path: str) -> Dict:
     return config
 
 
-@check_type
 def _get_flow_choices(project_path: str) -> List[Choice]:     # pragma: no cover
     """
     Internal function for CLI commands to get the existing OneCode project's flows as interactive
@@ -60,7 +57,6 @@ def _get_flow_choices(project_path: str) -> List[Choice]:     # pragma: no cover
     return choices
 
 
-@check_type
 def _add_flow(
     project_path: str,
     name: Optional[str],
@@ -164,7 +160,6 @@ def _resolve_graph_key(name: str, graph: Dict) -> str:
     return name
 
 
-# check_type decorator not compatible with recursive calls
 def extract_calls(
     entry_point: str,
     graph: Dict,
@@ -219,7 +214,6 @@ def extract_calls(
                 extract_calls(next_point, graph, calls)
 
 
-@check_type
 def process_call_graph(
     project_path: str = None,
     verbose: bool = False

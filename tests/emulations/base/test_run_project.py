@@ -26,7 +26,7 @@ def test_default_data_path():
         f.write(onecode.Project().data_root)
     """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    os.system(f'cd "{flow_dir}" && python main.py')
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == flow_data
@@ -54,7 +54,7 @@ def test_env_data_path():
     os.system(
         f'cd "{flow_dir}" && '
         f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        f'{Env.ONECODE_DO_TYPECHECK}=1 python main.py'
+        'python main.py'
     )
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
@@ -107,7 +107,7 @@ def run():
     os.system(
         f'cd "{flow_dir}" && '
         f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        f'{Env.ONECODE_DO_TYPECHECK}=1 python main.py'
+        'python main.py'
     )
 
     with open(os.path.join(flow_data, 'outputs', flow_id, 'MANIFEST.txt')) as f:
@@ -165,15 +165,15 @@ def run():
     os.system(
         f'cd "{flow_dir}" && '
         f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        f'{Env.ONECODE_DO_TYPECHECK}=1 python main.py'
+        'python main.py'
     )
     os.system(
         f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        f'{Env.ONECODE_DO_TYPECHECK}=1 python main.py'
+        'python main.py'
     )
     os.system(
         f'{Env.ONECODE_PROJECT_DATA}="{flow_data}" '
-        f'{Env.ONECODE_DO_TYPECHECK}=1 python main.py'
+        'python main.py'
     )
 
     with open(os.path.join(flow_data, 'outputs', flow_id, 'MANIFEST.txt')) as f:
