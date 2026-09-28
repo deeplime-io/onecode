@@ -6,11 +6,9 @@ import json
 import os
 import zipfile
 
-from ..base.decorator import check_type
 from .utils import get_flows
 
 
-@check_type
 def zip_output(
     project_path: str,
     data_path: str,

@@ -7,7 +7,6 @@ from typing import Any, Optional
 import pydash
 from slugify import slugify
 
-from ..base.decorator import check_type
 from ..base.project import Project
 
 
@@ -52,7 +51,6 @@ class OutputElement(ABC):
 
         """
 
-    @check_type
     def __init__(
         self,
         key: str,

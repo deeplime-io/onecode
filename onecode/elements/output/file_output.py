@@ -5,13 +5,11 @@ import mimetypes
 import os
 from typing import Any, List, Optional
 
-from ...base.decorator import check_type
 from ...base.project import Project
 from ..output_element import OutputElement
 
 
 class FileOutput(OutputElement):
-    @check_type
     def __init__(
         self,
         key: str,
@@ -95,7 +93,6 @@ class FileOutput(OutputElement):
         """
         return Project().get_output_path(self._value)
 
-    @check_type
     def _validate(
         self,
         value: str

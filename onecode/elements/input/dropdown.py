@@ -3,12 +3,10 @@
 
 from typing import Any, List, Optional, Union
 
-from ...base.decorator import check_type
 from ..input_element import InputElement
 
 
 class Dropdown(InputElement):
-    @check_type
     def __init__(
         self,
         key: str,
@@ -112,7 +110,6 @@ class Dropdown(InputElement):
         """
         return List[Union[str, int, float]] if self.multiple else Union[str, int, float]
 
-    @check_type
     def _validate_option_value(
         self,
         value: Union[str, int, float]
@@ -129,7 +126,6 @@ class Dropdown(InputElement):
         if not isinstance(self.options, str) and value not in self.options:
             raise ValueError(f"[{self.key}] Not a valid choice: {value}")
 
-    @check_type
     def _validate(
         self,
         value: Union[List[str], str]

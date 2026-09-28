@@ -1,8 +1,7 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-# strenum to allow for code backward-compat between Python 3.10 and Python 3.11+
-from strenum import StrEnum
+from enum import StrEnum
 
 
 class Env(StrEnum):
@@ -13,16 +12,13 @@ class Env(StrEnum):
     :octicons-arrow-both-24: `"ONECODE_PROJECT_DATA"`
     - `ONECODE_CONFIG_FILE`: name of the file containing OneCode project configurations
     :octicons-arrow-both-24: `".onecode.json"`
-    - `ONECODE_DO_TYPECHECK`: set to 1 to force runtime type-checking with Pydantic
-    :octicons-arrow-both-24: `"ONECODE_DO_TYPECHECK"`
     - `ONECODE_LOGGER_NAME`: base logger name to avoid logging conflict with other loggers
     :octicons-arrow-both-24: `|OneCode|`
 
     """
-    ONECODE_PROJECT_DATA    = "ONECODE_PROJECT_DATA"    # noqa: E-221
-    ONECODE_CONFIG_FILE     = ".onecode.json"           # noqa: E-221
-    ONECODE_DO_TYPECHECK    = "ONECODE_DO_TYPECHECK"    # noqa: E-221
-    ONECODE_LOGGER_NAME     = "|OneCode|"               # noqa: E-221
+    ONECODE_PROJECT_DATA    = "ONECODE_PROJECT_DATA"    # noqa: E221
+    ONECODE_CONFIG_FILE     = ".onecode.json"           # noqa: E221
+    ONECODE_LOGGER_NAME     = "|OneCode|"               # noqa: E221
 
 
 class ConfigOption(StrEnum):
@@ -39,11 +35,11 @@ class ConfigOption(StrEnum):
         typically to handle code using display :octicons-arrow-both-24: `"CLOUD_ENV": False`
 
     """
-    FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E-221
-    LOGGER_COLOR        = "LOGGER_COLOR"            # noqa: E-221
-    LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E-221
-    CHECK_MODULES       = "CHECK_MODULES"           # noqa: E-221
-    CLOUD_ENV           = "CLOUD_ENV"               # noqa: E-221
+    FLUSH_STDOUT        = "FLUSH_STDOUT"            # noqa: E221
+    LOGGER_COLOR        = "LOGGER_COLOR"            # noqa: E221
+    LOGGER_TIMESTAMP    = "LOGGER_TIMESTAMP"        # noqa: E221
+    CHECK_MODULES       = "CHECK_MODULES"           # noqa: E221
+    CLOUD_ENV           = "CLOUD_ENV"               # noqa: E221
 
 
 class Mode(StrEnum):
@@ -91,12 +87,12 @@ class Mode(StrEnum):
         ```
 
     """
-    CONSOLE             = "_console"                 # noqa: E-221
-    EXECUTE             = "_execute"                 # noqa: E-221
-    LOAD_THEN_EXECUTE   = "_load_then_execute"       # noqa: E-221
-    EXTRACT             = "_extract"                 # noqa: E-221
-    EXTRACT_ALL         = "_extract_all"             # noqa: E-221
-    BUILD_GUI           = "_build_gui"               # noqa: E-221
+    CONSOLE             = "_console"                 # noqa: E221
+    EXECUTE             = "_execute"                 # noqa: E221
+    LOAD_THEN_EXECUTE   = "_load_then_execute"       # noqa: E221
+    EXTRACT             = "_extract"                 # noqa: E221
+    EXTRACT_ALL         = "_extract_all"             # noqa: E221
+    BUILD_GUI           = "_build_gui"               # noqa: E221
 
 
 class ElementType(StrEnum):
@@ -108,8 +104,8 @@ class ElementType(StrEnum):
     - `OUTPUT`: `OutputElement` Type :octicons-arrow-both-24: `"OUTPUT"`
 
     """
-    INPUT       = "INPUT"          # noqa: E-221
-    OUTPUT      = "OUTPUT"         # noqa: E-221
+    INPUT       = "INPUT"          # noqa: E221
+    OUTPUT      = "OUTPUT"         # noqa: E221
 
 
 class FileFilter(tuple):
@@ -124,7 +120,7 @@ class FileFilter(tuple):
     * `ZIP` :octicons-arrow-both-24: `("ZIP", ".zip .gz .tar.gz .7z")`
 
     """
-    CSV       = ("CSV", ".csv")                        # noqa: E-221
-    PYTHON    = ("Python", ".py")                      # noqa: E-221
-    IMAGE     = ("Image", ".jpg .png .jpeg")           # noqa: E-221
-    ZIP       = ("ZIP", ".zip .gz .tar.gz .7z")        # noqa: E-221
+    CSV       = ("CSV", ".csv")                        # noqa: E221
+    PYTHON    = ("Python", ".py")                      # noqa: E221
+    IMAGE     = ("Image", ".jpg .png .jpeg")           # noqa: E221
+    ZIP       = ("ZIP", ".zip .gz .tar.gz .7z")        # noqa: E221

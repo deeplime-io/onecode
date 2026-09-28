@@ -2,15 +2,11 @@ import json
 import os
 import shutil
 
-import pytest
-
-from onecode import Env
 from onecode.cli.add import add
 from onecode.cli.create import create
-from tests.utils.flow_cli import _clean_flow, _generate_flow_name
+from tests.utils.flow_cli import _clean_flow, _generate_flow_name, run_project
 
 
-@pytest.mark.emulations
 def test_single_flow_execution():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -25,7 +21,7 @@ def test_single_flow_execution():
         f.write("Flow just executed!")
 """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    run_project(flow_dir)
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == "Flow just executed!"
@@ -33,7 +29,6 @@ def test_single_flow_execution():
     shutil.rmtree(flow_dir)
 
 
-@pytest.mark.emulations
 def test_multiple_flows_execution():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -68,7 +63,7 @@ def test_multiple_flows_execution():
         f.write("Flow 2 just executed!")
 """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py')
+    run_project(flow_dir)
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == (
@@ -81,7 +76,6 @@ def test_multiple_flows_execution():
     shutil.rmtree(flow_dir)
 
 
-@pytest.mark.emulations
 def test_single_flow_execution_in_multi_flows():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -116,7 +110,7 @@ def test_single_flow_execution_in_multi_flows():
         f.write("Flow 2 just executed!")
 """)
 
-    os.system(f'cd "{flow_dir}" && {Env.ONECODE_DO_TYPECHECK}=1 python main.py --flow another_flow')
+    run_project(flow_dir, ["--flow", "another_flow"])
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == (
@@ -126,7 +120,6 @@ def test_single_flow_execution_in_multi_flows():
     shutil.rmtree(flow_dir)
 
 
-@pytest.mark.emulations
 def test_single_flow_execution_in_multi_flows_with_params():
     flow_name, flow_folder, flow_id = _generate_flow_name()
 
@@ -166,10 +159,7 @@ def test_single_flow_execution_in_multi_flows_with_params():
         f.write("Flow 2 just executed!")
 """)
 
-    os.system(
-        f'cd "{flow_dir}" && '
-        f'{Env.ONECODE_DO_TYPECHECK}=1 python main.py --flow another_flow params.json'
-    )
+    run_project(flow_dir, ["--flow", "another_flow", "params.json"])
 
     with open(os.path.join(flow_dir, 'stdout.txt')) as f:
         assert f.read() == (

@@ -11,7 +11,6 @@ from yaspin import yaspin
 
 import onecode  # noqa
 
-from ..base.decorator import check_type
 from ..base.enums import *  # noqa
 from ..base.enums import ElementType, Mode
 from ..base.project import Project
@@ -19,7 +18,6 @@ from ..utils.module import register_ext_module
 from .utils import process_call_graph
 
 
-@check_type
 def process(calls: List[Dict[str, str]]) -> Dict:
     """
     Evaluate the given calls such as:
@@ -83,7 +81,6 @@ def process(calls: List[Dict[str, str]]) -> Dict:
     return params
 
 
-@check_type
 def extract_json(
     project_path: str,
     to_file: str,
@@ -113,7 +110,6 @@ def extract_json(
         json.dump(parameters, out, indent=4)
 
 
-@check_type
 def main(cli: bool = True) -> None:    # pragma: no cover
     """
     ```bash

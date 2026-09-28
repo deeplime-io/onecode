@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2023-2024 DeepLime <contact@deeplime.io>
 # SPDX-License-Identifier: MIT
 
-__version__ = "1.2.2"
+__version__ = "1.3.0.dev"
 
 
 from .base import *

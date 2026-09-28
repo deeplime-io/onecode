@@ -8,12 +8,10 @@ from inspect import Signature, signature
 
 import pydash
 
-from ..base.decorator import check_type
 from ..base.enums import ElementType
 from ..base.project import Project
 
 
-@check_type
 def import_input(
     init_file: str,
     module_name: str
