@@ -103,6 +103,8 @@ def run():
 
     for proc in procs:
         proc.join()
+        if proc.exitcode:
+            raise RuntimeError(f"worker exited with {proc.exitcode}")
     """)
 
     os.environ[Env.ONECODE_PROJECT_DATA] = flow_data
@@ -169,6 +171,8 @@ def run():
 
     for proc in procs:
         proc.join()
+        if proc.exitcode:
+            raise RuntimeError(f"worker exited with {proc.exitcode}")
     """)
 
     os.environ[Env.ONECODE_PROJECT_DATA] = flow_data

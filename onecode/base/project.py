@@ -8,7 +8,7 @@ import sys
 from typing import Any, Dict, Optional, Set, Union
 
 import pydash
-from flufl.lock import Lock
+from filelock import FileLock
 
 from .enums import ConfigOption, Env, Mode
 from .singleton import Singleton
@@ -395,9 +395,11 @@ class Project(metaclass=Singleton):
             output: Output data to write to the manifest file.
 
         """
-        manifest_dir = os.path.dirname(self.get_output_manifest())
+        manifest = self.get_output_manifest()
+        lock_path = os.path.join(os.path.dirname(manifest), '.locks', 'MANIFEST.lock')
 
-        # manage concurrent access in case of multiprocessing
-        with Lock(os.path.join(manifest_dir, '.locks', 'MANIFEST.lock'), lifetime=3):
-            with open(self.get_output_manifest(), "a") as f:
-                f.write(f'{json.dumps(output)}\n')
+        # OS lock (fcntl on Unix, msvcrt on Windows). Released when the holder
+        # exits, so a slow process is not interrupted by a timeout.
+        with FileLock(lock_path, timeout=-1, preserve_lock_file=True):
+            with open(manifest, "a") as handle:
+                handle.write(f'{json.dumps(output)}\n')

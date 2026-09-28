@@ -32,7 +32,7 @@ SBOM = "https://github.com/deeplime-io/onecode/releases/latest"
 
 [tool.poetry.dependencies]
 python = ">=3.11, <3.15"
-'flufl.lock' = ">=8,<10"
+filelock = ">=3.30,<5"
 pandas = ">=2.3,<4"
 pyarrow = ">=22,<26"
 pydash = ">=7,<9"
