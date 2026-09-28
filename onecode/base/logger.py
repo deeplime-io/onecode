@@ -82,14 +82,14 @@ class ColoredFormatter(logging.Formatter):
 class Logger(metaclass=Singleton):
     """
     Single Logger object to handle Python logging within OneCode projects.
-    The default logging level is INFO. See [`set_level()`][onecode.Logger.set_level] to change it.
-    Use the static methods [`debug()`][onecode.Logger.debug], [`info()`][onecode.Logger.info],
-    [`warning()`][onecode.Logger.warning], [`error()`][onecode.Logger.error], and
-    [`critical()`][onecode.Logger.critical] to conveniently log your messages with the
+    The default logging level is INFO. See [`set_level()`][onecode.base.logger.Logger.set_level] to change it.
+    Use the static methods [`debug()`][onecode.base.logger.Logger.debug], [`info()`][onecode.base.logger.Logger.info],
+    [`warning()`][onecode.base.logger.Logger.warning], [`error()`][onecode.base.logger.Logger.error], and
+    [`critical()`][onecode.base.logger.Logger.critical] to conveniently log your messages with the
     corresponding logging level.
 
     By default, the ColoredFormatter is used. You may add other logging handlers using
-    [`add_handler()`][onecode.Logger.add_handler], for instance to redirect logs to a file.
+    [`add_handler()`][onecode.base.logger.Logger.add_handler], for instance to redirect logs to a file.
 
     !!! example
         ```py
@@ -194,9 +194,9 @@ class Logger(metaclass=Singleton):
     ) -> logging.Logger:
         """
         Get the Python Logger object corresponding to the given stack level. Preferentially use
-        convenience methods [`debug()`][onecode.Logger.debug], [`info()`][onecode.Logger.info],
-        [`warning()`][onecode.Logger.warning], [`error()`][onecode.Logger.error], and
-        [`critical()`][onecode.Logger.critical].
+        convenience methods [`debug()`][onecode.base.logger.Logger.debug], [`info()`][onecode.base.logger.Logger.info],
+        [`warning()`][onecode.base.logger.Logger.warning], [`error()`][onecode.base.logger.Logger.error], and
+        [`critical()`][onecode.base.logger.Logger.critical].
 
         Args:
             stacklevel: Number of hops back in the function call stack to tie the logger to.
@@ -214,7 +214,7 @@ class Logger(metaclass=Singleton):
     def _flush() -> None:
         """
         Force flush to stdout if `ConfigOption.FLUSH_STDOUT` is True. See
-            [Project.config][onecode.Project.config] for more information.
+            [Project.config][onecode.base.project.Project.config] for more information.
 
         """
         if Project().get_config(ConfigOption.FLUSH_STDOUT):
